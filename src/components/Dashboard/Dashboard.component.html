@@ -1,0 +1,80 @@
+<div id="dashboard">
+  <!-- Header -->
+  <div id="header">
+    <!-- Header. Status part -->
+    <div id="header-status">
+      <div class="container_12">
+        <div class="grid_8">
+          &nbsp;
+        </div>
+        <div class="grid_4">
+          <a class="simpletext">Welcome {{loginUserName}} | {{loginRole}}</a>
+          <router-link id="logout" @click.native="logout()" to="/">Logout</router-link>
+        </div>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+    <!-- End #header-status -->
+
+    <!-- Header. Main part -->
+    <div id="header-main">
+      <div class="container_12">
+        <div class="grid_12">
+          <div id="logo">
+            <ul id="nav">
+              <li id="current">
+                <router-link to="/Dashboard">Dashboard</router-link>
+              </li>
+              <li>
+                  <router-link to="/Dashboard/Masters">Masters</router-link>
+              </li>
+              <li><a href="">Files</a></li>
+              <li><a href="">Profile</a></li>
+              <li><a href="">Settings</a></li>
+            </ul>
+          </div>
+          <!-- End. #Logo -->
+        </div>
+        <!-- End. .grid_12-->
+        <div style="clear: both;"></div>
+      </div>
+      <!-- End. .container_12 -->
+    </div>
+    <!-- End #header-main -->
+    <div style="clear: both;"></div>
+    <!-- Sub navigation -->
+    <div id="subnav">
+      <div class="container_12">
+        <!-- <div class="grid_12">
+          <ul>
+            <li><a href="#">link 1</a></li>
+            <li><a href="#">link 2</a></li>
+            <li><a href="#">link 3</a></li>
+            <li><a href="#">link 4</a></li>
+            <li><a href="#">link 5</a></li>
+          </ul>
+
+        </div> -->
+        <!-- End. .grid_12-->
+      </div>
+      <!-- End. .container_12 -->
+      <div style="clear: both;"></div>
+    </div>
+    <!-- End #subnav -->
+  </div>
+  <!-- End #header -->
+
+  <router-view/>
+
+  <!-- Footer -->
+  <div id="footer">
+    <div class="container_12">
+      <div class="grid_12">
+        <!-- You can change the copyright line for your own -->
+        <p>&copy; 2017. All rights reserved. (mohit.dixit354@gmail.com)</p>
+      </div>
+    </div>
+    <div style="clear:both;"></div>
+  </div>
+  <!-- End #footer -->
+</div>

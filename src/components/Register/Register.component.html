@@ -1,0 +1,36 @@
+<div class="login-container">
+  <div class="form-box">
+    <b-form @submit="onSubmit">
+      <label class="headingForm">Register</label>
+      <b-form-group id="frmGrpFirstName" label="First Name:" label-for="firstName">
+        <b-form-input id="firstName" type="text" v-model="registerform.firstname" required placeholder="Enter First Name"></b-form-input>
+      </b-form-group>
+      <b-form-group id="frmGrpLastName" label="Last Name:" label-for="lastName">
+        <b-form-input id="lastName" type="text" v-model="registerform.lastname" required placeholder="Enter Last Name"></b-form-input>
+      </b-form-group>
+      <b-form-group id="frmGrpUserName" label="Choose your username:" label-for="userName">
+        <b-form-input id="userName" type="text" v-model="registerform.username" required placeholder="Enter User Name"></b-form-input>
+      </b-form-group>
+      <b-form-group id="frmGrpPassword" label="Create a password:" label-for="password">
+        <b-form-input id="password" type="password" v-model="registerform.password" required placeholder="Enter Password"></b-form-input>
+      </b-form-group>
+      <b-form-group id="frmGrpConfirmPassword" label="Confirm your password:" label-for="confirmPassword">
+        <b-form-input id="confirmPassword" type="password" v-model="registerform.confirmpassword" required placeholder="Confirm Password"></b-form-input>
+      </b-form-group>
+      <b-form-group id="frmGrpConfirmPassword" label="Mobile phone:" label-for="mobilePhone">
+        <b-form-input id="mobilePhone" type="number" maxlength="10" v-model="registerform.mobilephone" required placeholder="Mobile Phone"></b-form-input>
+      </b-form-group>
+      <b-form-group id="frmGrpTermsConditions">
+        <b-form-checkbox v-model="registerform.termsconditions" id="termsConditions" required>
+          I agree the Terms & Conditions.
+        </b-form-checkbox>
+      </b-form-group>
+      <b-button type="submit" variant="primary">Register</b-button>
+      <b-button type="reset" variant="secondary">Reset</b-button>
+      <p class='label-signup'>
+        Already a member ?
+        <router-link to="/">Log In</router-link>
+      </p>
+    </b-form>
+  </div>
+</div>
