@@ -1,0 +1,58 @@
+<div class="login-container">
+  <div class="form-box">
+    <label class="headingForm">Create Question</label>
+    <br>
+    <b-form @submit="onSubmit">
+      <b-container fluid>
+        <b-row class="my-1">
+          <b-col sm="2"><label for="input-none">Question:</label></b-col>
+          <b-col sm="10">
+            <vue-editor id="editor1" placeholder="Enter Question" v-model="createquestion.question"></vue-editor>
+          </b-col>
+        </b-row>
+        <br>
+        <b-row class="my-1">
+          <b-col sm="2"><label for="input-none">Points:</label></b-col>
+          <b-col sm="10">
+            <b-form-select v-model="createquestion.points" :options="pointsOptions" required class="mb-3">
+            </b-form-select>
+          </b-col>
+        </b-row>
+        <b-row class="my-1">
+          <b-col sm="2"><label for="input-none">Category:</label></b-col>
+          <b-col sm="10">
+            <b-form-select v-model="createquestion.category" :options="categoryOptions" required class="mb-3">
+            </b-form-select>
+          </b-col>
+        </b-row>
+        <b-row class="my-1">
+          <b-col sm="2"><label for="input-none">Sub Category:</label></b-col>
+          <b-col sm="10">
+            <b-form-select v-model="createquestion.subcategory" :options="subcategoryOptions" required class="mb-3">
+            </b-form-select>
+          </b-col>
+        </b-row>
+        <b-row id="answerDiv" class="my-1" v-for="(createanswer,key,index) in answers" v-bind:key="key">
+          <b-col sm="2"><label for="input-none">Answer option {{ key + 1 }}:</label></b-col>
+          <b-col sm="9">
+            <vue-editor id="editor" class="answerEditorClass" placeholder="Enter Answer" v-model="createanswer.answer"></vue-editor>
+          </b-col>
+          <b-col sm="1">
+            Correct?
+            <input class="answerCheckboxClass" v-model="createanswer.iscorrect" @click="answerCheckboxClick($event)" type="checkbox">
+          </b-col>
+        </b-row>
+        <b-row class="my-1">
+          <b-col sm="2"></b-col>
+          <b-col sm="9">
+            <b-button v-on:click="addRow()" title="Add answer option" style="float: left;" variant="primary"><b>+</b></b-button>
+          </b-col>
+          <b-col sm="1"></b-col>
+        </b-row>
+      </b-container>
+      <br>
+      <b-button type="submit" variant="primary">Create</b-button>
+      <b-button type="reset" variant="secondary">Reset</b-button>
+    </b-form>
+  </div>
+</div>

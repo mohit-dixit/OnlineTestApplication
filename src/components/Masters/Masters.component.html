@@ -1,5 +1,102 @@
+<div class="container_12">
+  <!-- Dashboard icons -->
+  <div class="grid_12">
+    <a v-on:click="showtable(1)" :disabled="showDivId === 1" class="dashboard-module">
+                          <img src="../../assets/dashboardfiles/newadmin.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_write.gif" width="64" height="64" alt="edit" />
+                          <!-- <span><router-link to="/Dashboard/CreateAdmin"></router-link></span> -->
+                          <span>Admin</span>
+    </a>
+    <div style="clear: both"></div>
+  </div>
+  <!-- End .grid_7 -->
+  <div>
+    <!-- Example table -->
+    <hr>
+    <b-button type="submit" v-on:click="redirectToNewAdmin()" variant="primary"><b>+ </b>New Admin</b-button>
+    <br>
+    <br>
+    <ag-grid-vue name="testgrid" style="border:2px solid red;" class="ag-fresh grid" :gridOptions="gridOptions" :rowData="rowData" :rowDataChanged="onRowDataChanged">
+    </ag-grid-vue>
+  </div>
+  <br>
+  <br>
+  <br>
 
-<section class="masters">
-  <a v-on:click="updateSource()">masters Component</a>
-</section>
+  <div v-if="showDivId === 1">
+    <!-- Example table -->
+    <hr>
+    <b-button type="submit" v-on:click="redirectToNewAdmin()" variant="primary"><b>+ </b>New Admin</b-button>
+    <br>
+    <br>
+    <div class="module">
+      <h2><span>Admin</span></h2>
+      <div class="module-table-body">
+        <form action="">
+          <table id="myTable" class="tablesorter">
+            <thead>
+              <tr>
+                <th style="width:20%; text-align: center;">Name</th>
+                <th style="width:21%; text-align: center;">Email</th>
+                <th style="width:13%; text-align: center;">Phone</th>
+                <th style="width:19%; text-align: center;">Associated with</th>
+                <th style="width:10%; text-align: center;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="admin in adminList">
+                <td style="text-align: center;"><a href="">{{ admin.name }}</a></td>
+                <td style="text-align: center;">{{ admin.email }}</td>
+                <td style="text-align: center;">{{ admin.phone }}</td>
+                <td style="text-align: center;">{{ admin.associatedwith }}</td>
+                <td style="text-align: center;">
+                  <a href=""><img src="../../assets/dashboardfiles/pencil.gif" v-on:click="editAdminClick(this)" tppabs="http://www.xooom.pl/work/magicadmin/images/pencil.gif" width="16" height="16" alt="edit" /></a>
+                  <a href=""><img src="../../assets/dashboardfiles/delete.png" tppabs="http://www.xooom.pl/work/magicadmin/images/delete.png" width="16" height="16" alt="delete" /></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+        <div class="pager" id="pager">
+          <form action="">
+            <div>
+              <img class="first" src="../../assets/dashboardfiles/arrow-stop-180.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/arrow-stop-180.gif"
+                alt="first" />
+              <img class="prev" src="../../assets/dashboardfiles/arrow-180.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/arrow-180.gif"
+                alt="prev" />
+              <input type="text" class="pagedisplay input-short align-center" />
+              <img class="next" src="../../assets/dashboardfiles/arrow.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/arrow.gif"
+                alt="next" />
+              <img class="last" src="../../assets/dashboardfiles/arrow-stop.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/arrow-stop.gif"
+                alt="last" />
+              <select class="pagesize input-short align-center">
+                            <option value="10" selected="selected">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="40">40</option>
+                        </select>
+            </div>
+          </form>
+        </div>
+        <div class="table-apply">
+          <form action="">
+            <div>
+              <!-- <span>Apply action to selected:</span>
+                    <select class="input-medium">
+                        <option value="1" selected="selected">Select action</option>
+                        <option value="2">Publish</option>
+                        <option value="3">Unpublish</option>
+                        <option value="4">Delete</option>
+                    </select> -->
+            </div>
+          </form>
+        </div>
+        <div style="clear: both"></div>
+      </div>
+      <!-- End .module-table-body -->
+    </div>
+    <!-- End .module -->
 
+  </div>
+  <div style="clear:both;"></div>
+</div>
+<!-- End .container_12 -->

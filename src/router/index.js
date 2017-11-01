@@ -7,6 +7,7 @@ import Register from '@/components/Register/index'
 import CreateAdmin from '@/components/CreateAdmin/index'
 import CreateTest from '@/components/CreateTest/index'
 import Masters from '@/components/Masters/index'
+import CreateQuestion from '@/components/CreateQuestion/index'
 
 Vue.use(Router)
 
@@ -35,6 +36,12 @@ export default new Router({
           meta: { AuthRequired: true }
         },
         {
+          path: 'CreateAdmin/:id',
+          name: 'CreateAdmin',
+          component: CreateAdmin,
+          meta: { AuthRequired: true }
+        },
+        {
           path: 'CreateTest',
           name: 'CreateTest',
           component: CreateTest,
@@ -44,6 +51,12 @@ export default new Router({
           path: 'Masters',
           name: 'Masters',
           component: Masters,
+          meta: { AuthRequired: true }
+        },
+        {
+          path: 'CreateQuestion',
+          name: 'CreateQuestion',
+          component: CreateQuestion,
           meta: { AuthRequired: true }
         }
       ]
