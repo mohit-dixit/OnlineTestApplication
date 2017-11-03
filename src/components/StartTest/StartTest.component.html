@@ -1,0 +1,75 @@
+<section class="start-test">
+  <dashboard>
+    <div class="container_12">
+      <div>
+        <div class="module">
+          <h2><span>Tests</span></h2>
+          <div class="module-table-body">
+            <form action="">
+              <table id="myTable" class="tablesorter">
+                <thead>
+                  <tr>
+                    <th style="width:15%; text-align: center;">Name</th>
+                    <th style="width:15%; text-align: center;">Time (In Minutes)</th>
+                    <th style="width:15%; text-align: center;">Valid By</th>
+                    <th style="width:15%; text-align: center;">Negative Marking</th>
+                    <th style="width:15%; text-align: center;">Status</th>
+                    <th style="width:15%; text-align: center;">Result</th>
+                    <th style="width:10%; text-align: center;">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="test in testList">
+                    <td style="text-align: center;"><a href="">{{ test.name }}</a></td>
+                    <td style="text-align: center;">{{ test.time }}</td>
+                    <td style="text-align: center;">{{ test.validby }}</td>
+                    <td style="text-align: center;">{{ test.negativemarking ? "Yes" : "No" }}</td>
+                    <td style="text-align: center;">{{ test.status }}</td>
+                    <td style="text-align: center;">{{ test.result }}</td>
+                    <td style="text-align: center;">
+                      <a href=""><img src="../../assets/dashboardfiles/starttestgrid.png" title="Start Test" v-on:click="startTestClick($event)" tppabs="http://www.xooom.pl/work/magicadmin/images/starttestgrid.png" width="22" height="22" alt="edit" /></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+            <div class="pager" id="pager">
+              <form action="">
+                <div>
+                  <img class="first" src="../../assets/dashboardfiles/arrow-stop-180.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/arrow-stop-180.gif"
+                    alt="first" />
+                  <img class="prev" src="../../assets/dashboardfiles/arrow-180.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/arrow-180.gif"
+                    alt="prev" />
+                  <input type="text" class="pagedisplay input-short align-center" />
+                  <img class="next" src="../../assets/dashboardfiles/arrow.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/arrow.gif"
+                    alt="next" />
+                  <img class="last" src="../../assets/dashboardfiles/arrow-stop.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/arrow-stop.gif"
+                    alt="last" />
+                  <select class="pagesize input-short align-center">
+                              <option value="10" selected="selected">10</option>
+                              <option value="20">20</option>
+                              <option value="30">30</option>
+                              <option value="40">40</option>
+                          </select>
+                </div>
+              </form>
+            </div>
+            <div class="table-apply">
+              <!-- <form action="">
+                <div>
+                  <span>Apply action to selected:</span>
+                  <select class="input-medium">
+                          <option value="1" selected="selected">Select action</option>
+                          <option value="2">Publish</option>
+                          <option value="3">Unpublish</option>
+                          <option value="4">Delete</option>
+                      </select>
+                </div>
+              </form> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dashboard>
+</section>

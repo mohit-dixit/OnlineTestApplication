@@ -1,0 +1,44 @@
+
+<section class="assign-test">
+    <dashboard>
+        <div class="createstudent-container">
+            <div class="form-box">
+              <label class="headingForm">Create Student</label>
+              <br>
+              <b-form @submit="onSubmit">
+                <b-container fluid>
+                  <b-row class="my-1">
+                    <b-col sm="4"><label for="input-none">First Name:</label></b-col>
+                    <b-col sm="8">
+                      <b-form-input id="name" type="text" v-model="createstudentform.firstname" required placeholder="Enter First Name"></b-form-input>
+                    </b-col>
+                  </b-row>
+                  <b-row class="my-1">
+                      <b-col sm="4"><label for="input-none">Last Name:</label></b-col>
+                      <b-col sm="8">
+                        <b-form-input id="name" type="text" v-model="createstudentform.lastname" required placeholder="Enter Last Name"></b-form-input>
+                      </b-col>
+                    </b-row>
+                  <b-row class="my-1">
+                    <b-col sm="4"><label for="input-none">Email:</label></b-col>
+                    <b-col sm="8">
+                      <b-form-input id="input-none" :state="null" type="text" v-model="createstudentform.email" required placeholder="Enter Email"></b-form-input>
+                    </b-col>
+                  </b-row>
+                  <b-row class="my-1">
+                    <b-col sm="4"><label for="input-none">Phone:</label></b-col>
+                    <b-col sm="8">
+                      <b-form-input id="input-none" :state="null" type="number" v-model="createstudentform.phone" required placeholder="Enter Phone"></b-form-input>
+                    </b-col>
+                  </b-row>
+                </b-container>
+                <br>
+                <b-button type="submit" variant="primary">Create</b-button>
+                <b-button type="reset" variant="secondary">Reset</b-button>
+                <success-notification v-if="notifySuccess">Student created successfully</success-notification>
+              </b-form>
+            </div>
+          </div>
+    </dashboard>
+  </section>
+

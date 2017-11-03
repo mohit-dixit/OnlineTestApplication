@@ -19,17 +19,23 @@
           </b-col>
         </b-row>
         <b-row class="my-1">
-          <b-col sm="2"><label for="input-none">Category:</label></b-col>
-          <b-col sm="10">
-            <b-form-select v-model="createquestion.category" :options="categoryOptions" required class="mb-3">
+          <b-col sm="2"><label for="input-none">Scale:</label></b-col>
+          <b-col sm="9">
+            <b-form-select v-model="createquestion.scale" :options="scaleOptions" required class="mb-3">
             </b-form-select>
+          </b-col>
+          <b-col sm="1">
+            <b-button v-b-modal.modalScale variant="primary"><b>+</b></b-button>
           </b-col>
         </b-row>
         <b-row class="my-1">
-          <b-col sm="2"><label for="input-none">Sub Category:</label></b-col>
-          <b-col sm="10">
-            <b-form-select v-model="createquestion.subcategory" :options="subcategoryOptions" required class="mb-3">
+          <b-col sm="2"><label for="input-none">Subject:</label></b-col>
+          <b-col sm="9">
+            <b-form-select v-model="createquestion.subject" :options="subjectOptions" required class="mb-3">
             </b-form-select>
+          </b-col>
+          <b-col sm="1">
+            <b-button v-b-modal.modalSubject variant="primary"><b>+</b></b-button>
           </b-col>
         </b-row>
         <b-row id="answerDiv" class="my-1" v-for="(createanswer,key,index) in answers" v-bind:key="key">
@@ -46,6 +52,8 @@
           <b-col sm="2"></b-col>
           <b-col sm="9">
             <b-button v-on:click="addRow()" title="Add answer option" style="float: left;" variant="primary"><b>+</b></b-button>
+            <b-button v-on:click="removeRow()" v-if="toShowRemoveAnswer" title="Add answer option" style="float: left; margin-left: 10px;"
+              variant="primary"><b>--</b></b-button>
           </b-col>
           <b-col sm="1"></b-col>
         </b-row>
@@ -55,4 +63,32 @@
       <b-button type="reset" variant="secondary">Reset</b-button>
     </b-form>
   </div>
+
+   <!-- Modal Component -->
+  <div>
+    <b-modal id="modalScale" ref="modalScale" title="Add Scale" @ok="addScale"
+    :header-bg-variant="headerBgVariant"
+    :header-text-variant="headerTextVariant"
+    :body-bg-variant="bodyBgVariant"
+    :body-text-variant="bodyTextVariant"
+    :footer-bg-variant="footerBgVariant"
+    :footer-text-variant="footerTextVariant">
+      <form @submit.stop.prevent="submitScale">
+        <b-form-input type="text" placeholder="Enter Scale" v-model="addscale.scalename"></b-form-input>
+      </form>
+    </b-modal>
+
+    <b-modal id="modalSubject" ref="modalSubject" title="Add Subject" @ok="addSubject"
+    :header-bg-variant="headerBgVariant"
+    :header-text-variant="headerTextVariant"
+    :body-bg-variant="bodyBgVariant"
+    :body-text-variant="bodyTextVariant"
+    :footer-bg-variant="footerBgVariant"
+    :footer-text-variant="footerTextVariant">
+      <form @submit.stop.prevent="submitSubject">
+        <b-form-input type="text" placeholder="Enter Subject" v-model="addsubject.subjectname"></b-form-input>
+      </form>
+    </b-modal>
+  </div>
+   <!-- Modal Component -->
 </div>

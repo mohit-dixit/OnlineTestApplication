@@ -1,33 +1,52 @@
 import Vue from 'vue'
-export default  {
+import {
+  GetRequest,
+  PostRequest
+} from '../../utils/globalservice'
+
+export default {
   name: 'create-admin',
   components: {},
   props: [],
-  data () {
+  data() {
     return {
-      createadminform:{
+      createadminform: {
         associatedwith: null
       },
-      associatedOptions: [
-        { value: null, text: '--Select Institute--' },
-        { value: '1', text: 'KN Modi College' },
-        { value: '2', text: 'KIET College' },
-        { value: '3', text: 'NIIT Rajnagar Ghaziabad' },
-        { value: '4', text: 'ITS Mohan Nagar' }
-      ]
+      associatedOptions: [],
     }
   },
   computed: {
 
   },
-  mounted () {
+  mounted() {
 
   },
   methods: {
+    //Controls bindings
+    bindInstitutes: function () {
+      GetRequest('static/institute.json').then(res => {
+        this.associatedOptions.push({ value: null,text: '--Select Institute--'})
+        if (res) {
+          res.forEach(function (element) {
+            this.associatedOptions.push({
+              value: element.id,
+              text: element.name
+            })
+          }, this);
+        }
+      });
+    },
+
     onSubmit(evt) {
       evt.preventDefault();
       alert(JSON.stringify(this.createadminform));
-      this.$router.push('/Dashboard')
+      this.createadminform = {};
+      this.notifySuccess = true;
+      //this.$router.push('/Dashboard')
     }
+  },
+  created: function () {
+    this.bindInstitutes();
   }
 }

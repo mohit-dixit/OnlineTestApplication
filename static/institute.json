@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "KN Modi College",
+    "email": "knmdclg@gmail.com",
+    "phone": "01232-333030393",
+    "address": "Near Raj Chaupla, Modinagar"
+  },
+  {
+    "id": 2,
+    "name": "NIIT College",
+    "email": "niit@gmail.com",
+    "phone": "99797978682",
+    "address": "Rajnagar, Ghaziabad, UP"
+  },
+  {
+    "id": 3,
+    "name": "IMR College",
+    "email": "imr@gmail.com",
+    "phone": "987868565466",
+    "address": "Mohan Nagar, Ghaziabad"
+  },
+  {
+    "id": 4,
+    "name": "Amity University",
+    "email": "amity@gmail.com",
+    "phone": "011-232343223",
+    "address": "Sector 126, Noida"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "id":1,
+    "username" : "superadmin@gmail.com",
+    "password" : "su",
+    "roleId": 1,
+    "rolename": "Super Admin",
+    "firstname": "Mohit",
+    "lastname":"Dixit"
+  },
+  {
+    "id":2,
+    "username" : "admin@gmail.com",
+    "password" : "ad",
+    "roleId": 2,
+    "rolename": "Admin",
+    "firstname": "Admin1",
+    "lastname":"ssdsdsadsa"
+  },
+  {
+    "id":3,
+    "username" : "teacher@gmail.com",
+    "password" : "te",
+    "roleId": 3,
+    "rolename": "Teacher",
+    "firstname": "Teacher1",
+    "lastname":"ffgfgcfcss"
+  },
+  {
+    "id":2,
+    "username" : "student@gmail.com",
+    "password" : "st",
+    "roleId": 4,
+    "rolename": "Student",
+    "firstname": "Student1",
+    "lastname":"sffgggdffdd"
+  }
+]

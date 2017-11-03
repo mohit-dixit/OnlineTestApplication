@@ -8,7 +8,7 @@
           &nbsp;
         </div>
         <div class="grid_4">
-          <a class="simpletext">Welcome {{loginUserName}} | {{loginRole}}</a>
+          <a class="simpletext"><b>Welcome,&nbsp;{{loginUserName}} | {{loginRole}}</b></a>
           <router-link id="logout" @click.native="logout()" to="/">Logout</router-link>
         </div>
       </div>
@@ -22,15 +22,13 @@
         <div class="grid_12">
           <div id="logo">
             <ul id="nav">
-              <li id="current">
-                <router-link to="/Dashboard">Dashboard</router-link>
+              <!-- <li id="current"> -->
+              <li class="clsMainTab" id="current">
+                <router-link @click.native="mainTabsClick($event)" to="/Dashboard">Dashboard</router-link>
               </li>
-              <li>
-                  <router-link to="/Dashboard/Masters">Masters</router-link>
+              <li class="clsMainTab" id="Masters" v-if="isUserSuperAdmin">
+                <router-link @click.native="mainTabsClick($event)" to="/Dashboard/Masters">Masters</router-link>
               </li>
-              <li><a href="">Files</a></li>
-              <li><a href="">Profile</a></li>
-              <li><a href="">Settings</a></li>
             </ul>
           </div>
           <!-- End. #Logo -->
@@ -65,6 +63,7 @@
   <!-- End #header -->
 
   <router-view/>
+  <slot></slot>
 
   <!-- Footer -->
   <div id="footer">

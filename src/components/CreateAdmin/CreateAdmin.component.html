@@ -1,4 +1,4 @@
-<div class="login-container">
+<div class="createadmin-container">
   <div class="form-box">
     <label class="headingForm">Create Admin</label>
     <br>
@@ -33,6 +33,9 @@
       <br>
       <b-button type="submit" variant="primary">Create</b-button>
       <b-button type="reset" variant="secondary">Reset</b-button>
+      <div v-if="notifySuccess" style="margin-top: 10px;">
+        <span class="notification n-success">Admin created successfully.</span>
+      </div>
     </b-form>
   </div>
 </div>
