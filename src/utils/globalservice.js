@@ -2,7 +2,8 @@ import Vue from 'vue'
 export {
   GetRequest,
   PostRequest,
-  LoginAuthentication
+  LoginAuthentication,
+  NumberKeyValidation
 };
 
 function GetRequest(url, data) {
@@ -52,4 +53,9 @@ function LoginAuthentication(username, password, url) {
       //debugger;
       return error;
     })
+}
+
+function NumberKeyValidation(event) {
+  let returnValue = (event.keyCode >= 48 && event.keyCode <= 57);
+  return returnValue;
 }

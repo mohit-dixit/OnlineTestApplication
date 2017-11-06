@@ -1,4 +1,3 @@
-import Dashboard from '../Dashboard/index.vue'
 import Vue from 'vue'
 import {
   GetRequest,
@@ -7,11 +6,46 @@ import {
 
 export default  {
   name: 'start-test',
-  components: {'dashboard' : Dashboard},
+  components: {},
   props: [],
   data () {
     this.testList = [];
     return {
+      columnsTest: [
+        {
+          label: 'Name',
+          field: 'name',
+          filterable: true,
+          width:'20%'
+        },
+        {
+          label: 'Time',
+          field: 'time',
+          filterable: true,
+          width:'17%'
+        },
+        {
+          label: 'Valid By',
+          field: 'validby',
+          filterable: true,
+          width:'20%'
+        },
+        {
+          label: 'Status',
+          field: 'status',
+          width:'20%'
+        }
+        ,
+        {
+          label: 'Result',
+          field: 'result',
+          width:'15%'
+        },
+        {
+          label: 'Action',
+          width:'5%'
+        }
+      ],
       variants: [
         'primary','secondary','success','warning','danger','info','light','dark'
        ],
@@ -37,11 +71,10 @@ export default  {
 
     startTestClick: function (events, args) {
       alert('clicked');
-      //this.$router.push('/Dashboard/CreateAdmin', 1);
     }
-
   },
   created: function () {
+    this.loginRole = Vue.lsobj.get('loginRole');
     this.getTestsList();
   }
 }

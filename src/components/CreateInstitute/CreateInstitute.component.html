@@ -1,37 +1,39 @@
-<div class="createinstitute-container">
-  <div class="form-box">
-    <label class="headingForm">Create Institute</label>
-    <br>
-    <b-form @submit="onSubmit">
-      <b-container fluid>
-        <b-row class="my-1">
-          <b-col sm="4"><label for="input-none">Name:</label></b-col>
-          <b-col sm="8">
-            <b-form-input id="name" type="text" v-model="createinstituteform.name" required placeholder="Enter Name"></b-form-input>
-          </b-col>
-        </b-row>
-        <b-row class="my-1">
-          <b-col sm="4"><label for="input-none">Email:</label></b-col>
-          <b-col sm="8">
-            <b-form-input id="input-none" :state="null" type="text" v-model="createinstituteform.email" required placeholder="Enter Email"></b-form-input>
-          </b-col>
-        </b-row>
-        <b-row class="my-1">
-          <b-col sm="4"><label for="input-none">Phone:</label></b-col>
-          <b-col sm="8">
-            <b-form-input id="input-none" :state="null" type="text" v-model="createinstituteform.phone" required placeholder="Enter Phone"></b-form-input>
-          </b-col>
-        </b-row>
-        <b-row class="my-1">
-          <b-col sm="4"><label for="input-none">Address:</label></b-col>
-          <b-col sm="8">
-            <b-form-textarea id="dddddd" v-model="createinstituteform.address" required class="mb-3"></b-form-textarea>
-          </b-col>
-        </b-row>
-      </b-container>
-      <br>
-      <b-button type="submit" variant="primary">Create</b-button>
-      <b-button type="reset" variant="secondary">Reset</b-button>
-    </b-form>
-  </div>
-</div>
+<section>
+    <div class="createinstitute-container">
+      <div class="form-box">
+        <label class="headingForm">Create Institute</label>
+        <br>
+        <b-form @submit="onSubmit">
+          <b-container fluid>
+            <b-row class="my-1">
+              <b-col sm="4"><label for="input-none">Name:</label></b-col>
+              <b-col sm="8">
+                <b-form-input id="name" type="text" v-model="createinstituteform.name" required placeholder="Enter Name"></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="4"><label for="input-none">Email:</label></b-col>
+              <b-col sm="8">
+                <b-form-input id="input-none" :state="null" type="text" v-model="createinstituteform.email" required placeholder="Enter Email"></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="4"><label for="input-none">Phone:</label></b-col>
+              <b-col sm="8">
+                <b-form-input id="input-none" :state="null" type="text" v-model="createinstituteform.phone" required placeholder="Enter Phone"></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="4"><label for="input-none">Address:</label></b-col>
+              <b-col sm="8">
+                <b-form-textarea id="dddddd" v-model="createinstituteform.address" required class="mb-3"></b-form-textarea>
+              </b-col>
+            </b-row>
+          </b-container>
+          <br>
+          <b-button type="submit" variant="primary">Create</b-button>
+          <b-button type="reset" variant="secondary">Reset</b-button>
+        </b-form>
+      </div>
+    </div>
+</section>

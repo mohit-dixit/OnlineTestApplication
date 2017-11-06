@@ -11,14 +11,22 @@ import "../node_modules/ag-grid/dist/styles/theme-fresh.css"
 import VueResource from 'vue-resource'
 import AgGridVue from "ag-grid-vue"
 import VueEditor from 'vue2-editor'
-import datePicker from 'vue-bootstrap-datetimepicker'
+import DatePicker from 'vue-bootstrap-datetimepicker'
 import 'eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css'
+import BreabCrumbs from 'vue-2-breadcrumbs'
+import VueGoodTable from 'vue-good-table'
+import Vuelidate from 'vuelidate'
 
 Vue.config.productionTip = false
 
 Vue.use(BootstrapVue);
 Vue.use(VueResource);
 Vue.use(VueEditor, {});
+Vue.use(BreabCrumbs);
+Vue.use(VueGoodTable);
+Vue.use(Vuelidate)
+
+Vue.component('datePicker',DatePicker);
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.AuthRequired)) {
@@ -43,8 +51,7 @@ new Vue({
   router,
   template: '<App/>',
   components: {
-    App,
-    'datePicker': datePicker
+    App
   },
   data() {
     return {}

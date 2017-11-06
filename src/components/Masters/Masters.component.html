@@ -1,161 +1,81 @@
 <div class="container_12">
   <div>
-    <a v-on:click="showtable(1)" class="dashboard-module">
-                          <img src="../../assets/dashboardfiles/newadmin.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_write.gif" width="64" height="64" alt="edit" />
+    <a v-on:click="showtable(1)" v-if="loginRole === '1'" class="dashboard-module">
+                          <img src="../../assets/images/adminlist.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_write.gif" width="64" height="64" alt="edit" />
                           <!-- <span><router-link to="/Dashboard/CreateAdmin"></router-link></span> -->
-                          <span>Admin</span>
+                          <span>Admins</span>
     </a>
-    <a v-on:click="showtable(2)" class="dashboard-module">
-      <img src="../../assets/dashboardfiles/institutionicon.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_write.gif" width="64" height="64" alt="edit" />
+    <a v-on:click="showtable(2)" v-if="loginRole === '1'" class="dashboard-module">
+      <img src="../../assets/images/multiInstitutes.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_write.gif" width="64" height="64" alt="edit" />
       <!-- <span><router-link to="/Dashboard/CreateAdmin"></router-link></span> -->
-      <span>Institute</span>
+      <span>Institutes</span>
+    </a>
+    <a v-on:click="showtable(3)" v-if="loginRole === '2'" class="dashboard-module">
+      <img src="../../assets/images/teachersList.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_write.gif" width="64" height="64" alt="edit" />
+      <!-- <span><router-link to="/Dashboard/CreateAdmin"></router-link></span> -->
+      <span>Teachers</span>
+    </a>
+    <a v-on:click="showtable(4)" v-if="loginRole === '2'" class="dashboard-module">
+      <img src="../../assets/images/studentsList.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_write.gif" width="64" height="64" alt="edit" />
+      <!-- <span><router-link to="/Dashboard/CreateAdmin"></router-link></span> -->
+      <span>Students</span>
     </a>
   </div>
   <div style="clear: both"></div>
   <div v-if="showDivId === 1">
     <!-- Example table -->
-    <b-button type="submit" v-b-modal.modalAddAdmin variant="primary"><b>+ </b>New Admin</b-button>
+    <b-button type="submit" v-if="hideForNow" v-b-modal.modalAddAdmin variant="primary"><b>+ </b>New Admin</b-button>
     <br>
-    <br>
-    <div class="module">
-      <h2><span>Admin</span></h2>
-      <div class="module-table-body">
-        <form action="">
-          <table id="myTable" class="tablesorter">
-            <thead>
-              <tr>
-                <th style="width:20%; text-align: center;">Name</th>
-                <th style="width:21%; text-align: center;">Email</th>
-                <th style="width:13%; text-align: center;">Phone</th>
-                <th style="width:19%; text-align: center;">Associated with</th>
-                <th style="width:10%; text-align: center;">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="admin in adminList">
-                <td style="text-align: center;"><a href="">{{ admin.name }}</a></td>
-                <td style="text-align: center;">{{ admin.email }}</td>
-                <td style="text-align: center;">{{ admin.phone }}</td>
-                <td style="text-align: center;">{{ admin.associatedwith }}</td>
-                <td style="text-align: center;">
-                  <a href=""><img src="../../assets/dashboardfiles/pencil.gif" v-on:click="editAdminClick($event)" tppabs="http://www.xooom.pl/work/magicadmin/images/pencil.gif" width="20" height="20" alt="edit" /></a>
-                  <a href=""><img src="../../assets/dashboardfiles/delete.png" tppabs="http://www.xooom.pl/work/magicadmin/images/delete.png" width="20" height="20" alt="delete" /></a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </form>
-        <div class="pager" id="pager">
-          <form action="">
-            <div>
-              <img class="first" src="../../assets/dashboardfiles/arrow-stop-180.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/arrow-stop-180.gif"
-                alt="first" />
-              <img class="prev" src="../../assets/dashboardfiles/arrow-180.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/arrow-180.gif"
-                alt="prev" />
-              <input type="text" class="pagedisplay input-short align-center" />
-              <img class="next" src="../../assets/dashboardfiles/arrow.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/arrow.gif"
-                alt="next" />
-              <img class="last" src="../../assets/dashboardfiles/arrow-stop.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/arrow-stop.gif"
-                alt="last" />
-              <select class="pagesize input-short align-center">
-                            <option value="10" selected="selected">10</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
-                            <option value="40">40</option>
-                        </select>
-            </div>
-          </form>
-        </div>
-        <div class="table-apply">
-          <form action="">
-            <div>
-              <!-- <span>Apply action to selected:</span>
-                    <select class="input-medium">
-                        <option value="1" selected="selected">Select action</option>
-                        <option value="2">Publish</option>
-                        <option value="3">Unpublish</option>
-                        <option value="4">Delete</option>
-                    </select> -->
-            </div>
-          </form>
-        </div>
-        <div style="clear: both"></div>
-      </div>
-      <!-- End .module-table-body -->
+    <div style="background-color: white; border: 3px solid #E9ECEF;">
+      <vue-good-table title="Admins" :columns="columnsAdmins" :rows="adminList" :paginate="true" :globalSearch="true" :lineNumbers="true" styleClass="table table-bordered table-striped condensed">
+        <template slot="table-row-after" slot-scope="props">
+          <td>
+            <img width="18" title="Edit" @click="editAdminClick(props.index)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/pencil.gif">
+            <img width="18" title="Delete" @click="deleteAdminClick(props.index)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/delete.png">
+          </td>
+        </template>
+      </vue-good-table>
     </div>
     <!-- End .module -->
   </div>
   <div v-if="showDivId === 2">
-    <b-button type="submit" v-b-modal.modalAddInstitute variant="primary"><b>+ </b>New Institute</b-button>
+    <b-button type="submit" v-if="hideForNow" v-b-modal.modalAddInstitute variant="primary"><b>+ </b>New Institute</b-button>
     <br>
-    <br>
-    <div class="module">
-      <h2><span>Institute</span></h2>
-      <div class="module-table-body">
-        <form action="">
-          <table id="myTable" class="tablesorter">
-            <thead>
-              <tr>
-                <th style="width:20%; text-align: center;">Name</th>
-                <th style="width:21%; text-align: center;">Email</th>
-                <th style="width:13%; text-align: center;">Phone</th>
-                <th style="width:19%; text-align: center;">Address</th>
-                <th style="width:10%; text-align: center;">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="institute in instituteList">
-                <td style="text-align: center;"><a href="">{{ institute.name }}</a></td>
-                <td style="text-align: center;">{{ institute.email }}</td>
-                <td style="text-align: center;">{{ institute.phone }}</td>
-                <td style="text-align: center;">{{ institute.address }}</td>
-                <td style="text-align: center;">
-                  <a href=""><img src="../../assets/dashboardfiles/pencil.gif" v-on:click="editInstituteClick(this)" tppabs="http://www.xooom.pl/work/magicadmin/images/pencil.gif" width="20" height="20" alt="edit" /></a>
-                  <a href=""><img src="../../assets/dashboardfiles/delete.png" tppabs="http://www.xooom.pl/work/magicadmin/images/delete.png" width="20" height="20" alt="delete" /></a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </form>
-        <div class="pager" id="pager">
-          <form action="">
-            <div>
-              <img class="first" src="../../assets/dashboardfiles/arrow-stop-180.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/arrow-stop-180.gif"
-                alt="first" />
-              <img class="prev" src="../../assets/dashboardfiles/arrow-180.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/arrow-180.gif"
-                alt="prev" />
-              <input type="text" class="pagedisplay input-short align-center" />
-              <img class="next" src="../../assets/dashboardfiles/arrow.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/arrow.gif"
-                alt="next" />
-              <img class="last" src="../../assets/dashboardfiles/arrow-stop.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/arrow-stop.gif"
-                alt="last" />
-              <select class="pagesize input-short align-center">
-                            <option value="10" selected="selected">10</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
-                            <option value="40">40</option>
-                        </select>
-            </div>
-          </form>
-        </div>
-        <div class="table-apply">
-          <form action="">
-            <div>
-              <!-- <span>Apply action to selected:</span>
-                    <select class="input-medium">
-                        <option value="1" selected="selected">Select action</option>
-                        <option value="2">Publish</option>
-                        <option value="3">Unpublish</option>
-                        <option value="4">Delete</option>
-                    </select> -->
-            </div>
-          </form>
-        </div>
-        <div style="clear: both"></div>
-      </div>
-      <!-- End .module-table-body -->
+    <div style="background-color: white; border: 3px solid #E9ECEF;">
+      <vue-good-table title="Institutes" :columns="columnsInstitutes" :rows="instituteList" :paginate="true" :globalSearch="true" :lineNumbers="true"
+        styleClass="table table-bordered table-striped condensed">
+        <template slot="table-row-after" slot-scope="props">
+          <td>
+            <img width="18" title="Edit" @click="editInstituteClick(props.index)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/pencil.gif">
+            <img width="18" title="Delete" @click="deleteInstituteClick(props.index)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/delete.png">
+          </td>
+        </template>
+      </vue-good-table>
     </div>
-    <!-- End .module -->
+  </div>
+  <div v-if="showDivId === 3">
+    <div style="background-color: white; border: 3px solid #E9ECEF;">
+      <vue-good-table title="Teachers" :columns="columnsTeachers" :rows="teacherList" :paginate="true" :globalSearch="true" :lineNumbers="true" styleClass="table table-bordered table-striped condensed">
+        <template slot="table-row-after" slot-scope="props">
+          <td>
+            <img width="18" title="Edit" @click="editTeacherClick(props.index)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/pencil.gif">
+            <img width="18" title="Delete" @click="deleteTeacherClick(props.index)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/delete.png">
+          </td>
+        </template>
+      </vue-good-table>
+    </div>
+  </div>
+  <div v-if="showDivId === 4">
+    <div style="background-color: white; border: 3px solid #E9ECEF;">
+      <vue-good-table title="Students" :columns="columnsStudents" :rows="studentList" :paginate="true" :globalSearch="true" :lineNumbers="true" styleClass="table table-bordered table-striped condensed">
+        <template slot="table-row-after" slot-scope="props">
+          <td>
+            <img width="18" title="Edit" @click="editStudentClick(props.index)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/pencil.gif">
+            <img width="18" title="Delete" @click="deleteStudentClick(props.index)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/delete.png">
+          </td>
+        </template>
+      </vue-good-table>
+    </div>
   </div>
   <!-- Modal Component -->
   <div>
@@ -167,7 +87,6 @@
       <div slot="modal-footer" class="w-100">
       </div>
     </b-modal>
-
     <b-modal id="modalAddInstitute" size="lg" title="" :header-bg-variant="headerBgVariant" :header-text-variant="headerTextVariant"
       :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
       <b-container fluid>

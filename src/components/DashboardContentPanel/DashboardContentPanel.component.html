@@ -8,13 +8,13 @@
                       <span>Create Admin</span>
                     </a>
     </router-link>
-    <router-link to="/CreateTeacher" v-if="isUserAdmin">
+    <router-link to="/Dashboard/CreateTeacher" v-if="isUserAdmin">
       <a href="" class="dashboard-module">
                       <img src="../../assets/dashboardfiles/teacher.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_files.gif" width="64" height="64" alt="edit" />
                       <span>Create Teacher</span>
                     </a>
     </router-link>
-    <router-link to="/CreateStudent" v-if="isUserAdmin">
+    <router-link to="/Dashboard/CreateStudent" v-if="isUserAdmin">
       <a href="" class="dashboard-module">
                       <img src="../../assets/dashboardfiles/student.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_files.gif" width="64" height="64" alt="edit" />
                       <span>Create Student</span>
@@ -32,37 +32,34 @@
                       <span>Create Test</span>
                     </a>
     </router-link>
-    <router-link to="/AssignTest" v-if="isUserTeacher">
+    <router-link to="/Dashboard/AssignTest" v-if="isUserTeacher">
       <a href="" class="dashboard-module">
                       <img src="../../assets/dashboardfiles/assigntest.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_file.gif" width="64" height="64" alt="edit" />
                       <span>Assign Test</span>
                     </a>
     </router-link>
-    <router-link to="/StartTest" v-if="isUserStudent">
+    <router-link to="/Dashboard/StartTest" v-if="isUserStudent">
       <a href="" class="dashboard-module">
                       <img src="../../assets/dashboardfiles/starttest.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_file.gif" width="64" height="64" alt="edit" />
                       <span>Start Test</span>
                     </a>
     </router-link>
-    <router-link to="/Dashboard" v-if="isUserSuperAdmin">
+    <router-link to="/Dashboard/CreateInstitute" v-if="isUserSuperAdmin">
       <a href="" class="dashboard-module">
-                      <img src="../../assets/dashboardfiles/Crystal_Clear_user.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_user.gif" width="64" height="64" alt="edit" />
-                      <span>My profile</span>
+                      <img src="../../assets/dashboardfiles/institutionicon.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_file.gif" width="64" height="64" alt="edit" />
+                      <span>Create Institute</span>
                     </a>
     </router-link>
-    <router-link to="/Dashboard" v-if="isUserSuperAdmin">
-      <a href="" class="dashboard-module">
-                      <img src="../../assets/dashboardfiles/Crystal_Clear_stats.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_stats.gif" width="64" height="64" alt="edit" />
-                      <span>Reports</span>
-                    </a>
-    </router-link>
+    <!--
     <router-link to="/Dashboard" v-if="isUserSuperAdmin">
       <a href="" class="dashboard-module">
                       <img src="../../assets/dashboardfiles/Crystal_Clear_settings.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_settings.gif" width="64" height="64" alt="edit" />
                       <span>Settings</span>
                     </a>
-    </router-link>
+    </router-link> -->
+    <masters></masters>
     <div style="clear: both"></div>
+
   </div>
   <!-- End .grid_7 -->
   <div style="clear:both;"></div>

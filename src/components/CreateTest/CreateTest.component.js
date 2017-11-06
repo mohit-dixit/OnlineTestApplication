@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import {
   GetRequest,
   PostRequest
@@ -65,7 +66,7 @@ export default  {
       let sorts = this.getFinalSorts();
       alert(JSON.stringify(sorts));
       alert(JSON.stringify(this.createtest));
-      this.$router.push('/')
+      this.$router.go(this.$router.currentRoute);
     },
 
     addRow: function () {
@@ -148,6 +149,7 @@ export default  {
     }
   },
   created: function(){
+    this.loginRole = Vue.lsobj.get('loginRole');
     this.bindSubjects();
     this.bindScale();
   }

@@ -1,4 +1,4 @@
-<div class="login-container">
+<div class="login-container" v-if="loginRole === '3'">
       <div class="form-box">
         <label class="headingForm">Create Test</label>
         <br>
@@ -37,21 +37,6 @@
                     variant="primary"><b>--</b></b-button>
               </b-col>
             </b-row>
-
-
-
-              <!-- <b-row class="my-1">
-                <b-col sm="2"></b-col>
-                <b-col sm="9">
-
-                </b-col>
-                <b-col sm="1"></b-col>
-              </b-row> -->
-
-
-
-
-
           </b-container>
           <b-button type="submit" variant="primary">Create</b-button>
           <b-button type="reset" variant="secondary">Reset</b-button>

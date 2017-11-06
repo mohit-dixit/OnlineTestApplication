@@ -1,14 +1,14 @@
-import Dashboard from '../Dashboard/index.vue'
 import SuccessNotification from '../SuccessNotification'
 import Vue from 'vue'
 import {
   GetRequest,
-  PostRequest
+  PostRequest,
+  NumberKeyValidation
 } from '../../utils/globalservice'
 
 export default  {
   name: 'create-student',
-  components: {'dashboard' : Dashboard, 'success-notification': SuccessNotification},
+  components: {'success-notification': SuccessNotification},
   props: [],
   data() {
     this.notifySuccess = false;
@@ -29,7 +29,12 @@ export default  {
       this.createstudentform = {};
       this.notifySuccess = true;
       //this.$router.push('/Dashboard')
+    },
+    onlyNumberKey: function (event) {
+      return NumberKeyValidation(event);
     }
   },
-  created: function () {}
+  created: function () {
+    this.loginRole = Vue.lsobj.get('loginRole');
+  }
 }

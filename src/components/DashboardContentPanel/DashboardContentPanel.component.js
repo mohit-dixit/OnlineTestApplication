@@ -1,8 +1,8 @@
 import Vue from 'vue'
-
+import Masters from '../../components/Masters'
 export default {
   name: 'dashboard-content-panel',
-  components: {},
+  components: {'masters':Masters},
   props: [],
   data() {
     this.isUserSuperAdmin = false;

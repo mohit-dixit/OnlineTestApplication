@@ -1,7 +1,5 @@
-
 <section class="assign-test">
-  <dashboard>
-      <div class="createadmin-container">
+      <div class="createadmin-container" v-if="loginRole === '3'">
           <div class="form-box">
             <label class="headingForm">Assign Test</label>
             <br>
@@ -24,7 +22,7 @@
                 <b-row class="my-1">
                     <b-col sm="4"><label for="input-none">Valid By:</label></b-col>
                     <b-col sm="8">
-                        <date-picker v-model="date" :config="config"></date-picker>
+                        <date-picker placeholder="click me" v-model="assigntestform.validby" v-on:keyup="alert(33)" :config="config" required></date-picker>
                     </b-col>
                 </b-row>
               </b-container>
@@ -34,6 +32,5 @@
             </b-form>
           </div>
         </div>
-  </dashboard>
 </section>
 

@@ -23,12 +23,12 @@
           <div id="logo">
             <ul id="nav">
               <!-- <li id="current"> -->
-              <li class="clsMainTab" id="current">
+              <!-- <li class="clsMainTab" id="current">
                 <router-link @click.native="mainTabsClick($event)" to="/Dashboard">Dashboard</router-link>
-              </li>
-              <li class="clsMainTab" id="Masters" v-if="isUserSuperAdmin">
+              </li> -->
+              <!-- <li class="clsMainTab" id="Masters" v-if="isUserSuperAdmin">
                 <router-link @click.native="mainTabsClick($event)" to="/Dashboard/Masters">Masters</router-link>
-              </li>
+              </li> -->
             </ul>
           </div>
           <!-- End. #Logo -->
@@ -58,10 +58,10 @@
       <!-- End. .container_12 -->
       <div style="clear: both;"></div>
     </div>
+   <b><breadcrumbs/></b>
     <!-- End #subnav -->
   </div>
   <!-- End #header -->
-
   <router-view/>
   <slot></slot>
 

@@ -1,4 +1,4 @@
-<div class="login-container">
+<div class="login-container" v-if="loginRole === '3'">
   <div class="form-box">
     <label class="headingForm">Create Question</label>
     <br>
@@ -7,7 +7,7 @@
         <b-row class="my-1">
           <b-col sm="2"><label for="input-none">Question:</label></b-col>
           <b-col sm="10">
-            <vue-editor id="editor1" placeholder="Enter Question" v-model="createquestion.question"></vue-editor>
+            <vue-editor id="editor1" placeholder="Enter Question" required v-model="createquestion.question"></vue-editor>
           </b-col>
         </b-row>
         <br>

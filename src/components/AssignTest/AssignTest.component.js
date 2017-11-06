@@ -1,5 +1,3 @@
-
-import Dashboard from '../Dashboard/index.vue'
 import Vue from 'vue'
 import {
   GetRequest,
@@ -8,7 +6,7 @@ import {
 
 export default  {
   name: 'assign-test',
-  components: {'dashboard' : Dashboard,'datePicker' : Vue.datePicker},
+  components: {},
   props: [],
   data() {
     return {
@@ -63,12 +61,13 @@ export default  {
 
     onSubmit(evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.createadminform));
-      this.createadminform = {};
+      alert(JSON.stringify(this.assigntestform));
+      this.assigntestform = {};
       //this.$router.push('/Dashboard')
     }
   },
   created: function () {
+    this.loginRole = Vue.lsobj.get('loginRole');
     this.getTestList();
     this.getStudentList();
   }
