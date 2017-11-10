@@ -1,5 +1,2240 @@
+<div id="testtt">
+<div v-if="!testStarted">
+  <div id="test">
+    <div class="test-container">
+      <b>Instructions:</b>
+      <ul style="list-style-type:disc; text-align: left;">
+        <li>aasd asd asdas dasdas sa das das dsa d sad sadasdsa sa dasd asd sad sads</li>
+        <li>asdasd asdas d asdsad as dad asd sadasd as dasd</li>
+        <li>sad assa d sad sad asd asd as das d asd sad as dsa d as das assda </li>
+        <li>sad assa d sad sad asd asd as das d asd sad as dsa d as das asasd sad asd</li>
+        <li>sad assa d sad sad asd asd as das d asd sad as dsa d as das sada sd asd sa sad sa</li>
+        <li>sad assa d sad sad asd asd as das d asd sad as dsa d as</li>
+        <li>sad assa d sad sad asd asd as das d asd sad as dsa d as das sad</li>
+        <li>sad assa d sad sad asd asd as das d asd sad as dsa d as das sa dasd</li>
+      </ul>
+      <div class="form-box">
+        <b-form>
+            <br>
+            <br>
+          <b-button v-on:click="startTestClick" style="vertical-align: bottom;" variant="primary">START TEST</b-button>
+          <router-link to="/Dashboard/StartTest">
+            <b-button type="reset" style="vertical-align: bottom;" variant="secondary">BACK</b-button>
+          </router-link>
+        </b-form>
+      </div>
+    </div>
+  </div>
+</div>
+<div v-else class="container"><div class="row">
+  <div class="vc_col-sm-12 wpb_column vc_column_container wpb_animate_when_almost_visible wpb_top-to-bottom top-to-bottom  wpb_start_animation animated">
+    <div class="wpb_wrapper">
+  <div class="wpb_text_column wpb_content_element ">
+    <div class="wpb_wrapper">
+          <div class="top-quiz-col">
+      <div class="container tke-olympiad quiz-head-box">
 
-<section class="test">
-  <h1>test Component</h1>
-</section>
+        <div class="wpProQuiz_content" id="wpProQuiz_8">
+          <h2>Test Name</h2>					<div class="row">
+            <div class="col-sm-12">
+                  <div style="display: none;" class="wpProQuiz_loadQuiz">
+      <p> <img src="../../assets/testpagefiles/ball.svg" alt="Quiz is Loading...">
+              </p>
+    </div>
+        <div class="wpProQuiz_text" style="display: none;">
 
+
+      <div>
+        <input class="wpProQuiz_button" type="button" value="Start Quiz" name="startQuiz">
+      </div>
+    </div>
+                  <div class="row quiz-inner-bg" style="display: block;">
+                <div class="col-sm-12">
+                      <div class="wpProQuiz_infopage" style="display: none;">
+      <h4>Information</h4>
+
+
+      <input type="button" name="endInfopage" value="Finish Quiz" class="wpProQuiz_button">
+    </div>
+        <div style="display: none;" class="wpProQuiz_lock">
+      <p>
+        You have already completed the quiz before. Hence you can not start it again.			</p>
+    </div>
+        <div style="display: none;" class="wpProQuiz_startOnlyRegisteredUser">
+      <p>
+        You must sign in or sign up to start the quiz.			</p>
+    </div>
+        <div style="display: none;" class="wpProQuiz_prerequisite">
+      <p>
+        You have to pass the previous Module's quiz in order to start this quiz				<span></span>
+      </p>
+    </div>
+        <div style="display: none;" class="wpProQuiz_sending">
+      <h4 class="wpProQuiz_header">Results</h4>
+
+      <p>
+
+      </p><div>Quiz complete. Results are being recorded.</div>
+      <div>
+        <dd class="course_progress">
+          <div class="course_progress_blue sending_progress_bar" style="width: 0%;">
+          </div>
+        </dd>
+      </div>
+    </div>
+
+    <div style="display: none;" class="wpProQuiz_results">
+      <h4 class="wpProQuiz_header">Results</h4>
+
+              <p>
+          <span class="wpProQuiz_correct_answer">0</span> of <span>25</span> questions answered correctly				</p>
+              <p class="wpProQuiz_quiz_time">
+          Your time: <span></span>				</p>
+
+      <p class="wpProQuiz_time_limit_expired" style="display: none;">
+        Time has elapsed			</p>
+
+              <p class="wpProQuiz_points">
+          You have scored <span>0</span> of <span>0</span> marks, (<span>0</span>)				</p>
+        <p class="wpProQuiz_graded_points" style="display: none;">
+          Earned Marks: <span>0</span> of <span>0</span>, (<span>0</span>)<br>
+          <span>0</span> Essay(s) Pending (Possible Marks: <span>0</span>)<br>
+        </p>
+
+      <p class="wpProQuiz_certificate" style="display: none !important;">
+              </p>
+
+
+      <div class="wpProQuiz_catOverview" style="display:none;">
+        <h4>Categories</h4>
+
+        <div style="margin-top: 10px;">
+          <ol>
+                          <li data-category_id="6">
+                <span class="wpProQuiz_catName">Digital Access</span>
+                <span class="wpProQuiz_catPercent">0%</span>
+              </li>
+                          <li data-category_id="7">
+                <span class="wpProQuiz_catName">Digital Commerce</span>
+                <span class="wpProQuiz_catPercent">0%</span>
+              </li>
+                          <li data-category_id="8">
+                <span class="wpProQuiz_catName">Digital Communication</span>
+                <span class="wpProQuiz_catPercent">0%</span>
+              </li>
+                          <li data-category_id="10">
+                <span class="wpProQuiz_catName">Digital Etiquette</span>
+                <span class="wpProQuiz_catPercent">0%</span>
+              </li>
+                          <li data-category_id="13">
+                <span class="wpProQuiz_catName">Digital Health and Wellness</span>
+                <span class="wpProQuiz_catPercent">0%</span>
+              </li>
+                          <li data-category_id="11">
+                <span class="wpProQuiz_catName">Digital Law</span>
+                <span class="wpProQuiz_catPercent">0%</span>
+              </li>
+                          <li data-category_id="9">
+                <span class="wpProQuiz_catName">Digital Literacy</span>
+                <span class="wpProQuiz_catPercent">0%</span>
+              </li>
+                          <li data-category_id="12">
+                <span class="wpProQuiz_catName">Digital Rights and Responsibilities</span>
+                <span class="wpProQuiz_catPercent">0%</span>
+              </li>
+                          <li data-category_id="14">
+                <span class="wpProQuiz_catName">Digital Security</span>
+                <span class="wpProQuiz_catPercent">0%</span>
+              </li>
+                      </ol>
+        </div>
+      </div>
+      <div>
+        <ul class="wpProQuiz_resultsList">
+                      <li style="display: none;">
+              <div>
+                              </div>
+            </li>
+                  </ul>
+      </div>
+            <div style="margin: 10px 0px;">
+                <div class="quiz_continue_link" style="margin: 10px 0px;">
+
+        </div>
+                  <input class="wpProQuiz_button" type="button" name="reShowQuestion" value="View questions">
+          <a href="https://www.learningolympiads.co.in/my-dashboard/?ac=dashboard">
+            <input class="wpProQuiz_button" type="button" name="backToDashBoard" value="Back to Dashboard">
+          </a>
+                      </div>
+    </div>
+                    </div>
+                <div class="col-sm-4">
+                      <div style="" class="wpProQuiz_time_limit">
+      <div class="time">Time limit: <span>{{(hours | two_digits)}} : {{(minutes | two_digits)}} : {{(seconds | two_digits)}}
+
+      </span></div>
+      <div class="wpProQuiz_progress" style="width: 100%;"></div>
+    </div>
+        <div class="wpProQuiz_reviewDiv" style="">
+      <div class="wpProQuiz_reviewQuestion">
+        <ol style="margin-top: 0px !important">
+                      <li class="">1</li>
+                      <li class="">2</li>
+                      <li class="" style="background-color: rgb(108, 165, 76);">3</li>
+                      <li>4</li>
+                      <li>5</li>
+                      <li>6</li>
+                      <li>7</li>
+                      <li class="">8</li>
+                      <li class="">9</li>
+                      <li class="">10</li>
+                      <li>11</li>
+                      <li class="wpProQuiz_reviewQuestionTarget">12</li>
+                      <li class="">13</li>
+                      <li class="" style="background-color: rgb(255, 184, 0);">14</li>
+                      <li class="">15</li>
+                      <li>16</li>
+                      <li>17</li>
+                      <li class="">18</li>
+                      <li>19</li>
+                      <li>20</li>
+                      <li>21</li>
+                      <li>22</li>
+                      <li>23</li>
+                      <li>24</li>
+                      <li>25</li>
+                  </ol>
+        <div style="top: 0px; display: block;"></div>
+      </div>
+      <div class="wpProQuiz_reviewLegend">
+        <ol>
+          <li>
+            <span class="wpProQuiz_reviewColor" style="background-color: #6CA54C;"></span>
+            <span class="wpProQuiz_reviewText">Answered</span>
+          </li>
+          <li>
+            <span class="wpProQuiz_reviewColor" style="background-color: #FFB800;"></span>
+            <span class="wpProQuiz_reviewText">Review</span>
+          </li>
+        </ol>
+        <div style="clear: both;"></div>
+      </div>
+      <div>
+                  <input type="button" name="review" value="Review question" class="wpProQuiz_button2 TEST" style="float: left; display: block;">
+                    <div style="clear: both;"></div>
+              </div>
+    </div>
+                    </div>
+                <div class="col-sm-8">
+                      <div class="wpProQuiz_checkPage" style="display: none;">
+      <h4 class="wpProQuiz_header">Quiz-summary</h4>
+
+      <p>
+        <span>0</span> of 25 questions completed			</p>
+
+      <p>Questions:</p>
+
+      <div style="margin-bottom: 20px;" class="wpProQuiz_box">
+        <ol>
+                      <li>1</li>
+                      <li>2</li>
+                      <li>3</li>
+                      <li>4</li>
+                      <li>5</li>
+                      <li>6</li>
+                      <li>7</li>
+                      <li>8</li>
+                      <li>9</li>
+                      <li>10</li>
+                      <li>11</li>
+                      <li>12</li>
+                      <li>13</li>
+                      <li>14</li>
+                      <li>15</li>
+                      <li>16</li>
+                      <li>17</li>
+                      <li>18</li>
+                      <li>19</li>
+                      <li>20</li>
+                      <li>21</li>
+                      <li>22</li>
+                      <li>23</li>
+                      <li>24</li>
+                      <li>25</li>
+                  </ol>
+        <div style="clear: both;"></div>
+      </div>
+
+
+      <input type="button" name="endQuizSummary" value="Finish Quiz" class="wpProQuiz_button">
+    </div>
+        <div class="wpProQuiz_quizAnker" style="display: none;"></div>		<div style="" class="wpProQuiz_quiz">
+      <ol class="wpProQuiz_list">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <li class="wpProQuiz_listItem" style="display: none;" data-type="single">
+            <div class="wpProQuiz_question_page">
+              Question <span>1</span> of <span>25</span>						</div>
+            <h5 style="display: none;" class="wpProQuiz_header">
+              <span>1</span>. Question						</h5>
+
+                          <span style="font-weight: bold; float: right;">3 points</span>
+              <div style="clear: both;"></div>
+
+                        <div class="wpProQuiz_question" style="margin: 10px 0px 0px 0px;">
+              <div class="wpProQuiz_question_text">
+                <p>A digital footprint is the path that people leave online.</p>
+              </div>
+
+
+
+                            <ul class="wpProQuiz_questionList" data-question_id="1232" data-type="single">
+
+                  <li class="wpProQuiz_questionListItem" data-pos="0">
+
+
+                                                                                                          <span style="display:none;">1. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1232" value="1"> <span>True</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="1">
+
+
+                                                                                                          <span style="display:none;">2. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1232" value="2"> <span>False</span>
+                      </label>
+
+
+                                                          </li>
+                                </ul>
+            </div>
+                          <div class="wpProQuiz_response" style="display: none;">
+                <div style="display: none;" class="wpProQuiz_correct">
+                                      <span>Correct</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+                <div style="display: none;" class="wpProQuiz_incorrect">
+                                      <span>
+                  Incorrect								</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+              </div>
+
+
+                        <input type="button" name="back" value="Back" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: left !important; margin-right: 10px !important; display: none;">
+                        <input type="button" name="check" value="Check" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right !important; margin-right: 10px !important; display: none;">
+            <input type="button" name="next" value="Next" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right;">
+
+            <div style="clear: both;"></div>
+
+                      </li><li class="wpProQuiz_listItem" style="display: none;" data-type="single">
+            <div class="wpProQuiz_question_page">
+              Question <span>2</span> of <span>25</span>						</div>
+            <h5 style="display: none;" class="wpProQuiz_header">
+              <span>2</span>. Question						</h5>
+
+                          <span style="font-weight: bold; float: right;">4 points</span>
+              <div style="clear: both;"></div>
+
+                        <div class="wpProQuiz_question" style="margin: 10px 0px 0px 0px;">
+              <div class="wpProQuiz_question_text">
+                <p>The day when a content is made available for public free of cost is called</p>
+              </div>
+
+
+
+                            <ul class="wpProQuiz_questionList" data-question_id="1296" data-type="single">
+
+                  <li class="wpProQuiz_questionListItem" data-pos="0">
+
+
+                                                                                                          <span style="display:none;">1. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1296" value="1"> <span>Public domain</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="1">
+
+
+                                                                                                          <span style="display:none;">2. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1296" value="2"> <span>Public domain day</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="2">
+
+
+                                                                                                          <span style="display:none;">3. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1296" value="3"> <span>Public domain mark</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="3">
+
+
+                                                                                                          <span style="display:none;">4. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1296" value="4"> <span>Public domain area</span>
+                      </label>
+
+
+                                                          </li>
+                                </ul>
+            </div>
+                          <div class="wpProQuiz_response" style="display: none;">
+                <div style="display: none;" class="wpProQuiz_correct">
+                                      <span>Correct</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+                <div style="display: none;" class="wpProQuiz_incorrect">
+                                      <span>
+                  Incorrect								</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+              </div>
+
+
+                        <input type="button" name="back" value="Back" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: left !important; margin-right: 10px !important;">
+                        <input type="button" name="check" value="Check" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right !important; margin-right: 10px !important; display: none;">
+            <input type="button" name="next" value="Next" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right;">
+
+            <div style="clear: both;"></div>
+
+                      </li><li class="wpProQuiz_listItem" style="display: none;" data-type="single">
+            <div class="wpProQuiz_question_page">
+              Question <span>3</span> of <span>25</span>						</div>
+            <h5 style="display: none;" class="wpProQuiz_header">
+              <span>3</span>. Question						</h5>
+
+                          <span style="font-weight: bold; float: right;">4 points</span>
+              <div style="clear: both;"></div>
+
+                        <div class="wpProQuiz_question" style="margin: 10px 0px 0px 0px;">
+              <div class="wpProQuiz_question_text">
+                <p>Which was the first video uploaded on YouTube?</p>
+              </div>
+
+
+
+                            <ul class="wpProQuiz_questionList" data-question_id="1267" data-type="single">
+
+                  <li class="wpProQuiz_questionListItem" data-pos="0">
+
+
+                                                                                                          <span style="display:none;">1. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1267" value="1"> <span>Playing in the rain</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="1">
+
+
+                                                                                                          <span style="display:none;">2. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1267" value="2"> <span>Charlie Chaplin</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="2">
+
+
+                                                                                                          <span style="display:none;">3. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1267" value="3"> <span>Trip to Zoo</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="3">
+
+
+                                                                                                          <span style="display:none;">4. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1267" value="4"> <span>Enter the dragon</span>
+                      </label>
+
+
+                                                          </li>
+                                </ul>
+            </div>
+                          <div class="wpProQuiz_response" style="display: none;">
+                <div style="display: none;" class="wpProQuiz_correct">
+                                      <span>Correct</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+                <div style="display: none;" class="wpProQuiz_incorrect">
+                                      <span>
+                  Incorrect								</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+              </div>
+
+
+                        <input type="button" name="back" value="Back" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: left !important; margin-right: 10px !important;">
+                        <input type="button" name="check" value="Check" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right !important; margin-right: 10px !important; display: none;">
+            <input type="button" name="next" value="Next" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right;">
+
+            <div style="clear: both;"></div>
+
+                      </li><li class="wpProQuiz_listItem" style="display: none;" data-type="single">
+            <div class="wpProQuiz_question_page">
+              Question <span>4</span> of <span>25</span>						</div>
+            <h5 style="display: none;" class="wpProQuiz_header">
+              <span>4</span>. Question						</h5>
+
+                          <span style="font-weight: bold; float: right;">3 points</span>
+              <div style="clear: both;"></div>
+
+                        <div class="wpProQuiz_question" style="margin: 10px 0px 0px 0px;">
+              <div class="wpProQuiz_question_text">
+                <p>Can you sell your old things on Quikr?</p>
+              </div>
+
+
+
+                            <ul class="wpProQuiz_questionList" data-question_id="1227" data-type="single">
+
+                  <li class="wpProQuiz_questionListItem" data-pos="0">
+
+
+                                                                                                          <span style="display:none;">1. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1227" value="1"> <span>Yes</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="1">
+
+
+                                                                                                          <span style="display:none;">2. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1227" value="2"> <span>No</span>
+                      </label>
+
+
+                                                          </li>
+                                </ul>
+            </div>
+                          <div class="wpProQuiz_response" style="display: none;">
+                <div style="display: none;" class="wpProQuiz_correct">
+                                      <span>Correct</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+                <div style="display: none;" class="wpProQuiz_incorrect">
+                                      <span>
+                  Incorrect								</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+              </div>
+
+
+                        <input type="button" name="back" value="Back" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: left !important; margin-right: 10px !important;">
+                        <input type="button" name="check" value="Check" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right !important; margin-right: 10px !important; display: none;">
+            <input type="button" name="next" value="Next" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right;">
+
+            <div style="clear: both;"></div>
+
+                      </li><li class="wpProQuiz_listItem" style="display: none;" data-type="single">
+            <div class="wpProQuiz_question_page">
+              Question <span>5</span> of <span>25</span>						</div>
+            <h5 style="display: none;" class="wpProQuiz_header">
+              <span>5</span>. Question						</h5>
+
+                          <span style="font-weight: bold; float: right;">6 points</span>
+              <div style="clear: both;"></div>
+
+                        <div class="wpProQuiz_question" style="margin: 10px 0px 0px 0px;">
+              <div class="wpProQuiz_question_text">
+                <p>Digital commerce is</p>
+              </div>
+
+
+
+                            <ul class="wpProQuiz_questionList" data-question_id="1226" data-type="single">
+
+                  <li class="wpProQuiz_questionListItem" data-pos="0">
+
+
+                                                                                                          <span style="display:none;">1. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1226" value="1"> <span>Buying and selling things online</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="1">
+
+
+                                                                                                          <span style="display:none;">2. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1226" value="2"> <span>Using bad words while chatting</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="2">
+
+
+                                                                                                          <span style="display:none;">3. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1226" value="3"> <span>Troubling someone by sending messages again and again</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="3">
+
+
+                                                                                                          <span style="display:none;">4. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1226" value="4"> <span>Writing blogs</span>
+                      </label>
+
+
+                                                          </li>
+                                </ul>
+            </div>
+                          <div class="wpProQuiz_response" style="display: none;">
+                <div style="display: none;" class="wpProQuiz_correct">
+                                      <span>Correct</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+                <div style="display: none;" class="wpProQuiz_incorrect">
+                                      <span>
+                  Incorrect								</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+              </div>
+
+
+                        <input type="button" name="back" value="Back" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: left !important; margin-right: 10px !important;">
+                        <input type="button" name="check" value="Check" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right !important; margin-right: 10px !important; display: none;">
+            <input type="button" name="next" value="Next" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right;">
+
+            <div style="clear: both;"></div>
+
+                      </li><li class="wpProQuiz_listItem" style="display: none;" data-type="single">
+            <div class="wpProQuiz_question_page">
+              Question <span>6</span> of <span>25</span>						</div>
+            <h5 style="display: none;" class="wpProQuiz_header">
+              <span>6</span>. Question						</h5>
+
+                          <span style="font-weight: bold; float: right;">4 points</span>
+              <div style="clear: both;"></div>
+
+                        <div class="wpProQuiz_question" style="margin: 10px 0px 0px 0px;">
+              <div class="wpProQuiz_question_text">
+                <p>OLX is used to _______________ your old things.</p>
+              </div>
+
+
+
+                            <ul class="wpProQuiz_questionList" data-question_id="2407" data-type="single">
+
+                  <li class="wpProQuiz_questionListItem" data-pos="0">
+
+
+                                                                                                          <span style="display:none;">1. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_2407" value="1"> <span>Sell</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="1">
+
+
+                                                                                                          <span style="display:none;">2. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_2407" value="2"> <span>Throw</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="2">
+
+
+                                                                                                          <span style="display:none;">3. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_2407" value="3"> <span>Buy</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="3">
+
+
+                                                                                                          <span style="display:none;">4. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_2407" value="4"> <span>Play with</span>
+                      </label>
+
+
+                                                          </li>
+                                </ul>
+            </div>
+                          <div class="wpProQuiz_response" style="display: none;">
+                <div style="display: none;" class="wpProQuiz_correct">
+                                      <span>Correct</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+                <div style="display: none;" class="wpProQuiz_incorrect">
+                                      <span>
+                  Incorrect								</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+              </div>
+
+
+                        <input type="button" name="back" value="Back" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: left !important; margin-right: 10px !important;">
+                        <input type="button" name="check" value="Check" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right !important; margin-right: 10px !important; display: none;">
+            <input type="button" name="next" value="Next" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right;">
+
+            <div style="clear: both;"></div>
+
+                      </li><li class="wpProQuiz_listItem" style="display: none;" data-type="single">
+            <div class="wpProQuiz_question_page">
+              Question <span>7</span> of <span>25</span>						</div>
+            <h5 style="display: none;" class="wpProQuiz_header">
+              <span>7</span>. Question						</h5>
+
+                          <span style="font-weight: bold; float: right;">3 points</span>
+              <div style="clear: both;"></div>
+
+                        <div class="wpProQuiz_question" style="margin: 10px 0px 0px 0px;">
+              <div class="wpProQuiz_question_text">
+                <p>Digital communication is slow and it takes at least 3 days to get connected to our loved ones.</p>
+              </div>
+
+
+
+                            <ul class="wpProQuiz_questionList" data-question_id="1229" data-type="single">
+
+                  <li class="wpProQuiz_questionListItem" data-pos="0">
+
+
+                                                                                                          <span style="display:none;">1. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1229" value="1"> <span>True</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="1">
+
+
+                                                                                                          <span style="display:none;">2. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1229" value="2"> <span>False</span>
+                      </label>
+
+
+                                                          </li>
+                                </ul>
+            </div>
+                          <div class="wpProQuiz_response" style="display: none;">
+                <div style="display: none;" class="wpProQuiz_correct">
+                                      <span>Correct</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+                <div style="display: none;" class="wpProQuiz_incorrect">
+                                      <span>
+                  Incorrect								</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+              </div>
+
+
+                        <input type="button" name="back" value="Back" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: left !important; margin-right: 10px !important;">
+                        <input type="button" name="check" value="Check" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right !important; margin-right: 10px !important; display: none;">
+            <input type="button" name="next" value="Next" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right;">
+
+            <div style="clear: both;"></div>
+
+                      </li><li class="wpProQuiz_listItem" style="display: none;" data-type="single">
+            <div class="wpProQuiz_question_page">
+              Question <span>8</span> of <span>25</span>						</div>
+            <h5 style="display: none;" class="wpProQuiz_header">
+              <span>8</span>. Question						</h5>
+
+                          <span style="font-weight: bold; float: right;">4 points</span>
+              <div style="clear: both;"></div>
+
+                        <div class="wpProQuiz_question" style="margin: 10px 0px 0px 0px;">
+              <div class="wpProQuiz_question_text">
+                <p>Digital communication is called so because we use ____________________ media for communication.</p>
+              </div>
+
+
+
+                            <ul class="wpProQuiz_questionList" data-question_id="2408" data-type="single">
+
+                  <li class="wpProQuiz_questionListItem" data-pos="0">
+
+
+                                                                                                          <span style="display:none;">1. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_2408" value="1"> <span>Analog</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="1">
+
+
+                                                                                                          <span style="display:none;">2. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_2408" value="2"> <span>Movable</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="2">
+
+
+                                                                                                          <span style="display:none;">3. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_2408" value="3"> <span>Digital</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="3">
+
+
+                                                                                                          <span style="display:none;">4. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_2408" value="4"> <span>Liquid</span>
+                      </label>
+
+
+                                                          </li>
+                                </ul>
+            </div>
+                          <div class="wpProQuiz_response" style="display: none;">
+                <div style="display: none;" class="wpProQuiz_correct">
+                                      <span>Correct</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+                <div style="display: none;" class="wpProQuiz_incorrect">
+                                      <span>
+                  Incorrect								</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+              </div>
+
+
+                        <input type="button" name="back" value="Back" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: left !important; margin-right: 10px !important;">
+                        <input type="button" name="check" value="Check" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right !important; margin-right: 10px !important; display: none;">
+            <input type="button" name="next" value="Next" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right;">
+
+            <div style="clear: both;"></div>
+
+                      </li><li class="wpProQuiz_listItem" style="display: none;" data-type="single">
+            <div class="wpProQuiz_question_page">
+              Question <span>9</span> of <span>25</span>						</div>
+            <h5 style="display: none;" class="wpProQuiz_header">
+              <span>9</span>. Question						</h5>
+
+                          <span style="font-weight: bold; float: right;">3 points</span>
+              <div style="clear: both;"></div>
+
+                        <div class="wpProQuiz_question" style="margin: 10px 0px 0px 0px;">
+              <div class="wpProQuiz_question_text">
+                <p>To get any information online, you need a special program called search engine.</p>
+              </div>
+
+
+
+                            <ul class="wpProQuiz_questionList" data-question_id="1302" data-type="single">
+
+                  <li class="wpProQuiz_questionListItem" data-pos="0">
+
+
+                                                                                                          <span style="display:none;">1. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1302" value="1"> <span>True</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="1">
+
+
+                                                                                                          <span style="display:none;">2. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1302" value="2"> <span>False</span>
+                      </label>
+
+
+                                                          </li>
+                                </ul>
+            </div>
+                          <div class="wpProQuiz_response" style="display: none;">
+                <div style="display: none;" class="wpProQuiz_correct">
+                                      <span>Correct</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+                <div style="display: none;" class="wpProQuiz_incorrect">
+                                      <span>
+                  Incorrect								</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+              </div>
+
+
+                        <input type="button" name="back" value="Back" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: left !important; margin-right: 10px !important;">
+                        <input type="button" name="check" value="Check" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right !important; margin-right: 10px !important; display: none;">
+            <input type="button" name="next" value="Next" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right;">
+
+            <div style="clear: both;"></div>
+
+                      </li><li class="wpProQuiz_listItem" style="display: none;" data-type="single">
+            <div class="wpProQuiz_question_page">
+              Question <span>10</span> of <span>25</span>						</div>
+            <h5 style="display: none;" class="wpProQuiz_header">
+              <span>10</span>. Question						</h5>
+
+                          <span style="font-weight: bold; float: right;">4 points</span>
+              <div style="clear: both;"></div>
+
+                        <div class="wpProQuiz_question" style="margin: 10px 0px 0px 0px;">
+              <div class="wpProQuiz_question_text">
+                <p>Yahoo! is a popular search engine.</p>
+              </div>
+
+
+
+                            <ul class="wpProQuiz_questionList" data-question_id="1315" data-type="single">
+
+                  <li class="wpProQuiz_questionListItem" data-pos="0">
+
+
+                                                                                                          <span style="display:none;">1. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1315" value="1"> <span>True</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="1">
+
+
+                                                                                                          <span style="display:none;">2. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1315" value="2"> <span>False, it is a web directory</span>
+                      </label>
+
+
+                                                          </li>
+                                </ul>
+            </div>
+                          <div class="wpProQuiz_response" style="display: none;">
+                <div style="display: none;" class="wpProQuiz_correct">
+                                      <span>Correct</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+                <div style="display: none;" class="wpProQuiz_incorrect">
+                                      <span>
+                  Incorrect								</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+              </div>
+
+
+                        <input type="button" name="back" value="Back" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: left !important; margin-right: 10px !important;">
+                        <input type="button" name="check" value="Check" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right !important; margin-right: 10px !important; display: none;">
+            <input type="button" name="next" value="Next" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right;">
+
+            <div style="clear: both;"></div>
+
+                      </li><li class="wpProQuiz_listItem" style="display: none;" data-type="single">
+            <div class="wpProQuiz_question_page">
+              Question <span>11</span> of <span>25</span>						</div>
+            <h5 style="display: none;" class="wpProQuiz_header">
+              <span>11</span>. Question						</h5>
+
+                          <span style="font-weight: bold; float: right;">3 points</span>
+              <div style="clear: both;"></div>
+
+                        <div class="wpProQuiz_question" style="margin: 10px 0px 0px 0px;">
+              <div class="wpProQuiz_question_text">
+                <p>Online search is a process of finding information from an offline database.</p>
+              </div>
+
+
+
+                            <ul class="wpProQuiz_questionList" data-question_id="1312" data-type="single">
+
+                  <li class="wpProQuiz_questionListItem" data-pos="0">
+
+
+                                                                                                          <span style="display:none;">1. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1312" value="1"> <span>True</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="1">
+
+
+                                                                                                          <span style="display:none;">2. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1312" value="2"> <span>False</span>
+                      </label>
+
+
+                                                          </li>
+                                </ul>
+            </div>
+                          <div class="wpProQuiz_response" style="display: none;">
+                <div style="display: none;" class="wpProQuiz_correct">
+                                      <span>Correct</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+                <div style="display: none;" class="wpProQuiz_incorrect">
+                                      <span>
+                  Incorrect								</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+              </div>
+
+
+                        <input type="button" name="back" value="Back" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: left !important; margin-right: 10px !important;">
+                        <input type="button" name="check" value="Check" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right !important; margin-right: 10px !important; display: none;">
+            <input type="button" name="next" value="Next" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right;">
+
+            <div style="clear: both;"></div>
+
+                      </li><li class="wpProQuiz_listItem" style="" data-type="single">
+            <div class="wpProQuiz_question_page">
+              Question <span>12</span> of <span>25</span>						</div>
+            <h5 style="display: none;" class="wpProQuiz_header">
+              <span>12</span>. Question						</h5>
+
+                          <span style="font-weight: bold; float: right;">6 points</span>
+              <div style="clear: both;"></div>
+
+                        <div class="wpProQuiz_question" style="margin: 10px 0px 0px 0px;">
+              <div style="text-align: left;" class="wpProQuiz_question_text">
+                <p>On the internet, we should be</p>
+              </div>
+
+
+
+                            <ul class="wpProQuiz_questionList" data-question_id="1284" data-type="single">
+
+                  <li style="text-align: left;" class="wpProQuiz_questionListItem" data-pos="0">
+
+
+                                                                                                          <span style="display:none;">1. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1284" value="1"> <span>Well mannered</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li style="text-align: left;" class="wpProQuiz_questionListItem" data-pos="1">
+
+
+                                                                                                          <span style="display:none;">2. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1284" value="2"> <span>Polite</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li style="text-align: left;" class="wpProQuiz_questionListItem" data-pos="2">
+
+
+                                                                                                          <span style="display:none;">3. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1284" value="3"> <span>Rude</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li style="text-align: left;" class="wpProQuiz_questionListItem" data-pos="3">
+
+
+                                                                                                          <span style="display:none;">4. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1284" value="4"> <span>Both a and b</span>
+                      </label>
+
+
+                                                          </li>
+                                </ul>
+            </div>
+                          <div class="wpProQuiz_response" style="display: none;">
+                <div style="display: none;" class="wpProQuiz_correct">
+                                      <span>Correct</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+                <div style="display: none;" class="wpProQuiz_incorrect">
+                                      <span>
+                  Incorrect								</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+              </div>
+
+
+                        <input type="button" name="back" value="Back" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: left !important; margin-right: 10px !important;">
+                        <input type="button" name="check" value="Check" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right !important; margin-right: 10px !important; display: none;">
+            <input type="button" name="next" value="Next" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right;">
+
+            <div style="clear: both;"></div>
+
+                      </li><li class="wpProQuiz_listItem" style="display: none;" data-type="single">
+            <div class="wpProQuiz_question_page">
+              Question <span>13</span> of <span>25</span>						</div>
+            <h5 style="display: none;" class="wpProQuiz_header">
+              <span>13</span>. Question						</h5>
+
+                          <span style="font-weight: bold; float: right;">4 points</span>
+              <div style="clear: both;"></div>
+
+                        <div class="wpProQuiz_question" style="margin: 10px 0px 0px 0px;">
+              <div class="wpProQuiz_question_text">
+                <p>Good manners are called ____________________.</p>
+              </div>
+
+
+
+                            <ul class="wpProQuiz_questionList" data-question_id="1285" data-type="single">
+
+                  <li class="wpProQuiz_questionListItem" data-pos="0">
+
+
+                                                                                                          <span style="display:none;">1. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1285" value="1"> <span>Etiquettes</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="1">
+
+
+                                                                                                          <span style="display:none;">2. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1285" value="2"> <span>Netiquettes</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="2">
+
+
+                                                                                                          <span style="display:none;">3. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1285" value="3"> <span>Cyberbullying</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="3">
+
+
+                                                                                                          <span style="display:none;">4. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1285" value="4"> <span>Transparency</span>
+                      </label>
+
+
+                                                          </li>
+                                </ul>
+            </div>
+                          <div class="wpProQuiz_response" style="display: none;">
+                <div style="display: none;" class="wpProQuiz_correct">
+                                      <span>Correct</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+                <div style="display: none;" class="wpProQuiz_incorrect">
+                                      <span>
+                  Incorrect								</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+              </div>
+
+
+                        <input type="button" name="back" value="Back" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: left !important; margin-right: 10px !important;">
+                        <input type="button" name="check" value="Check" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right !important; margin-right: 10px !important; display: none;">
+            <input type="button" name="next" value="Next" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right;">
+
+            <div style="clear: both;"></div>
+
+                      </li><li class="wpProQuiz_listItem" style="display: none;" data-type="single">
+            <div class="wpProQuiz_question_page">
+              Question <span>14</span> of <span>25</span>						</div>
+            <h5 style="display: none;" class="wpProQuiz_header">
+              <span>14</span>. Question						</h5>
+
+                          <span style="font-weight: bold; float: right;">3 points</span>
+              <div style="clear: both;"></div>
+
+                        <div class="wpProQuiz_question" style="margin: 10px 0px 0px 0px;">
+              <div class="wpProQuiz_question_text">
+                <p>Good manners on the internet are called</p>
+              </div>
+
+
+
+                            <ul class="wpProQuiz_questionList" data-question_id="1283" data-type="single">
+
+                  <li class="wpProQuiz_questionListItem" data-pos="0">
+
+
+                                                                                                          <span style="display:none;">1. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1283" value="1"> <span>Etiquettes</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="1">
+
+
+                                                                                                          <span style="display:none;">2. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1283" value="2"> <span>Manners</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="2">
+
+
+                                                                                                          <span style="display:none;">3. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1283" value="3"> <span>Netiquettes</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="3">
+
+
+                                                                                                          <span style="display:none;">4. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1283" value="4"> <span>All of the above</span>
+                      </label>
+
+
+                                                          </li>
+                                </ul>
+            </div>
+                          <div class="wpProQuiz_response" style="display: none;">
+                <div style="display: none;" class="wpProQuiz_correct">
+                                      <span>Correct</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+                <div style="display: none;" class="wpProQuiz_incorrect">
+                                      <span>
+                  Incorrect								</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+              </div>
+
+
+                        <input type="button" name="back" value="Back" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: left !important; margin-right: 10px !important;">
+                        <input type="button" name="check" value="Check" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right !important; margin-right: 10px !important; display: none;">
+            <input type="button" name="next" value="Next" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right;">
+
+            <div style="clear: both;"></div>
+
+                      </li><li class="wpProQuiz_listItem" style="display: none;" data-type="single">
+            <div class="wpProQuiz_question_page">
+              Question <span>15</span> of <span>25</span>						</div>
+            <h5 style="display: none;" class="wpProQuiz_header">
+              <span>15</span>. Question						</h5>
+
+                          <span style="font-weight: bold; float: right;">3 points</span>
+              <div style="clear: both;"></div>
+
+                        <div class="wpProQuiz_question" style="margin: 10px 0px 0px 0px;">
+              <div class="wpProQuiz_question_text">
+                <p>Digital laws are as important as the laws of our country.</p>
+              </div>
+
+
+
+                            <ul class="wpProQuiz_questionList" data-question_id="1234" data-type="single">
+
+                  <li class="wpProQuiz_questionListItem" data-pos="0">
+
+
+                                                                                                          <span style="display:none;">1. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1234" value="1"> <span>True</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="1">
+
+
+                                                                                                          <span style="display:none;">2. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1234" value="2"> <span>False</span>
+                      </label>
+
+
+                                                          </li>
+                                </ul>
+            </div>
+                          <div class="wpProQuiz_response" style="display: none;">
+                <div style="display: none;" class="wpProQuiz_correct">
+                                      <span>Correct</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+                <div style="display: none;" class="wpProQuiz_incorrect">
+                                      <span>
+                  Incorrect								</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+              </div>
+
+
+                        <input type="button" name="back" value="Back" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: left !important; margin-right: 10px !important;">
+                        <input type="button" name="check" value="Check" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right !important; margin-right: 10px !important; display: none;">
+            <input type="button" name="next" value="Next" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right;">
+
+            <div style="clear: both;"></div>
+
+                      </li><li class="wpProQuiz_listItem" style="display: none;" data-type="single">
+            <div class="wpProQuiz_question_page">
+              Question <span>16</span> of <span>25</span>						</div>
+            <h5 style="display: none;" class="wpProQuiz_header">
+              <span>16</span>. Question						</h5>
+
+                          <span style="font-weight: bold; float: right;">4 points</span>
+              <div style="clear: both;"></div>
+
+                        <div class="wpProQuiz_question" style="margin: 10px 0px 0px 0px;">
+              <div class="wpProQuiz_question_text">
+                <p>_______________ are there to make sure that we do not do anything wrong.</p>
+              </div>
+
+
+
+                            <ul class="wpProQuiz_questionList" data-question_id="1926" data-type="single">
+
+                  <li class="wpProQuiz_questionListItem" data-pos="0">
+
+
+                                                                                                          <span style="display:none;">1. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1926" value="1"> <span>Laws</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="1">
+
+
+                                                                                                          <span style="display:none;">2. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1926" value="2"> <span>Movie halls</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="2">
+
+
+                                                                                                          <span style="display:none;">3. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1926" value="3"> <span>Water parks</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="3">
+
+
+                                                                                                          <span style="display:none;">4. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1926" value="4"> <span>Websites</span>
+                      </label>
+
+
+                                                          </li>
+                                </ul>
+            </div>
+                          <div class="wpProQuiz_response" style="display: none;">
+                <div style="display: none;" class="wpProQuiz_correct">
+                                      <span>Correct</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+                <div style="display: none;" class="wpProQuiz_incorrect">
+                                      <span>
+                  Incorrect								</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+              </div>
+
+
+                        <input type="button" name="back" value="Back" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: left !important; margin-right: 10px !important;">
+                        <input type="button" name="check" value="Check" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right !important; margin-right: 10px !important; display: none;">
+            <input type="button" name="next" value="Next" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right;">
+
+            <div style="clear: both;"></div>
+
+                      </li><li class="wpProQuiz_listItem" style="display: none;" data-type="single">
+            <div class="wpProQuiz_question_page">
+              Question <span>17</span> of <span>25</span>						</div>
+            <h5 style="display: none;" class="wpProQuiz_header">
+              <span>17</span>. Question						</h5>
+
+                          <span style="font-weight: bold; float: right;">6 points</span>
+              <div style="clear: both;"></div>
+
+                        <div class="wpProQuiz_question" style="margin: 10px 0px 0px 0px;">
+              <div class="wpProQuiz_question_text">
+                <p>Digital freedom is</p>
+              </div>
+
+
+
+                            <ul class="wpProQuiz_questionList" data-question_id="1238" data-type="single">
+
+                  <li class="wpProQuiz_questionListItem" data-pos="0">
+
+
+                                                                                                          <span style="display:none;">1. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1238" value="1"> <span>What we should do online so that no one is hurt</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="1">
+
+
+                                                                                                          <span style="display:none;">2. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1238" value="2"> <span>What we can do on the internet</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="2">
+
+
+                                                                                                          <span style="display:none;">3. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1238" value="3"> <span>Both a and b</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="3">
+
+
+                                                                                                          <span style="display:none;">4. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1238" value="4"> <span>None of the above</span>
+                      </label>
+
+
+                                                          </li>
+                                </ul>
+            </div>
+                          <div class="wpProQuiz_response" style="display: none;">
+                <div style="display: none;" class="wpProQuiz_correct">
+                                      <span>Correct</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+                <div style="display: none;" class="wpProQuiz_incorrect">
+                                      <span>
+                  Incorrect								</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+              </div>
+
+
+                        <input type="button" name="back" value="Back" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: left !important; margin-right: 10px !important;">
+                        <input type="button" name="check" value="Check" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right !important; margin-right: 10px !important; display: none;">
+            <input type="button" name="next" value="Next" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right;">
+
+            <div style="clear: both;"></div>
+
+                      </li><li class="wpProQuiz_listItem" style="display: none;" data-type="single">
+            <div class="wpProQuiz_question_page">
+              Question <span>18</span> of <span>25</span>						</div>
+            <h5 style="display: none;" class="wpProQuiz_header">
+              <span>18</span>. Question						</h5>
+
+                          <span style="font-weight: bold; float: right;">4 points</span>
+              <div style="clear: both;"></div>
+
+                        <div class="wpProQuiz_question" style="margin: 10px 0px 0px 0px;">
+              <div class="wpProQuiz_question_text">
+                <p>It is very difficult to check if someone is supporting plagiarism or not.</p>
+              </div>
+
+
+
+                            <ul class="wpProQuiz_questionList" data-question_id="1289" data-type="single">
+
+                  <li class="wpProQuiz_questionListItem" data-pos="0">
+
+
+                                                                                                          <span style="display:none;">1. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1289" value="1"> <span>Yes</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="1">
+
+
+                                                                                                          <span style="display:none;">2. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1289" value="2"> <span>No</span>
+                      </label>
+
+
+                                                          </li>
+                                </ul>
+            </div>
+                          <div class="wpProQuiz_response" style="display: none;">
+                <div style="display: none;" class="wpProQuiz_correct">
+                                      <span>Correct</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+                <div style="display: none;" class="wpProQuiz_incorrect">
+                                      <span>
+                  Incorrect								</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+              </div>
+
+
+                        <input type="button" name="back" value="Back" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: left !important; margin-right: 10px !important;">
+                        <input type="button" name="check" value="Check" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right !important; margin-right: 10px !important; display: none;">
+            <input type="button" name="next" value="Next" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right;">
+
+            <div style="clear: both;"></div>
+
+                      </li><li class="wpProQuiz_listItem" style="display: none;" data-type="single">
+            <div class="wpProQuiz_question_page">
+              Question <span>19</span> of <span>25</span>						</div>
+            <h5 style="display: none;" class="wpProQuiz_header">
+              <span>19</span>. Question						</h5>
+
+                          <span style="font-weight: bold; float: right;">3 points</span>
+              <div style="clear: both;"></div>
+
+                        <div class="wpProQuiz_question" style="margin: 10px 0px 0px 0px;">
+              <div class="wpProQuiz_question_text">
+                <p>Can we use another person’s work without giving him due credit?</p>
+              </div>
+
+
+
+                            <ul class="wpProQuiz_questionList" data-question_id="1286" data-type="single">
+
+                  <li class="wpProQuiz_questionListItem" data-pos="0">
+
+
+                                                                                                          <span style="display:none;">1. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1286" value="1"> <span>Yes</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="1">
+
+
+                                                                                                          <span style="display:none;">2. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1286" value="2"> <span>No</span>
+                      </label>
+
+
+                                                          </li>
+                                </ul>
+            </div>
+                          <div class="wpProQuiz_response" style="display: none;">
+                <div style="display: none;" class="wpProQuiz_correct">
+                                      <span>Correct</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+                <div style="display: none;" class="wpProQuiz_incorrect">
+                                      <span>
+                  Incorrect								</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+              </div>
+
+
+                        <input type="button" name="back" value="Back" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: left !important; margin-right: 10px !important;">
+                        <input type="button" name="check" value="Check" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right !important; margin-right: 10px !important; display: none;">
+            <input type="button" name="next" value="Next" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right;">
+
+            <div style="clear: both;"></div>
+
+                      </li><li class="wpProQuiz_listItem" style="display: none;" data-type="single">
+            <div class="wpProQuiz_question_page">
+              Question <span>20</span> of <span>25</span>						</div>
+            <h5 style="display: none;" class="wpProQuiz_header">
+              <span>20</span>. Question						</h5>
+
+                          <span style="font-weight: bold; float: right;">3 points</span>
+              <div style="clear: both;"></div>
+
+                        <div class="wpProQuiz_question" style="margin: 10px 0px 0px 0px;">
+              <div class="wpProQuiz_question_text">
+                <p>We celebrate ‘Safer Internet Day’ in</p>
+              </div>
+
+
+
+                            <ul class="wpProQuiz_questionList" data-question_id="1277" data-type="single">
+
+                  <li class="wpProQuiz_questionListItem" data-pos="0">
+
+
+                                                                                                          <span style="display:none;">1. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1277" value="1"> <span>January</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="1">
+
+
+                                                                                                          <span style="display:none;">2. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1277" value="2"> <span>February</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="2">
+
+
+                                                                                                          <span style="display:none;">3. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1277" value="3"> <span>August</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="3">
+
+
+                                                                                                          <span style="display:none;">4. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1277" value="4"> <span>October</span>
+                      </label>
+
+
+                                                          </li>
+                                </ul>
+            </div>
+                          <div class="wpProQuiz_response" style="display: none;">
+                <div style="display: none;" class="wpProQuiz_correct">
+                                      <span>Correct</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+                <div style="display: none;" class="wpProQuiz_incorrect">
+                                      <span>
+                  Incorrect								</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+              </div>
+
+
+                        <input type="button" name="back" value="Back" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: left !important; margin-right: 10px !important;">
+                        <input type="button" name="check" value="Check" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right !important; margin-right: 10px !important; display: none;">
+            <input type="button" name="next" value="Next" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right;">
+
+            <div style="clear: both;"></div>
+
+                      </li><li class="wpProQuiz_listItem" style="display: none;" data-type="single">
+            <div class="wpProQuiz_question_page">
+              Question <span>21</span> of <span>25</span>						</div>
+            <h5 style="display: none;" class="wpProQuiz_header">
+              <span>21</span>. Question						</h5>
+
+                          <span style="font-weight: bold; float: right;">6 points</span>
+              <div style="clear: both;"></div>
+
+                        <div class="wpProQuiz_question" style="margin: 10px 0px 0px 0px;">
+              <div class="wpProQuiz_question_text">
+                <p>Internet safety is</p>
+              </div>
+
+
+
+                            <ul class="wpProQuiz_questionList" data-question_id="1278" data-type="single">
+
+                  <li class="wpProQuiz_questionListItem" data-pos="0">
+
+
+                                                                                                          <span style="display:none;">1. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1278" value="1"> <span>Making the internet safe so that there are no virus attacks on the internet</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="1">
+
+
+                                                                                                          <span style="display:none;">2. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1278" value="2"> <span>Using the internet to increase safety of children</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="2">
+
+
+                                                                                                          <span style="display:none;">3. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1278" value="3"> <span>Using the internet safely so that other people are not able to harm you</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="3">
+
+
+                                                                                                          <span style="display:none;">4. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1278" value="4"> <span>All of the above</span>
+                      </label>
+
+
+                                                          </li>
+                                </ul>
+            </div>
+                          <div class="wpProQuiz_response" style="display: none;">
+                <div style="display: none;" class="wpProQuiz_correct">
+                                      <span>Correct</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+                <div style="display: none;" class="wpProQuiz_incorrect">
+                                      <span>
+                  Incorrect								</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+              </div>
+
+
+                        <input type="button" name="back" value="Back" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: left !important; margin-right: 10px !important;">
+                        <input type="button" name="check" value="Check" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right !important; margin-right: 10px !important; display: none;">
+            <input type="button" name="next" value="Next" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right;">
+
+            <div style="clear: both;"></div>
+
+                      </li><li class="wpProQuiz_listItem" style="display: none;" data-type="single">
+            <div class="wpProQuiz_question_page">
+              Question <span>22</span> of <span>25</span>						</div>
+            <h5 style="display: none;" class="wpProQuiz_header">
+              <span>22</span>. Question						</h5>
+
+                          <span style="font-weight: bold; float: right;">4 points</span>
+              <div style="clear: both;"></div>
+
+                        <div class="wpProQuiz_question" style="margin: 10px 0px 0px 0px;">
+              <div class="wpProQuiz_question_text">
+                <p>How can you bully someone?</p>
+              </div>
+
+
+
+                            <ul class="wpProQuiz_questionList" data-question_id="1215" data-type="single">
+
+                  <li class="wpProQuiz_questionListItem" data-pos="0">
+
+
+                                                                                                          <span style="display:none;">1. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1215" value="1"> <span>By not studying</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="1">
+
+
+                                                                                                          <span style="display:none;">2. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1215" value="2"> <span>By giving a flower</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="2">
+
+
+                                                                                                          <span style="display:none;">3. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1215" value="3"> <span>By using rude language in an email</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="3">
+
+
+                                                                                                          <span style="display:none;">4. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1215" value="4"> <span>By sending an email</span>
+                      </label>
+
+
+                                                          </li>
+                                </ul>
+            </div>
+                          <div class="wpProQuiz_response" style="display: none;">
+                <div style="display: none;" class="wpProQuiz_correct">
+                                      <span>Correct</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+                <div style="display: none;" class="wpProQuiz_incorrect">
+                                      <span>
+                  Incorrect								</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+              </div>
+
+
+                        <input type="button" name="back" value="Back" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: left !important; margin-right: 10px !important;">
+                        <input type="button" name="check" value="Check" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right !important; margin-right: 10px !important; display: none;">
+            <input type="button" name="next" value="Next" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right;">
+
+            <div style="clear: both;"></div>
+
+                      </li><li class="wpProQuiz_listItem" style="display: none;" data-type="multiple">
+            <div class="wpProQuiz_question_page">
+              Question <span>23</span> of <span>25</span>						</div>
+            <h5 style="display: none;" class="wpProQuiz_header">
+              <span>23</span>. Question						</h5>
+
+                          <span style="font-weight: bold; float: right;">6 points</span>
+              <div style="clear: both;"></div>
+
+                        <div class="wpProQuiz_question" style="margin: 10px 0px 0px 0px;">
+              <div class="wpProQuiz_question_text">
+                <p>Strong passwords are ________________ to guess (Check all that apply).</p>
+              </div>
+
+
+
+                            <ul class="wpProQuiz_questionList" data-question_id="1272" data-type="multiple">
+
+                  <li class="wpProQuiz_questionListItem" data-pos="0">
+
+
+                                                                                                          <span style="display:none;">1. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="checkbox" name="question_8_1272" value="1"> <span>Hard</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="1">
+
+
+                                                                                                          <span style="display:none;">2. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="checkbox" name="question_8_1272" value="2"> <span>Difficult</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="2">
+
+
+                                                                                                          <span style="display:none;">3. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="checkbox" name="question_8_1272" value="3"> <span>Easy</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="3">
+
+
+                                                                                                          <span style="display:none;">4. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="checkbox" name="question_8_1272" value="4"> <span>Fun</span>
+                      </label>
+
+
+                                                          </li>
+                                </ul>
+            </div>
+                          <div class="wpProQuiz_response" style="display: none;">
+                <div style="display: none;" class="wpProQuiz_correct">
+                                      <span>Correct</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+                <div style="display: none;" class="wpProQuiz_incorrect">
+                                      <span>
+                  Incorrect								</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+              </div>
+
+
+                        <input type="button" name="back" value="Back" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: left !important; margin-right: 10px !important;">
+                        <input type="button" name="check" value="Check" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right !important; margin-right: 10px !important; display: none;">
+            <input type="button" name="next" value="Next" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right;">
+
+            <div style="clear: both;"></div>
+
+                      </li><li class="wpProQuiz_listItem" style="display: none;" data-type="single">
+            <div class="wpProQuiz_question_page">
+              Question <span>24</span> of <span>25</span>						</div>
+            <h5 style="display: none;" class="wpProQuiz_header">
+              <span>24</span>. Question						</h5>
+
+                          <span style="font-weight: bold; float: right;">3 points</span>
+              <div style="clear: both;"></div>
+
+                        <div class="wpProQuiz_question" style="margin: 10px 0px 0px 0px;">
+              <div class="wpProQuiz_question_text">
+                <p>We must _______________ our computers.</p>
+              </div>
+
+
+
+                            <ul class="wpProQuiz_questionList" data-question_id="1332" data-type="single">
+
+                  <li class="wpProQuiz_questionListItem" data-pos="0">
+
+
+                                                                                                          <span style="display:none;">1. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1332" value="1"> <span>Protect</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="1">
+
+
+                                                                                                          <span style="display:none;">2. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1332" value="2"> <span>Hide</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="2">
+
+
+                                                                                                          <span style="display:none;">3. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1332" value="3"> <span>Show off</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="3">
+
+
+                                                                                                          <span style="display:none;">4. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1332" value="4"> <span>Kick</span>
+                      </label>
+
+
+                                                          </li>
+                                </ul>
+            </div>
+                          <div class="wpProQuiz_response" style="display: none;">
+                <div style="display: none;" class="wpProQuiz_correct">
+                                      <span>Correct</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+                <div style="display: none;" class="wpProQuiz_incorrect">
+                                      <span>
+                  Incorrect								</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+              </div>
+
+
+                        <input type="button" name="back" value="Back" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: left !important; margin-right: 10px !important;">
+                        <input type="button" name="check" value="Check" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right !important; margin-right: 10px !important; display: none;">
+            <input type="button" name="next" value="Next" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right;">
+
+            <div style="clear: both;"></div>
+
+                      </li><li class="wpProQuiz_listItem" style="display: none;" data-type="single">
+            <div class="wpProQuiz_question_page">
+              Question <span>25</span> of <span>25</span>						</div>
+            <h5 style="display: none;" class="wpProQuiz_header">
+              <span>25</span>. Question						</h5>
+
+                          <span style="font-weight: bold; float: right;">4 points</span>
+              <div style="clear: both;"></div>
+
+                        <div class="wpProQuiz_question" style="margin: 10px 0px 0px 0px;">
+              <div class="wpProQuiz_question_text">
+                <p>What all can be protected using a password?</p>
+              </div>
+
+
+
+                            <ul class="wpProQuiz_questionList" data-question_id="1269" data-type="single">
+
+                  <li class="wpProQuiz_questionListItem" data-pos="0">
+
+
+                                                                                                          <span style="display:none;">1. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1269" value="1"> <span>File</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="1">
+
+
+                                                                                                          <span style="display:none;">2. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1269" value="2"> <span>Folder</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="2">
+
+
+                                                                                                          <span style="display:none;">3. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1269" value="3"> <span>Both a and b</span>
+                      </label>
+
+
+                                                          </li>
+
+                  <li class="wpProQuiz_questionListItem" data-pos="3">
+
+
+                                                                                                          <span style="display:none;">4. </span>
+                      <label>
+                        <input class="wpProQuiz_questionInput" type="radio" name="question_8_1269" value="4"> <span>None of the above</span>
+                      </label>
+
+
+                                                          </li>
+                                </ul>
+            </div>
+                          <div class="wpProQuiz_response" style="display: none;">
+                <div style="display: none;" class="wpProQuiz_correct">
+                                      <span>Correct</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+                <div style="display: none;" class="wpProQuiz_incorrect">
+                                      <span>
+                  Incorrect								</span>
+                                    <p class="wpProQuiz_AnswerMessage">
+                  </p>
+                </div>
+              </div>
+
+
+                        <input type="button" name="back" value="Back" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: left !important; margin-right: 10px !important;">
+                        <input type="button" name="check" value="Check" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right !important; margin-right: 10px !important; display: none;">
+            <input type="button" name="next" value="Finish Quiz" class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right;">
+
+            <div style="clear: both;"></div>
+
+                      </li></ol>
+          </div>
+
+                    </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+    </div>
+  </div>
+  </div></div>
+</div>

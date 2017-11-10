@@ -70,7 +70,7 @@ export default  {
     },
 
     startTestClick: function (events, args) {
-      alert('clicked');
+      this.$router.push('/Test')
     }
   },
   created: function () {

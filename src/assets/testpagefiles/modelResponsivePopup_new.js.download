@@ -1,0 +1,127 @@
+/*
+ *  jQuery Model Responsive Popup v1.0
+ *
+ *  Copyright (c) 2015
+ *
+ *  Author - Shahnawaz Khan
+ *
+ *  Company - http://www.sourcefuse.com
+ *
+ *  Licensed under Sourcefuse Technologies
+ *
+*/
+
+(function ( $ ) {
+	"use strict";
+	
+	$.fn.modelResponsivePopup = function(options) {
+		
+		
+		var settings = $.extend({
+			pop_width: 70,
+			pop_position: 'fixed',
+			pop_autoLoad: false,
+			openEffect_time: 300,
+			closeEffect_time: 300
+		}, options );
+		
+		var $this = $(this); /* create variable */
+		
+		var positionPopup = function() {
+			var windowWidth = $(window).width(),
+			windowHeight = $(window).height(),
+			popupHeight = $this.height(),
+			topPos = (windowHeight / 2) - (popupHeight / 2),
+			get_left = (100 - settings.pop_width)  / 2 + '%',
+			leftPos = get_left,
+			popupWidth = settings.pop_width + '%';
+			
+			if(topPos < 20) topPos = 20;
+			
+			/* Set window width */
+			if(windowWidth <= 880) {
+				(popupWidth = '90%', leftPos = '5%')
+			} else {
+				(popupWidth = settings.pop_width + '%', leftPos = get_left)
+			}
+			
+			/* popup CSS */
+			$this.css({
+				"top": topPos,
+				"left": leftPos,
+				"width": popupWidth,
+				"position": settings.pop_position,
+			});
+	    },
+		
+		/* Append Popup Transparent Div */
+		appendFunc = function() {
+			if (!$('body').find('.popup_wrapper').length) {
+				$('body').prepend('<div class="popup_wrapper"></div>');
+			}
+		},
+		
+		// On click show Popup Function
+		showPopup = function() {
+			$('.popup_link').on ('click', function() {
+				var pop_id = $(this).attr('data-id');
+				$("#"+pop_id).fadeIn(settings.openEffect_time);
+				$('.popup_wrapper').fadeIn(settings.openEffect_time);
+			});
+			positionPopup();
+	    },
+		
+		
+		// For auto Load Function
+		autoLoad = function () {
+			if (settings.pop_autoLoad == true) {
+				$this.fadeIn(settings.openEffect_time);
+				$('body').find('.popup_wrapper').fadeIn(settings.openEffect_time);
+			}
+		},
+		
+		
+		// for close function
+		closePopup = function () {
+			/*$('.popup_wrapper').click( function () {
+				alert('one one');
+				$this.fadeOut(settings.closeEffect_time);
+				$(this).fadeOut(settings.closeEffect_time);
+			});*/
+			$(".close").on("click", function () {
+				$this.fadeOut(settings.closeEffect_time);
+				$('.popup_wrapper').fadeOut(settings.closeEffect_time);
+			});
+		},
+		
+		close_by_wrapper = function () {
+			$('.popup_wrapper').click( function () {
+				$this.fadeOut(settings.closeEffect_time);
+				$(this).fadeOut(settings.closeEffect_time);
+			});
+		};
+		
+		
+		// Call Function On Document Ready
+		$(document).ready(function(){
+			appendFunc();
+			autoLoad();
+			closePopup();
+			positionPopup();
+			showPopup();
+			close_by_wrapper();
+		});
+		
+		
+		// Call Function On Window Resize 
+		$(window).on("resize", function() {
+			positionPopup();
+		});
+		
+		
+		// Return Function
+		return $this;
+		
+	};
+	
+}( jQuery ));

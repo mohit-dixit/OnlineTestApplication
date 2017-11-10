@@ -1,0 +1,166 @@
+/*
+ *  CSS Model Responsive Popup v1.0
+ *
+ *  Copyright (c) 2015
+ *
+ *  Author - Shahnawaz Khan
+ *
+ *  Company - http://www.sourcefuse.com
+ *
+ *  Licensed under Sourcefuse Technologies
+ *
+ */
+
+ 
+ 
+* {
+	margin: 0px;
+	padding: 0px;
+}
+body {
+	background: #F0F0F0;
+	font-family: 'Arial', sans-serif;
+	color: #393939;
+}
+a {
+	text-decoration:underline;
+	color: #0F7481;
+}
+a:hover {
+	text-decoration: none;
+}
+.demo_wrapper {
+	padding: 0px;
+	margin: 0 auto;
+	width: 100%;
+}
+.demo_wrapper h2 {
+	font-size: 30px;
+	color:  #646464;
+	padding: 40px 0 30px 0;
+	text-align: center;
+}
+ul {
+	list-style: none;
+}
+
+/* Reset CSS End */
+
+
+/* Model Popup Start */
+
+.popup_wrapper {
+	width: 100%;
+	height: 100%;
+	background: #000;
+	background: rgba(0, 0, 0, 0.7);
+	position: fixed;
+	z-index: 99;
+	top: 0;
+	left: 0;
+	display: none;
+	cursor: pointer;
+}
+.model_popup {
+	width: 500px !important;
+	height: 250px !important;
+	left: 50% !important;
+	top: 50% !important;
+	margin-left: -250px !important;
+	margin-top: -125px !important;
+	z-index: 999;
+	background: #fff;
+	border: 2px solid #1faceb;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	position: absolute !important;
+	display: none;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	overflow: visible;
+	background: #f7f7f7 !important;
+	/*height: 100%;*/
+	-webkit-box-shadow: 1px 1px 2px 2px rgba(76,76,76,0.1);
+    -moz-box-shadow: 1px 1px 2px 2px rgba(76,76,76,0.1);
+    box-shadow: 1px 1px 2px 2px rgba(76,76,76,0.1);
+}
+.model_popup .model_title {
+	font-size: 20px;
+	padding: 11px;
+	position: relative;
+	border-bottom: 1px solid #e8e8e8;
+	
+}
+.model_popup .popup_container > .close {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 37px;
+	height: 36px;
+	padding: 0;
+	background: transparent url('../images/close.png') no-repeat center center;
+	cursor: pointer;
+	-webkit-border-radius: 0 1px  0 0;
+	-moz-border-radius: 0 1px  0 0;
+	border-radius: 0 1px  0 0;
+	opacity: 0.8;
+}
+.model_popup .popup_container > .close:hover {
+	opacity: 1;
+}
+.popup_container {
+	background: transparent;
+	text-align: center;
+}
+.popup_container h2 {
+	text-align: center;
+	margin-top: 70px;
+	margin-bottom: 30px;
+	line-height: 42px;
+	color: #38888f;
+	padding: 0px;
+}
+
+.main-content .model_popup .popup_container h2 {
+    font-size: 20px !important;
+    line-height: 25px !important;
+    padding: 0 100px 20px 100px;
+}
+
+.main-content .model_popup .popup_container a.loginnow-button{
+    background: #0870b4;
+    transition: background 1s ease;
+    font-family: roboto;
+    color: #fff;
+    font-weight: 400;
+    font-size: 18px;
+    padding: 10px 15px;
+    border-color: #0870b4;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+
+.main-content .model_popup .popup_container a.loginnow-button:hover{
+    background: #11a0db;
+    border-color: #11a0db;
+}
+
+/* Model Popup End */
+	
+/* For responsive Container or Wrapper */	
+@media screen and (max-width: 510px) {
+	.model_popup {
+		width: 90% !important;
+		margin-left: 0px !important;
+		left: 5% !important;
+		height: 317px !important;
+	}
+	.Sign_up {
+		width: 90%;
+	}
+}
+
+/* Mult-Level Dropdown Menus End */

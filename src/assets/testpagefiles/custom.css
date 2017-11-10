@@ -1,0 +1,19 @@
+.pippin_form input.error,
+.pippin_form select.error {
+	border: 1px solid #ff0000;
+}
+.pippin_form label {
+	width: 100%;
+	float: none;
+}
+.pippin_form label.error {
+	color: #ff0000;
+	display: block !important;
+}
+.pippin_form label.error::after {
+	content: "";
+}
+.pippin_form p {
+	clear: both;
+}
+

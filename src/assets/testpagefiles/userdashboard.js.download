@@ -1,0 +1,139 @@
+jQuery(document).ready(function($){
+	$('#registration_dob').datepicker({
+		format: 'dd/mm/yyyy',
+		endDate: '-1',
+		autoclose: true,
+	});
+	$("#bulkregistration").validate({
+		rules: {
+			importusers: {
+			  required: true
+			},
+			ddnumber: {
+			  required: true,
+			  number: true
+			},
+			amount: {
+			  required: true,
+			  number: true
+			}
+		},
+		messages: {
+			importusers: "Please Upload CSV File.",
+			ddnumber: "Please enter correct D.D. number.",
+			amount: "Please enter D.D. amount.",
+		}
+	});
+	$("#govntbulkregistration").validate({
+		rules: {
+			importusers: {
+			  required: true
+			},
+			ddnumber: {
+			  required: true,
+			  number: true
+			},
+			amount: {
+			  required: true,
+			  number: true
+			}
+		},
+		messages: {
+			importusers: "Please Upload CSV File.",
+			ddnumber: "Please enter correct D.D. number.",
+			amount: "Please enter D.D. amount.",
+		}
+	});
+	$('#pippin_user_role').on('change',function(){
+		if($(this).val() == 'educator' || $(this).val() == 'others'){
+			$('.teacherForm').show();
+			$('.studentForm').hide();
+		}else{
+			$('.studentForm').show();
+			$('.teacherForm').hide();
+		}
+	});
+	$('#registration_responsibilities').on('change',function(){
+		if($(this).val() == 'other'){
+			$('#specify_responsiblities').show();	
+		}else{
+			$('#specify_responsiblities').hide();	
+		}
+	});
+	$('.excel_user_role').on('change',function(){
+		if($(this).val() == 'educator'){
+			$('.educatorExcel').show();
+			$('.studentExcel').hide();
+		}else if($(this).val() == 'junior_student' || $(this).val() == 'senior_student'){
+			$('.educatorExcel').hide();
+			$('.studentExcel').show();
+		}else{
+			$('.educatorExcel,.studentExcel').hide();
+		}
+	});
+	$('.educatorExcel,.studentExcel').hide();
+	
+	$('#addTestimonial').validate({
+		rules: {
+			testimonial: "required",
+		},
+		messages: {
+			testimonial: "Please add testimonial.",
+		
+		},
+		submitHandler: function(form) {
+			$('.ajaxResponseTestimonial').empty();
+			var data = {
+				'action': 'testimonial_save',
+				'testimonial': $('.testimonial').val(),
+			};
+			jQuery.post(ajaxurl, data, function(response) {
+				$('.testimonial').val('');
+				$('.ajaxResponseTestimonial').css('display','block');
+				$('.ajaxResponseTestimonial').html(response.message);
+				//console.log(response);
+			});
+		}
+	});
+	
+	$('.saveTestimonial').on('click',function(){
+		$('.ajaxResponseTestimonial').css('display','none');
+		$('.ajaxResponseTestimonial').empty();
+	});
+	
+	
+	$(".edituserform").validate({
+		rules: {
+			file:{
+				filesize: 250000,
+				extension: "bmp|jpeg|jpg"
+			}
+		},
+		errorElement : 'div',
+	});
+	
+	$.validator.addMethod('filesize', function (value, element, param) { 
+		$('html, body').animate({ scrollTop: 0 }, 'slow');
+		return this.optional(element) || (element.files[0].size < param) 
+		}, 
+		'Max. image upload size : 250 Kb.'
+	);
+	
+	$('#updateuser').on('click',function(){
+		$('.error').empty();
+		$('.error-message').empty().css('display','none');
+		if($('#file-error').html() != ''){
+			$('html, body').animate({ scrollTop: 0 }, 'slow');
+		}
+	});
+	
+	$('.clear_image').on('click',function(){
+		$('#subfile').val('');
+		$('.filetype').val('').addClass('valid');
+		
+		$('#file-error').remove();
+		$('.profile_image').removeClass('error').addClass('valid').attr("aria-describedby","true");;
+		return false;
+	});
+	
+});

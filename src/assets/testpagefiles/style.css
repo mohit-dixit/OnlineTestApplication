@@ -1,0 +1,616 @@
+.user-dashbox-col {
+    padding: 40px 0 20px 0;
+}
+
+.user-dshboard {
+	margin-bottom: 30px;
+	text-align: center;
+	
+}
+.tabdivouter legend {
+    font-family: roboto;
+    text-align: center;
+    line-height: 48px;
+    font-weight: 700;
+    font-style: normal;
+    color: #222;
+    font-size: 22px;
+    opacity: 1;
+    visibility: visible;
+    -webkit-transition: opacity 0.24s ease-in-out;
+    -moz-transition: opacity 0.24s ease-in-out;
+    transition: opacity 0.24s ease-in-out;
+	margin-bottom: 0;
+	text-transform: uppercase;
+}
+.user-dshboard .tabouter {
+	background: #f5f5f5;
+	padding: 0px;
+	-webkit-box-shadow: 1px 1px 2px 2px rgba(76,76,76,0.1);
+	-moz-box-shadow: 1px 1px 2px 2px rgba(76,76,76,0.1);
+	box-shadow: 1px 1px 2px 2px rgba(76,76,76,0.1);
+	height: 165px;
+	transition: all 0.3s ease;
+}
+.user-dshboard .tabinner-image {
+	padding: 0px;
+	display: table;
+	width: 100%;
+}
+.user-dshboard .tabinner-image a {
+	display: table-cell;
+	height: 120px;
+	vertical-align: middle;
+	text-align: center;
+}
+.user-dshboard .tabinner-image a span {
+	font-size: 58px;
+	color: #0870b4;
+	transition: all 0.3s ease;
+}
+
+.user-dshboard .tabinner-image a span.icon-testimonial {
+    font-size: 70px;
+}
+
+.user-dshboard .tabinner-image img {
+	max-width: 100%;
+	opacity:0;
+	left: 50%;
+	top: 30%;
+	-webkit-transform: translate(-50%, -30%);
+	-moz-transform: translate(-50%, -30%);
+	transform: translate(-50%, -30%);
+}
+.tabdivouter {
+	clear: both;
+}
+.user-dshboard .tabinner-label {
+	margin-top: 0;
+	/*background: #818181;*/
+    padding: 0 10px;
+}
+.user-dshboard .tabinner-label a {
+	color: #222;
+	font-size: 14px;
+	display: block !important;
+	font-weight: 400;
+	text-align: center;
+	text-transform: uppercase;
+	font-family: roboto;
+	transition: all 0.3s ease;
+	line-height: 20px;
+}
+.user-dshboard .tabouter:hover {
+	background: #11a0db;
+}
+.user-dshboard .tabouter:hover .tabinner-image a span,
+.user-dshboard .tabouter:hover .tabinner-label a {
+	color: #fff;
+}
+/*.form-submit input[type="submit"] {
+	background: #1faceb;
+	color: #fff;
+	transition: all 0.3s ease;
+}
+#adduser input[type="submit"]:hover {
+	background: #149edc;
+}*/
+.entry-content h2,
+.wpProQuiz_content h2 {
+	font-family: Dosis;
+	text-align: center;
+	line-height: 48px;
+	font-weight: 700;
+	font-style: normal;
+	color: #333;
+	font-size: 24px;
+	opacity: 1;
+	visibility: visible;
+	-webkit-transition: opacity 0.24s ease-in-out;
+	-moz-transition: opacity 0.24s ease-in-out;
+	transition: opacity 0.24s ease-in-out;
+	margin-bottom: 30px;
+	text-transform: uppercase;
+}
+input[type="button"].back-btn {
+	background: #1faceb;
+	border: 1px solid #1faceb;
+	color: #fff;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: auto;
+	-webkit-transition:all 0.4s;
+	-moz-transition:all 0.4s;
+	-o-transition:all 0.4s;
+	transition:all 0.4s;
+	border-radius: 20px;
+	padding: 0 10px;
+	width: auto;
+	height:35px;
+	font-family:roboto;
+	font-weight:normal;
+	font-size:14px;
+    line-height: 35px;
+}
+input[type="button"].back-btn:hover {
+	background: transparent;
+	color: #1faceb;
+}
+.form-submit,
+.wpProQuiz_text {
+	text-align: center;
+}
+.form-submit input[type="submit"],
+.wpProQuiz_content input[type="button"].wpProQuiz_button {
+  padding: 0 30px;
+  width: auto;
+  height:35px;
+  line-height:35px;
+  text-align:Center;
+  background-color:#ffca00;
+  border:1px solid #ffca00;
+  -webkit-transition:all 0.4s;
+  -moz-transition:all 0.4s;
+  -o-transition:all 0.4s;
+  transition:all 0.4s;
+  color:#fff;
+  text-transform:uppercase;
+  font-family:roboto;
+  font-weight:normal;
+  font-size:14px;
+  border-radius:20px;
+  display:inline-block;
+}
+.wpProQuiz_content input[type="button"].wpProQuiz_button {
+	border: 2px solid #fff;
+	height:40px;
+    line-height:40px;
+	-webkit-box-shadow: 1px 1px 2px 2px rgba(76,76,76,0.1);
+    -moz-box-shadow: 1px 1px 2px 2px rgba(76,76,76,0.1);
+    box-shadow: 1px 1px 2px 2px rgba(76,76,76,0.1);
+}
+.wpProQuiz_content input[type="button"].wpProQuiz_button:hover {
+	background: #fff;
+	color:#ffca00;
+}
+.form-submit input[type="submit"]:hover {
+  background-color:transparent;
+  color:#ffca00;
+}
+#adduser label {
+	display: block;
+}
+
+#adduser span {
+	display: block; 
+}
+#adduser span.img_instruction {
+	font-size: 14px;
+	font-family: Roboto;
+}
+
+.user-dash-inner {
+    padding-top: 30px;
+    padding-bottom: 15px;
+}
+
+.user-dash-inner form label {
+    font-family: Roboto;
+    font-size: 13px;
+	font-weight: 400;
+	color: #333;
+    text-transform: uppercase;
+}
+
+.user-dash-inner form .error {
+    color: red;
+    text-transform: none;
+}
+
+.user-dash-inner form .testimonial.error {
+    border-color: red;
+    text-transform: none;
+}
+
+.user-dash-inner form input,
+.user-dash-inner form textarea,
+.user-dash-inner form select {
+    background: #f2f2f2;
+    vertical-align: middle;
+    line-height: 46px;
+    height: 46px;
+    border: 1px solid #aaa;
+    padding: 0 10px;
+    font-family: roboto;
+    color: #000000;
+    font-size: 14px;
+    letter-spacing: 1px;
+    position: relative;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+
+.user-dash-inner form input[type=file] {
+    line-height: 10px;
+    padding-top: 10px;
+}
+
+.user-dash-inner form textarea {
+    padding: 10px;
+    resize: none;
+    height: 115px;
+    line-height: 20px;
+}
+
+.user-dash-inner form p {
+    position: relative;
+}
+
+.user-dash-inner form input {
+    padding-left: 35px;
+}
+
+.user-dash-inner form .common-icon {
+    position: absolute;
+    top: 38px;
+    left: 10px;
+    z-index: 1;
+}
+
+.user-dash-inner form .studentForm .select-contact {
+    position: relative;
+}
+
+.user-dash-inner form .studentForm .select-contact .common-icon {
+    position: absolute;
+    top: 13px;
+    left: 23px;
+    z-index: 1;
+}
+
+.user-dash-inner form .form-submit input[type="submit"] {
+    background: #0870b4;
+    transition: background 1s ease;
+    color: #fff;
+    font-weight: 400;
+    font-size: 18px;
+    border-color: #0870b4;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+
+.user-dash-inner form .form-submit input[type="submit"]:hover {
+    background: #11a0db;
+    border-color: #11a0db;
+}
+
+.user-dash-inner form .input-append a.btn {
+    text-shadow: none;
+    margin-left: -5px;
+    z-index: 1;
+    position: relative;
+    background: #f2f2f2;
+    text-shadow: none;
+    font-family: roboto;
+    height: 46px;
+    line-height: 46px;
+    box-shadow: none;
+    border: 1px solid #aaa;
+    font-family: roboto;
+}
+
+.user-dash-inner form .educator-section h3.cls-taut-title,
+.user-dash-inner form .interset_section h3.cls-taut-title {
+    color: rgba(0,0,0,.7);
+    font-size: 20px;
+    font-weight: 400;
+    color: #525151;
+    font-family: roboto;
+    text-transform: uppercase;
+    margin: 0;
+}
+.user-dash-inner form .educator-section,
+.user-dash-inner form .interset_section {
+    position: relative;
+}
+
+.user-dash-inner #adduser .educator-section label {
+    display: inline-block;
+    width: auto;
+}
+.user-dash-inner #adduser .interset_section label {
+	display: inline-block;
+    width: auto;
+    vertical-align: top;
+    margin-bottom: 10px;
+}
+.user-dash-inner #adduser .interset_section label:first-child {
+	display: block;
+	margin-bottom: 0px;
+}
+.user-dash-inner form .educator-section span.input-umbrs,
+.user-dash-inner #adduser .interset_section span.input-umbrs {
+    font-family: roboto;
+    color: rgba(0,0,0,.7);
+    font-size: 14px;
+    position: relative;
+    display: table;
+    line-height: normal;
+    text-align: left;
+    /*max-width: 45px;*/
+    width: 100%;
+    margin-right: 15px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.user-dash-inner #adduser .interset_section span.input-umbrs {
+	padding-left: 30px;
+}
+.user-dash-inner form .educator-section input[type="checkbox"],
+.user-dash-inner form .interset_section input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+}
+
+.user-dash-inner form .educator-section input[type="checkbox"],
+.user-dash-inner form .interset_section input[type="checkbox"],
+.user-dash-inner form .educator-section input[type="checkbox"] span,
+.user-dash-inner form .interset_section input[type="checkbox"] span {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    cursor: pointer;
+    height: auto;
+    line-height: normal;
+}
+
+.user-dash-inner form .educator-section input[type="checkbox"] span,
+.user-dash-inner form .interset_section input[type="checkbox"] span {
+    position: relative;
+    font-family: roboto;
+    color: rgba(0,0,0,.7);
+    font-size: 14px;
+}
+
+.user-dash-inner form .educator-section input[type="checkbox"] + span:before,
+.user-dash-inner form .interset_section input[type="checkbox"] + span:before {
+    content: '';
+    background: #fff;
+    border: 2px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    margin-right: 5px;
+    text-align: center;
+    font-size: 13px;
+}
+.user-dash-inner form .interset_section input[type="checkbox"] + span:before {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+.user-dash-inner form .educator-section input[type="checkbox"]:checked + span:before,
+.user-dash-inner form .interset_section input[type="checkbox"]:checked + span:before {
+    content: "\f00c";
+    font-family: 'FontAwesome';
+    background: #1faceb;
+    color: #fff;
+    border: 2px solid #1faceb;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0;
+}
+
+.user-dash-inner form .educator-section input[type="checkbox"]:focus + span,
+.user-dash-inner form .interset_section input[type="checkbox"]:focus + span {
+    outline: none; /* focus style */
+}
+
+.user-dash-inner .error-message {
+    display: block;
+    margin: 0 0 10px 0;
+    font-weight: 500;
+    font-size: 14px;
+    font-family: roboto;
+    color: red;
+    position: relative;
+    padding: 8px;
+    border: 1px solid #f50;
+    text-align: center;
+}
+
+.user-dash-inner .registeration-success {
+    padding: 10px 0;
+    text-align: center;
+    color: #fff;
+    background: #0e9400;
+    border-radius: 5px;
+    border-color: #d6e9c6;
+    max-width: 300px;
+    margin: auto;
+}
+
+/* Bulk Registration Page css*/
+
+.user-dash-inner .educatorExcel, .user-dash-inner .studentExcel {
+    font-weight: 400;
+    font-size: 14px;
+    color: #222222;
+    font-family: roboto;
+    line-height: 25px;
+    margin-bottom: 15px;
+}
+
+.bulk-reg-col form input {
+    padding-left: 10px;
+}
+
+
+.bulk-reg-col form h4.edit-profile {
+    margin-bottom: 0;
+}
+
+.bulk-reg-col form .button-colc {
+    text-align: center;
+}
+
+.bulk-reg-col form input.bulk-reg-submit {
+    padding-left: 0;
+    background: #0870b4;
+    transition: background 1s ease;
+    color: #fff;
+    font-weight: 400;
+    font-size: 18px;
+    border-color: #0870b4;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    vertical-align: middle;
+    line-height: 46px;
+    height: 46px;
+    font-family: roboto;
+    letter-spacing: 1px;
+    position: relative;
+    max-width: 350px;
+}
+
+/* UserDash Payment page css */
+#jws_theme_wrapper .payment-top-container h2.edit-profile {
+
+}
+
+.payment-top-container a.back-dash-btn {
+    position: absolute;
+    display: inline-block;
+    top: -18px;
+    right: 0;
+    font-family: roboto;
+    padding: 5px 15px;
+    background: #0870b4;
+    transition: background 1s ease;
+    color: #fff;
+    font-weight: 400;
+    font-size: 14px;
+    border-color: #0870b4;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+
+.user-dash-inner {
+    position: relative;
+}
+
+ul.payment-pg-col {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+ul.payment-pg-col li.user-dshboard {
+    display: inline-block;
+    float: none;
+    width: 49%;
+}
+
+.user-dshboard .blue-box {
+    background: #10e0d2;
+}
+
+.user-dshboard .orange-box {
+    background: #ff8020;
+}
+
+.user-dshboard .red-box {
+    background: #e01020;
+}
+
+.user-dshboard .yellow-box {
+    background: #ffe000;
+}
+
+.user-dshboard .yellowdark-box {
+    background: #ffc000;
+}
+
+.user-dshboard .lightblue-box {
+    background: #8c242c;
+}
+
+.user-dshboard .blue-box .tabinner-image a span,
+.user-dshboard .blue-box .tabinner-label a,
+.user-dshboard .red-box .tabinner-image a span,
+.user-dshboard .red-box .tabinner-label a,
+.user-dshboard .yellow-box .tabinner-image a span,
+.user-dshboard .yellow-box .tabinner-label a,
+.user-dshboard .orange-box .tabinner-image a span,
+.user-dshboard .orange-box .tabinner-label a,
+.user-dshboard .yellowdark-box .tabinner-image a span,
+.user-dshboard .yellowdark-box .tabinner-label a,
+.user-dshboard .lightblue-box .tabinner-image a span,
+.user-dshboard .lightblue-box .tabinner-label a {
+    color: #fff;
+}
+
+.user-dshboard .tabinner-image .profileImage {
+    position: relative;
+    width: 150px;
+    margin: auto;
+    height:100%;
+}
+
+.user-dshboard .tabinner-image .profileImage .img_wrapper {
+    width:100% !important;
+    height:100% !important;
+}
+
+.user-dshboard .tabinner-image .profileImage img {
+    border:2px solid #fff;
+    height: 100px;
+    width: 100px;
+}
+
+.user-dash-inner .tb-registerform .error-class {
+    border-color: red;
+}
+
+@media (max-width: 767px) {
+    .payment-top-container a.back-dash-btn {
+        top: -50px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 70%;
+        text-align: center;
+    }
+    .user-dash-inner form input.subfile {
+        width: 75%;
+    }
+    .user-dash-inner form .input-append a.btn {
+        width: 25%;
+    }
+
+    .user-dshboard .tabinner-image a {
+        padding-left: 5px;
+    }
+    .user-dshboard .tabinner-image a span{
+        font-size: 48px;
+    }
+
+    .icon-make-payment .path1:before {
+        font-size: 43px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+	.user-dshboard {
+		width: 100% !important;
+		float: none !important;
+	}
+}

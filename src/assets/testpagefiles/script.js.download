@@ -1,0 +1,72 @@
+jQuery(function(){
+	var calcWidth = function(){
+		var windowWidth = jQuery(window).width(),
+			const_17 = 17;
+
+		if(windowWidth+const_17<768){
+			jQuery('.tb-menu-control-mobi').on('click', function(){
+				jQuery('.tb-menu-list').toggleClass('active');
+			});
+		}else{
+			jQuery('.tb-menu-list').removeClass('active');
+		}
+	};
+
+	calcWidth();
+
+	jQuery(window).resize(function(){
+		calcWidth();
+	});
+});
+var equalHeight = function(container){
+	var currentTallest = 0,
+		currentRowStart = 0,
+		rowDivs = new Array(),
+		jQueryel,
+		topPosition = 0;
+	jQuery(container).each(function() {
+
+	  jQueryel = jQuery(this);
+	  jQuery(jQueryel).height('auto')
+	  topPostion = jQueryel.position().top;
+
+	  if (currentRowStart != topPostion) {
+		for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
+		  rowDivs[currentDiv].height(currentTallest);
+		}
+		rowDivs.length = 0; // empty the array
+		currentRowStart = topPostion;
+		currentTallest = jQueryel.height();
+		rowDivs.push(jQueryel);
+	  } else {
+		rowDivs.push(jQueryel);
+		currentTallest = (currentTallest < jQueryel.height()) ? (jQueryel.height()) : (currentTallest);
+	 }
+	  for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
+		rowDivs[currentDiv].height(currentTallest);
+	  }
+	});
+}
+jQuery(window).load(function() {
+	equalHeight('.tb-blog.classes .tb-content');
+});
+jQuery(window).resize(function(){
+	equalHeight('.tb-blog.classes .tb-content');
+});
+
+jQuery(document).ready(function ( $ ) {
+	jQuery('.wpcf7-submit ').on('click',function(){
+		if ((jQuery('.wpcf7-response-output').length) ) {
+			$('html, body').animate({ scrollTop: 600 }, 'slow');
+		};
+	});
+});
+jQuery(window).load (function() {
+	/*jQuery('body.home #paytm-coming').modelResponsivePopup({
+		pop_width: 60, // Popup width in percentage(%) Use 1 to 100.
+		pop_position: 'fixed', // use position absolute or fixed
+		pop_autoLoad: true, // auto Open Popup use true or false
+	});
+	jQuery('body.home').find('.popup_wrapper').show();
+*/
+});

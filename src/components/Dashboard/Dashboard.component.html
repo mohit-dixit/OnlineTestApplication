@@ -8,7 +8,7 @@
           &nbsp;
         </div>
         <div class="grid_4">
-          <a class="simpletext"><b>Welcome,&nbsp;{{loginUserName}} | {{loginRole}}</b></a>
+          <a class="simpletext"><b>Welcome,&nbsp;{{loginUserName| currency}} | {{loginRole}}</b></a>
           <router-link id="logout" @click.native="logout()" to="/">Logout</router-link>
         </div>
       </div>

@@ -16,6 +16,8 @@ import 'eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css
 import BreabCrumbs from 'vue-2-breadcrumbs'
 import VueGoodTable from 'vue-good-table'
 import Vuelidate from 'vuelidate'
+import VueFormWizard from 'vue-form-wizard'
+import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 
 Vue.config.productionTip = false
 
@@ -24,10 +26,10 @@ Vue.use(VueResource);
 Vue.use(VueEditor, {});
 Vue.use(BreabCrumbs);
 Vue.use(VueGoodTable);
-Vue.use(Vuelidate)
+Vue.use(Vuelidate);
+Vue.use(VueFormWizard);
 
 Vue.component('datePicker',DatePicker);
-
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.AuthRequired)) {
     let loginName = Vue.lsobj.get('loginName');

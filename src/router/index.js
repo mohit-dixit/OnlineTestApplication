@@ -14,6 +14,7 @@ import CreateTeacher from '@/components/CreateTeacher/index'
 import CreateStudent from '@/components/CreateStudent/index'
 import CreateInstitute from '@/components/CreateInstitute/index'
 import VueBreadcrumbs from 'vue-2-breadcrumbs';
+import Test from '@/components/Test'
 
 Vue.use(Router)
 Vue.use(VueBreadcrumbs)
@@ -110,6 +111,11 @@ export default new Router({
       name: 'Register',
       component: Register,
       meta: { AuthRequired: true , breadcrumb: 'Register' }
+    },
+    {
+      path: '/Test',
+      name: 'Test',
+      component: Test
     }
   ]
 })
