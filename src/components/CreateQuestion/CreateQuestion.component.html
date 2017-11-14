@@ -1,3 +1,7 @@
+<section>
+    <router-link to="/Dashboard/QuestionBank">
+      <b-button v-b-modal.modalAddInstitute variant="primary"> Go To Question Bank</b-button>
+    </router-link>
 <div class="login-container" v-if="loginRole === '3'">
   <div class="form-box">
     <label class="headingForm">Create Question</label>
@@ -11,13 +15,6 @@
           </b-col>
         </b-row>
         <br>
-        <b-row class="my-1">
-          <b-col sm="2"><label for="input-none">Points:</label></b-col>
-          <b-col sm="10">
-            <b-form-select v-model="createquestion.points" :options="pointsOptions" required class="mb-3">
-            </b-form-select>
-          </b-col>
-        </b-row>
         <b-row class="my-1">
           <b-col sm="2"><label for="input-none">Scale:</label></b-col>
           <b-col sm="9">
@@ -92,3 +89,4 @@
   </div>
    <!-- Modal Component -->
 </div>
+</section>

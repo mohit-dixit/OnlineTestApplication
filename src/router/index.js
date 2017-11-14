@@ -15,15 +15,15 @@ import CreateStudent from '@/components/CreateStudent/index'
 import CreateInstitute from '@/components/CreateInstitute/index'
 import VueBreadcrumbs from 'vue-2-breadcrumbs';
 import Test from '@/components/Test'
+import AdminList from '@/components/AdminList'
+import InstituteList from '@/components/InstituteList'
+import TeacherList from '@/components/TeacherList'
+import StudentList from '@/components/StudentList'
+import QuestionBank from '@/components/QuestionBank'
+import TestList from '@/components/TestList'
 
 Vue.use(Router)
 Vue.use(VueBreadcrumbs)
-
-const Main = {template: '<div><router-view/></div>'};
-const Biz = {template: '<div><h2>Biz</h2></div>'};
-const Foo = {template: '<div><h2>Foo</h2></div>'};
-const Bar = {template: '<div><h2>Bar</h2></div>'};
-
 
 export default new Router({
   routes: [
@@ -103,6 +103,42 @@ export default new Router({
           name: 'StartTest',
           component: StartTest,
           meta: { AuthRequired: true , breadcrumb: 'Start Test' }
+        },
+        {
+          path: 'AdminList',
+          name: 'AdminList',
+          component: AdminList,
+          meta: { AuthRequired: true , breadcrumb: 'Admin List' }
+        },
+        {
+          path: 'InstituteList',
+          name: 'InstituteList',
+          component: InstituteList,
+          meta: { AuthRequired: true , breadcrumb: 'Institute List' }
+        },
+        {
+          path: 'TeacherList',
+          name: 'TeacherList',
+          component: TeacherList,
+          meta: { AuthRequired: true , breadcrumb: 'Teacher List' }
+        },
+        {
+          path: 'StudentList',
+          name: 'StudentList',
+          component: StudentList,
+          meta: { AuthRequired: true , breadcrumb: 'Student List' }
+        },
+        {
+          path: 'QuestionBank',
+          name: 'QuestionBank',
+          component: QuestionBank,
+          meta: { AuthRequired: true , breadcrumb: 'Question Bank' }
+        },
+        {
+          path: 'TestList',
+          name: 'TestList',
+          component: TestList,
+          meta: { AuthRequired: true , breadcrumb: 'Test List' }
         }
       ]
     },

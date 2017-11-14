@@ -1,0 +1,17 @@
+<div v-if="loginRole === '3'">
+  <router-link to="/Dashboard/CreateTest">
+    <b-button v-b-modal.modalAddInstitute variant="primary"><b>+ </b>Add Test</b-button>
+  </router-link>
+  <br>
+  <div style="background-color: white; border: 3px solid #E9ECEF;">
+    <vue-good-table title="Tests" :columns="columnsTests" :rows="testList" :paginate="true" :globalSearch="true" :lineNumbers="true"
+                    styleClass="table table-bordered table-striped condensed">
+      <template slot="table-row-after" slot-scope="props">
+        <td>
+          <img width="18" title="Edit" @click="editTestClick(props.index)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/pencil.gif">
+          <img width="18" title="Delete" @click="deleteTestClick(props.index)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/delete.png">
+        </td>
+      </template>
+    </vue-good-table>
+  </div>
+</div>

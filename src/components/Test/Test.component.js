@@ -35,5 +35,8 @@ export default {
         this.testtime = this.testtime - 1;
       },1000);
     }
+  },
+  created: function(){
+    this.loginRole = Vue.lsobj.get('loginRole');
   }
 }

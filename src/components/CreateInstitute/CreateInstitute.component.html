@@ -1,4 +1,7 @@
 <section>
+  <router-link to="/Dashboard/InstituteList">
+    <b-button v-b-modal.modalAddInstitute variant="primary"> Go To Institute List</b-button>
+  </router-link>
     <div class="createinstitute-container">
       <div class="form-box">
         <label class="headingForm">Create Institute</label>
@@ -14,7 +17,7 @@
             <b-row class="my-1">
               <b-col sm="4"><label for="input-none">Email:</label></b-col>
               <b-col sm="8">
-                <b-form-input id="input-none" :state="null" type="text" v-model="createinstituteform.email" required placeholder="Enter Email"></b-form-input>
+                <b-form-input id="input-none" :state="null" type="text" v-model="createinstituteform.emailID" required placeholder="Enter Email"></b-form-input>
               </b-col>
             </b-row>
             <b-row class="my-1">
@@ -33,6 +36,12 @@
           <br>
           <b-button type="submit" variant="primary">Create</b-button>
           <b-button type="reset" variant="secondary">Reset</b-button>
+          <div v-if="notifySuccess" style="margin-top: 10px;">
+            <span class="notification n-success">{{responseMessage}}</span>
+          </div>
+          <div v-if="notifyError" style="margin-top: 10px;">
+            <span class="notification n-error">{{errorMessage}}</span>
+          </div>
         </b-form>
       </div>
     </div>

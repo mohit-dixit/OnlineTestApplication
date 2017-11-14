@@ -1,101 +1,34 @@
 <div class="container_12">
   <div>
-    <a v-on:click="showtable(1)" v-if="loginRole === '1'" class="dashboard-module">
-                          <img src="../../assets/images/adminlist.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_write.gif" width="64" height="64" alt="edit" />
-                          <!-- <span><router-link to="/Dashboard/CreateAdmin"></router-link></span> -->
-                          <span>Admins</span>
-    </a>
-    <a v-on:click="showtable(2)" v-if="loginRole === '1'" class="dashboard-module">
-      <img src="../../assets/images/multiInstitutes.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_write.gif" width="64" height="64" alt="edit" />
-      <!-- <span><router-link to="/Dashboard/CreateAdmin"></router-link></span> -->
-      <span>Institutes</span>
-    </a>
-    <a v-on:click="showtable(3)" v-if="loginRole === '2'" class="dashboard-module">
-      <img src="../../assets/images/teachersList.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_write.gif" width="64" height="64" alt="edit" />
-      <!-- <span><router-link to="/Dashboard/CreateAdmin"></router-link></span> -->
-      <span>Teachers</span>
-    </a>
-    <a v-on:click="showtable(4)" v-if="loginRole === '2'" class="dashboard-module">
-      <img src="../../assets/images/studentsList.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_write.gif" width="64" height="64" alt="edit" />
-      <!-- <span><router-link to="/Dashboard/CreateAdmin"></router-link></span> -->
-      <span>Students</span>
-    </a>
+    <router-link to="/Dashboard/AdminList" v-if="loginRole === '1'">
+      <a class="dashboard-module">
+                            <img src="../../assets/images/adminlist.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_write.gif" width="64" height="64" alt="edit" />
+                            <!-- <span><router-link to="/Dashboard/CreateAdmin"></router-link></span> -->
+                            <span>Admins</span>
+      </a>
+    </router-link>
+    <router-link to="/Dashboard/InstituteList" v-if="loginRole === '1'">
+      <a class="dashboard-module">
+        <img src="../../assets/images/multiInstitutes.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_write.gif" width="64" height="64" alt="edit" />
+        <!-- <span><router-link to="/Dashboard/CreateAdmin"></router-link></span> -->
+        <span>Institutes</span>
+      </a>
+    </router-link>
+    <router-link to="/Dashboard/TeacherList" v-if="loginRole === '2'">
+        <a class="dashboard-module">
+          <img src="../../assets/images/teachersList.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_write.gif" width="64" height="64" alt="edit" />
+          <!-- <span><router-link to="/Dashboard/CreateAdmin"></router-link></span> -->
+          <span>Teachers</span>
+        </a>
+    </router-link>
+    <router-link to="/Dashboard/StudentList" v-if="loginRole === '2'">
+        <a class="dashboard-module">
+          <img src="../../assets/images/studentsList.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_write.gif" width="64" height="64" alt="edit" />
+          <!-- <span><router-link to="/Dashboard/CreateAdmin"></router-link></span> -->
+          <span>Students</span>
+        </a>
+    </router-link>
   </div>
   <div style="clear: both"></div>
-  <div v-if="showDivId === 1">
-    <!-- Example table -->
-    <b-button type="submit" v-if="hideForNow" v-b-modal.modalAddAdmin variant="primary"><b>+ </b>New Admin</b-button>
-    <br>
-    <div style="background-color: white; border: 3px solid #E9ECEF;">
-      <vue-good-table title="Admins" :columns="columnsAdmins" :rows="adminList" :paginate="true" :globalSearch="true" :lineNumbers="true" styleClass="table table-bordered table-striped condensed">
-        <template slot="table-row-after" slot-scope="props">
-          <td>
-            <img width="18" title="Edit" @click="editAdminClick(props.index)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/pencil.gif">
-            <img width="18" title="Delete" @click="deleteAdminClick(props.index)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/delete.png">
-          </td>
-        </template>
-      </vue-good-table>
-    </div>
-    <!-- End .module -->
-  </div>
-  <div v-if="showDivId === 2">
-    <b-button type="submit" v-if="hideForNow" v-b-modal.modalAddInstitute variant="primary"><b>+ </b>New Institute</b-button>
-    <br>
-    <div style="background-color: white; border: 3px solid #E9ECEF;">
-      <vue-good-table title="Institutes" :columns="columnsInstitutes" :rows="instituteList" :paginate="true" :globalSearch="true" :lineNumbers="true"
-        styleClass="table table-bordered table-striped condensed">
-        <template slot="table-row-after" slot-scope="props">
-          <td>
-            <img width="18" title="Edit" @click="editInstituteClick(props.index)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/pencil.gif">
-            <img width="18" title="Delete" @click="deleteInstituteClick(props.index)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/delete.png">
-          </td>
-        </template>
-      </vue-good-table>
-    </div>
-  </div>
-  <div v-if="showDivId === 3">
-    <div style="background-color: white; border: 3px solid #E9ECEF;">
-      <vue-good-table title="Teachers" :columns="columnsTeachers" :rows="teacherList" :paginate="true" :globalSearch="true" :lineNumbers="true" styleClass="table table-bordered table-striped condensed">
-        <template slot="table-row-after" slot-scope="props">
-          <td>
-            <img width="18" title="Edit" @click="editTeacherClick(props.index)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/pencil.gif">
-            <img width="18" title="Delete" @click="deleteTeacherClick(props.index)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/delete.png">
-          </td>
-        </template>
-      </vue-good-table>
-    </div>
-  </div>
-  <div v-if="showDivId === 4">
-    <div style="background-color: white; border: 3px solid #E9ECEF;">
-      <vue-good-table title="Students" :columns="columnsStudents" :rows="studentList" :paginate="true" :globalSearch="true" :lineNumbers="true" styleClass="table table-bordered table-striped condensed">
-        <template slot="table-row-after" slot-scope="props">
-          <td>
-            <img width="18" title="Edit" @click="editStudentClick(props.index)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/pencil.gif">
-            <img width="18" title="Delete" @click="deleteStudentClick(props.index)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/delete.png">
-          </td>
-        </template>
-      </vue-good-table>
-    </div>
-  </div>
-  <!-- Modal Component -->
-  <div>
-    <b-modal id="modalAddAdmin" size="lg" title="" :header-bg-variant="headerBgVariant" :header-text-variant="headerTextVariant"
-      :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
-      <b-container fluid>
-        <add-admin></add-admin>
-      </b-container>
-      <div slot="modal-footer" class="w-100">
-      </div>
-    </b-modal>
-    <b-modal id="modalAddInstitute" size="lg" title="" :header-bg-variant="headerBgVariant" :header-text-variant="headerTextVariant"
-      :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
-      <b-container fluid>
-        <add-institute></add-institute>
-      </b-container>
-      <div slot="modal-footer" class="w-100">
-      </div>
-    </b-modal>
-  </div>
-  <!-- Modal Component -->
 </div>
 <!-- End .container_12 -->

@@ -7,55 +7,51 @@ export {
 };
 
 function GetRequest(url, data) {
-  return Vue.http.get(url)
-    .then(
-      response => {
-        return response.data
+    return Vue.http.get(url)
+      .then(
+        response => {
+          return response.data
+        })
+      .catch(error => {
+        return error;
       })
-    .catch(error => {
-      return error;
-    })
 }
 
-function PostRequest(url, data) {
-  return Vue.http.post(url, data)
-    .then(
-      response => {
-        debugger;
-        return response.data
-      })
-    .catch(error => error)
-}
-
-function LoginAuthentication(username, password, url) {
-  return Vue.http.get(url)
-    .then(response => {
-      if (response) {
-        let isCredentialsFound = false;
-        let responseData = response.data;
-        let loginUserData = [];
-        responseData.forEach(function (element) {
-          let user = element.username;
-          let pass = element.password;
-          if (user == username && pass == password) {
-            isCredentialsFound = true;
-            loginUserData.push(element);
+function PostRequest(url, postdata) {
+    Vue.http.headers.common['Authorization'] = postdata.token;
+    return Vue.http.post(url, postdata)
+      .then(
+        response => {
+          if (response) {
+           return {status : response.status, statustext : response.statusText};
           }
-        }, this);
-        if (isCredentialsFound) {
-          return loginUserData;
+        })
+      .catch(error => error)
+}
+
+function LoginAuthentication(url, data) {
+    return Vue.http.post(url, data)
+      .then(response => {
+        if (response) {
+          let responseData = response.data;
+          if (responseData.status == 0) {
+            return {
+              requestcode: responseData.status,
+              responsedata: responseData.error.msg
+            };
+          }
+          return {
+            requestcode: responseData.status,
+            responsedata: responseData.result.message
+          };
         }
-      } else {
-        return null;
-      }
-    })
-    .catch(error => {
-      //debugger;
-      return error;
-    })
+      })
+      .catch(error => {
+        console.log('Error   :   ' + error.message);
+      })
 }
 
 function NumberKeyValidation(event) {
-  let returnValue = (event.keyCode >= 48 && event.keyCode <= 57);
-  return returnValue;
+    let returnValue = (event.keyCode >= 48 && event.keyCode <= 57);
+    return returnValue;
 }

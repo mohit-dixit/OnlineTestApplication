@@ -1,3 +1,7 @@
+<section>
+  <router-link to="/Dashboard/TestList">
+    <b-button v-b-modal.modalAddInstitute variant="primary"> Go To Test List</b-button>
+  </router-link>
 <div class="login-container" v-if="loginRole === '3'">
       <div class="form-box">
         <label class="headingForm">Create Test</label>
@@ -12,6 +16,12 @@
             </b-row>
             <b-row class="my-1">
               <b-col sm="3"><label for="input-none">Test Time (In minutes):</label></b-col>
+              <b-col sm="9">
+                  <b-form-input type="text" placeholder="Enter Test Time" v-model="createtest.testtime" required></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3"><label for="input-none">Negative Marking:</label></b-col>
               <b-col sm="9">
                   <b-form-input type="text" placeholder="Enter Test Time" v-model="createtest.testtime" required></b-form-input>
               </b-col>
@@ -43,3 +53,5 @@
         </b-form>
       </div>
     </div>
+</section>
+

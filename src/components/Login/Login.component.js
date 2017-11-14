@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueLocalStorage from 'vue-localstorage'
+import * as config from '../../config/constants.js'
 import {
   GetRequest,
   PostRequest,
@@ -10,45 +11,48 @@ Vue.use(VueLocalStorage, {
   name: 'lsobj',
   createComputed: true //created computed members from your variable declarations
 })
-export default  {
+export default {
   name: 'login',
   components: {},
   props: [],
-  data () {
+  data() {
+    this.errorMessage = null;
+    this.BaseUrl = config.BASE_URL;
     return {
-      loginform:{},
+      loginform: {},
       is_login_email: false,
-      loader:false
+      loader: false
     }
   },
   computed: {
 
   },
-  mounted () {
+  mounted() {
 
   },
   methods: {
-    checkAuthentication: function (username, password) {
-      LoginAuthentication(username, password, 'static/login.json').then(res => {
+    checkAuthentication: function () {
+      LoginAuthentication(this.BaseUrl + 'api/superAdmin/login', this.loginform).then(res => {
         if (res) {
-          res.forEach(function (element) {
-            Vue.lsobj.set('loginUserName', element.username);
-            Vue.lsobj.set('loginName', element.firstname +' '+element.lastname);
-            Vue.lsobj.set('loginRole', element.roleId);
-            Vue.lsobj.set('rolename', element.rolename);
-            this.$router.push('Dashboard');
-          }, this);
-        }
-        else
-        {
-          alert('Invalid credentials');
+          if (res.requestcode > 0) {
+              let loginUserDetails = res.responsedata;
+              Vue.lsobj.set('loginUserName', loginUserDetails[0].username);
+              Vue.lsobj.set('loginName', loginUserDetails[0].firstname + ' ' + loginUserDetails[0].lastname);
+              Vue.lsobj.set('loginRole', loginUserDetails[0].user_roles[0].role.id);
+              Vue.lsobj.set('rolename', loginUserDetails[0].user_roles[0].role.rolename);
+              Vue.lsobj.set('loginToken', loginUserDetails[0].token);
+              this.$router.push('Dashboard');
+          } else {
+              this.errorMessage = res.responsedata;
+              this.$forceUpdate();
+          }
         }
       });
     },
     onSubmit(evt) {
       evt.preventDefault();
       //alert(JSON.stringify(this.loginform));
-      this.checkAuthentication(this.loginform.username, this.loginform.password);
+      this.checkAuthentication();
     }
   }
 }

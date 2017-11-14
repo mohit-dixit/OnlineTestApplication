@@ -50,13 +50,18 @@
                       <span>Create Institute</span>
                     </a>
     </router-link>
-    <!--
-    <router-link to="/Dashboard" v-if="isUserSuperAdmin">
+    <router-link to="/Dashboard/QuestionBank" v-if="isUserTeacher">
       <a href="" class="dashboard-module">
-                      <img src="../../assets/dashboardfiles/Crystal_Clear_settings.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_settings.gif" width="64" height="64" alt="edit" />
-                      <span>Settings</span>
+                      <img src="../../assets/images/questionbank.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_settings.gif" width="64" height="64" alt="edit" />
+                      <span>Question Bank</span>
                     </a>
-    </router-link> -->
+    </router-link>
+    <router-link to="/Dashboard/TestList" v-if="isUserTeacher">
+      <a href="" class="dashboard-module">
+        <img src="../../assets/images/tests.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_settings.gif" width="64" height="64" alt="edit" />
+        <span>Tests</span>
+      </a>
+    </router-link>
     <masters></masters>
     <div style="clear: both"></div>
 

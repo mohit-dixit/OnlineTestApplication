@@ -135,3 +135,8 @@ button:hover{
   max-width: 100%;
   display: flex;
 }
+
+.errortext{
+  font-size: smaller;
+  color: red;
+}
