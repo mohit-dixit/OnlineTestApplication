@@ -5,28 +5,25 @@
   </router-link>
   <br>
   <div style="background-color: white; border: 3px solid #E9ECEF;">
-    <vue-good-table title="Admins" :columns="columnsAdmins" :rows="adminList" :paginate="true" :globalSearch="true" :lineNumbers="true" styleClass="table table-bordered table-striped condensed">
+    <vue-good-table title="Admins" :columns="columnsAdmins" :rows="adminList" :paginate="true" :globalSearch="true" :lineNumbers="true"
+      styleClass="table table-bordered table-striped condensed">
       <template slot="table-row-after" slot-scope="props">
         <td>
-          <img width="18" title="Edit" @click="editAdminClick(props.index)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/pencil.gif">
+          <img width="18" title="Edit" @click="editAdminClick(props)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/pencil.gif">
           <img width="18" title="Delete" @click="deleteAdminClick(props)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/delete.png">
         </td>
       </template>
     </vue-good-table>
   </div>
-   <!-- Modal Component -->
-   <div>
-    <b-modal id="modalDelete" ref="modalDelete" title="Confirmation" @ok="deleteConfirmation"
-    :header-bg-variant="headerBgVariant"
-    :header-text-variant="headerTextVariant"
-    :body-bg-variant="bodyBgVariant"
-    :body-text-variant="bodyTextVariant"
-    :footer-bg-variant="footerBgVariant"
-    :footer-text-variant="footerTextVariant">
+  <!-- Modal Component -->
+  <div>
+    <b-modal id="modalDelete" ref="modalDelete" title="Confirmation" @ok="deleteConfirmation" :header-bg-variant="headerBgVariant"
+      :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant"
+      :footer-text-variant="footerTextVariant">
       <form>
-       Are you sure you want to delete?
+        Are you sure you want to delete?
       </form>
     </b-modal>
   </div>
-   <!-- Modal Component -->
-  </div>
+  <!-- Modal Component -->
+</div>

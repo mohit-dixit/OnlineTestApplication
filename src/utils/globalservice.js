@@ -16,14 +16,16 @@ function GetRequest(url, data) {
         return error;
       })
 }
-
 function PostRequest(url, postdata) {
     Vue.http.headers.common['Authorization'] = postdata.token;
     return Vue.http.post(url, postdata)
       .then(
         response => {
-          if (response) {
-           return {status : response.status, statustext : response.statusText};
+          if (response.body.status) {
+             return {status : response.body.status, statustext : response.statusText, body : response.body.result};
+          }
+          else{
+            return {status : response.body.status, statustext : response.body.error.msg};
           }
         })
       .catch(error => error)

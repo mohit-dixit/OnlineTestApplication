@@ -10,13 +10,15 @@ import {
 export default {
   name: 'create-admin',
   components: {},
-  props: [],
+  props: ['id'],
   data() {
     this.responseMessage = null;
     this.errorMessage = null;
     this.BaseUrl = config.BASE_URL;
     this.notifySuccess = false;
     this.notifyError = false;
+    this.isEdit = false;
+    this.submitButtonText ='Create';
     return {
       createadminform: {
         associatedwith: null,
@@ -32,7 +34,19 @@ export default {
 
   },
   methods: {
-    //Controls bindings
+    bindAdminData: function () {
+      let postData = {};
+      postData.id = this.id;
+      PostRequest(this.BaseUrl + 'api/superAdmin/edit/admin', postData).then(res => {
+        if (res) {
+          if(res.status){
+            let response = res.body.message[0];
+            this.createadminform = response;
+            this.createadminform.associatedwith = response.user_institutes[0].instituteId;
+          }
+        }
+      });
+    },
     bindInstitutes: function () {
       GetRequest(this.BaseUrl + 'api/superAdmin/institute/list').then(res => {
         this.associatedOptions.push({
@@ -50,29 +64,41 @@ export default {
         }
       });
     },
-
     onSubmit(evt) {
           evt.preventDefault();
           //Making Post Data ==============================================================================
-              this.createadminform.username = this.createadminform.email;
               this.createadminform.instituteId = this.createadminform.associatedwith;
               this.createadminform.password = config.DEFAULT_PASSWORD;
               this.createadminform.token = Vue.lsobj.get('loginToken');
           //Making Post Data ==============================================================================
-          PostRequest(this.BaseUrl + 'api/superAdmin/create/admin', this.createadminform).then(res => {
+
+          let apiPath = 'api/superAdmin/create/admin';
+          let isEditMode = this.isEdit;
+          if(isEditMode){
+            apiPath = 'api/superAdmin/update/admin';
+          }
+          PostRequest(this.BaseUrl + apiPath, this.createadminform).then(res => {
             if (res) {
               if(res.status == 200)
               {
                 this.createadminform = {};
-                this.responseMessage = 'Admin created successfully';
-                this.notifySuccess = true;
-                this.notifyError = false;
+                if(isEditMode){
+                  alert('Admin updated successfully')
+                  this.$router.push('/Dashboard/AdminList');
+                }
+                else{
+                  this.createadminform.associatedwith = null;
+                  this.notifySuccess = true;
+                  this.notifyError = false;
+                  this.responseMessage = 'Admin created successfully';
+                }
               }
               else
               {
-                this.errorMessage = res.statusText;
+                this.errorMessage = res.statustext;
                 this.notifySuccess = false;
                 this.notifyError = true;
+                this.$forceUpdate();
               }
             }
           });
@@ -84,5 +110,10 @@ export default {
   created: function () {
     this.loginRole = Vue.lsobj.get('loginRole');
     this.bindInstitutes();
+    if(this.id){
+      this.submitButtonText = 'Update';
+      this.isEdit = true;
+      this.bindAdminData();
+    }
   }
 }

@@ -1,3 +1,5 @@
+@import '../../../node_modules/vue-multiselect/dist/vue-multiselect.min.css';
+
 .createinstitute-container{
   position: relative;
   width: 50%;
@@ -108,4 +110,13 @@ button:hover{
   font-size: x-large;
   font-size: 65px;
   font-weight: bold;
+}
+.multiTextClass{
+  display: inline-block;
+  padding: 3px 12px;
+  background: #00BBF0;
+  margin-right: 2px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  cursor: pointer;
 }

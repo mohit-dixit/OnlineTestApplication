@@ -1,18 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from '@/components/Login/index'
-import Dashboard from '@/components/Dashboard/index'
-import DashboardContentPanel from '@/components/DashboardContentPanel/index'
-import Register from '@/components/Register/index'
-import CreateAdmin from '@/components/CreateAdmin/index'
-import CreateTest from '@/components/CreateTest/index'
-import Masters from '@/components/Masters/index'
-import CreateQuestion from '@/components/CreateQuestion/index'
-import AssignTest from '@/components/AssignTest/index'
-import StartTest from '@/components/StartTest/index'
-import CreateTeacher from '@/components/CreateTeacher/index'
-import CreateStudent from '@/components/CreateStudent/index'
-import CreateInstitute from '@/components/CreateInstitute/index'
+import Login from '@/components/Login'
+import Dashboard from '@/components/Dashboard'
+import DashboardContentPanel from '@/components/DashboardContentPanel'
+import Register from '@/components/Register'
+import CreateAdmin from '@/components/CreateAdmin'
+import CreateTest from '@/components/CreateTest'
+import Masters from '@/components/Masters'
+import CreateQuestion from '@/components/CreateQuestion'
+import AssignTest from '@/components/AssignTest'
+import StartTest from '@/components/StartTest'
+import CreateTeacher from '@/components/CreateTeacher'
+import CreateStudent from '@/components/CreateStudent'
+import CreateInstitute from '@/components/CreateInstitute'
 import VueBreadcrumbs from 'vue-2-breadcrumbs';
 import Test from '@/components/Test'
 import AdminList from '@/components/AdminList'
@@ -21,6 +21,8 @@ import TeacherList from '@/components/TeacherList'
 import StudentList from '@/components/StudentList'
 import QuestionBank from '@/components/QuestionBank'
 import TestList from '@/components/TestList'
+import EditAdmin from '@/components/CreateAdmin'
+import EditInstitute from '@/components/CreateInstitute'
 
 Vue.use(Router)
 Vue.use(VueBreadcrumbs)
@@ -51,10 +53,11 @@ export default new Router({
           meta: { AuthRequired: true , breadcrumb: 'Create Admin' }
         },
         {
-          path: 'CreateAdmin/:id',
-          name: 'CreateAdmin',
-          component: CreateAdmin,
-          meta: { AuthRequired: true , breadcrumb: 'Create Admin' }
+          path: 'EditAdmin/:id',
+          name: 'EditAdmin',
+          component: EditAdmin,
+          props: true,
+          meta: { AuthRequired: true , breadcrumb: 'Edit Admin' }
         },
         {
           path: 'CreateTest',
@@ -79,6 +82,13 @@ export default new Router({
           name: 'CreateInstitute',
           component: CreateInstitute,
           meta: { AuthRequired: true , breadcrumb: 'Create Institute' }
+        },
+        {
+          path: 'EditInstitute/:id',
+          name: 'EditInstitute',
+          component: EditInstitute,
+          props: true,
+          meta: { AuthRequired: true , breadcrumb: 'Edit Institute' }
         },
         {
           path: 'CreateTeacher',

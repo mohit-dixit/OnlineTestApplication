@@ -8,7 +8,7 @@
                     styleClass="table table-bordered table-striped condensed">
       <template slot="table-row-after" slot-scope="props">
         <td>
-          <img width="18" title="Edit" @click="editInstituteClick(props.index)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/pencil.gif">
+          <img width="18" title="Edit" @click="editInstituteClick(props)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/pencil.gif">
           <img width="18" title="Delete" @click="deleteInstituteClick(props)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/delete.png">
         </td>
       </template>
@@ -16,13 +16,9 @@
   </div>
     <!-- Modal Component -->
     <div>
-      <b-modal id="modalDelete" ref="modalDelete" title="Confirmation" @ok="deleteConfirmation" :header-bg-variant="headerBgVariant"
-        :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant"
-        :footer-text-variant="footerTextVariant">
-        <form>
-          Are you sure you want to delete?
-        </form>
-      </b-modal>
+      <modal name="hello-world">
+        hello, world!
+      </modal>
     </div>
     <!-- Modal Component -->
 </div>

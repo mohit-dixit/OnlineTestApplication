@@ -81,11 +81,10 @@ export default  {
       });
     },
     editInstituteClick: function (events, args) {
-      this.$router.push('/Dashboard/CreateAdmin', 1);
+      this.$router.push({name: 'EditInstitute', params: {id:events.row.id }});
     },
     deleteInstituteClick: function (events, args) {
-      this.selectedId = events.row.id;
-      this.$refs.modalDelete.show();
+      this.$modal.show('hello-world');
     },
     deleteConfirmation: function () {
       if (this.selectedId) {

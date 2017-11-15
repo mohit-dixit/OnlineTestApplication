@@ -4,20 +4,19 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import BootstrapVue from 'bootstrap-vue'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-import 'bootstrap/dist/css/bootstrap.css'
-import "../node_modules/ag-grid/dist/styles/ag-grid.css"
-import "../node_modules/ag-grid/dist/styles/theme-fresh.css"
 import VueResource from 'vue-resource'
-import AgGridVue from "ag-grid-vue"
 import VueEditor from 'vue2-editor'
 import DatePicker from 'vue-bootstrap-datetimepicker'
-import 'eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css'
 import BreabCrumbs from 'vue-2-breadcrumbs'
 import VueGoodTable from 'vue-good-table'
 import Vuelidate from 'vuelidate'
-import VueFormWizard from 'vue-form-wizard'
-import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+import VModal from 'vue-js-modal'
+
+import '../node_modules/vue-bootstrap-datetimepicker/node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css'
+import '../node_modules/bootstrap/dist/css/bootstrap.css'
+import '../node_modules/bootstrap-vue/dist/bootstrap-vue.css'
+import '../node_modules/ag-grid/dist/styles/ag-grid.css'
+import '../node_modules/ag-grid/dist/styles/theme-fresh.css'
 
 Vue.config.productionTip = false
 
@@ -27,10 +26,9 @@ Vue.use(VueEditor, {});
 Vue.use(BreabCrumbs);
 Vue.use(VueGoodTable);
 Vue.use(Vuelidate);
-Vue.use(VueFormWizard);
+Vue.use(VModal);
 
 Vue.component('datePicker',DatePicker);
-
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.AuthRequired)) {
     let loginName = Vue.lsobj.get('loginName');
@@ -59,4 +57,4 @@ new Vue({
   data() {
     return {}
   }
-})
+})  

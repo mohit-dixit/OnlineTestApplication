@@ -2,47 +2,62 @@
   <router-link to="/Dashboard/InstituteList">
     <b-button v-b-modal.modalAddInstitute variant="primary"> Go To Institute List</b-button>
   </router-link>
-    <div class="createinstitute-container">
-      <div class="form-box">
-        <label class="headingForm">Create Institute</label>
+  <div class="createinstitute-container">
+    <div class="form-box">
+      <label class="headingForm">{{submitButtonText}} Institute</label>
+      <br>
+      <b-form @submit="onSubmit">
+        <b-container fluid>
+          <b-row class="my-1">
+            <b-col sm="5"><label for="input-none">Name:</label></b-col>
+            <b-col sm="7">
+              <b-form-input id="name" type="text" v-model="createinstituteform.name" required placeholder="Enter Name"></b-form-input>
+            </b-col>
+          </b-row>
+          <b-row class="my-1">
+            <b-col sm="5"><label for="input-none">Email:</label></b-col>
+            <b-col sm="7">
+              <b-form-input id="input-none" :state="null" type="text" v-model="createinstituteform.emailID" required placeholder="Enter Email"></b-form-input>
+            </b-col>
+          </b-row>
+          <b-row class="my-1">
+            <b-col sm="5"><label for="input-none">Phone:</label></b-col>
+            <b-col sm="7">
+              <b-form-input id="input-none" :state="null" type="text" v-model="createinstituteform.phone" required placeholder="Enter Phone"></b-form-input>
+            </b-col>
+          </b-row>
+          <b-row class="my-1">
+            <b-col sm="5"><label for="input-none">Address:</label></b-col>
+            <b-col sm="7">
+              <b-form-textarea id="dddddd" v-model="createinstituteform.address" required class="mb-3"></b-form-textarea>
+            </b-col>
+          </b-row>
+          <b-row class="my-1">
+            <b-col sm="5"><label for="input-none">Scale:</label></b-col>
+            <b-col sm="7">
+              <multiselect v-model="value" :options="scaleOptions" :multiple="true" :close-on-select="false" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Pick scale" label="text" track-by="text">
+                <template slot="tag" slot-scope="props"><span class="multiTextClass"><span>&nbsp;{{ props.option.text }}</span><span class="custom__remove" @click="props.remove(props.option)">❌</span></span></template>
+              </multiselect>
+            </b-col>
+          </b-row>
+          <b-row class="my-1">
+            <b-col sm="5"><label for="input-none">Allow admin to add Scale?:</label></b-col>
+            <b-col sm="7">
+              <b-form-checkbox id="checkbox1" style="width: 0%" v-model="status" value="accepted" unchecked-value="false">
+              </b-form-checkbox>
+            </b-col>
+          </b-row>
+        </b-container>
         <br>
-        <b-form @submit="onSubmit">
-          <b-container fluid>
-            <b-row class="my-1">
-              <b-col sm="4"><label for="input-none">Name:</label></b-col>
-              <b-col sm="8">
-                <b-form-input id="name" type="text" v-model="createinstituteform.name" required placeholder="Enter Name"></b-form-input>
-              </b-col>
-            </b-row>
-            <b-row class="my-1">
-              <b-col sm="4"><label for="input-none">Email:</label></b-col>
-              <b-col sm="8">
-                <b-form-input id="input-none" :state="null" type="text" v-model="createinstituteform.emailID" required placeholder="Enter Email"></b-form-input>
-              </b-col>
-            </b-row>
-            <b-row class="my-1">
-              <b-col sm="4"><label for="input-none">Phone:</label></b-col>
-              <b-col sm="8">
-                <b-form-input id="input-none" :state="null" type="text" v-model="createinstituteform.phone" required placeholder="Enter Phone"></b-form-input>
-              </b-col>
-            </b-row>
-            <b-row class="my-1">
-              <b-col sm="4"><label for="input-none">Address:</label></b-col>
-              <b-col sm="8">
-                <b-form-textarea id="dddddd" v-model="createinstituteform.address" required class="mb-3"></b-form-textarea>
-              </b-col>
-            </b-row>
-          </b-container>
-          <br>
-          <b-button type="submit" variant="primary">Create</b-button>
-          <b-button type="reset" variant="secondary">Reset</b-button>
-          <div v-if="notifySuccess" style="margin-top: 10px;">
-            <span class="notification n-success">{{responseMessage}}</span>
-          </div>
-          <div v-if="notifyError" style="margin-top: 10px;">
-            <span class="notification n-error">{{errorMessage}}</span>
-          </div>
-        </b-form>
-      </div>
+        <b-button type="submit" variant="primary">{{submitButtonText}}</b-button>
+        <b-button type="reset" v-if="!isEdit" variant="secondary">Reset</b-button>
+        <div v-if="notifySuccess" style="margin-top: 10px;">
+          <span class="notification n-success">{{responseMessage}}</span>
+        </div>
+        <div v-if="notifyError" style="margin-top: 10px;">
+          <span class="notification n-error">{{errorMessage}}</span>
+        </div>
+      </b-form>
     </div>
+  </div>
 </section>

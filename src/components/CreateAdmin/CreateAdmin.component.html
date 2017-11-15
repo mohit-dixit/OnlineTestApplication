@@ -4,7 +4,7 @@
 </router-link>
 <div class="createadmin-container" v-if="loginRole === '1'">
   <div class="form-box">
-    <label class="headingForm">Create Admin</label>
+    <label class="headingForm">{{submitButtonText}} Admin</label>
     <br>
     <b-form @submit="onSubmit">
       <b-container fluid>
@@ -23,7 +23,7 @@
         <b-row class="my-1">
           <b-col sm="4"><label for="input-none">Email/Username:</label></b-col>
           <b-col sm="8">
-            <b-form-input id="input" :state="null" type="email" v-model="createadminform.email" required placeholder="Enter Email"></b-form-input>
+            <b-form-input id="input" :state="null" type="email" v-model="createadminform.username" required placeholder="Enter Email"></b-form-input>
           </b-col>
         </b-row>
         <b-row class="my-1">
@@ -41,13 +41,13 @@
         </b-row>
       </b-container>
       <br>
-      <b-button type="submit" variant="primary">Create</b-button>
-      <b-button type="reset" variant="secondary">Reset</b-button>
+      <b-button type="submit" variant="primary">{{submitButtonText}}</b-button>
+      <b-button type="reset" v-if="!isEdit" variant="secondary">Reset</b-button>
       <div v-if="notifySuccess" style="margin-top: 10px;">
-        <span class="notification n-success">{{responseMessage}}</span>
+        <span class="notification n-success"><b>{{responseMessage}}</b></span>
       </div>
       <div v-if="notifyError" style="margin-top: 10px;">
-        <span class="notification n-error">{{errorMessage}}</span>
+        <span class="notification n-error"><b>{{errorMessage}}</b></span>
       </div>
     </b-form>
   </div>

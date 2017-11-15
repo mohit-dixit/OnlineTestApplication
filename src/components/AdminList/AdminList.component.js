@@ -65,12 +65,13 @@ export default {
           let response = res.result.message[0].user_roles;
           let list = [];
           response.forEach(function (element) {
+            let userObject = element.user;
             list.push({
-              id: element.user.id,
-              firstname: element.user.firstname,
-              lastname: element.user.lastname,
-              phone: element.user.phone,
-              email: element.user.username
+              id: userObject.id,
+              firstname: userObject.firstname,
+              lastname: userObject.lastname,
+              phone: userObject.phone,
+              email: userObject.username
             })
           }, this);
           this.adminList = list;
@@ -84,9 +85,8 @@ export default {
       this.$router.push('/Dashboard/CreateAdmin');
     },
     editAdminClick: function (events, args) {
-      this.$router.push('/Dashboard/CreateAdmin', 1);
+      this.$router.push({name: 'EditAdmin', params: {id:events.row.id }});
     },
-
     deleteAdminClick: function (events, args) {
       this.selectedId = events.row.id;
       this.$refs.modalDelete.show();
