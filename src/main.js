@@ -10,13 +10,11 @@ import DatePicker from 'vue-bootstrap-datetimepicker'
 import BreabCrumbs from 'vue-2-breadcrumbs'
 import VueGoodTable from 'vue-good-table'
 import Vuelidate from 'vuelidate'
-import VModal from 'vue-js-modal'
+import SweetModal from 'sweet-modal-vue/src/plugin.js'
 
 import '../node_modules/vue-bootstrap-datetimepicker/node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css'
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
 import '../node_modules/bootstrap-vue/dist/bootstrap-vue.css'
-import '../node_modules/ag-grid/dist/styles/ag-grid.css'
-import '../node_modules/ag-grid/dist/styles/theme-fresh.css'
 
 Vue.config.productionTip = false
 
@@ -26,7 +24,7 @@ Vue.use(VueEditor, {});
 Vue.use(BreabCrumbs);
 Vue.use(VueGoodTable);
 Vue.use(Vuelidate);
-Vue.use(VModal);
+Vue.use(SweetModal);
 
 Vue.component('datePicker',DatePicker);
 router.beforeEach((to, from, next) => {
@@ -57,4 +55,4 @@ new Vue({
   data() {
     return {}
   }
-})  
+})

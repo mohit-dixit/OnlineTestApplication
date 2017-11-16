@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "bootstrap-vue": "^1.0.2",
+    "sweet-modal-vue": "^2.0.0",
     "vue": "^2.5.2",
     "vue-2-breadcrumbs": "^0.1.2",
     "vue-bootstrap-datetimepicker": "^4.1.0",

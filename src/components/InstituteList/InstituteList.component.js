@@ -84,7 +84,11 @@ export default  {
       this.$router.push({name: 'EditInstitute', params: {id:events.row.id }});
     },
     deleteInstituteClick: function (events, args) {
-      this.$modal.show('hello-world');
+      this.selectedId = events.row.id;
+      this.$refs.modalDelete.open();
+    },
+    closeModal: function (events, args) {
+      this.$refs.modalDelete.close();
     },
     deleteConfirmation: function () {
       if (this.selectedId) {
@@ -94,6 +98,7 @@ export default  {
           if (res) {
             if (res.status == 200) {
               this.bindInstitutes();
+              this.$refs.modalDelete.close();
             }
           }
         });

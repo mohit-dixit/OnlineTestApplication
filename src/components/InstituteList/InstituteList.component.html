@@ -1,6 +1,6 @@
 <div v-if="loginRole === '1'">
   <router-link to="/Dashboard/CreateInstitute">
-      <b-button v-b-modal.modalAddInstitute variant="primary"><b>+ </b>Add Institute</b-button>
+      <b-button variant="primary"><b>+ </b>Add Institute</b-button>
   </router-link>
   <br>
   <div style="background-color: white; border: 3px solid #E9ECEF;">
@@ -15,10 +15,10 @@
     </vue-good-table>
   </div>
     <!-- Modal Component -->
-    <div>
-      <modal name="hello-world">
-        hello, world!
-      </modal>
-    </div>
+    <sweet-modal ref="modalDelete">
+      Are you sure you want to delete?
+      <b-button slot="button" v-on:click="deleteConfirmation()" variant="primary">Delete</b-button>
+      <b-button slot="button" v-on:click="closeModal()" style="margin-left: 5px;" variant="primary">Cancel</b-button>
+    </sweet-modal>
     <!-- Modal Component -->
 </div>

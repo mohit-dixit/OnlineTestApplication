@@ -89,9 +89,11 @@ export default {
     },
     deleteAdminClick: function (events, args) {
       this.selectedId = events.row.id;
-      this.$refs.modalDelete.show();
+      this.$refs.modalDelete.open();
     },
-
+    closeModal: function (events, args) {
+      this.$refs.modalDelete.close();
+    },
     deleteConfirmation: function () {
       if (this.selectedId) {
         let postData = {};
@@ -100,6 +102,7 @@ export default {
           if (res) {
             if (res.status == 200) {
               this.bindAdmins();
+              this.$refs.modalDelete.close();
             }
           }
         });

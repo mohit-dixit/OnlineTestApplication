@@ -16,14 +16,12 @@
     </vue-good-table>
   </div>
   <!-- Modal Component -->
-  <div>
-    <b-modal id="modalDelete" ref="modalDelete" title="Confirmation" @ok="deleteConfirmation" :header-bg-variant="headerBgVariant"
-      :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant"
-      :footer-text-variant="footerTextVariant">
-      <form>
-        Are you sure you want to delete?
-      </form>
-    </b-modal>
-  </div>
+   <!-- Modal Component -->
+   <sweet-modal ref="modalDelete">
+      Are you sure you want to delete?
+      <b-button slot="button" v-on:click="deleteConfirmation()" variant="primary">Delete</b-button>
+      <b-button slot="button" v-on:click="closeModal()" style="margin-left: 5px;" variant="primary">Cancel</b-button>
+   </sweet-modal>
+  <!-- Modal Component -->
   <!-- Modal Component -->
 </div>
