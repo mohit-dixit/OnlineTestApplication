@@ -4,53 +4,40 @@ import {
   PostRequest
 } from '../../utils/globalservice'
 import * as config from '../../config/constants.js'
-export default {
-  name: 'admin-list',
+export default  {
+  name: 'subject-list',
   components: {},
   props: [],
-  data() {
+  data () {
     this.BaseUrl = config.BASE_URL;
-    this.adminList = [];
+    this.subjectList = [];
     this.selectedId = 0;
     return {
-      columnsAdmins: [{
-          label: 'Id',
-          field: 'id',
-          visible: false
-        },
-        {
-          label: 'First Name',
-          field: 'firstname',
-          filterable: true
-        },
-        {
-          label: 'Last Name',
-          field: 'lastname',
-          filterable: true
-        },
-        {
-          label: 'Phone',
-          field: 'phone',
-          filterable: true
-        },
-        {
-          label: 'Email/Username',
-          field: 'email',
-          filterable: true
-        },
-        {
-          label: 'Action'
-        }
-      ]
+      columnsSubjects: [{
+        label: 'Id',
+        field: 'id',
+        visible: false
+      },
+      {
+        label: 'Subject Name',
+        field: 'name',
+        filterable: true
+      },
+      {
+        label: 'Action'
+      }
+    ]
     }
   },
-  computed: {},
-  mounted() {
+  computed: {
+
+  },
+  mounted () {
 
   },
   methods: {
-    bindAdmins: function () {
-      GetRequest(this.BaseUrl + 'api/superAdmin/admin/list').then(res => {
+    bindSubjects: function () {
+      GetRequest(this.BaseUrl + 'api/admin/subject/list').then(res => {
         if (res.status) {
           let response = res.result.message[0].user_roles;
           let list = [];
@@ -64,20 +51,20 @@ export default {
               email: userObject.username
             })
           }, this);
-          this.adminList = list;
+          this.subjectList = list;
           this.$forceUpdate();
         } else {
-          this.adminList = [];
+          this.subjectList = [];
         }
       });
     },
-    redirectToNewAdmin: function () {
-      this.$router.push('/Dashboard/CreateAdmin');
+    redirectToNewSubject: function () {
+      this.$router.push('/Dashboard/CreateSubject');
     },
-    editAdminClick: function (events, args) {
-      this.$router.push({name: 'EditAdmin', params: {id:events.row.id }});
+    editSubjectClick: function (events, args) {
+      this.$router.push({name: 'EditSubject', params: {id:events.row.id }});
     },
-    deleteAdminClick: function (events, args) {
+    deleteSubjectClick: function (events, args) {
       this.selectedId = events.row.id;
       this.$refs.modalDelete.open();
     },
@@ -88,10 +75,10 @@ export default {
       if (this.selectedId) {
         let postData = {};
         postData.id = this.selectedId;
-        PostRequest(this.BaseUrl + 'api/superAdmin/delete/admin', postData).then(res => {
+        PostRequest(this.BaseUrl + 'api/admin/delete/subject', postData).then(res => {
           if (res) {
             if (res.status == 200) {
-              this.bindAdmins();
+              this.bindSubjects();
               this.$refs.modalDelete.close();
             }
           }
@@ -101,6 +88,6 @@ export default {
   },
   created: function () {
     this.loginRole = Vue.lsobj.get('loginRole');
-    this.bindAdmins();
+    this.bindSubjects();
   }
 }

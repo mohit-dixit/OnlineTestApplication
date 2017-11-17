@@ -1,8 +1,8 @@
-<section class="assign-test">
+<section class="assign-test" v-if="loginRole === '2'">
   <router-link to="/Dashboard/TeacherList">
     <b-button v-b-modal.modalAddInstitute variant="primary"> Go To Teacher List</b-button>
   </router-link>
-        <div class="createteacher-container" v-if="loginRole === '2'">
+        <div class="createteacher-container">
             <div class="form-box">
               <label class="headingForm">Create Teacher</label>
               <br>

@@ -4,53 +4,45 @@ import {
   PostRequest
 } from '../../utils/globalservice'
 import * as config from '../../config/constants.js'
-export default {
-  name: 'admin-list',
+export default  {
+  name: 'scale-list',
   components: {},
   props: [],
-  data() {
+  data () {
     this.BaseUrl = config.BASE_URL;
-    this.adminList = [];
+    this.scaleList = [];
     this.selectedId = 0;
     return {
-      columnsAdmins: [{
-          label: 'Id',
-          field: 'id',
-          visible: false
-        },
-        {
-          label: 'First Name',
-          field: 'firstname',
-          filterable: true
-        },
-        {
-          label: 'Last Name',
-          field: 'lastname',
-          filterable: true
-        },
-        {
-          label: 'Phone',
-          field: 'phone',
-          filterable: true
-        },
-        {
-          label: 'Email/Username',
-          field: 'email',
-          filterable: true
-        },
-        {
-          label: 'Action'
-        }
-      ]
+      columnsScales: [{
+        label: 'Id',
+        field: 'id',
+        visible: false
+      },
+      {
+        label: 'Scale',
+        field: 'name',
+        filterable: true
+      },
+      {
+        label: 'Points',
+        field: 'points',
+        filterable: true
+      },
+      {
+        label: 'Action'
+      }
+    ]
     }
   },
-  computed: {},
-  mounted() {
+  computed: {
+
+  },
+  mounted () {
 
   },
   methods: {
-    bindAdmins: function () {
-      GetRequest(this.BaseUrl + 'api/superAdmin/admin/list').then(res => {
+    bindScales: function () {
+      GetRequest(this.BaseUrl + 'api/admin/scale/list').then(res => {
         if (res.status) {
           let response = res.result.message[0].user_roles;
           let list = [];
@@ -64,20 +56,20 @@ export default {
               email: userObject.username
             })
           }, this);
-          this.adminList = list;
+          this.scaleList = list;
           this.$forceUpdate();
         } else {
-          this.adminList = [];
+          this.scaleList = [];
         }
       });
     },
-    redirectToNewAdmin: function () {
-      this.$router.push('/Dashboard/CreateAdmin');
+    redirectToNewScale: function () {
+      this.$router.push('/Dashboard/CreateScale');
     },
-    editAdminClick: function (events, args) {
-      this.$router.push({name: 'EditAdmin', params: {id:events.row.id }});
+    editScaleClick: function (events, args) {
+      this.$router.push({name: 'EditScale', params: {id:events.row.id }});
     },
-    deleteAdminClick: function (events, args) {
+    deleteScaleClick: function (events, args) {
       this.selectedId = events.row.id;
       this.$refs.modalDelete.open();
     },
@@ -88,10 +80,10 @@ export default {
       if (this.selectedId) {
         let postData = {};
         postData.id = this.selectedId;
-        PostRequest(this.BaseUrl + 'api/superAdmin/delete/admin', postData).then(res => {
+        PostRequest(this.BaseUrl + 'api/admin/delete/scale', postData).then(res => {
           if (res) {
             if (res.status == 200) {
-              this.bindAdmins();
+              this.bindScales();
               this.$refs.modalDelete.close();
             }
           }
@@ -101,6 +93,6 @@ export default {
   },
   created: function () {
     this.loginRole = Vue.lsobj.get('loginRole');
-    this.bindAdmins();
+    this.bindScales();
   }
 }

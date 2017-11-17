@@ -7,7 +7,7 @@ import {
 } from '../../utils/globalservice'
 
 export default {
-  name: 'create-teacher',
+  name: 'create-subject',
   components: {
     'success-notification': SuccessNotification
   },
@@ -28,7 +28,7 @@ export default {
         value: 3
       }
     ],
-    scaleOptions: [{
+    subjectOptions: [{
         text: 'Easy',
         value: 1
       },
@@ -41,7 +41,7 @@ export default {
         value: 3
       }
     ],
-      createteacherform: {},
+      createsubjectform: {},
     }
   },
   computed: {
@@ -53,8 +53,8 @@ export default {
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.createteacherform));
-      this.createteacherform = {};
+      alert(JSON.stringify(this.createsubjectform));
+      this.createsubjectform = {};
       this.notifySuccess = true;
       //this.$router.push('/Dashboard')
     },

@@ -5,15 +5,16 @@ import {
   PostRequest,
   NumberKeyValidation
 } from '../../utils/globalservice'
+import Multiselect from 'vue-multiselect'
 
-export default {
-  name: 'create-teacher',
+export default  {
+  name: 'admin-configuration',
   components: {
-    'success-notification': SuccessNotification
+    'success-notification': SuccessNotification,
+    Multiselect
   },
   props: [],
-  data() {
-    this.notifySuccess = false;
+  data () {
     return {
       value: [{
         text: 'Easy',
@@ -40,27 +41,17 @@ export default {
         text: 'Difficult',
         value: 3
       }
-    ],
-      createteacherform: {},
+    ]
     }
   },
   computed: {
 
   },
-  mounted() {
+  mounted () {
 
   },
   methods: {
-    onSubmit(evt) {
-      evt.preventDefault();
-      alert(JSON.stringify(this.createteacherform));
-      this.createteacherform = {};
-      this.notifySuccess = true;
-      //this.$router.push('/Dashboard')
-    },
-    onlyNumberKey: function (event) {
-      return NumberKeyValidation(event);
-    }
+
   },
   created: function () {
     this.loginRole = Vue.lsobj.get('loginRole');

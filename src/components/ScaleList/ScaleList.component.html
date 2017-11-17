@@ -1,15 +1,15 @@
-<div v-if="loginRole === '1'">
-  <router-link to="/Dashboard/CreateAdmin">
-    <b-button v-b-modal.modalAddInstitute variant="primary"><b>+ </b>Add Admin</b-button>
+<div v-if="loginRole === '2'">
+  <router-link to="/Dashboard/Masters/CreateScale">
+    <b-button v-b-modal.modalAddInstitute variant="primary"><b>+ </b>Add Scale</b-button>
   </router-link>
   <br>
   <div style="background-color: white; border: 3px solid #E9ECEF;">
-    <vue-good-table title="Admins" :columns="columnsAdmins" :rows="adminList" :paginate="true" :globalSearch="true" :lineNumbers="true"
+    <vue-good-table title="Scales" :columns="columnsScales" :rows="scaleList" :paginate="true" :globalSearch="true" :lineNumbers="true"
       styleClass="table table-bordered table-striped condensed">
       <template slot="table-row-after" slot-scope="props">
         <td>
-          <img width="18" title="Edit" @click="editAdminClick(props)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/pencil.gif">
-          <img width="18" title="Delete" @click="deleteAdminClick(props)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/delete.png">
+          <img width="18" title="Edit" @click="editScaleClick(props)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/pencil.gif">
+          <img width="18" title="Delete" @click="deleteScaleClick(props)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/delete.png">
         </td>
       </template>
     </vue-good-table>

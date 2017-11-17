@@ -6,7 +6,7 @@ import DashboardContentPanel from '@/components/DashboardContentPanel'
 import Register from '@/components/Register'
 import CreateAdmin from '@/components/CreateAdmin'
 import CreateTest from '@/components/CreateTest'
-import Masters from '@/components/Masters'
+import Masters from '@/components/MasterPanel'
 import CreateQuestion from '@/components/CreateQuestion'
 import AssignTest from '@/components/AssignTest'
 import StartTest from '@/components/StartTest'
@@ -23,6 +23,13 @@ import QuestionBank from '@/components/QuestionBank'
 import TestList from '@/components/TestList'
 import EditAdmin from '@/components/CreateAdmin'
 import EditInstitute from '@/components/CreateInstitute'
+import AdminConfiguration from '@/components/AdminConfiguration'
+import CreateSubject from '@/components/CreateSubject'
+import SubjectList from '@/components/SubjectList'
+import CreateScale from '@/components/CreateScale'
+import ScaleList from '@/components/ScaleList'
+import MasterPanel from '@/components/MasterPanel'
+import MasterSettings from '@/components/MasterSettings'
 
 Vue.use(Router)
 Vue.use(VueBreadcrumbs)
@@ -68,8 +75,40 @@ export default new Router({
         {
           path: 'Masters',
           name: 'Masters',
-          component: Masters,
-          meta: { AuthRequired: true , breadcrumb: 'Masters'  }
+          component: MasterSettings,
+          meta: { AuthRequired: true , breadcrumb: 'Masters'  },
+          children: [
+            {
+              path: '',
+              name: 'MastersDefault',
+              component: MasterPanel,
+              meta: { AuthRequired: true }
+            },
+            {
+              path: 'CreateScale',
+              name: 'CreateScale',
+              component: CreateScale,
+              meta: { AuthRequired: true, breadcrumb: 'Create Scale' }
+            },
+            {
+              path: 'CreateSubject',
+              name: 'CreateSubject',
+              component: CreateSubject,
+              meta: { AuthRequired: true, breadcrumb: 'Create Subject' }
+            },
+            {
+              path: 'ScaleList',
+              name: 'ScaleList',
+              component: ScaleList,
+              meta: { AuthRequired: true, breadcrumb: 'Scale List' }
+            },
+            {
+              path: 'SubjectList',
+              name: 'SubjectList',
+              component: SubjectList,
+              meta: { AuthRequired: true, breadcrumb: 'Subject List' }
+            }
+          ]
         },
         {
           path: 'CreateQuestion',
@@ -149,6 +188,12 @@ export default new Router({
           name: 'TestList',
           component: TestList,
           meta: { AuthRequired: true , breadcrumb: 'Test List' }
+        },
+        {
+          path: 'AdminConfiguration',
+          name: 'AdminConfiguration',
+          component: AdminConfiguration,
+          meta: { AuthRequired: true , breadcrumb: 'Admin Configuration' }
         }
       ]
     },

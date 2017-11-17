@@ -63,8 +63,19 @@
       </a>
     </router-link>
     <masters></masters>
+    <router-link to="/Dashboard/Masters" v-if="isUserAdmin">
+      <a href="" class="dashboard-module">
+        <img src="../../assets/images/masters.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_settings.gif" width="64" height="64" alt="edit" />
+        <span>Masters</span>
+      </a>
+    </router-link>
+    <router-link to="/Dashboard/TestList" v-if="isUserAdmin">
+      <a href="" class="dashboard-module">
+        <img src="../../assets/images/configuration.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_settings.gif" width="64" height="64" alt="edit" />
+        <span>Configuration</span>
+      </a>
+    </router-link>
     <div style="clear: both"></div>
-
   </div>
   <!-- End .grid_7 -->
   <div style="clear:both;"></div>

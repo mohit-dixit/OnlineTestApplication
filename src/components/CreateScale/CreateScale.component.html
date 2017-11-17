@@ -1,0 +1,32 @@
+<section class="assign-test" v-if="loginRole === '2'">
+  <router-link to="/Dashboard/Masters/ScaleList">
+    <b-button v-b-modal.modalAddInstitute variant="primary"> Go To Scale List</b-button>
+  </router-link>
+        <div class="createscale-container">
+            <div class="form-box">
+              <label class="headingForm">Create Scale</label>
+              <br>
+              <b-form @submit="onSubmit">
+                <b-container fluid>
+                  <b-row class="my-1">
+                    <b-col sm="4"><label for="input-none">Scale Name:</label></b-col>
+                    <b-col sm="8">
+                      <b-form-input id="name" type="text" v-model="createscaleform.name" required placeholder="Enter Scale Name"></b-form-input>
+                    </b-col>
+                  </b-row>
+                  <b-row class="my-1">
+                    <b-col sm="4"><label for="input-none">Points:</label></b-col>
+                    <b-col sm="8">
+                      <b-form-input id="name" type="text" v-model="createscaleform.firstname" required placeholder="Enter Points"></b-form-input>
+                    </b-col>
+                  </b-row>
+                </b-container>
+                <br>
+                <b-button type="submit" variant="primary">Create</b-button>
+                <b-button type="reset" variant="secondary">Reset</b-button>
+                <success-notification v-if="notifySuccess">Scale created successfully</success-notification>
+              </b-form>
+            </div>
+          </div>
+  </section>
+

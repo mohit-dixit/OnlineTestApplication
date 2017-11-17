@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueLocalStorage from 'vue-localstorage'
 import * as config from '../../config/constants.js'
-import Multiselect from 'vue-multiselect'
 import {
   GetRequest,
   PostRequest,
@@ -9,9 +8,7 @@ import {
 } from '../../utils/globalservice'
 export default {
   name: 'create-institute',
-  components: {
-    Multiselect
-  },
+  components: {},
   props: ['id'],
   data() {
     this.responseMessage = null;
@@ -22,32 +19,6 @@ export default {
     this.isEdit = false;
     this.submitButtonText ='Create';
     return {
-      value: [{
-          text: 'Easy',
-          value: 1
-        },
-        {
-          text: 'Medium',
-          value: 2
-        },
-        {
-          text: 'Difficult',
-          value: 3
-        }
-      ],
-      scaleOptions: [{
-          text: 'Easy',
-          value: 1
-        },
-        {
-          text: 'Medium',
-          value: 2
-        },
-        {
-          text: 'Difficult',
-          value: 3
-        }
-      ],
       createinstituteform: {}
     }
   },
