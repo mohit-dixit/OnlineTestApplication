@@ -10,7 +10,6 @@ import DatePicker from 'vue-bootstrap-datetimepicker'
 import BreabCrumbs from 'vue-2-breadcrumbs'
 import VueGoodTable from 'vue-good-table'
 import Vuelidate from 'vuelidate'
-import SweetModal from 'sweet-modal-vue/src/plugin.js'
 
 import '../node_modules/vue-bootstrap-datetimepicker/node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css'
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
@@ -23,10 +22,9 @@ Vue.use(VueResource);
 Vue.use(VueEditor, {});
 Vue.use(BreabCrumbs);
 Vue.use(VueGoodTable);
-Vue.use(Vuelidate);
-Vue.use(SweetModal);
 
 Vue.component('datePicker',DatePicker);
+
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.AuthRequired)) {
     let loginName = Vue.lsobj.get('loginName');

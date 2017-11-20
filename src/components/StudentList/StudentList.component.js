@@ -102,7 +102,7 @@ export default {
       if (this.selectedId) {
         let postData = {};
         postData.id = this.selectedId;
-        PostRequest(this.BaseUrl + 'api/superStudent/delete/student', postData).then(res => {
+        PostRequest(this.BaseUrl + 'api/admin/delete/user', postData).then(res => {
           if (res) {
             if (res.status == 200) {
               this.bindStudents();
