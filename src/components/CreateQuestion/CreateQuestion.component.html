@@ -1,8 +1,8 @@
-<section>
+<section v-if="loginRole === '3'">
     <router-link to="/Dashboard/QuestionBank">
-      <b-button v-b-modal.modalAddInstitute variant="primary"> Go To Question Bank</b-button>
+      <b-button variant="primary"> Go To Question Bank</b-button>
     </router-link>
-<div class="login-container" v-if="loginRole === '3'">
+<div class="login-container">
   <div class="form-box">
     <label class="headingForm">Create Question</label>
     <br>
@@ -35,22 +35,22 @@
             <b-button v-b-modal.modalSubject variant="primary"><b>+</b></b-button>
           </b-col>
         </b-row>
-        <b-row id="answerDiv" class="my-1" v-for="(createanswer,key,index) in answers" v-bind:key="key">
+        <b-row id="answerDiv" style="margin-top: 10px;" class="my-1" v-for="(createanswer,key,index) in answers" v-bind:key="key">
           <b-col sm="2"><label for="input-none">Answer option {{ key + 1 }}:</label></b-col>
           <b-col sm="9">
             <vue-editor id="editor" class="answerEditorClass" placeholder="Enter Answer" v-model="createanswer.answer"></vue-editor>
           </b-col>
           <b-col sm="1">
             Correct?
-            <input class="answerCheckboxClass" v-model="createanswer.iscorrect" @click="answerCheckboxClick($event)" type="checkbox">
+            <input class="answerCheckboxClass" style="width: 28px;" v-model="createanswer.iscorrect" @click="answerCheckboxClick($event)" type="checkbox">
           </b-col>
         </b-row>
-        <b-row class="my-1">
+        <b-row class="my-1" style="margin-top: 5px;">
           <b-col sm="2"></b-col>
           <b-col sm="9">
             <b-button v-on:click="addRow()" title="Add answer option" style="float: left;" variant="primary"><b>+</b></b-button>
             <b-button v-on:click="removeRow()" v-if="toShowRemoveAnswer" title="Add answer option" style="float: left; margin-left: 10px;"
-              variant="primary"><b>--</b></b-button>
+              variant="primary"><b>-</b></b-button>
           </b-col>
           <b-col sm="1"></b-col>
         </b-row>

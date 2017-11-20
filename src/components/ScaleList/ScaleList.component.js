@@ -4,40 +4,49 @@ import {
   PostRequest
 } from '../../utils/globalservice'
 import * as config from '../../config/constants.js'
-export default  {
+export default {
   name: 'scale-list',
   components: {},
   props: [],
-  data () {
+  data() {
     this.BaseUrl = config.BASE_URL;
     this.scaleList = [];
     this.selectedId = 0;
     return {
+      variants: [
+        'primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'
+      ],
+      headerBgVariant: 'dark',
+      headerTextVariant: 'light',
+      bodyBgVariant: 'light',
+      bodyTextVariant: 'dark',
+      footerBgVariant: 'warning',
+      footerTextVariant: 'dark',
       columnsScales: [{
-        label: 'Id',
-        field: 'id',
-        visible: false
-      },
-      {
-        label: 'Scale',
-        field: 'name',
-        filterable: true
-      },
-      {
-        label: 'Points',
-        field: 'points',
-        filterable: true
-      },
-      {
-        label: 'Action'
-      }
-    ]
+          label: 'Id',
+          field: 'id',
+          visible: false
+        },
+        {
+          label: 'Scale',
+          field: 'name',
+          filterable: true
+        },
+        {
+          label: 'Points',
+          field: 'points',
+          filterable: true
+        },
+        {
+          label: 'Action'
+        }
+      ]
     }
   },
   computed: {
 
   },
-  mounted () {
+  mounted() {
 
   },
   methods: {
@@ -67,14 +76,19 @@ export default  {
       this.$router.push('/Dashboard/CreateScale');
     },
     editScaleClick: function (events, args) {
-      this.$router.push({name: 'EditScale', params: {id:events.row.id }});
+      this.$router.push({
+        name: 'EditScale',
+        params: {
+          id: events.row.id
+        }
+      });
     },
     deleteScaleClick: function (events, args) {
       this.selectedId = events.row.id;
-      this.$refs.modalDelete.open();
+      this.$refs.deleteModal.show();
     },
     closeModal: function (events, args) {
-      this.$refs.modalDelete.close();
+      this.$refs.deleteModal.hide();
     },
     deleteConfirmation: function () {
       if (this.selectedId) {
@@ -84,7 +98,7 @@ export default  {
           if (res) {
             if (res.status == 200) {
               this.bindScales();
-              this.$refs.modalDelete.close();
+              this.$refs.deleteModal.hide();
             }
           }
         });

@@ -4,35 +4,44 @@ import {
   PostRequest
 } from '../../utils/globalservice'
 import * as config from '../../config/constants.js'
-export default  {
+export default {
   name: 'subject-list',
   components: {},
   props: [],
-  data () {
+  data() {
     this.BaseUrl = config.BASE_URL;
     this.subjectList = [];
     this.selectedId = 0;
     return {
+      variants: [
+        'primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'
+      ],
+      headerBgVariant: 'dark',
+      headerTextVariant: 'light',
+      bodyBgVariant: 'light',
+      bodyTextVariant: 'dark',
+      footerBgVariant: 'warning',
+      footerTextVariant: 'dark',
       columnsSubjects: [{
-        label: 'Id',
-        field: 'id',
-        visible: false
-      },
-      {
-        label: 'Subject Name',
-        field: 'name',
-        filterable: true
-      },
-      {
-        label: 'Action'
-      }
-    ]
+          label: 'Id',
+          field: 'id',
+          visible: false
+        },
+        {
+          label: 'Subject Name',
+          field: 'name',
+          filterable: true
+        },
+        {
+          label: 'Action'
+        }
+      ]
     }
   },
   computed: {
 
   },
-  mounted () {
+  mounted() {
 
   },
   methods: {
@@ -62,14 +71,19 @@ export default  {
       this.$router.push('/Dashboard/CreateSubject');
     },
     editSubjectClick: function (events, args) {
-      this.$router.push({name: 'EditSubject', params: {id:events.row.id }});
+      this.$router.push({
+        name: 'EditSubject',
+        params: {
+          id: events.row.id
+        }
+      });
     },
     deleteSubjectClick: function (events, args) {
       this.selectedId = events.row.id;
-      this.$refs.modalDelete.open();
+      this.$refs.deleteModal.show();
     },
     closeModal: function (events, args) {
-      this.$refs.modalDelete.close();
+      this.$refs.deleteModal.hide();
     },
     deleteConfirmation: function () {
       if (this.selectedId) {
@@ -79,7 +93,7 @@ export default  {
           if (res) {
             if (res.status == 200) {
               this.bindSubjects();
-              this.$refs.modalDelete.close();
+              this.$refs.deleteModal.hide();
             }
           }
         });

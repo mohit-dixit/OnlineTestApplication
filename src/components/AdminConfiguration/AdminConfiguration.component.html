@@ -1,23 +1,26 @@
-<section class="assign-test">
-  <div class="adminconfig-container" v-if="loginRole === '2'">
+<section class="assign-test" v-if="loginRole === '2'">
+  <div class="adminconfig-container">
     <div class="form-box">
       <label class="headingForm">Admin Configuration</label>
       <br>
       <b-form @submit="onSubmit">
         <b-container fluid>
           <b-row class="my-1">
-            <b-col sm="5"><label for="input-none">Scale:</label></b-col>
-            <b-col sm="7">
-              <multiselect v-model="value" :options="scaleOptions" :multiple="true" :close-on-select="false" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Pick scale" label="text" track-by="text">
-                <template slot="tag" slot-scope="props"><span class="multiTextClass"><span>&nbsp;{{ props.option.text }}</span><span class="custom__remove" @click="props.remove(props.option)">❌</span></span></template>
-              </multiselect>
+            <b-col sm="6"><label for="input-none">Allow Teacher to add Scale?:</label></b-col>
+            <b-col sm="6">
+              <label class="switch" style="width: 60px;">
+                <input v-model="adminconfigurationform.allowscale" type="checkbox">
+                <span class="slider round"></span>
+              </label>
             </b-col>
           </b-row>
           <b-row class="my-1">
-            <b-col sm="5"><label for="input-none">Allow Teacher to add Scale?:</label></b-col>
-            <b-col sm="7">
-              <b-form-checkbox id="checkbox1" style="width: 0%" v-model="status" value="accepted" unchecked-value="false">
-              </b-form-checkbox>
+            <b-col sm="6"><label for="input-none">Allow Teacher to add Subject?:</label></b-col>
+            <b-col sm="6">
+              <label class="switch" style="width: 60px;">
+                    <input v-model="adminconfigurationform.allowsubject" type="checkbox">
+                    <span class="slider round"></span>
+                </label>
             </b-col>
           </b-row>
         </b-container>

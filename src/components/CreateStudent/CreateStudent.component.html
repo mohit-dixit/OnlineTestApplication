@@ -1,10 +1,10 @@
-<section class="assign-test">
+<section class="assign-test" v-if="loginRole === '2'">
   <router-link to="/Dashboard/StudentList">
-    <b-button v-b-modal.modalAddInstitute variant="primary"> Go To Student List</b-button>
+    <b-button variant="primary"> Go To Student List</b-button>
   </router-link>
-  <div class="createstudent-container" v-if="loginRole === '2'">
+  <div class="createstudent-container">
     <div class="form-box">
-      <label class="headingForm">Create Student</label>
+      <label class="headingForm">{{submitButtonText}} Student</label>
       <br>
       <b-form @submit="onSubmit">
         <b-container fluid>
@@ -23,7 +23,7 @@
           <b-row class="my-1">
             <b-col sm="4"><label for="input-none">Email:</label></b-col>
             <b-col sm="8">
-              <b-form-input id="input-none" :state="null" type="email" v-model="createstudentform.email" required placeholder="Enter Email"></b-form-input>
+              <b-form-input id="input-none" :state="null" type="email" v-model="createstudentform.username" required placeholder="Enter Email"></b-form-input>
             </b-col>
           </b-row>
           <b-row class="my-1">
@@ -35,9 +35,14 @@
           </b-row>
         </b-container>
         <br>
-        <b-button type="submit" variant="primary">Create</b-button>
-        <b-button type="reset" variant="secondary">Reset</b-button>
-        <success-notification v-if="notifySuccess">Student created successfully</success-notification>
+        <b-button type="submit" variant="primary">{{submitButtonText}}</b-button>
+        <b-button type="reset" v-if="!isEdit" variant="secondary">Reset</b-button>
+        <div v-if="notifySuccess" style="margin-top: 10px;">
+          <span class="notification n-success"><b>{{responseMessage}}</b></span>
+        </div>
+        <div v-if="notifyError" style="margin-top: 10px;">
+          <span class="notification n-error"><b>{{errorMessage}}</b></span>
+        </div>
       </b-form>
     </div>
   </div>

@@ -1,6 +1,6 @@
 <div v-if="loginRole === '1'">
   <router-link to="/Dashboard/CreateAdmin">
-    <b-button v-b-modal.modalAddInstitute variant="primary"><b>+ </b>Add Admin</b-button>
+    <b-button variant="primary"><b>+ </b>Add Admin</b-button>
   </router-link>
   <br>
   <div style="background-color: white; border: 3px solid #E9ECEF;">
@@ -14,11 +14,22 @@
       </template>
     </vue-good-table>
   </div>
-   <!-- Modal Component -->
-   <sweet-modal ref="modalDelete">
-      Are you sure you want to delete?
-      <b-button slot="button" v-on:click="deleteConfirmation()" variant="primary">Delete</b-button>
-      <b-button slot="button" v-on:click="closeModal()" style="margin-left: 5px;" variant="primary">Cancel</b-button>
-   </sweet-modal>
+  <!-- Modal Component -->
+  <b-modal centered ref="deleteModal" v-model="show" title="Delete Confirmation" :header-bg-variant="headerBgVariant" :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
+    <b-container fluid>
+      <b-row class="mb-1 text-center">
+        <b-col cols="12">Are you sure you want to delete?</b-col>
+      </b-row>
+    </b-container>
+    <div slot="modal-footer" class="w-100">
+      <p class="float-left"></p>
+      <b-btn size="sm" class="float-right" style="margin-left: 5px;" variant="secondary" @click="closeModal()">
+        No
+      </b-btn>
+      <b-btn size="sm" class="float-right" variant="danger" @click="deleteConfirmation()">
+        Yes
+      </b-btn>
+    </div>
+  </b-modal>
   <!-- Modal Component -->
 </div>

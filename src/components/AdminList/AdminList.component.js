@@ -13,6 +13,15 @@ export default {
     this.adminList = [];
     this.selectedId = 0;
     return {
+      variants: [
+        'primary','secondary','success','warning','danger','info','light','dark'
+       ],
+       headerBgVariant: 'dark',
+       headerTextVariant: 'light',
+       bodyBgVariant: 'light',
+       bodyTextVariant: 'dark',
+       footerBgVariant: 'warning',
+       footerTextVariant: 'dark',
       columnsAdmins: [{
           label: 'Id',
           field: 'id',
@@ -79,10 +88,10 @@ export default {
     },
     deleteAdminClick: function (events, args) {
       this.selectedId = events.row.id;
-      this.$refs.modalDelete.open();
+      this.$refs.deleteModal.show();
     },
     closeModal: function (events, args) {
-      this.$refs.modalDelete.close();
+      this.$refs.deleteModal.hide();
     },
     deleteConfirmation: function () {
       if (this.selectedId) {
@@ -92,7 +101,7 @@ export default {
           if (res) {
             if (res.status == 200) {
               this.bindAdmins();
-              this.$refs.modalDelete.close();
+              this.$refs.deleteModal.hide();
             }
           }
         });

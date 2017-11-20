@@ -1,55 +1,56 @@
-<section>
-<router-link to="/Dashboard/AdminList">
-  <b-button v-b-modal.modalAddInstitute variant="primary"> Go To Admin List</b-button>
-</router-link>
-<div class="createadmin-container" v-if="loginRole === '1'">
-  <div class="form-box">
-    <label class="headingForm">{{submitButtonText}} Admin</label>
-    <br>
-    <b-form @submit="onSubmit">
-      <b-container fluid>
-        <b-row class="my-1">
-          <b-col sm="4"><label for="input-none">First Name:</label></b-col>
-          <b-col sm="8">
-            <b-form-input id="name" type="text" v-model="createadminform.firstname" required placeholder="Enter First Name"></b-form-input>
-          </b-col>
-        </b-row>
-        <b-row class="my-1">
-          <b-col sm="4"><label for="input-none">Last Name:</label></b-col>
-          <b-col sm="8">
-            <b-form-input id="name" type="text" v-model="createadminform.lastname" required placeholder="Enter Last Name"></b-form-input>
-          </b-col>
-        </b-row>
-        <b-row class="my-1">
-          <b-col sm="4"><label for="input-none">Email/Username:</label></b-col>
-          <b-col sm="8">
-            <b-form-input id="input" :state="null" type="email" v-model="createadminform.username" required placeholder="Enter Email"></b-form-input>
-          </b-col>
-        </b-row>
-        <b-row class="my-1">
-          <b-col sm="4"><label for="input-none">Phone:</label></b-col>
-          <b-col sm="8">
-            <b-form-input id="input-none" :state="null" type="text" maxlength="15" @keydown.native="onlyNumberKey" v-model="createadminform.phone" required placeholder="Enter Phone"></b-form-input>
-          </b-col>
-        </b-row>
-        <b-row class="my-1">
-          <b-col sm="4"><label for="input-none">Associated with:</label></b-col>
-          <b-col sm="8">
-            <b-form-select v-model="createadminform.associatedwith" :options="associatedOptions" required class="mb-3">
-            </b-form-select>
-          </b-col>
-        </b-row>
-      </b-container>
+<section v-if="loginRole === '1'">
+  <router-link to="/Dashboard/AdminList">
+    <b-button variant="primary"> Go To Admin List</b-button>
+  </router-link>
+  <div class="createadmin-container">
+    <div class="form-box">
+      <label class="headingForm">{{submitButtonText}} Admin</label>
       <br>
-      <b-button type="submit" variant="primary">{{submitButtonText}}</b-button>
-      <b-button type="reset" v-if="!isEdit" variant="secondary">Reset</b-button>
-      <div v-if="notifySuccess" style="margin-top: 10px;">
-        <span class="notification n-success"><b>{{responseMessage}}</b></span>
-      </div>
-      <div v-if="notifyError" style="margin-top: 10px;">
-        <span class="notification n-error"><b>{{errorMessage}}</b></span>
-      </div>
-    </b-form>
+      <b-form @submit="onSubmit">
+        <b-container fluid>
+          <b-row class="my-1">
+            <b-col sm="4"><label for="input-none">First Name:</label></b-col>
+            <b-col sm="8">
+              <b-form-input id="name" type="text" v-model="createadminform.firstname" required placeholder="Enter First Name"></b-form-input>
+            </b-col>
+          </b-row>
+          <b-row class="my-1">
+            <b-col sm="4"><label for="input-none">Last Name:</label></b-col>
+            <b-col sm="8">
+              <b-form-input id="name" type="text" v-model="createadminform.lastname" required placeholder="Enter Last Name"></b-form-input>
+            </b-col>
+          </b-row>
+          <b-row class="my-1">
+            <b-col sm="4"><label for="input-none">Email/Username:</label></b-col>
+            <b-col sm="8">
+              <b-form-input id="input" :state="null" type="email" v-model="createadminform.username" required placeholder="Enter Email"></b-form-input>
+            </b-col>
+          </b-row>
+          <b-row class="my-1">
+            <b-col sm="4"><label for="input-none">Phone:</label></b-col>
+            <b-col sm="8">
+              <b-form-input id="input-none" :state="null" type="text" maxlength="15" @keydown.native="onlyNumberKey" v-model="createadminform.phone"
+                required placeholder="Enter Phone"></b-form-input>
+            </b-col>
+          </b-row>
+          <b-row class="my-1">
+            <b-col sm="4"><label for="input-none">Associated with:</label></b-col>
+            <b-col sm="8">
+              <b-form-select v-model="createadminform.associatedwith" :options="associatedOptions" required class="mb-3">
+              </b-form-select>
+            </b-col>
+          </b-row>
+        </b-container>
+        <br>
+        <b-button type="submit" variant="primary">{{submitButtonText}}</b-button>
+        <b-button type="reset" v-if="!isEdit" variant="secondary">Reset</b-button>
+        <div v-if="notifySuccess" style="margin-top: 10px;">
+          <span class="notification n-success"><b>{{responseMessage}}</b></span>
+        </div>
+        <div v-if="notifyError" style="margin-top: 10px;">
+          <span class="notification n-error"><b>{{errorMessage}}</b></span>
+        </div>
+      </b-form>
+    </div>
   </div>
-</div>
 </section>

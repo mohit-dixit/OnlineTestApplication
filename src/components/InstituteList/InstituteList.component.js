@@ -19,7 +19,6 @@ export default  {
       bodyTextVariant: 'dark',
       footerBgVariant: 'warning',
       footerTextVariant: 'dark',
-
       columnsInstitutes: [
         {
           label: 'Id',
@@ -85,10 +84,10 @@ export default  {
     },
     deleteInstituteClick: function (events, args) {
       this.selectedId = events.row.id;
-      this.$refs.modalDelete.open();
+      this.$refs.deleteModal.show();
     },
     closeModal: function (events, args) {
-      this.$refs.modalDelete.close();
+      this.$refs.deleteModal.hide();
     },
     deleteConfirmation: function () {
       if (this.selectedId) {
@@ -98,7 +97,7 @@ export default  {
           if (res) {
             if (res.status == 200) {
               this.bindInstitutes();
-              this.$refs.modalDelete.close();
+              this.$refs.deleteModal.hide();
             }
           }
         });

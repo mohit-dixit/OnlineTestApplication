@@ -16,6 +16,7 @@ export default  {
   props: [],
   data () {
     return {
+      adminconfigurationform: {},
       value: [{
         text: 'Easy',
         value: 1
@@ -51,6 +52,9 @@ export default  {
 
   },
   methods: {
+    onSubmit() {
+      alert(JSON.stringify(this.adminconfigurationform));
+    }
 
   },
   created: function () {

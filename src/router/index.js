@@ -30,6 +30,8 @@ import CreateScale from '@/components/CreateScale'
 import ScaleList from '@/components/ScaleList'
 import MasterPanel from '@/components/MasterPanel'
 import MasterSettings from '@/components/MasterSettings'
+import EditTeacher from '@/components/CreateTeacher'
+import EditStudent from '@/components/CreateStudent'
 
 Vue.use(Router)
 Vue.use(VueBreadcrumbs)
@@ -136,10 +138,23 @@ export default new Router({
           meta: { AuthRequired: true, breadcrumb: 'Create Teacher' }
         },
         {
+          path: 'EditTeacher/:id',
+          name: 'EditTeacher',
+          component: EditTeacher,
+          props: true,
+          meta: { AuthRequired: true , breadcrumb: 'Edit Teacher' }
+        },
+        {
           path: 'CreateStudent',
           name: 'CreateStudent',
           component: CreateStudent,
           meta: { AuthRequired: true , breadcrumb: 'Create Student' }
+        },{
+          path: 'EditStudent/:id',
+          name: 'EditStudent',
+          component: EditStudent,
+          props: true,
+          meta: { AuthRequired: true , breadcrumb: 'Edit Student' }
         },
         {
           path: 'AssignTest',

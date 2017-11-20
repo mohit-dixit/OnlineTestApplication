@@ -34,7 +34,7 @@ export default {
 
   },
   methods: {
-    bindAdminData: function () {
+    getAdminData: function () {
       let postData = {};
       postData.id = this.id;
       PostRequest(this.BaseUrl + 'api/superAdmin/edit/admin', postData).then(res => {
@@ -113,7 +113,7 @@ export default {
     if(this.id){
       this.submitButtonText = 'Update';
       this.isEdit = true;
-      this.bindAdminData();
+      this.getAdminData();
     }
   }
 }

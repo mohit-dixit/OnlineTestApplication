@@ -111,12 +111,4 @@ button:hover{
   font-size: 65px;
   font-weight: bold;
 }
-.multiTextClass{
-  display: inline-block;
-  padding: 3px 12px;
-  background: #00BBF0;
-  margin-right: 2px;
-  margin-bottom: 8px;
-  border-radius: 10px;
-  cursor: pointer;
-}
+
