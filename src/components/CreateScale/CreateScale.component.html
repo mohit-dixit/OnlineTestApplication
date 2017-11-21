@@ -4,27 +4,32 @@
   </router-link>
   <div class="createscale-container">
     <div class="form-box">
-      <label class="headingForm">Create Scale</label>
+      <label class="headingForm">{{submitButtonText}} Scale</label>
       <br>
       <b-form @submit="onSubmit">
         <b-container fluid>
           <b-row class="my-1">
             <b-col sm="4"><label for="input-none">Scale Name:</label></b-col>
             <b-col sm="8">
-              <b-form-input id="name" type="text" v-model="createscaleform.name" required placeholder="Enter Scale Name"></b-form-input>
+              <b-form-input id="name" type="text" v-model="createscaleform.scaleName" required placeholder="Enter Scale Name"></b-form-input>
             </b-col>
           </b-row>
           <b-row class="my-1">
             <b-col sm="4"><label for="input-none">Points:</label></b-col>
             <b-col sm="8">
-              <b-form-input id="name" type="text" v-model="createscaleform.firstname" required placeholder="Enter Points"></b-form-input>
+              <b-form-input id="name" type="text" v-model="createscaleform.scalePoint" required placeholder="Enter Points"></b-form-input>
             </b-col>
           </b-row>
         </b-container>
         <br>
-        <b-button type="submit" variant="primary">Create</b-button>
-        <b-button type="reset" variant="secondary">Reset</b-button>
-        <success-notification v-if="notifySuccess">Scale created successfully</success-notification>
+        <b-button type="submit" variant="primary">{{submitButtonText}}</b-button>
+        <b-button type="reset" v-if="!isEdit" variant="secondary">Reset</b-button>
+        <div v-if="notifySuccess" style="margin-top: 10px;">
+          <span class="notification n-success">{{responseMessage}}</span>
+        </div>
+        <div v-if="notifyError" style="margin-top: 10px;">
+          <span class="notification n-error">{{errorMessage}}</span>
+        </div>
       </b-form>
     </div>
   </div>

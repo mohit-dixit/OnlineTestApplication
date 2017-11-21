@@ -4,21 +4,21 @@
   </router-link>
   <div class="createsubject-container">
     <div class="form-box">
-      <label class="headingForm">Create Subject</label>
+      <label class="headingForm">{{submitButtonText}} Subject</label>
       <br>
       <b-form @submit="onSubmit">
         <b-container fluid>
           <b-row class="my-1">
             <b-col sm="4"><label for="input-none">Subject Name:</label></b-col>
             <b-col sm="8">
-              <b-form-input id="name" type="text" v-model="createsubjectform.name" required placeholder="Enter Subject Name"></b-form-input>
+              <b-form-input id="name" type="text" v-model="createsubjectform.subjectName" required placeholder="Enter Subject Name"></b-form-input>
             </b-col>
           </b-row>
         </b-container>
         <br>
-        <b-button type="submit" variant="primary">Create</b-button>
-        <b-button type="reset" variant="secondary">Reset</b-button>
-        <success-notification v-if="notifySuccess">Subject created successfully</success-notification>
+        <b-button type="submit" variant="primary">{{submitButtonText}}</b-button>
+        <b-button type="reset" v-if="!isEdit" variant="secondary">Reset</b-button>
+        <notification-dialog></notification-dialog>
       </b-form>
     </div>
   </div>

@@ -52,7 +52,6 @@ function LoginAuthentication(url, data) {
         console.log('Error   :   ' + error.message);
       })
 }
-
 function NumberKeyValidation(event) {
     let returnValue = (event.keyCode >= 48 && event.keyCode <= 57);
     return returnValue;

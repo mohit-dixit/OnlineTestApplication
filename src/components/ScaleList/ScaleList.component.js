@@ -29,7 +29,7 @@ export default {
         },
         {
           label: 'Scale',
-          field: 'name',
+          field: 'scalename',
           filterable: true
         },
         {
@@ -53,16 +53,13 @@ export default {
     bindScales: function () {
       GetRequest(this.BaseUrl + 'api/admin/scale/list').then(res => {
         if (res.status) {
-          let response = res.result.message[0].user_roles;
+          let response = res.result.message;
           let list = [];
           response.forEach(function (element) {
-            let userObject = element.user;
             list.push({
-              id: userObject.id,
-              firstname: userObject.firstname,
-              lastname: userObject.lastname,
-              phone: userObject.phone,
-              email: userObject.username
+              id: element.id,
+              scalename: element.scaleName,
+              points: element.scalePoint,
             })
           }, this);
           this.scaleList = list;
@@ -79,7 +76,9 @@ export default {
       this.$router.push({
         name: 'EditScale',
         params: {
-          id: events.row.id
+          id: events.row.id,
+          name:events.row.scalename,
+          points: events.row.points
         }
       });
     },

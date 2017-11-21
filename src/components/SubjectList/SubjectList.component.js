@@ -28,8 +28,8 @@ export default {
           visible: false
         },
         {
-          label: 'Subject Name',
-          field: 'name',
+          label: 'Subject',
+          field: 'subjectname',
           filterable: true
         },
         {
@@ -48,16 +48,13 @@ export default {
     bindSubjects: function () {
       GetRequest(this.BaseUrl + 'api/admin/subject/list').then(res => {
         if (res.status) {
-          let response = res.result.message[0].user_roles;
+          let response = res.result.message;
           let list = [];
           response.forEach(function (element) {
-            let userObject = element.user;
             list.push({
-              id: userObject.id,
-              firstname: userObject.firstname,
-              lastname: userObject.lastname,
-              phone: userObject.phone,
-              email: userObject.username
+              id: element.id,
+              subjectname: element.subjectName,
+              points: element.subjectPoint,
             })
           }, this);
           this.subjectList = list;
@@ -74,7 +71,8 @@ export default {
       this.$router.push({
         name: 'EditSubject',
         params: {
-          id: events.row.id
+          id: events.row.id,
+          name: events.row.subjectname
         }
       });
     },
@@ -105,3 +103,4 @@ export default {
     this.bindSubjects();
   }
 }
+

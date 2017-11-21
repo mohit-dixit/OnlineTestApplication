@@ -9,7 +9,6 @@ import VueEditor from 'vue2-editor'
 import DatePicker from 'vue-bootstrap-datetimepicker'
 import BreabCrumbs from 'vue-2-breadcrumbs'
 import VueGoodTable from 'vue-good-table'
-import Vuelidate from 'vuelidate'
 
 import '../node_modules/vue-bootstrap-datetimepicker/node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css'
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
@@ -22,6 +21,13 @@ Vue.use(VueResource);
 Vue.use(VueEditor, {});
 Vue.use(BreabCrumbs);
 Vue.use(VueGoodTable);
+
+//Interceptor to send Token in Headers. ================================================================
+Vue.http.interceptors.push((request, next) => {
+  request.headers.set('Authorization', Vue.lsobj.get('loginToken'))
+  next()
+})
+//Interceptor to send Token in Headers. ================================================================
 
 Vue.component('datePicker',DatePicker);
 

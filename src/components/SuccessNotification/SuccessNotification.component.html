@@ -1,3 +1,8 @@
-<div style="margin-top: 10px;">
-    <span class="notification n-success"><slot></slot></span>
+<div>
+  <div v-if="notifySuccess" style="margin-top: 10px;">
+    <span class="notification n-success"><slot name="successSlot"></slot></span>
+  </div>
+  <div v-if="notifyError" style="margin-top: 10px;">
+    <span class="notification n-error"><slot name="errorSlot"></slot></span>
+  </div>
 </div>
