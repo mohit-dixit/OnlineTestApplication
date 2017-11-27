@@ -48,6 +48,11 @@ export default {
           filterable: true
         },
         {
+          label: 'Associated Institute',
+          field: 'associatedwith',
+          filterable: true
+        },
+        {
           label: 'Action'
         }
       ]
@@ -70,7 +75,8 @@ export default {
               firstname: userObject.firstname,
               lastname: userObject.lastname,
               phone: userObject.phone,
-              email: userObject.username
+              email: userObject.username,
+              associatedwith: userObject.user_institutes[0].institute.name,
             })
           }, this);
           this.adminList = list;

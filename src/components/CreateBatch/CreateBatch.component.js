@@ -6,11 +6,10 @@ import {
   PostRequest,
   NumberKeyValidation
 } from '../../utils/globalservice'
-
-export default {
-  name: 'create-subject',
+export default  {
+  name: 'create-batch',
   components: {},
-  props: ['id','name'],
+  props: ['id'],
   data() {
     this.responseMessage = null;
     this.errorMessage = null;
@@ -20,7 +19,7 @@ export default {
     this.isEdit = false;
     this.submitButtonText ='Create';
     return {
-      createsubjectform: {},
+      createbatchform: {},
     }
   },
   computed: {
@@ -31,21 +30,21 @@ export default {
   },
   methods: {
     onSubmit(evt) {
-      let apiPath = 'api/admin/create/subject';
+      let apiPath = 'api/admin/create/batch';
       let isEditMode = this.isEdit;
       if(isEditMode){
-        apiPath = 'api/admin/update/subject';
+        apiPath = 'api/admin/update/batch';
       }
-      PostRequest(this.BaseUrl + apiPath  , this.createsubjectform).then(res => {
+      PostRequest(this.BaseUrl + apiPath  , this.createbatchform).then(res => {
         if (res) {
           if (res.status == 200) {
-            this.createsubjectform = {};
+            this.createbatchform = {};
             if(isEditMode){
-              alert('Subject updated successfully')
-              this.$router.push('/Dashboard/Masters/SubjectList');
+              alert('Batch updated successfully')
+              this.$router.push('/Dashboard/Masters/BatchList');
             }
             else{
-              this.responseMessage = 'Subject created successfully';
+              this.responseMessage = 'Batch created successfully';
               this.notifySuccess = true;
               this.notifyError = false;
             }
@@ -66,8 +65,8 @@ export default {
     if (this.id) {
       this.submitButtonText = 'Update';
       this.isEdit = true;
-      this.createsubjectform.id = this.id;
-      this.createsubjectform.subjectName = this.name;
+      this.createbatchform.id = this.id;
+      this.createbatchform.batchName = this.name;
     }
   }
 }

@@ -1,0 +1,35 @@
+<div v-if="loginRole === '2'">
+  <router-link to="/Dashboard/Masters/CreateBatch">
+    <b-button variant="primary"><b>+ </b>Add Batch</b-button>
+  </router-link>
+  <br>
+  <div style="background-color: white; border: 3px solid #E9ECEF;">
+    <vue-good-table title="Batches" :columns="columnsBatchs" :rows="batchList" :paginate="true" :globalSearch="true" :lineNumbers="true"
+      styleClass="table table-bordered table-striped condensed">
+      <template slot="table-row-after" slot-scope="props">
+        <td>
+          <img width="18" title="Edit" @click="editBatchClick(props)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/pencil.gif">
+          <img width="18" title="Delete" @click="deleteBatchClick(props)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/delete.png">
+        </td>
+      </template>
+    </vue-good-table>
+  </div>
+   <!-- Modal Component -->
+   <b-modal centered ref="deleteModal" v-model="show" title="Delete Confirmation" :header-bg-variant="headerBgVariant" :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
+      <b-container fluid>
+        <b-row class="mb-1 text-center">
+          <b-col cols="12">Are you sure you want to delete?</b-col>
+        </b-row>
+      </b-container>
+      <div slot="modal-footer" class="w-100">
+        <p class="float-left"></p>
+        <b-btn size="sm" class="float-right" style="margin-left: 5px;" variant="secondary" @click="closeModal()">
+          No
+        </b-btn>
+        <b-btn size="sm" class="float-right" variant="danger" @click="deleteConfirmation()">
+          Yes
+        </b-btn>
+      </div>
+    </b-modal>
+    <!-- Modal Component -->
+</div>

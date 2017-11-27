@@ -34,6 +34,10 @@ import EditTeacher from '@/components/CreateTeacher'
 import EditStudent from '@/components/CreateStudent'
 import EditScale from '@/components/CreateScale'
 import EditSubject from '@/components/CreateSubject'
+import CreateBatch from '@/components/CreateBatch'
+import EditBatch from '@/components/CreateBatch'
+import BatchList from '@/components/BatchList'
+import Uploads from '@/components/Uploads'
 
 Vue.use(Router)
 Vue.use(VueBreadcrumbs)
@@ -122,6 +126,24 @@ export default new Router({
               name: 'SubjectList',
               component: SubjectList,
               meta: { AuthRequired: true, breadcrumb: 'Subject List' }
+            },
+            {
+              path: 'CreateBatch',
+              name: 'CreateBatch',
+              component: CreateBatch,
+              meta: { AuthRequired: true, breadcrumb: 'Create Batch' }
+            },{
+              path: 'EditBatch/:id',
+              name: 'EditBatch',
+              component: EditBatch,
+              props: true,
+              meta: { AuthRequired: true , breadcrumb: 'Edit Batch' }
+            },
+            {
+              path: 'BatchList',
+              name: 'BatchList',
+              component: BatchList,
+              meta: { AuthRequired: true, breadcrumb: 'Batch List' }
             }
           ]
         },
@@ -222,6 +244,12 @@ export default new Router({
           name: 'AdminConfiguration',
           component: AdminConfiguration,
           meta: { AuthRequired: true , breadcrumb: 'Admin Configuration' }
+        },
+        {
+          path: 'Uploads',
+          name: 'Uploads',
+          component: Uploads,
+          meta: { AuthRequired: true , breadcrumb: 'Uploads' }
         }
       ]
     },

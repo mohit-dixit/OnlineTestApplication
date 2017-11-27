@@ -23,6 +23,24 @@
                 </label>
             </b-col>
           </b-row>
+          <b-row class="my-1">
+            <b-col sm="6"><label for="input-none">Allow Teacher to add Batch?:</label></b-col>
+            <b-col sm="6">
+              <label class="switch" style="width: 60px;">
+                    <input v-model="adminconfigurationform.allowbatch" type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </b-col>
+          </b-row>
+          <b-row class="my-1">
+            <b-col sm="6"><label for="input-none">Allow Teacher to add Student?:</label></b-col>
+            <b-col sm="6">
+              <label class="switch" style="width: 60px;">
+                    <input v-model="adminconfigurationform.allowstudent" type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </b-col>
+          </b-row>
         </b-container>
         <br>
         <b-button type="submit" variant="primary">Save</b-button>

@@ -1,4 +1,4 @@
-.adminconfig-container{
+.createbatch-container{
   position: relative;
   width: 50%;
   margin: 10px auto;
@@ -16,7 +16,7 @@
   color: #fff;
 }
 
-.adminconfig-container::before,.adminconfig-container::after{
+.createbatch-container::before,.createbatch-container::after{
   content: "";
   position: absolute;
   width: 100%;height: 100%;
@@ -29,7 +29,7 @@
   border: 1px solid #ccc;
 }
 
-.adminconfig-container::after{
+.createbatch-container::after{
   top: 5px;
   z-index: -2;
   -webkit-transform: rotateZ(-2deg);
@@ -85,7 +85,7 @@ button:hover{
   margin: 0 auto;
   padding: 0 40px;
 }
-.createteacher-btn{
+.createbatch-btn{
   line-height: 50px;
   font-size: 14px;
   color: #fff;

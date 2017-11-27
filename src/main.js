@@ -9,8 +9,10 @@ import VueEditor from 'vue2-editor'
 import DatePicker from 'vue-bootstrap-datetimepicker'
 import BreabCrumbs from 'vue-2-breadcrumbs'
 import VueGoodTable from 'vue-good-table'
+import vueXlsxTable from 'vue-xlsx-table'
+import CubeSpin from 'vue-loading-spinner/src/components/Circle8'
 
-import '../node_modules/vue-bootstrap-datetimepicker/node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css'
+import './assets/style/bootstrap-datetimepicker.css'
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
 import '../node_modules/bootstrap-vue/dist/bootstrap-vue.css'
 
@@ -21,15 +23,17 @@ Vue.use(VueResource);
 Vue.use(VueEditor, {});
 Vue.use(BreabCrumbs);
 Vue.use(VueGoodTable);
+Vue.use(vueXlsxTable, {rABS: false})
 
-//Interceptor to send Token in Headers. ================================================================
+//HTTP Interceptor to send Token in Headers. ================================================================
 Vue.http.interceptors.push((request, next) => {
   request.headers.set('Authorization', Vue.lsobj.get('loginToken'))
   next()
 })
-//Interceptor to send Token in Headers. ================================================================
+//HTTP Interceptor to send Token in Headers. ================================================================
 
 Vue.component('datePicker',DatePicker);
+Vue.component('CubeSpin',CubeSpin);
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.AuthRequired)) {
