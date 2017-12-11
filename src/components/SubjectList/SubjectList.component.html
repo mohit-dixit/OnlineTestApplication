@@ -1,10 +1,10 @@
 <div v-if="loginRole === '2'">
   <router-link to="/Dashboard/Masters/CreateSubject">
-    <b-button variant="primary"><b>+ </b>Add Subject</b-button>
+    <b-button variant="primary"><b>+ </b>Add Class - Subject</b-button>
   </router-link>
   <br>
   <div style="background-color: white; border: 3px solid #E9ECEF;">
-    <vue-good-table title="Subjects" :columns="columnsSubjects" :rows="subjectList" :paginate="true" :globalSearch="true" :lineNumbers="true"
+    <vue-good-table title="List of Classes & Subjects" :columns="columnsSubjects" :rows="subjectList" :paginate="true" :globalSearch="true" :lineNumbers="true"
       styleClass="table table-bordered table-striped condensed">
       <template slot="table-row-after" slot-scope="props">
         <td>

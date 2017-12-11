@@ -2,7 +2,7 @@
   "name": "onlinetest",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "Mohit Dixit <mohit.dixit@wildnettechnologies.com>",
+  "author": "",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",

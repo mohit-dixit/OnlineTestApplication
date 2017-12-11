@@ -22,14 +22,15 @@ export default {
       bodyTextVariant: 'dark',
       footerBgVariant: 'warning',
       footerTextVariant: 'dark',
-      columnsSubjects: [{
-          label: 'Id',
-          field: 'id',
-          visible: false
+      columnsSubjects: [
+        {
+          label: 'Class Name',
+          field: 'className',
+          filterable: true
         },
         {
-          label: 'Subject',
-          field: 'subjectname',
+          label: 'Subject Name',
+          field: 'institute_class_subjects',
           filterable: true
         },
         {
@@ -46,15 +47,16 @@ export default {
   },
   methods: {
     bindSubjects: function () {
-      GetRequest(this.BaseUrl + 'api/admin/subject/list').then(res => {
+      GetRequest(this.BaseUrl + 'api/admin/class/list').then(res => {
+        debugger;
         if (res.status) {
           let response = res.result.message;
           let list = [];
           response.forEach(function (element) {
             list.push({
-              id: element.id,
-              subjectname: element.subjectName,
-              points: element.subjectPoint,
+              //id: element.id,
+              className: element.className,
+              subjects: element.subjects,
             })
           }, this);
           this.subjectList = list;

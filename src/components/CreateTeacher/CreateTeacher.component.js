@@ -23,7 +23,10 @@ export default {
     this.isEdit = false;
     this.submitButtonText = 'Create';
     return {
-      createteacherform: {}
+      createteacherform: {},
+      selected: null,
+       classesoptions: [],
+       subjectsoptions: []
     }
   },
   computed: {
@@ -33,6 +36,36 @@ export default {
 
   },
   methods: {
+     bindSubjects: function () {
+      GetRequest(this.BaseUrl + 'api/admin/class/list').then(res => {
+
+        this.classesoptions.push({
+          className: null,
+          text: '--Select Subject--'
+        });
+        this.subjectsoptions.push({
+          subject: null,
+          text: '--Select Subject--'
+        })
+        if (res) {
+          res.result.message.forEach(function (element) {
+            this.classesoptions.push({
+              value: element.className,
+              text: element.className
+            })
+          }, this);
+        }
+      });
+    },
+    selectedClass: function(evt){
+      let val = evt.target.value;
+      //Get List of subject on the basis of class and fill the dropdown
+      // .filter(function(data){
+      //   this.subjectoptions.push({
+
+      //   });
+      // })
+    },
     getTeacherData: function () {
       let postData = {};
       postData.id = this.id;
@@ -86,10 +119,12 @@ export default {
   },
   created: function () {
     this.loginRole = Vue.lsobj.get('loginRole');
+    this.bindSubjects();
     if (this.id) {
       this.submitButtonText = 'Update';
       this.isEdit = true;
       this.getTeacherData();
+      
     }
   }
 }

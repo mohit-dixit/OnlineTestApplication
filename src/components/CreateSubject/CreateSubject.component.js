@@ -10,7 +10,7 @@ import {
 export default {
   name: 'create-subject',
   components: {},
-  props: ['id','name'],
+  props: ['id', 'name'],
   data() {
     this.responseMessage = null;
     this.errorMessage = null;
@@ -18,9 +18,11 @@ export default {
     this.notifySuccess = false;
     this.notifyError = false;
     this.isEdit = false;
-    this.submitButtonText ='Create';
+    this.submitButtonText = 'Create';
+    //this.rows = [];
     return {
       createsubjectform: {},
+      rows: []
     }
   },
   computed: {
@@ -31,23 +33,33 @@ export default {
   },
   methods: {
     onSubmit(evt) {
-      let apiPath = 'api/admin/create/subject';
+      let subjects = [];
+      this.rows.map(function(value, key) {
+        subjects.push(value.title);
+      });
+      let request = {
+        className : this.createsubjectform.className,
+        subjects : subjects
+      }
+      let apiPath = 'api/admin/create/class';
       let isEditMode = this.isEdit;
       if(isEditMode){
         apiPath = 'api/admin/update/subject';
       }
-      PostRequest(this.BaseUrl + apiPath  , this.createsubjectform).then(res => {
+      PostRequest(this.BaseUrl + apiPath  , request).then(res => {
+        debugger;
         if (res) {
           if (res.status == 200) {
             this.createsubjectform = {};
             if(isEditMode){
-              alert('Subject updated successfully')
+              alert('Class & Subjects updated successfully')
               this.$router.push('/Dashboard/Masters/SubjectList');
             }
             else{
-              this.responseMessage = 'Subject created successfully';
+              this.responseMessage = 'Class and Subjects created successfully';
               this.notifySuccess = true;
               this.notifyError = false;
+              this.$router.push('/Dashboard/Masters/SubjectList');
             }
           } else {
             this.errorMessage = res.statusText;
@@ -57,11 +69,18 @@ export default {
         }
       });
     },
-    onlyNumberKey: function (event) {
+    onlyNumberKey: function(event) {
       return NumberKeyValidation(event);
-    }
+    },
+    addRow: function() {
+      var elem = document.createElement('tr');
+      this.rows.push({ title: '' });
+    },
+    removeElement: function(index) {
+      this.rows.splice(index, 1);
+    },
   },
-  created: function () {
+  created: function() {
     this.loginRole = Vue.lsobj.get('loginRole');
     if (this.id) {
       this.submitButtonText = 'Update';
