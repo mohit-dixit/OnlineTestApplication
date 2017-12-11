@@ -16,6 +16,7 @@ export default {
   props: ['id'],
   data() {
     this.responseMessage = null;
+    this.classesSubjectArr;
     this.errorMessage = null;
     this.BaseUrl = config.BASE_URL;
     this.notifySuccess = false;
@@ -25,8 +26,8 @@ export default {
     return {
       createteacherform: {},
       selected: null,
-       classesoptions: [],
-       subjectsoptions: []
+      classesoptions: [],
+      subjectoptions: []
     }
   },
   computed: {
@@ -36,19 +37,19 @@ export default {
 
   },
   methods: {
-     bindSubjects: function () {
+    bindSubjects: function() {
       GetRequest(this.BaseUrl + 'api/admin/class/list').then(res => {
-
+        this.classesSubjectArr = res.result.message;
         this.classesoptions.push({
           className: null,
-          text: '--Select Subject--'
+          text: '--Select Class--'
         });
-        this.subjectsoptions.push({
+        this.subjectoptions.push({
           subject: null,
           text: '--Select Subject--'
         })
         if (res) {
-          res.result.message.forEach(function (element) {
+          res.result.message.forEach(function(element) {
             this.classesoptions.push({
               value: element.className,
               text: element.className
@@ -57,16 +58,22 @@ export default {
         }
       });
     },
-    selectedClass: function(evt){
+    selectedClass: function(evt) {
       let val = evt.target.value;
+      this.classesSubjectArr.forEach(function(element) {
+        if (element.className == val) {
+          this.subjectoptions = [];
+          element.institute_class_subjects.forEach(function(sub) {
+            this.subjectoptions.push({
+              value: sub.id,
+              text: sub.subject
+            })
+          }, this);
+        }
+      }, this);
       //Get List of subject on the basis of class and fill the dropdown
-      // .filter(function(data){
-      //   this.subjectoptions.push({
-
-      //   });
-      // })
     },
-    getTeacherData: function () {
+    getTeacherData: function() {
       let postData = {};
       postData.id = this.id;
       PostRequest(this.BaseUrl + 'api/admin/edit/teacher', postData).then(res => {
@@ -81,9 +88,9 @@ export default {
     onSubmit(evt) {
       evt.preventDefault();
 
-       //Making Post Data ==============================================================================
-       this.createteacherform.password = config.DEFAULT_PASSWORD;
-       //Making Post Data ==============================================================================
+      //Making Post Data ==============================================================================
+      this.createteacherform.password = config.DEFAULT_PASSWORD;
+      //Making Post Data ==============================================================================
 
 
       let apiPath = 'api/admin/create/teacher';
@@ -113,18 +120,18 @@ export default {
         }
       });
     },
-    onlyNumberKey: function (event) {
+    onlyNumberKey: function(event) {
       return NumberKeyValidation(event);
     }
   },
-  created: function () {
+  created: function() {
     this.loginRole = Vue.lsobj.get('loginRole');
     this.bindSubjects();
     if (this.id) {
       this.submitButtonText = 'Update';
       this.isEdit = true;
       this.getTeacherData();
-      
+
     }
   }
 }
