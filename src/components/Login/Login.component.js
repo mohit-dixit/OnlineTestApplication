@@ -1,5 +1,6 @@
 import Vue from 'vue'
-import VueLocalStorage from 'vue-localstorage'
+import VueLocalStorage from 'vue-localstorage';
+import {RotateSquare2} from 'vue-loading-spinner';
 import * as config from '../../config/constants.js'
 import {
   GetRequest,
@@ -13,10 +14,13 @@ Vue.use(VueLocalStorage, {
 })
 export default {
   name: 'login',
-  components: {},
+  components: {
+    RotateSquare2
+  },
   props: [],
   data() {
     this.errorMessage = null;
+    this.loader = false;
     this.BaseUrl = config.BASE_URL;
     return {
       loginform: {},
@@ -32,8 +36,10 @@ export default {
   },
   methods: {
     checkAuthentication: function() {
+      this.loader = true;
       LoginAuthentication(this.BaseUrl + 'api/superAdmin/login', this.loginform).then(res => {
         if (res) {
+          this.loader = false;
           if (res.requestcode > 0) {
             let loginUserDetails = res.responsedata;
             Vue.lsobj.set('loginUserName', loginUserDetails[0].username);
@@ -51,8 +57,9 @@ export default {
 
             this.$router.push('Dashboard');
           } else {
-            this.errorMessage = res.responsedata;
-            this.$forceUpdate();
+              this.loader = false;
+              this.errorMessage = res.responsedata;
+              this.$forceUpdate();
           }
         }
       });
