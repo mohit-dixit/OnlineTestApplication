@@ -1,0 +1,44 @@
+<div class="container">
+    <div v-if="!isEditMode" class="avatar-flip">
+      <img src="../../assets/images/SampleProfile.png" height="150" width="150">
+      <img src="../../assets/images/SampleProfile.png" height="150" width="150">
+    </div>
+    <div v-else class="avatar-flip1">
+        <img class="profileimage" src="../../assets/images/SampleProfile.png" height="150" width="150">
+    </div>
+    <div>
+    <h2 v-if="!isEditMode">{{profile.loginUserName}}
+        <img src="../../assets/images/pen-blue-round.png" v-on:click="editButtonClick()" style="cursor:pointer;" height="36" width="36">
+    </h2>
+        <b-row class="my-1">
+        <b-col sm="6">
+           <b-form-input type="text" v-if="isEditMode" v-model="profile.userFirstName" required placeholder="Enter First Name"></b-form-input>
+         </b-col>
+        <b-col sm="6">
+           <b-form-input type="text" v-if="isEditMode" v-model="profile.userLastName" required placeholder="Enter Last Name"></b-form-input>
+        </b-col>
+      </b-row>
+    </div>
+    <div class="form-box">
+        <b-form>
+                <b-row class="my-1">
+                    <b-col v-if="!isEditMode" sm="12">
+                      <label for="input-none"><h4>{{profile.userEmail}} | {{profile.userPhone}}</h4></label>
+                    </b-col>
+                    <b-col v-if="isEditMode" sm="6">
+                        <b-form-input type="text" v-model="profile.userEmail" required placeholder="Enter Email"></b-form-input>
+                    </b-col>
+                    <b-col v-if="isEditMode" sm="6">
+                        <b-form-input type="text" v-model="profile.userPhone" required placeholder="Enter Phone"></b-form-input>
+                    </b-col>
+                </b-row>
+        </b-form>
+    </div>
+    <p v-if="!isEditMode">{{profile.aboutMe}}</p>
+        <b-form-input type="text" v-if="isEditMode" v-model="profile.aboutMe" placeholder="Enter About You"></b-form-input>
+    <div v-if="isEditMode">
+    <br>
+    <b-button  type="submit" v-on:click="updateClick()" variant="primary">Update</b-button>
+    <b-button type="reset" v-on:click="cancelClick()" variant="secondary">Cancel</b-button>
+  </div>
+</div>
