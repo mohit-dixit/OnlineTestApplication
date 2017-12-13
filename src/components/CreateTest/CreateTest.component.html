@@ -36,10 +36,12 @@
               </b-col>
           </b-row>
           <b-row class="my-1">
-              <b-col sm="4"><label for="input-none">Batches:</label></b-col>
+              <b-col sm="4">
+                  <label for="input-none">Batch:</label>
+              </b-col>
               <b-col sm="8">
-                <b-form-select v-model="createtest.batches" :options="batchOptions" required class="mb-3">
-                </b-form-select>
+                  <multiselect v-model="createtest.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel">
+                  </multiselect>
               </b-col>
           </b-row>
           <b-row class="my-1">
@@ -50,32 +52,59 @@
             <b-col sm="2">
                 <label for="input-none">Minutes</label>
             </b-col>
-          </b-row>        
+          </b-row>
           <b-row class="my-1">
-            <b-col sm="4"><label for="input-none">Question Sort:</label></b-col>
+            <b-col sm="4"><label for="input-none">No. Of Questions:</label></b-col>
             <b-col sm="8">
-              <b-row class="my-1" v-for="(questionsort,key,index) in questionSortList" v-bind:key="key">
-                <b-col sm="4">
-                  <b-form-select class="mb-3 sortScaleClass" title="Scale" v-model="questionsort.scale" :options="scaleOptions" required>
-                  </b-form-select>
-                </b-col>
-                <b-col sm="4">
-                  <b-form-select class="mb-3 sortSubjectClass" title="Subject" v-model="questionsort.subject" :options="subjectOptions" required>
-                  </b-form-select>
-                </b-col>
-                <b-col sm="4">
-                  <b-form-input class="sortQuestionsClass" type="text" placeholder="No. of Questions" v-model="questionsort.numberquestions"
-                    required></b-form-input>
-                </b-col>
-              </b-row>
-              <b-button v-on:click="addRow()" style="float: left;" variant="primary"><b>+</b></b-button>
-              <b-button v-on:click="removeRow()" v-if="toShowRemoveSort" style="float: left; margin-left: 10px;" variant="primary"><b>-</b></b-button>
+                <b-form-input class="sortQuestionsClass" type="text" placeholder="No. of Questions" v-model="createtest.numberofquestions"
+                required></b-form-input>
             </b-col>
           </b-row>
+          <b-row class="my-1">
+              <b-col sm="4"><label for="input-none">Keep all questions with same marks:</label></b-col>
+              <b-col sm="8" style="text-align: left;">
+                  <label class="switch" style="width: 60px;">
+                      <input v-model="createtest.keepquestionssamemarks" value="true" type="checkbox">
+                      <span class="slider round"></span>
+                  </label>
+              </b-col>
+            </b-row>
         </b-container>
-        <b-button type="submit" variant="primary">Create</b-button>
-        <b-button type="reset" variant="secondary">Reset</b-button>
+        <b-button type="submit" variant="primary">Select Questions</b-button>&nbsp;&nbsp;
+        <b-button type="reset" variant="secondary">Reset</b-button>&nbsp;&nbsp;
+        <b-button type="submit" variant="primary">Create Test</b-button>
       </b-form>
     </div>
+    <vue-good-table title="Selected Questions" :columns="columnsSelectedQuestions" :rows="instituteList" :paginate="true" :globalSearch="true"
+      :lineNumbers="true" styleClass="table table-bordered table-striped condensed">
+      <template slot="table-row-after" slot-scope="props">
+        <td>
+          <img width="18" title="Edit" @click="editInstituteClick(props)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/pencil.gif">
+          <img width="18" title="Delete" @click="deleteInstituteClick(props)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/delete.png">
+        </td>
+      </template>
+    </vue-good-table>
   </div>
+
+
+   <!-- Modal Component (To Select the Questions from Grid)-->
+   <b-modal centered ref="deleteModal" v-model="show" title="Select Questions" :header-bg-variant="headerBgVariant" :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
+    <b-container fluid>
+      <b-row class="mb-1 text-center">
+        <b-col cols="12">Are you sure you want to delete?</b-col>
+      </b-row>
+    </b-container>
+    <div slot="modal-footer" class="w-100">
+      <p class="float-left"></p>
+      <b-btn size="sm" class="float-right" style="margin-left: 5px;" variant="secondary" @click="closeModal()">
+        No
+      </b-btn>
+      <b-btn size="sm" class="float-right" variant="danger" @click="deleteConfirmation()">
+        Yes
+      </b-btn>
+    </div>
+  </b-modal>
+  <!-- Modal Component -->
+
+
 </section>

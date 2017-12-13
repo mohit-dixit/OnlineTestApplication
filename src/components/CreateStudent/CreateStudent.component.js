@@ -1,16 +1,16 @@
 import SuccessNotification from '../SuccessNotification'
+import Multiselect from 'vue-multiselect'
 import VueLocalStorage from 'vue-localstorage'
 import * as config from '../../config/constants.js'
 import Vue from 'vue'
 import {
-  GetRequest,
-  PostRequest,
-  NumberKeyValidation
+    GetRequest,
+    PostRequest,
+    NumberKeyValidation
 } from '../../utils/globalservice'
-
 export default  {
   name: 'create-student',
-  components: {'success-notification': SuccessNotification},
+  components: {'success-notification': SuccessNotification, Multiselect },
   props: ['id'],
   data() {
     this.responseMessage = null;
@@ -32,23 +32,19 @@ export default  {
 
   },
   methods: {
-    bindBatches: function () {
+    customLabel(option) {
+      return `${option.batchname}`
+    },
+    bindBatches: function() {
       GetRequest(this.BaseUrl + 'api/admin/batch/list').then(res => {
-        this.batchOptions.push({
-          value: null,
-          text: '--Select Batch--'
-        })
-        if (res.status) {
-          let response = res.result.message;
-          if(response){
-            response.forEach(function (element) {
-              this.batchOptions.push({
-                value: element.id,
-                text: element.batchName
-              })
-            }, this);
+          if (res) {
+              res.result.message.forEach(function(element) {
+                  this.batchOptions.push({
+                    id: element.id,
+                    batchname: element.batchName
+                  })
+              }, this);
           }
-        }
       });
     },
     getStudentData: function () {
@@ -59,6 +55,25 @@ export default  {
           if (res.status) {
             let response = res.body.message;
             this.createstudentform = response;
+            let list = [];
+            if(response.student_batches.length > 0){
+              response.student_batches.forEach(function(element){
+                let batchObject = element.batch;
+                if(batchObject){
+                    list.push({
+                      id: batchObject.id,
+                      batchname: batchObject.batchName
+                    })
+                  }
+                }, this);
+              this.createstudentform.batch = list;
+            }
+            if(response.status < 2){
+              this.createstudentform.status = true;
+            }
+            else{
+              this.createstudentform.status = false;
+            }
           }
         }
       });
@@ -74,6 +89,22 @@ export default  {
       let isEditMode = this.isEdit;
       if (isEditMode) {
         apiPath = 'api/admin/update/student';
+        if(this.createstudentform.status){
+          this.createstudentform.status = config.Active;
+        }
+        else{
+          this.createstudentform.status = config.Inactive;
+        }
+      }
+      let BatchIds=[];
+      if(this.createstudentform.batch){
+        this.createstudentform.batch.forEach(function(element){
+          BatchIds.push(element.id);
+        }, this);
+      }
+      if(BatchIds.length > 0)
+      {
+        this.createstudentform.batch = BatchIds;
       }
       PostRequest(this.BaseUrl + apiPath, this.createstudentform).then(res => {
         if (res) {

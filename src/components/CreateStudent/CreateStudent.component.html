@@ -8,12 +8,14 @@
       <br>
       <b-form @submit="onSubmit">
         <b-container fluid>
-          <b-row class="my-1">
-            <b-col sm="4"><label for="input-none">Batch:</label></b-col>
-             <b-col sm="8">
-              <b-form-select v-model="createstudentform.associatedbatch" :options="batchOptions" required class="mb-3">
-              </b-form-select>
-             </b-col>
+            <b-row class="my-1">
+              <b-col sm="4">
+                <label for="input-none">Batch:</label>
+            </b-col>
+            <b-col sm="8">
+                <multiselect v-model="createstudentform.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel">
+                </multiselect>
+            </b-col>
           </b-row>
           <b-row class="my-1">
             <b-col sm="4"><label for="input-none">First Name:</label></b-col>
@@ -38,6 +40,15 @@
             <b-col sm="8">
               <b-form-input id="input-none" :state="null" type="text" maxlength="15" @keydown.native="onlyNumberKey" v-model="createstudentform.phone"
                 required placeholder="Enter Phone"></b-form-input>
+            </b-col>
+          </b-row>
+          <b-row class="my-1" v-if="isEdit">
+            <b-col sm="4"><label for="input-none">Is Active?:</label></b-col>
+            <b-col sm="8" style="text-align: left;">
+              <label class="switch" style="width: 60px;">
+                    <input v-model="createstudentform.status" type="checkbox">
+                    <span class="slider round"></span>
+                </label>
             </b-col>
           </b-row>
         </b-container>

@@ -61,10 +61,10 @@ export default {
     bindStudents: function () {
       GetRequest(this.BaseUrl + 'api/admin/student/list').then(res => {
         if (res.status) {
-          let response = res.result.message[0].user_roles;
+          let response = res.result.message;
           let list = [];
           response.forEach(function (element) {
-            let userObject = element.user;
+            let userObject = element;
             list.push({
               id: userObject.id,
               firstname: userObject.firstname,

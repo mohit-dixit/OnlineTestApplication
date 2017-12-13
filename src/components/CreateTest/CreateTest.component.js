@@ -1,14 +1,20 @@
+import SuccessNotification from '../SuccessNotification'
+import Multiselect from 'vue-multiselect'
+import VueLocalStorage from 'vue-localstorage'
+import * as config from '../../config/constants.js'
 import Vue from 'vue'
 import {
-  GetRequest,
-  PostRequest
+    GetRequest,
+    PostRequest,
+    NumberKeyValidation
 } from '../../utils/globalservice'
 export default  {
   name: 'create-test',
-  components: {},
+  components: { Multiselect },
   props: [],
   data() {
     this.toShowRemoveSort = false;
+    this.BaseUrl = config.BASE_URL;
     return {
       date: new Date(),
       config: {
@@ -23,8 +29,7 @@ export default  {
       createtest:{
         negativemarking:0
       },
-      scaleOptions: [],
-      subjectOptions: []
+      batchOptions: [],
     }
   },
   computed: {
@@ -34,37 +39,19 @@ export default  {
 
   },
   methods: {
-    //Controls bindings
-    bindSubjects: function () {
-      GetRequest('static/subject.json').then(res => {
-        this.subjectOptions.push({
-          value: '0',
-          text: 'All'
-        })
-        if (res) {
-          res.forEach(function (element) {
-            this.subjectOptions.push({
-              value: element.value,
-              text: element.text
-            })
-          }, this);
-        }
-      });
+    customLabel(option) {
+      return `${option.batchname}`
     },
-    bindScale: function () {
-      GetRequest('static/scale.json').then(res => {
-        this.scaleOptions.push({
-          value: '0',
-          text: 'All'
-        })
-        if (res) {
-          res.forEach(function (element) {
-            this.scaleOptions.push({
-              value: element.value,
-              text: element.text
-            })
-          }, this);
-        }
+    bindBatches: function() {
+      GetRequest(this.BaseUrl + 'api/admin/batch/list').then(res => {
+          if (res) {
+              res.result.message.forEach(function(element) {
+                  this.batchOptions.push({
+                    id: element.id,
+                    batchname: element.batchName
+                  })
+              }, this);
+          }
       });
     },
 
@@ -107,7 +94,6 @@ export default  {
       }
     },
     getFinalSorts: function () {
-
       let finalSortObj = [];
       let scaleList = document.getElementsByClassName('sortScaleClass');
       let subjectList = document.getElementsByClassName('sortSubjectClass');
@@ -124,40 +110,37 @@ export default  {
 
       return finalSortObj;
     },
-    addScale(evt) {
-      // Prevent modal from closing
-      evt.preventDefault();
-      if (!this.addscale.scalename) {
-        alert('Please enter Scale');
-      } else {
-        this.submitScale()
-      }
-    },
-
-    submitScale() {
-      alert(this.addscale.scalename);
-      this.addscale = {};
-      this.$refs.modalScale.hide();
-    },
-    addSubject(evt) {
-      // Prevent modal from closing
-      evt.preventDefault();
-      if (!this.addsubject.subjectname) {
-        alert('Please enter Subject');
-      } else {
-        this.submitSubject()
-      }
-    },
-
-    submitSubject() {
-      alert(this.addsubject.subjectname);
-      this.addsubject = {};
-      this.$refs.modalSubject.hide();
-    }
+    // addScale(evt) {
+    //   // Prevent modal from closing
+    //   evt.preventDefault();
+    //   if (!this.addscale.scalename) {
+    //     alert('Please enter Scale');
+    //   } else {
+    //     this.submitScale()
+    //   }
+    // },
+    // submitScale() {
+    //   alert(this.addscale.scalename);
+    //   this.addscale = {};
+    //   this.$refs.modalScale.hide();
+    // },
+    // addSubject(evt) {
+    //   // Prevent modal from closing
+    //   evt.preventDefault();
+    //   if (!this.addsubject.subjectname) {
+    //     alert('Please enter Subject');
+    //   } else {
+    //     this.submitSubject()
+    //   }
+    // },
+    // submitSubject() {
+    //   alert(this.addsubject.subjectname);
+    //   this.addsubject = {};
+    //   this.$refs.modalSubject.hide();
+    // }
   },
   created: function(){
     this.loginRole = Vue.lsobj.get('loginRole');
-    this.bindSubjects();
-    this.bindScale();
+    this.bindBatches();
   }
 }
