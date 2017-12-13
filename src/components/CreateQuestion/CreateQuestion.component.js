@@ -1,13 +1,15 @@
-import Vue from 'vue'
+import Vue from "vue";
 import {
   GetRequest,
   PostRequest
 } from '../../utils/globalservice'
+import * as config from '../../config/constants.js'
 export default {
   name: 'create-question',
   components: {},
   props: [],
   data() {
+    this.BaseUrl = config.BASE_URL;
     this.toShowRemoveAnswer = false;
     return {
       //Modal Popup Variant
@@ -28,7 +30,9 @@ export default {
       createquestion: {
         points: null,
         scale: null,
-        subject: null
+        subject: null,
+        questiontype:null,
+        topic:null
       },
       addscale: {},
       addsubject: {},
@@ -54,7 +58,9 @@ export default {
         }
       ],
       scaleOptions: [],
-      subjectOptions: []
+      subjectOptions: [],
+      topicOptions:[{value:null, text:'--Select Topic--'}],
+      questionTypeOptions: [{value:null, text:'--Select Question Type--'},{value:1, text:'Single Selection'},{value:2, text:'Multi Selection'}]
     }
   },
   computed: {
@@ -82,18 +88,22 @@ export default {
       });
     },
     bindScale: function () {
-      GetRequest('static/scale.json').then(res => {
+      GetRequest(this.BaseUrl + 'api/admin/scale/list').then(res => {
         this.scaleOptions.push({
           value: null,
           text: '--Select Scale--'
         })
-        if (res) {
-          res.forEach(function (element) {
-            this.scaleOptions.push({
-              value: element.value,
-              text: element.text
-            })
-          }, this);
+        if (res.status) {
+          let response = res.result.message;
+          if(response){
+            response.forEach(function (element) {
+              this.scaleOptions.push({
+                value: element.id,
+                text: element.scaleName
+                // points: element.scalePoint,
+              })
+            }, this);
+          }
         }
       });
     },

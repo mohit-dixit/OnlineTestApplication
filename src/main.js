@@ -5,7 +5,7 @@ import App from './App'
 import router from './router'
 import BootstrapVue from 'bootstrap-vue'
 import VueResource from 'vue-resource'
-import VueEditor from 'vue2-editor'
+import VueEditor from 'vue2-quill-editor'
 import DatePicker from 'vue-bootstrap-datetimepicker'
 import BreabCrumbs from 'vue-2-breadcrumbs'
 import VueGoodTable from 'vue-good-table'
@@ -15,6 +15,7 @@ import CubeSpin from 'vue-loading-spinner/src/components/Circle8'
 import './assets/style/bootstrap-datetimepicker.css'
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
 import '../node_modules/bootstrap-vue/dist/bootstrap-vue.css'
+import './assets/style/commonstyle.css'
 
 Vue.config.productionTip = false
 

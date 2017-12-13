@@ -10,12 +10,19 @@ export default  {
   data() {
     this.toShowRemoveSort = false;
     return {
+      date: new Date(),
+      config: {
+        format: 'DD/MM/YYYY',
+        useCurrent: false,
+      },
       questionSortList: [{
         scale: '0',
         subject: '0',
         numberquestions:''
       }, ],
-      createtest:{},
+      createtest:{
+        negativemarking:0
+      },
       scaleOptions: [],
       subjectOptions: []
     }
