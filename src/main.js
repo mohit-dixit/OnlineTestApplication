@@ -12,7 +12,7 @@ import VueGoodTable from 'vue-good-table'
 import vueXlsxTable from 'vue-xlsx-table'
 import CubeSpin from 'vue-loading-spinner/src/components/Circle8'
 import Multiselect from 'vue-multiselect'
-
+import VeeValidate from 'vee-validate';
 /* For Spinner while HTTP calls  */
 // import {RotateSquare2} from 'vue-loading-spinner'
 
@@ -26,6 +26,7 @@ import '../node_modules/vue-multiselect/dist/vue-multiselect.min.css'
 Vue.config.productionTip = false
 
 // Vue.use(RotateSquare2);
+Vue.use(VeeValidate);
 Vue.use(BootstrapVue);
 Vue.use(VueResource);
 Vue.use(VueEditor, {});

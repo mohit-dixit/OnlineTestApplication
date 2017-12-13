@@ -35,8 +35,8 @@ export default {
 
   },
   methods: {
-    this.loader = true;
     checkAuthentication: function() {
+      this.loader = true;
       LoginAuthentication(this.BaseUrl + 'api/superAdmin/login', this.loginform).then(res => {
         if (res) {
           this.loader = false;
