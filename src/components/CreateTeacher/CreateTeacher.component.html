@@ -1,91 +1,109 @@
 <section class="assign-test" v-if="loginRole === '2'">
-  <router-link to="/Dashboard/TeacherList">
-    <b-button variant="primary"> Go To Teacher List</b-button>
-  </router-link>
-  <div class="createteacher-container">
-    <div class="form-box">
-      <label class="headingForm">{{submitButtonText}} Teacher</label>
-      <br>
-      <b-form @submit="onSubmit">
-        <b-container fluid>
-          <b-row class="my-1">
-            <b-col sm="4"><label for="input-none">First Name:</label></b-col>
-            <b-col sm="8">
-              <b-form-input id="name" type="text" v-model="createteacherform.firstname" required placeholder="Enter First Name"></b-form-input>
-            </b-col>
-          </b-row>
-          <b-row class="my-1">
-            <b-col sm="4"><label for="input-none">Last Name:</label></b-col>
-            <b-col sm="8">
-              <b-form-input id="name" type="text" v-model="createteacherform.lastname" required placeholder="Enter Last Name"></b-form-input>
-            </b-col>
-          </b-row>
-          <b-row class="my-1">
-            <b-col sm="4"><label for="input-none">Email:</label></b-col>
-            <b-col sm="8">
-              <b-form-input id="input-none" :state="null" type="email" v-model="createteacherform.username" required placeholder="Enter Email"></b-form-input>
-            </b-col>
-          </b-row>
-          <b-row class="my-1">
-            <b-col sm="4"><label for="input-none">Phone:</label></b-col>
-            <b-col sm="8">
-              <b-form-input id="input-none" :state="null" type="text" maxlength="15" @keydown.native="onlyNumberKey" v-model="createteacherform.phone"
-                required placeholder="Enter Phone"></b-form-input>
-            </b-col>
-          </b-row>
-          <b-row class="my-1">
-          <b-col sm="2"><label for="input-none">Class:</label></b-col>
-          <b-col sm="9">
-            <b-form-select v-model="createteacherform.className" @change.native="selectedClass" :options="classesoptions" required class="mb-3">
-            </b-form-select>
-          </b-col>
-        </b-row>
-        <!-- Multi select -->
-        <b-row class="my-1">
-          <b-col sm="2"><label for="input-none">Subject:</label></b-col>
-          <b-col sm="9">
-            <b-form-select v-model="createteacherform.subject" :options="subjectoptions" required class="mb-3">
-            </b-form-select>
-          </b-col>
-        </b-row>
-        <b-row class="my-1">
-            <b-col sm="6"><label for="input-none">Allow Teacher to add Scale?:</label></b-col>
-            <b-col sm="6">
-              <label class="switch" style="width: 60px;">
-                <input v-model="createteacherform.allow_scale" type="checkbox">
-                <span class="slider round"></span>
-              </label>
-            </b-col>
-          </b-row>
-          <b-row class="my-1">
-            <b-col sm="6"><label for="input-none">Allow Teacher to add Subject?:</label></b-col>
-            <b-col sm="6">
-              <label class="switch" style="width: 60px;">
-                    <input v-model="createteacherform.allow_subject" type="checkbox">
-                    <span class="slider round"></span>
-                </label>
-            </b-col>
-          </b-row>
-          <b-row class="my-1">
-            <b-col sm="6"><label for="input-none">Allow Teacher to add Student?:</label></b-col>
-            <b-col sm="6">
-              <label class="switch" style="width: 60px;">
-                    <input v-model="createteacherform.allow_student" type="checkbox">
-                    <span class="slider round"></span>
-                </label>
-            </b-col>
-          </b-row>
-        </b-container>
-        <br>
-        <b-button type="submit" variant="primary">{{submitButtonText}}</b-button>
-        <b-button type="reset" v-if="!isEdit" variant="secondary">Reset</b-button>
-        <div v-if="notifySuccess" style="margin-top: 10px;">
-          <span class="notification n-success"><b>{{responseMessage}}</b></span>
+    <router-link to="/Dashboard/TeacherList">
+        <b-button variant="primary"> Go To Teacher List</b-button>
+    </router-link>
+    <div class="createteacher-container">
+        <div class="form-box">
+            <label class="headingForm">{{submitButtonText}} Teacher</label>
+            <br>
+            <b-form @submit="onSubmit">
+                <b-container fluid>
+                    <b-row class="my-1">
+                        <b-col sm="4">
+                            <label for="input-none">First Name:</label>
+                        </b-col>
+                        <b-col sm="8">
+                            <b-form-input id="name" type="text" v-model="createteacherform.firstname" required placeholder="Enter First Name"></b-form-input>
+                        </b-col>
+                    </b-row>
+                    <b-row class="my-1">
+                        <b-col sm="4">
+                            <label for="input-none">Last Name:</label>
+                        </b-col>
+                        <b-col sm="8">
+                            <b-form-input id="name" type="text" v-model="createteacherform.lastname" required placeholder="Enter Last Name"></b-form-input>
+                        </b-col>
+                    </b-row>
+                    <b-row class="my-1">
+                        <b-col sm="4">
+                            <label for="input-none">Email:</label>
+                        </b-col>
+                        <b-col sm="8">
+                            <b-form-input id="input-none" :state="null" type="email" v-model="createteacherform.username" required placeholder="Enter Email"></b-form-input>
+                        </b-col>
+                    </b-row>
+                   <!--  <b-row class="my-1">
+                        <b-col sm="4">
+                            <label for="input-none">Password:</label>
+                        </b-col>
+                        <b-col sm="8">
+                            <b-form-input id="input-none" :state="null" type="password" v-model="createteacherform.password" required placeholder="Enter Email"></b-form-input>
+                        </b-col>
+                    </b-row> -->
+                    <b-row class="my-1">
+                        <b-col sm="4">
+                            <label for="input-none">Phone:</label>
+                        </b-col>
+                        <b-col sm="8">
+                            <b-form-input id="input-none" :state="null" type="text" maxlength="15" @keydown.native="onlyNumberKey" v-model="createteacherform.phone" required placeholder="Enter Phone"></b-form-input>
+                        </b-col>
+                    </b-row>
+                    <!-- Multi select -->
+                    <b-row class="my-1">
+                        <b-col sm="4">
+                            <label for="input-none">Subject:</label>
+                        </b-col>
+                        <b-col sm="8">
+                            <!-- <b-form-select v-model="createteacherform.subject" :options="subjectoptions" required class="mb-3">
+                            </b-form-select> -->
+                            <multiselect v-model="subjectsVal.subjects" :options="subjectoptions" :multiple="true" track-by="id" :custom-label="customLabel">
+                    </multiselect>
+                        </b-col>
+                    </b-row>
+                    <b-row class="my-1">
+                        <b-col sm="4">
+                            <label for="input-none">Allow Teacher to add Scale?:</label>
+                        </b-col>
+                        <b-col sm="8">
+                            <label class="switch" style="width: 60px;">
+                                <input v-model="createteacherform.teacher_allow_scale" type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </b-col>
+                    </b-row>
+                    <b-row class="my-1">
+                        <b-col sm="4">
+                            <label for="input-none">Allow Teacher to add Subject?:</label>
+                        </b-col>
+                        <b-col sm="8">
+                            <label class="switch" style="width: 60px;">
+                                <input v-model="createteacherform.teacher_allow_subject" type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </b-col>
+                    </b-row>
+                    <b-row class="my-1">
+                        <b-col sm="4">
+                            <label for="input-none">Allow Teacher to add Student?:</label>
+                        </b-col>
+                        <b-col sm="8">
+                            <label class="switch" style="width: 60px;">
+                                <input v-model="createteacherform.teacher_allow_student" type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </b-col>
+                    </b-row>
+                </b-container>
+                <br>
+                <b-button type="submit" variant="primary">{{submitButtonText}}</b-button>
+                <b-button type="reset" v-if="!isEdit" variant="secondary">Reset</b-button>
+                <div v-if="notifySuccess" style="margin-top: 10px;">
+                    <span class="notification n-success"><b>{{responseMessage}}</b></span>
+                </div>
+                <div v-if="notifyError" style="margin-top: 10px;">
+                    <span class="notification n-error"><b>{{errorMessage}}</b></span>
+                </div>
+            </b-form>
         </div>
-        <div v-if="notifyError" style="margin-top: 10px;">
-          <span class="notification n-error"><b>{{errorMessage}}</b></span>
-        </div>
-      </b-form>
     </div>
-  </div>
 </section>

@@ -9,7 +9,7 @@
             <b-col sm="6"><label for="input-none">Allow Teacher to add Scale?:</label></b-col>
             <b-col sm="6">
               <label class="switch" style="width: 60px;">
-                <input v-model="adminconfigurationform.allowscale" type="checkbox">
+                <input v-model="adminconfigurationform.allow_scale" value="true" type="checkbox">
                 <span class="slider round"></span>
               </label>
             </b-col>
@@ -18,25 +18,25 @@
             <b-col sm="6"><label for="input-none">Allow Teacher to add Subject?:</label></b-col>
             <b-col sm="6">
               <label class="switch" style="width: 60px;">
-                    <input v-model="adminconfigurationform.allowsubject" type="checkbox">
+                    <input v-model="adminconfigurationform.allow_subject" type="checkbox">
                     <span class="slider round"></span>
                 </label>
             </b-col>
           </b-row>
-          <b-row class="my-1">
+          <!-- <b-row class="my-1">
             <b-col sm="6"><label for="input-none">Allow Teacher to add Batch?:</label></b-col>
             <b-col sm="6">
               <label class="switch" style="width: 60px;">
-                    <input v-model="adminconfigurationform.allowbatch" type="checkbox">
+                    <input v-model="adminconfigurationform.allow_batch" type="checkbox">
                     <span class="slider round"></span>
                 </label>
             </b-col>
-          </b-row>
+          </b-row> -->
           <b-row class="my-1">
             <b-col sm="6"><label for="input-none">Allow Teacher to add Student?:</label></b-col>
             <b-col sm="6">
               <label class="switch" style="width: 60px;">
-                    <input v-model="adminconfigurationform.allowstudent" type="checkbox">
+                    <input v-model="adminconfigurationform.allow_student" type="checkbox">
                     <span class="slider round"></span>
                 </label>
             </b-col>
@@ -45,7 +45,7 @@
         <br>
         <b-button type="submit" variant="primary">Save</b-button>
         <b-button type="reset" variant="secondary">Reset Default</b-button>
-        <success-notification v-if="notifySuccess">Configuration saved successfully</success-notification>
+        <!-- <success-notification v-if="notifySuccess">Configuration saved successfully</success-notification> -->
       </b-form>
     </div>
   </div>
