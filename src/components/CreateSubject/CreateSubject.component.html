@@ -4,25 +4,16 @@
   </router-link>
   <div class="createsubject-container">
     <div class="form-box">
-      <label class="headingForm">{{submitButtonText}} Class - Subject</label>
+      <label class="headingForm">{{submitButtonText}} Subject</label>
       <br>
       <b-form @submit="onSubmit">
         <b-container fluid>
-          <b-row class="my-1">
-            <!-- <b-col sm="4"><label for="input-none">Class Name:</label></b-col> -->
-            <b-col sm="8">
-              <b-form-input id="name" type="text" v-model="createsubjectform.className" required placeholder="Enter Class Name"></b-form-input>
-            </b-col>
-            <b-col sm="4">
-              <b-button variant="primary" @click="addRow">Add Subjects</b-button>
-            </b-col>
-          </b-row>
-          <!--  <b-row class="my-1">
+           <b-row class="my-1">
             <b-col sm="4"><label for="input-none">Subject Name:</label></b-col>
             <b-col sm="8">
               <b-form-input id="name" type="text" v-model="createsubjectform.subjectName" required placeholder="Enter Subject Name"></b-form-input>
             </b-col>
-          </b-row> -->
+          </b-row>
           <b-row>
           <b-col sm="8">
             <table class="table">
@@ -50,4 +41,19 @@
       </b-form>
     </div>
   </div>
+   <!-- Modal Component -->
+   <b-modal size="sm" centered ref="notificationModal" v-model="show" title="Alert" :header-bg-variant="headerBgVariant" :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
+      <b-container fluid>
+        <b-row class="mb-1 text-center">
+          <b-col cols="12">{{ModalMessage}}</b-col>
+        </b-row>
+      </b-container>
+      <div slot="modal-footer" class="w-100">
+        <p class="float-left"></p>
+        <b-btn size="sm" class="float-right" style="margin-left: 5px;" variant="danger" @click="closeModal()">
+         OK
+        </b-btn>
+      </div>
+    </b-modal>
+    <!-- Modal Component -->
 </section>

@@ -25,7 +25,7 @@ export default {
       columnsAdmins: [{
           label: 'Id',
           field: 'id',
-          visible: false
+          hidden : true
         },
         {
           label: 'First Name',
@@ -53,6 +53,11 @@ export default {
           filterable: true
         },
         {
+          label: 'Status',
+          field: 'isactive',
+          filterable: true
+        },
+        {
           label: 'Action'
         }
       ]
@@ -70,14 +75,17 @@ export default {
           let list = [];
           response.forEach(function (element) {
             let userObject = element.user;
-            list.push({
-              id: userObject.id,
-              firstname: userObject.firstname,
-              lastname: userObject.lastname,
-              phone: userObject.phone,
-              email: userObject.username,
-              associatedwith: userObject.user_institutes[0].institute.name,
-            })
+            if(userObject){
+              list.push({
+                id: userObject.id,
+                firstname: userObject.firstname,
+                lastname: userObject.lastname,
+                phone: userObject.phone,
+                email: userObject.username,
+                associatedwith: userObject.user_institutes[0].institute.name,
+                isactive: (userObject.status < 2) ? 'Active' : 'Inactive',
+              })
+            }
           }, this);
           this.adminList = list;
           this.$forceUpdate();

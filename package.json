@@ -25,6 +25,7 @@
     "vue-router": "^3.0.1",
     "vue-xlsx-table": "^1.2.7",
     "vue2-editor": "^2.0.26",
+    "vue2-quill-editor": "^2.0.26",
     "vuelidate": "^0.6.1",
     "whatwg-fetch": "^2.0.3"
   },

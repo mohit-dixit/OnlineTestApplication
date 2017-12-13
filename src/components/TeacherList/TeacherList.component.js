@@ -65,13 +65,15 @@ export default {
           let list = [];
           response.forEach(function (element) {
             let userObject = element.user;
-            list.push({
-              id: userObject.id,
-              firstname: userObject.firstname,
-              lastname: userObject.lastname,
-              phone: userObject.phone,
-              email: userObject.username
-            })
+            if(userObject){
+              list.push({
+                id: userObject.id,
+                firstname: userObject.firstname,
+                lastname: userObject.lastname,
+                phone: userObject.phone,
+                email: userObject.username
+              })
+            }
           }, this);
           this.teacherList = list;
           this.$forceUpdate();

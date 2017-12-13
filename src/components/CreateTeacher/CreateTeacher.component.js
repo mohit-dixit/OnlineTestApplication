@@ -7,11 +7,13 @@ import {
   PostRequest,
   NumberKeyValidation
 } from '../../utils/globalservice'
+import Multiselect from 'vue-multiselect'
 
 export default {
   name: 'create-teacher',
   components: {
-    'success-notification': SuccessNotification
+    'success-notification': SuccessNotification,
+    Multiselect
   },
   props: ['id'],
   data() {
@@ -38,23 +40,20 @@ export default {
   },
   methods: {
     bindSubjects: function() {
-      GetRequest(this.BaseUrl + 'api/admin/class/list').then(res => {
-        this.classesSubjectArr = res.result.message;
-        this.classesoptions.push({
-          className: null,
-          text: '--Select Class--'
-        });
+      GetRequest(this.BaseUrl + 'api/admin/subject/list').then(res => {
         this.subjectoptions.push({
           subject: null,
           text: '--Select Subject--'
         })
         if (res) {
           res.result.message.forEach(function(element) {
-            this.classesoptions.push({
-              value: element.className,
-              text: element.className
+            this.subjectoptions.push({
+              value: element.id,
+              text: element.subjectName
             })
           }, this);
+          this.subjectList = list;
+          this.$forceUpdate();
         }
       });
     },

@@ -6,10 +6,10 @@ import {
   PostRequest,
   NumberKeyValidation
 } from '../../utils/globalservice'
-
+import Multiselect from 'vue-multiselect'
 export default {
   name: 'create-admin',
-  components: {},
+  components: { Multiselect },
   props: ['id'],
   data() {
     this.responseMessage = null;
@@ -43,6 +43,12 @@ export default {
             let response = res.body.message[0];
             this.createadminform = response;
             this.createadminform.associatedwith = response.user_institutes[0].instituteId;
+            if(response.status < 2){
+              this.createadminform.status = true;
+            }
+            else{
+              this.createadminform.status = false;
+            }
           }
         }
       });
@@ -76,6 +82,12 @@ export default {
           let isEditMode = this.isEdit;
           if(isEditMode){
             apiPath = 'api/superAdmin/update/admin';
+            if(this.createadminform.status){
+              this.createadminform.status = config.Active;
+            }
+            else{
+              this.createadminform.status = config.Inactive;
+            }
           }
           PostRequest(this.BaseUrl + apiPath, this.createadminform).then(res => {
             if (res) {

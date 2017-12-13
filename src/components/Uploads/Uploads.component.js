@@ -31,8 +31,14 @@ export default {
   },
   methods: {
     handleSelectedFile(convertedData) {
-      debugger;
-      console.log(convertedData)
+      let excelData = convertedData.body;
+      let excelHeader = convertedData.header;
+      let finalExcelData = [];
+
+      for(let i = 0; i < excelData.length; i++){
+          finalExcelData.push(JSON.stringify(excelData[i]));
+      }
+      console.log(finalExcelData);
     }
   },
   created: function () {

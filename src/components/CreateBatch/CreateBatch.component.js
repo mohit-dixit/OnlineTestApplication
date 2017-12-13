@@ -9,9 +9,10 @@ import {
 export default  {
   name: 'create-batch',
   components: {},
-  props: ['id'],
+  props: ['id','name'],
   data() {
     this.responseMessage = null;
+    this.ModalMessage = null;
     this.errorMessage = null;
     this.BaseUrl = config.BASE_URL;
     this.notifySuccess = false;
@@ -19,6 +20,15 @@ export default  {
     this.isEdit = false;
     this.submitButtonText ='Create';
     return {
+      variants: [
+        'primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'
+      ],
+      headerBgVariant: 'dark',
+      headerTextVariant: 'light',
+      bodyBgVariant: 'light',
+      bodyTextVariant: 'dark',
+      footerBgVariant: 'warning',
+      footerTextVariant: 'dark',
       createbatchform: {},
     }
   },
@@ -40,8 +50,8 @@ export default  {
           if (res.status == 200) {
             this.createbatchform = {};
             if(isEditMode){
-              alert('Batch updated successfully')
-              this.$router.push('/Dashboard/Masters/BatchList');
+              this.ModalMessage = 'Batch updated successfully';
+              this.$refs.notificationModal.show();
             }
             else{
               this.responseMessage = 'Batch created successfully';
@@ -55,6 +65,9 @@ export default  {
           }
         }
       });
+    },
+    closeModal: function (events, args) {
+      this.$router.push('/Dashboard/Masters/BatchList');
     },
     onlyNumberKey: function (event) {
       return NumberKeyValidation(event);

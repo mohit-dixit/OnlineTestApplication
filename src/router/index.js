@@ -38,6 +38,10 @@ import CreateBatch from '@/components/CreateBatch'
 import EditBatch from '@/components/CreateBatch'
 import BatchList from '@/components/BatchList'
 import Uploads from '@/components/Uploads'
+import CreateTopic from '@/components/CreateTopic'
+import TopicList from '@/components/TopicList'
+import EditTopic from '@/components/CreateTopic'
+import Profile from '@/components/Profile'
 
 Vue.use(Router)
 Vue.use(VueBreadcrumbs)
@@ -144,6 +148,24 @@ export default new Router({
               name: 'BatchList',
               component: BatchList,
               meta: { AuthRequired: true, breadcrumb: 'Batch List' }
+            },
+            {
+              path: 'CreateTopic',
+              name: 'CreateTopic',
+              component: CreateTopic,
+              meta: { AuthRequired: true, breadcrumb: 'Create Topic' }
+            },{
+              path: 'EditTopic/:id',
+              name: 'EditTopic',
+              component: EditTopic,
+              props: true,
+              meta: { AuthRequired: true , breadcrumb: 'Edit Topic' }
+            },
+            {
+              path: 'TopicList',
+              name: 'TopicList',
+              component: TopicList,
+              meta: { AuthRequired: true, breadcrumb: 'Topic List' }
             }
           ]
         },
@@ -221,6 +243,13 @@ export default new Router({
           component: TeacherList,
           meta: { AuthRequired: true , breadcrumb: 'Teacher List' }
         },
+        {
+          path: 'Profile',
+          name: 'Profile',
+          component: Profile,
+          meta: { AuthRequired: true , breadcrumb: 'Profile' }
+        }
+        ,
         {
           path: 'StudentList',
           name: 'StudentList',

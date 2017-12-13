@@ -25,7 +25,7 @@ export default {
       columnsStudents: [{
           label: 'Id',
           field: 'id',
-          visible: false
+          hidden : true
         },
         {
           label: 'First Name',
