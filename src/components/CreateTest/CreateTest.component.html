@@ -1,4 +1,4 @@
-<section v-if="loginRole === '3'">
+<section v-if="loginRole === '3' || loginRole === '2'">
   <router-link to="/Dashboard/TestList">
     <b-button variant="primary">Go To Test List</b-button>
   </router-link>
@@ -15,17 +15,42 @@
             </b-col>
           </b-row>
           <b-row class="my-1">
-            <b-col sm="4"><label for="input-none">Test Time (In minutes):</label></b-col>
-            <b-col sm="8">
-              <b-form-input type="text" placeholder="Enter Test Time" v-model="createtest.testtime" required></b-form-input>
-            </b-col>
+              <b-col sm="4"><label for="input-none">Negative Marking:</label></b-col>
+              <b-col sm="6">
+                <b-form-input type="text" placeholder="Enter Negative Marking %" v-model="createtest.negativemarking" required></b-form-input>
+              </b-col>
+              <b-col sm="2">
+                  <label for="input-none"><b>%</b></label>
+              </b-col>
           </b-row>
           <b-row class="my-1">
-            <b-col sm="4"><label for="input-none">Negative Marking:</label></b-col>
-            <b-col sm="8">
+              <b-col sm="4"><label for="input-none">Valid From:</label></b-col>
+              <b-col sm="8">
+                <date-picker placeholder="click me" v-model="createtest.validfrom" :config="config" required></date-picker>
+              </b-col>
+          </b-row>
+          <b-row class="my-1">
+              <b-col sm="4"><label for="input-none">Valid To:</label></b-col>
+              <b-col sm="8">
+                <date-picker placeholder="click me" v-model="createtest.validto" :config="config" required></date-picker>
+              </b-col>
+          </b-row>
+          <b-row class="my-1">
+              <b-col sm="4"><label for="input-none">Batches:</label></b-col>
+              <b-col sm="8">
+                <b-form-select v-model="createtest.batches" :options="batchOptions" required class="mb-3">
+                </b-form-select>
+              </b-col>
+          </b-row>
+          <b-row class="my-1">
+            <b-col sm="4"><label for="input-none">Test Time (In minutes):</label></b-col>
+            <b-col sm="6">
               <b-form-input type="text" placeholder="Enter Test Time" v-model="createtest.testtime" required></b-form-input>
             </b-col>
-          </b-row>
+            <b-col sm="2">
+                <label for="input-none">Minutes</label>
+            </b-col>
+          </b-row>        
           <b-row class="my-1">
             <b-col sm="4"><label for="input-none">Question Sort:</label></b-col>
             <b-col sm="8">

@@ -1,4 +1,4 @@
-<section v-if="loginRole === '3'">
+<section v-if="loginRole === '3' || loginRole === '2'">
     <router-link to="/Dashboard/QuestionBank">
       <b-button variant="primary"> Go To Question Bank</b-button>
     </router-link>
@@ -8,6 +8,13 @@
     <br>
     <b-form @submit="onSubmit">
       <b-container fluid>
+        <b-row class="my-1">
+          <b-col sm="2"><label for="input-none">Question Type:</label></b-col>
+          <b-col sm="10">
+              <b-form-select v-model="createquestion.questiontype" :options="questionTypeOptions" required class="mb-3">
+              </b-form-select>
+          </b-col>
+        </b-row>
         <b-row class="my-1">
           <b-col sm="2"><label for="input-none">Question:</label></b-col>
           <b-col sm="10">
@@ -22,7 +29,7 @@
             </b-form-select>
           </b-col>
           <b-col sm="1">
-            <b-button v-b-modal.modalScale variant="primary"><b>+</b></b-button>
+            <b-button class="w3-button w3-circle w3-blue" v-b-modal.modalScale variant="primary"><b>+</b></b-button>
           </b-col>
         </b-row>
         <b-row class="my-1">
@@ -32,9 +39,19 @@
             </b-form-select>
           </b-col>
           <b-col sm="1">
-            <b-button v-b-modal.modalSubject variant="primary"><b>+</b></b-button>
+            <b-button class="w3-circle w3-blue" v-b-modal.modalSubject variant="primary"><b>+</b></b-button>
           </b-col>
         </b-row>
+        <b-row class="my-1">
+            <b-col sm="2"><label for="input-none">Topic:</label></b-col>
+            <b-col sm="9">
+              <b-form-select v-model="createquestion.topic" :options="topicOptions" required class="mb-3">
+              </b-form-select>
+            </b-col>
+            <b-col sm="1">
+              <b-button class="w3-button w3-circle w3-blue" v-b-modal.modalSubject variant="primary"><b>+</b></b-button>
+            </b-col>
+          </b-row>
         <b-row id="answerDiv" style="margin-top: 10px;" class="my-1" v-for="(createanswer,key,index) in answers" v-bind:key="key">
           <b-col sm="2"><label for="input-none">Answer option {{ key + 1 }}:</label></b-col>
           <b-col sm="9">
@@ -42,18 +59,33 @@
           </b-col>
           <b-col sm="1">
             Correct?
-            <input class="answerCheckboxClass" style="width: 28px;" v-model="createanswer.iscorrect" @click="answerCheckboxClick($event)" type="checkbox">
+            <label class="answerCheckboxClass switch" style="width: 60px;">
+                <input v-model="createanswer.iscorrect" @click="answerCheckboxClick($event)" type="checkbox">
+                <span class="slider round"></span>
+            </label>
+            <!-- <input class="answerCheckboxClass" style="width: 28px;" v-model="createanswer.iscorrect" @click="answerCheckboxClick($event)" type="checkbox"> -->
           </b-col>
         </b-row>
         <b-row class="my-1" style="margin-top: 5px;">
           <b-col sm="2"></b-col>
           <b-col sm="9">
-            <b-button v-on:click="addRow()" title="Add answer option" style="float: left;" variant="primary"><b>+</b></b-button>
-            <b-button v-on:click="removeRow()" v-if="toShowRemoveAnswer" title="Add answer option" style="float: left; margin-left: 10px;"
+            <b-button v-on:click="addRow()" title="Add answer option" class="w3-blue" style="float: left;" variant="primary"><b>+</b></b-button>
+            <b-button v-on:click="removeRow()" v-if="toShowRemoveAnswer" class="w3-red" title="Add answer option" style="float: left; margin-left: 10px;"
               variant="primary"><b>-</b></b-button>
           </b-col>
           <b-col sm="1"></b-col>
         </b-row>
+        <b-row class="my-1">
+            <b-col sm="2"><label for="input-none">Explanation:</label></b-col>
+            <b-col sm="10">
+                <b-form-textarea
+                v-model="createquestion.explanation"
+                placeholder="Please Enter Explanation"
+                :rows="3"
+                :max-rows="6" required>
+                </b-form-textarea>
+            </b-col>
+          </b-row>
       </b-container>
       <br>
       <b-button type="submit" variant="primary">Create</b-button>

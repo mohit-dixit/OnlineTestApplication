@@ -1,136 +1,140 @@
 import SuccessNotification from '../SuccessNotification'
+import Multiselect from 'vue-multiselect'
 import VueLocalStorage from 'vue-localstorage'
 import * as config from '../../config/constants.js'
 import Vue from 'vue'
 import {
-  GetRequest,
-  PostRequest,
-  NumberKeyValidation
+    GetRequest,
+    PostRequest,
+    NumberKeyValidation
 } from '../../utils/globalservice'
-import Multiselect from 'vue-multiselect'
 
 export default {
-  name: 'create-teacher',
-  components: {
-    'success-notification': SuccessNotification,
-    Multiselect
-  },
-  props: ['id'],
-  data() {
-    this.responseMessage = null;
-    this.classesSubjectArr;
-    this.errorMessage = null;
-    this.BaseUrl = config.BASE_URL;
-    this.notifySuccess = false;
-    this.notifyError = false;
-    this.isEdit = false;
-    this.submitButtonText = 'Create';
-    return {
-      createteacherform: {},
-      selected: null,
-      classesoptions: [],
-      subjectoptions: []
-    }
-  },
-  computed: {
-
-  },
-  mounted() {
-
-  },
-  methods: {
-    bindSubjects: function() {
-      GetRequest(this.BaseUrl + 'api/admin/subject/list').then(res => {
-        this.subjectoptions.push({
-          subject: null,
-          text: '--Select Subject--'
-        })
-        if (res) {
-          res.result.message.forEach(function(element) {
-            this.subjectoptions.push({
-              value: element.id,
-              text: element.subjectName
-            })
-          }, this);
-          this.subjectList = list;
-          this.$forceUpdate();
-        }
-      });
+    name: 'create-teacher',
+    components: {
+        'success-notification': SuccessNotification,
+        Multiselect
     },
-    selectedClass: function(evt) {
-      let val = evt.target.value;
-      this.classesSubjectArr.forEach(function(element) {
-        if (element.className == val) {
-          this.subjectoptions = [];
-          element.institute_class_subjects.forEach(function(sub) {
-            this.subjectoptions.push({
-              value: sub.id,
-              text: sub.subject
-            })
-          }, this);
+    props: ['id'],
+    data() {
+        this.responseMessage = null;
+        this.errorMessage = null;
+        this.BaseUrl = config.BASE_URL;
+        this.notifySuccess = false;
+        this.notifyError = false;
+        this.isEdit = false;
+        this.submitButtonText = 'Create';
+        return {
+            createteacherform: {},
+            subjectoptions: [],
+            subjectsVal: {}
         }
-      }, this);
-      //Get List of subject on the basis of class and fill the dropdown
     },
-    getTeacherData: function() {
-      let postData = {};
-      postData.id = this.id;
-      PostRequest(this.BaseUrl + 'api/admin/edit/teacher', postData).then(res => {
-        if (res) {
-          if (res.status) {
-            let response = res.body.message;
-            this.createteacherform = response;
-          }
-        }
-      });
+    computed: {
+
     },
-    onSubmit(evt) {
-      evt.preventDefault();
+    mounted() {
 
-      //Making Post Data ==============================================================================
-      this.createteacherform.password = config.DEFAULT_PASSWORD;
-      //Making Post Data ==============================================================================
+    },
+    methods: {
+        customLabel(option) {
+            return `${option.subject}`
+        },
+        bindSubjects: function() {
+            GetRequest(this.BaseUrl + 'api/admin/subject/list').then(res => {
+                if (res) {
+                    res.result.message.forEach(function(element) {
+                        this.subjectoptions.push({
+                            id: element.id,
+                            subject: element.subjectName
+                        })
+                    }, this);
+                }
+            });
+        },
+        getTeacherData: function() {
+            let postData = {};
+            postData.id = this.id;
+            PostRequest(this.BaseUrl + 'api/admin/edit/teacher', postData).then(res => {
+                if (res) {
+                    if (res.status) {
+                        //let response = res.body.message;
+                        this.createteacherform = res.body.message;
+                        this.createteacherform.teacher_allow_scale = res.body.message.allow_scale == 1 ? true : false;
+                        this.createteacherform.teacher_allow_subject = res.body.message.allow_subject == 1 ? true : false;
+                        this.createteacherform.teacher_allow_student = res.body.message.allow_student == 1 ? true : false;
+                        let list = [];
+                        res.body.message.teacher_subjects.forEach(function(element) {
+                            list.push({
+                                id: element.subject.id,
+                                subject: element.subject.subjectName
+                            })
+                        }, this);
+                        this.subjectsVal.subjects = list;
+                    }
+                }
+            });
+        },
+        onSubmit(evt) {
+            evt.preventDefault();
 
+            //Making Post Data ==============================================================================
+            //this.createteacherform.password = config.DEFAULT_PASSWORD;
+            //Making Post Data ==============================================================================
+            let subjectId = [];
+            this.createteacherform.subjects = this.subjectsVal.subjects.map(function(key, value) {
+                return key.id;
+            });
+            this.createteacherform.teacher_allow_scale = this.createteacherform.teacher_allow_scale ? 1 : 2;
+            this.createteacherform.teacher_allow_subject = this.createteacherform.teacher_allow_subject ? 1 : 2;
+            this.createteacherform.teacher_allow_student = this.createteacherform.teacher_allow_student ? 1 : 2;
 
-      let apiPath = 'api/admin/create/teacher';
-      let isEditMode = this.isEdit;
-      if (isEditMode) {
-        apiPath = 'api/admin/update/teacher';
-      }
-      PostRequest(this.BaseUrl + apiPath, this.createteacherform).then(res => {
-        if (res) {
-          if (res.status == 200) {
-            this.createteacherform = {};
+            let apiPath = 'api/admin/create/teacher';
+            let isEditMode = this.isEdit;
             if (isEditMode) {
-              alert('Teacher updated successfully')
-              this.$router.push('/Dashboard/TeacherList');
-            } else {
-              this.notifySuccess = true;
-              this.notifyError = false;
-              this.responseMessage = 'Teacher created successfully';
-              this.$forceUpdate();
+                apiPath = 'api/admin/update/teacher';
             }
-          } else {
-            this.errorMessage = res.statustext;
-            this.notifySuccess = false;
-            this.notifyError = true;
-            this.$forceUpdate();
-          }
+            PostRequest(this.BaseUrl + apiPath, this.createteacherform).then(res => {
+                if (res) {
+                    if (res.status == 200) {
+                        this.createteacherform = {};
+                        this.subjectsVal = {};
+                        if (isEditMode) {
+                            alert('Teacher updated successfully')
+                            this.$router.push('/Dashboard/TeacherList');
+                        } else {
+                            this.notifySuccess = true;
+                            this.notifyError = false;
+                            this.responseMessage = 'Teacher created successfully';
+                            this.$forceUpdate();
+                        }
+                    } else {
+                        this.errorMessage = res.statustext;
+                        this.notifySuccess = false;
+                        this.notifyError = true;
+                        this.$forceUpdate();
+                    }
+                }
+            });
+        },
+        onlyNumberKey: function(event) {
+            return NumberKeyValidation(event);
         }
-      });
     },
-    onlyNumberKey: function(event) {
-      return NumberKeyValidation(event);
-    }
-  },
-  created: function() {
-    this.loginRole = Vue.lsobj.get('loginRole');
-    this.bindSubjects();
-    if (this.id) {
-      this.submitButtonText = 'Update';
-      this.isEdit = true;
-      this.getTeacherData();
+    created: function() {
+        this.loginRole = Vue.lsobj.get('loginRole');
+        this.instituteID = Vue.lsobj.get('instituteID');
 
+        this.createteacherform.teacher_allow_scale = Vue.lsobj.get('allow_scale') == 1 ? true : false;
+        this.createteacherform.teacher_allow_subject = Vue.lsobj.get('allow_subject') == 1 ? true : false;
+        this.createteacherform.teacher_allow_student = Vue.lsobj.get('allow_student') == 1 ? true : false;
+
+        this.bindSubjects();
+        if (this.id) {
+            this.submitButtonText = 'Update';
+            this.isEdit = true;
+            this.getTeacherData();
+
+        }
     }
-  }
 }

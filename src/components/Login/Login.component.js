@@ -35,19 +35,27 @@ export default {
 
   },
   methods: {
-    checkAuthentication: function () {
-      this.loader = true;
+    this.loader = true;
+    checkAuthentication: function() {
       LoginAuthentication(this.BaseUrl + 'api/superAdmin/login', this.loginform).then(res => {
         if (res) {
           this.loader = false;
           if (res.requestcode > 0) {
-              let loginUserDetails = res.responsedata;
-              Vue.lsobj.set('loginUserName', loginUserDetails[0].username);
-              Vue.lsobj.set('loginName', loginUserDetails[0].firstname + ' ' + loginUserDetails[0].lastname);
-              Vue.lsobj.set('loginRole', loginUserDetails[0].user_roles[0].role.id);
-              Vue.lsobj.set('rolename', loginUserDetails[0].user_roles[0].role.rolename);
-              Vue.lsobj.set('loginToken', loginUserDetails[0].token);
-              this.$router.push('Dashboard');
+            let loginUserDetails = res.responsedata;
+            Vue.lsobj.set('loginUserName', loginUserDetails[0].username);
+            Vue.lsobj.set('loginName', loginUserDetails[0].firstname + ' ' + loginUserDetails[0].lastname);
+            Vue.lsobj.set('loginRole', loginUserDetails[0].user_roles[0].role.id);
+            Vue.lsobj.set('rolename', loginUserDetails[0].user_roles[0].role.rolename);
+            Vue.lsobj.set('loginToken', loginUserDetails[0].token);
+
+            if (loginUserDetails[0].user_roles[0].role.id == 2) {
+              Vue.lsobj.set('instituteID', loginUserDetails[0].user_institutes[0].instituteId);
+              Vue.lsobj.set('allow_scale', loginUserDetails[0].user_institutes[0].institute.allow_scale);
+              Vue.lsobj.set('allow_student', loginUserDetails[0].user_institutes[0].institute.allow_student);
+              Vue.lsobj.set('allow_subject', loginUserDetails[0].user_institutes[0].institute.allow_subject);
+            }
+
+            this.$router.push('Dashboard');
           } else {
               this.loader = false;
               this.errorMessage = res.responsedata;

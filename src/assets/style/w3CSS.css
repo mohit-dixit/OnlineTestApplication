@@ -1,0 +1,48 @@
+.w3-blue {
+    border: none;
+    display: inline-block;
+    outline: 0;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: white;
+    background-color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    border-radius: 50%;
+    background-color: #2196F3;
+}
+
+.w3-blue:hover{
+    color:black;
+    background-color: #E9ECEF;
+    border:none;
+}
+
+.w3-red {
+    border: none;
+    display: inline-block;
+    outline: 0;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: white;
+    background-color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    border-radius: 50%;
+    background-color: #FE4D4D;
+}
+
+.w3-red:hover{
+    color:black;
+    background-color: #E9ECEF;
+    border:none;
+}
+
+
+
