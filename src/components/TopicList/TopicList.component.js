@@ -4,13 +4,13 @@ import {
   PostRequest
 } from '../../utils/globalservice'
 import * as config from '../../config/constants.js'
-export default {
-  name: 'student-list',
+export default  {
+  name: 'topic-list',
   components: {},
   props: [],
   data() {
     this.BaseUrl = config.BASE_URL;
-    this.studentList = [];
+    this.topicList = [];
     this.selectedId = 0;
     return {
       variants: [
@@ -22,29 +22,25 @@ export default {
       bodyTextVariant: 'dark',
       footerBgVariant: 'warning',
       footerTextVariant: 'dark',
-      columnsStudents: [{
+      columnsTopics: [{
           label: 'Id',
           field: 'id',
           hidden : true
         },
         {
-          label: 'First Name',
-          field: 'firstname',
+          label: 'Subject Id',
+          field: 'subjectId',
+          filterable: true,
+          hidden : true
+        },
+        {
+          label: 'Topic',
+          field: 'topicname',
           filterable: true
         },
         {
-          label: 'Last Name',
-          field: 'lastname',
-          filterable: true
-        },
-        {
-          label: 'Phone',
-          field: 'phone',
-          filterable: true
-        },
-        {
-          label: 'Email/Username',
-          field: 'email',
+          label: 'Subject',
+          field: 'subjectname',
           filterable: true
         },
         {
@@ -53,45 +49,47 @@ export default {
       ]
     }
   },
-  computed: {},
+  computed: {
+
+  },
   mounted() {
 
   },
   methods: {
-    bindStudents: function () {
-      GetRequest(this.BaseUrl + 'api/admin/student/list').then(res => {
+    bindTopics: function () {
+      GetRequest(this.BaseUrl + 'api/admin/topic/list').then(res => {
         if (res.status) {
-          let response = res.result.message[0].user_roles;
+          let response = res.result.message;
           let list = [];
           response.forEach(function (element) {
-            let userObject = element.user;
             list.push({
-              id: userObject.id,
-              firstname: userObject.firstname,
-              lastname: userObject.lastname,
-              phone: userObject.phone,
-              email: userObject.username
+              id: element.id,
+              topicname: element.topicName,
+              subjectname: element.subject.subjectName,
+              subjectId: element.subject.id,
             })
           }, this);
-          this.studentList = list;
+          this.topicList = list;
           this.$forceUpdate();
         } else {
-          this.studentList = [];
+          this.topicList = [];
         }
       });
     },
-    redirectToNewStudent: function () {
-      this.$router.push('/Dashboard/CreateStudent');
+    redirectToNewTopic: function () {
+      this.$router.push('/Dashboard/CreateTopic');
     },
-    editStudentClick: function (events, args) {
+    editTopicClick: function (events, args) {
       this.$router.push({
-        name: 'EditStudent',
+        name: 'EditTopic',
         params: {
-          id: events.row.id
+          id: events.row.id,
+          name: events.row.topicname,
+          subjectId: events.row.subjectId
         }
       });
     },
-    deleteStudentClick: function (events, args) {
+    deleteTopicClick: function (events, args) {
       this.selectedId = events.row.id;
       this.$refs.deleteModal.show();
     },
@@ -101,11 +99,11 @@ export default {
     deleteConfirmation: function () {
       if (this.selectedId) {
         let postData = {};
-        postData.id = this.selectedId;
-        PostRequest(this.BaseUrl + 'api/admin/delete/user', postData).then(res => {
+        postData.topic_id = this.selectedId;
+        PostRequest(this.BaseUrl + 'api/admin/delete/topic', postData).then(res => {
           if (res) {
             if (res.status == 200) {
-              this.bindStudents();
+              this.bindTopics();
               this.$refs.deleteModal.hide();
             }
           }
@@ -115,6 +113,6 @@ export default {
   },
   created: function () {
     this.loginRole = Vue.lsobj.get('loginRole');
-    this.bindStudents();
+    this.bindTopics();
   }
 }

@@ -25,7 +25,7 @@ export default  {
       columnsBatchs: [{
           label: 'Id',
           field: 'id',
-          visible: false
+          hidden : true
         },
         {
           label: 'Batch',
@@ -45,7 +45,7 @@ export default  {
 
   },
   methods: {
-    bindBatchs: function () {
+    bindBatches: function () {
       GetRequest(this.BaseUrl + 'api/admin/batch/list').then(res => {
         if (res.status) {
           let response = res.result.message;
@@ -90,7 +90,7 @@ export default  {
         PostRequest(this.BaseUrl + 'api/admin/delete/batch', postData).then(res => {
           if (res) {
             if (res.status == 200) {
-              this.bindBatchs();
+              this.bindBatches();
               this.$refs.deleteModal.hide();
             }
           }
@@ -100,6 +100,6 @@ export default  {
   },
   created: function () {
     this.loginRole = Vue.lsobj.get('loginRole');
-    this.bindBatchs();
+    this.bindBatches();
   }
 }

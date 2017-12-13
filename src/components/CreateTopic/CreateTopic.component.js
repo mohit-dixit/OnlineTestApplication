@@ -6,10 +6,10 @@ import {
   PostRequest,
   NumberKeyValidation
 } from '../../utils/globalservice'
-export default {
-  name: 'create-subject',
+export default  {
+  name: 'create-topic',
   components: {},
-  props: ['id', 'name'],
+  props: ['id','subjectId','name'],
   data() {
     this.responseMessage = null;
     this.ModalMessage = null;
@@ -18,7 +18,7 @@ export default {
     this.notifySuccess = false;
     this.notifyError = false;
     this.isEdit = false;
-    this.submitButtonText = 'Create';
+    this.submitButtonText ='Create';
     return {
       variants: [
         'primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'
@@ -29,8 +29,8 @@ export default {
       bodyTextVariant: 'dark',
       footerBgVariant: 'warning',
       footerTextVariant: 'dark',
-      createsubjectform: {},
-      rows: []
+      createtopicform: { subjectId:null },
+      subjectOptions: []
     }
   },
   computed: {
@@ -40,23 +40,41 @@ export default {
 
   },
   methods: {
+    bindSubjects: function () {
+      GetRequest(this.BaseUrl + 'api/admin/subject/list').then(res => {
+        this.subjectOptions.push({
+          value: null,
+          text: '--Select Subject--'
+        })
+        if (res.status) {
+          let response = res.result.message;
+          if(response){
+            response.forEach(function (element) {
+              this.subjectOptions.push({
+                value: element.id,
+                text: element.subjectName
+              })
+            }, this);
+          }
+        }
+      });
+    },
     onSubmit(evt) {
-
-      let apiPath = 'api/admin/create/subject';
+      let apiPath = 'api/admin/create/topic';
       let isEditMode = this.isEdit;
       if(isEditMode){
-        apiPath = 'api/admin/update/subject';
+        apiPath = 'api/admin/update/topic';
       }
-      PostRequest(this.BaseUrl + apiPath , this.createsubjectform).then(res => {
+      PostRequest(this.BaseUrl + apiPath  , this.createtopicform).then(res => {
         if (res) {
           if (res.status == 200) {
-            this.createsubjectform = {};
+            this.createtopicform = {};
             if(isEditMode){
-              this.ModalMessage = 'Subject updated successfully';
+              this.ModalMessage = 'Topic updated successfully';
               this.$refs.notificationModal.show();
             }
             else{
-              this.responseMessage = 'Subject created successfully';
+              this.responseMessage = 'Topic created successfully';
               this.notifySuccess = true;
               this.notifyError = false;
             }
@@ -69,19 +87,21 @@ export default {
       });
     },
     closeModal: function (events, args) {
-      this.$router.push('/Dashboard/Masters/SubjectList');
+      this.$router.push('/Dashboard/Masters/TopicList');
     },
-    onlyNumberKey: function(event) {
+    onlyNumberKey: function (event) {
       return NumberKeyValidation(event);
     }
   },
-  created: function() {
+  created: function () {
+    this.bindSubjects();
     this.loginRole = Vue.lsobj.get('loginRole');
     if (this.id) {
       this.submitButtonText = 'Update';
       this.isEdit = true;
-      this.createsubjectform.id = this.id;
-      this.createsubjectform.subjectName = this.name;
+      this.createtopicform.topic_id = this.id;
+      this.createtopicform.topicName = this.name;
+      this.createtopicform.subjectId = this.subjectId;
     }
   }
 }

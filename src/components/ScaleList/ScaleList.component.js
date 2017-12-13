@@ -25,7 +25,7 @@ export default {
       columnsScales: [{
           label: 'Id',
           field: 'id',
-          visible: false
+          hidden : true
         },
         {
           label: 'Scale',
@@ -53,19 +53,21 @@ export default {
     bindScales: function () {
       GetRequest(this.BaseUrl + 'api/admin/scale/list').then(res => {
         if (res.status) {
-          let response = res.result.message;
-          let list = [];
-          response.forEach(function (element) {
-            list.push({
-              id: element.id,
-              scalename: element.scaleName,
-              points: element.scalePoint,
-            })
-          }, this);
-          this.scaleList = list;
-          this.$forceUpdate();
-        } else {
-          this.scaleList = [];
+          if(res.result){
+            let response = res.result.message;
+            let list = [];
+            response.forEach(function (element) {
+              list.push({
+                id: element.id,
+                scalename: element.scaleName,
+                points: element.scalePoint,
+              })
+            }, this);
+            this.scaleList = list;
+            this.$forceUpdate();
+          } else {
+            this.scaleList = [];
+          }
         }
       });
     },

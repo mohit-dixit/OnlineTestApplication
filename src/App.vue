@@ -18,4 +18,8 @@
     text-align: center;
     color: #2c3e50;
   }
+
+  button, input[type="button"], input[type="submit"] {
+  cursor: pointer;
+  }
 </style>

@@ -14,6 +14,7 @@ export default {
   props: ['id','name','points'],
   data() {
     this.responseMessage = null;
+    this.ModalMessage = null;
     this.errorMessage = null;
     this.BaseUrl = config.BASE_URL;
     this.notifySuccess = false;
@@ -21,6 +22,15 @@ export default {
     this.isEdit = false;
     this.submitButtonText ='Create';
     return {
+      variants: [
+        'primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'
+      ],
+      headerBgVariant: 'dark',
+      headerTextVariant: 'light',
+      bodyBgVariant: 'light',
+      bodyTextVariant: 'dark',
+      footerBgVariant: 'warning',
+      footerTextVariant: 'dark',
       createscaleform: {},
     }
   },
@@ -42,8 +52,8 @@ export default {
           if (res.status == 200) {
             this.createscaleform = {};
             if(isEditMode){
-              alert('Scale updated successfully')
-              this.$router.push('/Dashboard/Masters/ScaleList');
+              this.ModalMessage = 'Scale updated successfully';
+              this.$refs.notificationModal.show();
             }
             else{
               this.responseMessage = 'Scale created successfully';
@@ -57,6 +67,9 @@ export default {
           }
         }
       });
+    },
+    closeModal: function (events, args) {
+      this.$router.push('/Dashboard/Masters/ScaleList');
     },
     onlyNumberKey: function (event) {
       return NumberKeyValidation(event);

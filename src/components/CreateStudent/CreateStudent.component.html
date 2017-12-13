@@ -9,6 +9,13 @@
       <b-form @submit="onSubmit">
         <b-container fluid>
           <b-row class="my-1">
+            <b-col sm="4"><label for="input-none">Batch:</label></b-col>
+             <b-col sm="8">
+              <b-form-select v-model="createstudentform.associatedbatch" :options="batchOptions" required class="mb-3">
+              </b-form-select>
+             </b-col>
+          </b-row>
+          <b-row class="my-1">
             <b-col sm="4"><label for="input-none">First Name:</label></b-col>
             <b-col sm="8">
               <b-form-input id="name" type="text" v-model="createstudentform.firstname" required placeholder="Enter First Name"></b-form-input>

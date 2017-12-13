@@ -8,18 +8,18 @@
                       <span>Create Admin</span>
                     </a>
     </router-link>
-    <router-link to="/Dashboard/CreateTeacher" v-if="isUserAdmin">
+    <!-- <router-link to="/Dashboard/CreateTeacher" v-if="isUserAdmin">
       <a href="" class="dashboard-module">
                       <img src="../../assets/dashboardfiles/teacher.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_files.gif" width="64" height="64" alt="edit" />
                       <span>Create Teacher</span>
                     </a>
-    </router-link>
-    <router-link to="/Dashboard/CreateStudent" v-if="isUserAdmin">
+    </router-link> -->
+    <!-- <router-link to="/Dashboard/CreateStudent" v-if="isUserAdmin">
       <a href="" class="dashboard-module">
                       <img src="../../assets/dashboardfiles/student.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_files.gif" width="64" height="64" alt="edit" />
                       <span>Create Student</span>
                     </a>
-    </router-link>
+    </router-link> -->
     <router-link to="/Dashboard/CreateQuestion" v-if="isUserTeacher">
       <a href="" class="dashboard-module">
                       <img src="../../assets/dashboardfiles/question.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_files.gif" width="64" height="64" alt="edit" />
@@ -80,6 +80,12 @@
         <img src="../../assets/images/uploads.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_settings.gif" width="64" height="64" alt="edit" />
         <span>Uploads</span>
       </a>
+    </router-link>
+    <router-link to="/Dashboard/Profile">
+      <a href="" class="dashboard-module">
+                      <img src="../../assets/images/profile.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_files.gif" width="64" height="64" alt="edit" />
+                      <span>Profile</span>
+                    </a>
     </router-link>
     <div style="clear: both"></div>
   </div>

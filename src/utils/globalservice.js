@@ -17,7 +17,6 @@ function GetRequest(url, data) {
       })
 }
 function PostRequest(url, postdata) {
-    Vue.http.headers.common['Authorization'] = postdata.token;
     return Vue.http.post(url, postdata)
       .then(
         response => {

@@ -21,7 +21,8 @@ export default  {
     this.isEdit = false;
     this.submitButtonText = 'Create';
     return {
-      createstudentform: {}
+      createstudentform: {associatedbatch: null},
+      batchOptions: []
     }
   },
   computed: {
@@ -31,6 +32,25 @@ export default  {
 
   },
   methods: {
+    bindBatches: function () {
+      GetRequest(this.BaseUrl + 'api/admin/batch/list').then(res => {
+        this.batchOptions.push({
+          value: null,
+          text: '--Select Batch--'
+        })
+        if (res.status) {
+          let response = res.result.message;
+          if(response){
+            response.forEach(function (element) {
+              this.batchOptions.push({
+                value: element.id,
+                text: element.batchName
+              })
+            }, this);
+          }
+        }
+      });
+    },
     getStudentData: function () {
       let postData = {};
       postData.id = this.id;
@@ -82,6 +102,7 @@ export default  {
     }
   },
   created: function () {
+    this.bindBatches();
     this.loginRole = Vue.lsobj.get('loginRole');
     if (this.id) {
       this.submitButtonText = 'Update';
