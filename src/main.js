@@ -36,8 +36,19 @@ Vue.use(vueXlsxTable, {rABS: false})
 
 //HTTP Interceptor to send Token in Headers. ================================================================
 Vue.http.interceptors.push((request, next) => {
+  // debugger;
   request.headers.set('Authorization', Vue.lsobj.get('loginToken'))
-  next()
+  next();
+
+  /* if(Vue.lsobj.get('loginToken')) {
+    request.headers.set('Authorization', Vue.lsobj.get('loginToken'))
+    next();
+  } else {
+    console.log('Token Expired');
+    next({
+      path: '/'
+    })
+  } */
 })
 //HTTP Interceptor to send Token in Headers. ================================================================
 

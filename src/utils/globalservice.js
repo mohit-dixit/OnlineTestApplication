@@ -6,13 +6,19 @@ export {
   NumberKeyValidation
 };
 
+import Router from '../router';
+import constants from '../config/constants';
+
 function GetRequest(url, data) {
     return Vue.http.get(url)
-      .then(
-        response => {
+      .then(response => {
           return response.data
-        })
+      })
       .catch(error => {
+        debugger;
+        if(error.status === constants.STATUS_CODES.UNAUTHORIZED) {
+          Router.push('/');
+        } 
         return error;
       })
 }
@@ -27,7 +33,12 @@ function PostRequest(url, postdata) {
             return {status : response.body.status, statustext : response.body.error.msg};
           }
         })
-      .catch(error => error)
+      .catch(error => {
+        if(error.status === constants.STATUS_CODES.UNAUTHORIZED) {
+          Router.push('/');
+        } 
+        return error;
+      })
 }
 
 function LoginAuthentication(url, data) {
