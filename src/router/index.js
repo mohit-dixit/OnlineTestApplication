@@ -42,6 +42,7 @@ import CreateTopic from '@/components/CreateTopic'
 import TopicList from '@/components/TopicList'
 import EditTopic from '@/components/CreateTopic'
 import Profile from '@/components/Profile'
+import EditQuestion from '@/components/CreateQuestion'
 
 Vue.use(Router)
 Vue.use(VueBreadcrumbs)
@@ -174,6 +175,13 @@ export default new Router({
           name: 'CreateQuestion',
           component: CreateQuestion,
           meta: { AuthRequired: true, breadcrumb: 'Create Question' }
+        }
+        ,{
+          path: 'EditQuestion/:id',
+          name: 'EditQuestion',
+          component: EditQuestion,
+          props: true,
+          meta: { AuthRequired: true , breadcrumb: 'Edit Question' }
         },
         {
           path: 'CreateInstitute',

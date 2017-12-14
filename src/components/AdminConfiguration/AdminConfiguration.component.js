@@ -16,31 +16,21 @@ export default {
     },
     props: [],
     data() {
+        this.ModalMessage = null;
         this.BaseUrl = config.BASE_URL;
         return {
+          variants: [
+            'primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'
+          ],
+          headerBgVariant: 'dark',
+          headerTextVariant: 'light',
+          bodyBgVariant: 'light',
+          bodyTextVariant: 'dark',
+          footerBgVariant: 'warning',
+          footerTextVariant: 'dark',
             adminconfigurationform: {
                 allow_scale: true
             },
-            value: [{
-                text: 'Easy',
-                value: 1
-            }, {
-                text: 'Medium',
-                value: 2
-            }, {
-                text: 'Difficult',
-                value: 3
-            }],
-            scaleOptions: [{
-                text: 'Easy',
-                value: 1
-            }, {
-                text: 'Medium',
-                value: 2
-            }, {
-                text: 'Difficult',
-                value: 3
-            }]
         }
     },
     computed: {
@@ -51,41 +41,31 @@ export default {
     },
     methods: {
         onSubmit() {
-            alert(JSON.stringify(this.adminconfigurationform));
             let apiPath = 'api/admin/update/config';
-            // let isEditMode = this.isEdit;
-            // if (isEditMode) {
-            //     apiPath = 'api/admin/update/teacher';
-            // }
-            
-            this.adminconfigurationform.allow_scale = this.adminconfigurationform.allow_scale  ? 1 : 2;
-            this.adminconfigurationform.allow_subject = this.adminconfigurationform.allow_subject ? 1 : 2;
-            this.adminconfigurationform.allow_student = this.adminconfigurationform.allow_student ? 1 : 2;
-            
+
+            this.adminconfigurationform.institute_allow_scale = this.adminconfigurationform.allow_scale  ? config.Active : config.Inactive;
+            this.adminconfigurationform.institute_allow_subject = this.adminconfigurationform.allow_subject ? config.Active : config.Inactive;
+            this.adminconfigurationform.institute_allow_batch = this.adminconfigurationform.allow_batch ? config.Active : config.Inactive;
+            this.adminconfigurationform.institute_allow_topic = this.adminconfigurationform.allow_topic ? config.Active : config.Inactive;
+            this.adminconfigurationform.institute_allow_student = this.adminconfigurationform.allow_student ? config.Active : config.Inactive;
+
             PostRequest(this.BaseUrl + apiPath, this.adminconfigurationform).then(res => {
                 if (res) {
                     if (res.status == 200) {
-                        // this.createteacherform = {};
-                        // if (isEditMode) {
-                        //     alert('Configuration Changed Successfully')
-                        //     this.$router.push('/Dashboard/TeacherList');
-                        // } else {
-                        //     this.notifySuccess = true;
-                        //     this.notifyError = false;
-                        //     this.responseMessage = 'Teacher created successfully';
-                        //     this.$forceUpdate();
-                        // }
-                    } 
-                    // else {
-                    //     this.errorMessage = res.statustext;
-                    //     this.notifySuccess = false;
-                    //     this.notifyError = true;
-                    //     this.$forceUpdate();
-                    // }
+                      this.ModalMessage = 'Configuration updated successfully';
+                      Vue.lsobj.set('allow_scale', this.adminconfigurationform.institute_allow_scale);
+                      Vue.lsobj.set('allow_student', this.adminconfigurationform.institute_allow_student);
+                      Vue.lsobj.set('allow_subject', this.adminconfigurationform.institute_allow_subject);
+                      Vue.lsobj.set('allow_batch', this.adminconfigurationform.institute_allow_batch);
+                      Vue.lsobj.set('allow_topic', this.adminconfigurationform.institute_allow_topic);
+                      this.$refs.notificationModal.show();
+                    }
                 }
             });
+        },
+        closeModal: function (events, args) {
+          this.$refs.notificationModal.hide();
         }
-
     },
     created: function() {
         this.loginRole = Vue.lsobj.get('loginRole');
@@ -93,11 +73,13 @@ export default {
         this.allow_scale = Vue.lsobj.get('allow_scale');
         this.allow_student = Vue.lsobj.get('allow_student');
         this.allow_subject = Vue.lsobj.get('allow_subject');
-        debugger;
+        this.allow_batch = Vue.lsobj.get('allow_batch');
+        this.allow_topic = Vue.lsobj.get('allow_topic');
+
         this.adminconfigurationform.allow_scale = this.allow_scale == 1 ? true : false;
         this.adminconfigurationform.allow_subject = this.allow_subject == 1 ? true : false;
-        //this.adminconfigurationform.allow_batch = true;
+        this.adminconfigurationform.allow_batch = this.allow_batch == 1 ? true : false;
+        this.adminconfigurationform.allow_topic = this.allow_topic == 1 ? true : false;
         this.adminconfigurationform.allow_student = this.allow_student == 1 ? true : false;
-        debugger;
     }
 }

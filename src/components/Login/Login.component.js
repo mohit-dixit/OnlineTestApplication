@@ -53,6 +53,8 @@ export default {
               Vue.lsobj.set('allow_scale', loginUserDetails[0].user_institutes[0].institute.allow_scale);
               Vue.lsobj.set('allow_student', loginUserDetails[0].user_institutes[0].institute.allow_student);
               Vue.lsobj.set('allow_subject', loginUserDetails[0].user_institutes[0].institute.allow_subject);
+              Vue.lsobj.set('allow_batch', loginUserDetails[0].user_institutes[0].institute.allow_batch);
+              Vue.lsobj.set('allow_topic', loginUserDetails[0].user_institutes[0].institute.allow_topic);
             }
 
             this.$router.push('Dashboard');

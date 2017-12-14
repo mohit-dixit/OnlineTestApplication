@@ -1,13 +1,23 @@
 import Vue from "vue";
-import {GetRequest, PostRequest} from '../../utils/globalservice'
+import {
+  GetRequest,
+  PostRequest
+} from '../../utils/globalservice'
+import * as config from '../../config/constants.js'
 export default  {
   name: 'question-bank',
   components: {},
   props: [],
   data () {
+    this.BaseUrl = config.BASE_URL;
     this.questionList = [];
     return {
       columnsQuestions: [
+        {
+          label: 'Id',
+          field: 'id',
+          hidden : true
+        },
         {
           label: 'Question',
           field: 'question',
@@ -24,6 +34,11 @@ export default  {
           filterable: true,
         },
         {
+          label: 'Topic',
+          field: 'topic',
+          filterable: true,
+        },
+        {
           label: 'Action'
         }
       ]
@@ -37,10 +52,34 @@ export default  {
   },
   methods: {
     getQuestionList: function(){
-      GetRequest('static/question.json').then(res => {this.questionList = res; this.$forceUpdate();});
+
+      GetRequest(this.BaseUrl + 'api/admin/question/list').then(res => {
+        if (res.status) {
+          let response = res.result.message;
+          let list = [];
+          if(response){
+            response.forEach(function (element) {
+              list.push({
+                id: element.id,
+                question: element.question,
+                scale: element.scale.scaleName,
+                subject: element.subject.subjectName,
+                topic: element.topic.topicName
+              })
+            }, this);
+          }
+          this.questionList = list;
+          this.$forceUpdate();
+        }
+      });
     },
     editQuestionClick: function (events, args) {
-      this.$router.push('/Dashboard/CreateQuestion', 1);
+      this.$router.push({
+        name: 'EditQuestion',
+        params: {
+          id: events.row.id
+        }
+      });
     },
     deleteQuestionClick: function (events, args) {
       this.$router.push('/Dashboard/CreateAdmin', 1);
@@ -48,10 +87,6 @@ export default  {
   },
   created: function () {
     this.loginRole = Vue.lsobj.get('loginRole');
-    this.questionList.push({
-      question: 'asasddsa dsadsad sadsa dadsa dsa dsadsad das das dasds',
-      scale: 'Hard',
-      subject: 'English'
-    });
+    this.getQuestionList();
   }
 }

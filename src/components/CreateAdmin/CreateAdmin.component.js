@@ -95,7 +95,7 @@ export default {
               {
                 this.createadminform = {};
                 if(isEditMode){
-                  alert('Admin updated successfully')
+                  alert('Admin updated successfully');
                   this.$router.push('/Dashboard/AdminList');
                 }
                 else{
