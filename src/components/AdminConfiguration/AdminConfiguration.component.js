@@ -93,11 +93,10 @@ export default {
         this.allow_scale = Vue.lsobj.get('allow_scale');
         this.allow_student = Vue.lsobj.get('allow_student');
         this.allow_subject = Vue.lsobj.get('allow_subject');
-        debugger;
+        
         this.adminconfigurationform.allow_scale = this.allow_scale == 1 ? true : false;
         this.adminconfigurationform.allow_subject = this.allow_subject == 1 ? true : false;
         //this.adminconfigurationform.allow_batch = true;
         this.adminconfigurationform.allow_student = this.allow_student == 1 ? true : false;
-        debugger;
     }
 }
