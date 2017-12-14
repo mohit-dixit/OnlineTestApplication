@@ -40,6 +40,7 @@ export default  {
   },
   methods: {
     onSubmit(evt) {
+      evt.preventDefault();
       let apiPath = 'api/admin/create/batch';
       let isEditMode = this.isEdit;
       if(isEditMode){

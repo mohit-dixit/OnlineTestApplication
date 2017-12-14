@@ -78,7 +78,22 @@ export default {
     },
     deleteSubjectClick: function (events, args) {
       this.selectedId = events.row.id;
-      this.$refs.deleteModal.show();
+      // this.$refs.deleteModal.show();
+      this.$swal({
+        title: 'Wait !',
+        text: "Are you sure you want to delete ?",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'OK'
+      }).then((result) => {
+        // debugger;
+        if (result) {
+          // this.$router.push('/Dashboard/Masters/SubjectList');
+          this.deleteConfirmation();
+        }
+      })
     },
     closeModal: function (events, args) {
       this.$refs.deleteModal.hide();

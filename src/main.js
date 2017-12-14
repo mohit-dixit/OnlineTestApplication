@@ -16,6 +16,9 @@ import VeeValidate from 'vee-validate';
 /* For Spinner while HTTP calls  */
 // import {RotateSquare2} from 'vue-loading-spinner'
 
+/* For sweet Alert as notification */
+import VueSweetAlert from 'vue-sweetalert'
+
 import './assets/style/loader.css';
 import './assets/style/bootstrap-datetimepicker.css'
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
@@ -26,6 +29,7 @@ import '../node_modules/vue-multiselect/dist/vue-multiselect.min.css'
 Vue.config.productionTip = false
 
 // Vue.use(RotateSquare2);
+Vue.use(VueSweetAlert)
 Vue.use(VeeValidate);
 Vue.use(BootstrapVue);
 Vue.use(VueResource);
@@ -36,8 +40,19 @@ Vue.use(vueXlsxTable, {rABS: false})
 
 //HTTP Interceptor to send Token in Headers. ================================================================
 Vue.http.interceptors.push((request, next) => {
+  // debugger;
   request.headers.set('Authorization', Vue.lsobj.get('loginToken'))
-  next()
+  next();
+
+  /* if(Vue.lsobj.get('loginToken')) {
+    request.headers.set('Authorization', Vue.lsobj.get('loginToken'))
+    next();
+  } else {
+    console.log('Token Expired');
+    next({
+      path: '/'
+    })
+  } */
 })
 //HTTP Interceptor to send Token in Headers. ================================================================
 

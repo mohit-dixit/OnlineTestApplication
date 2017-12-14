@@ -75,7 +75,6 @@ export default {
         this.allow_subject = Vue.lsobj.get('allow_subject');
         this.allow_batch = Vue.lsobj.get('allow_batch');
         this.allow_topic = Vue.lsobj.get('allow_topic');
-
         this.adminconfigurationform.allow_scale = this.allow_scale == 1 ? true : false;
         this.adminconfigurationform.allow_subject = this.allow_subject == 1 ? true : false;
         this.adminconfigurationform.allow_batch = this.allow_batch == 1 ? true : false;

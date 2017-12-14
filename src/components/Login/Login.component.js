@@ -56,7 +56,6 @@ export default {
               Vue.lsobj.set('allow_batch', loginUserDetails[0].user_institutes[0].institute.allow_batch);
               Vue.lsobj.set('allow_topic', loginUserDetails[0].user_institutes[0].institute.allow_topic);
             }
-
             this.$router.push('Dashboard');
           } else {
               this.loader = false;
