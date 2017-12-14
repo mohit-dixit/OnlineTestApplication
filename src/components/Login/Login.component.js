@@ -37,6 +37,7 @@ export default {
   methods: {
     checkAuthentication: function() {
       this.loader = true;
+      this.loginform.password = btoa(this.loginform.password);
       LoginAuthentication(this.BaseUrl + 'api/superAdmin/login', this.loginform).then(res => {
         if (res) {
           this.loader = false;
@@ -45,8 +46,15 @@ export default {
             Vue.lsobj.set('loginUserName', loginUserDetails[0].username);
             Vue.lsobj.set('loginName', loginUserDetails[0].firstname + ' ' + loginUserDetails[0].lastname);
             Vue.lsobj.set('loginRole', loginUserDetails[0].user_roles[0].role.id);
-            Vue.lsobj.set('rolename', loginUserDetails[0].user_roles[0].role.rolename);
             Vue.lsobj.set('loginToken', loginUserDetails[0].token);
+
+            // Vue.lsobj.set('rolename', loginUserDetails[0].user_roles[0].role.rolename);
+            if(loginUserDetails[0].user_roles.length == 1) {
+              Vue.lsobj.set('rolename', loginUserDetails[0].user_roles[0].role.rolename);
+            } else {
+              Vue.lsobj.set('rolename', loginUserDetails[0].user_roles[0].role.rolename);
+              Vue.lsobj.set('SecondryRolename', loginUserDetails[0].user_roles[1].role.rolename); 
+            }
 
             if (loginUserDetails[0].user_roles[0].role.id == 2) {
               Vue.lsobj.set('instituteID', loginUserDetails[0].user_institutes[0].instituteId);
@@ -59,8 +67,15 @@ export default {
             this.$router.push('Dashboard');
           } else {
               this.loader = false;
-              this.errorMessage = res.responsedata;
               this.$forceUpdate();
+              this.$swal({
+                title: 'Wait !',
+                text: res.responsedata,
+                type: 'error',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'OK'
+              })
           }
         }
       });

@@ -8,7 +8,13 @@
           &nbsp;
         </div>
         <div class="grid_4">
-          <a class="simpletext" style="color: #02BEEE;"><b>Welcome,&nbsp;{{loginUserName}} | {{loginRole}}</b></a>
+          <a class="simpletext" style="color: #02BEEE;">
+            <b>
+              Welcome,&nbsp;
+              {{loginUserName}} | 
+              {{SecondryRolename ? 'Teacher' : loginRole}}
+            </b>
+          </a>
           <router-link id="logout" @click.native="logout()" to="/">Logout</router-link>
         </div>
       </div>
@@ -40,7 +46,20 @@
     <!-- End #header-main -->
     <div style="clear: both;"></div>
     <!-- Sub navigation -->
-    <div id="subnav">
+    <div id="subnav"> 
+      
+      <b-row v-if='SecondryRolename'>
+        <b-col sm="11">
+          <!-- <label for="input-none">{{asAdminToggle}}Allow Teacher to act as ADMIN:</label> -->
+        </b-col>
+        <b-col sm="1" style='float:right'>
+          <label class="switch">
+            <input v-model="asAdminToggle" type="checkbox"  @change='roleToggle'> 
+            <span class="slider round"></span>
+          </label>
+        </b-col>
+      </b-row>
+
       <div class="container_12">
         <!-- <div class="grid_12">
           <ul>

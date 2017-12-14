@@ -63,6 +63,7 @@ export default {
                         this.createteacherform.teacher_allow_scale = res.body.message.allow_scale == 1 ? true : false;
                         this.createteacherform.teacher_allow_subject = res.body.message.allow_subject == 1 ? true : false;
                         this.createteacherform.teacher_allow_student = res.body.message.allow_student == 1 ? true : false;
+                        this.createteacherform.isAdmin = res.body.message.isAdmin == 1 ? true : false;
                         let list = [];
                         res.body.message.teacher_subjects.forEach(function(element) {
                             list.push({
@@ -88,6 +89,7 @@ export default {
             this.createteacherform.teacher_allow_scale = this.createteacherform.teacher_allow_scale ? 1 : 2;
             this.createteacherform.teacher_allow_subject = this.createteacherform.teacher_allow_subject ? 1 : 2;
             this.createteacherform.teacher_allow_student = this.createteacherform.teacher_allow_student ? 1 : 2;
+            this.createteacherform.isAdmin = this.createteacherform.isAdmin ? 1 : 2;
 
             let apiPath = 'api/admin/create/teacher';
             let isEditMode = this.isEdit;
@@ -128,7 +130,8 @@ export default {
         this.createteacherform.teacher_allow_scale = Vue.lsobj.get('allow_scale') == 1 ? true : false;
         this.createteacherform.teacher_allow_subject = Vue.lsobj.get('allow_subject') == 1 ? true : false;
         this.createteacherform.teacher_allow_student = Vue.lsobj.get('allow_student') == 1 ? true : false;
-
+        this.createteacherform.isAdmin = Vue.lsobj.get('isAdmin') == 1 ? true : false;
+    
         this.bindSubjects();
         if (this.id) {
             this.submitButtonText = 'Update';
