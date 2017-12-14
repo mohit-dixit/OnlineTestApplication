@@ -40,7 +40,7 @@ export default  {
       GetRequest('static/question.json').then(res => {this.questionList = res; this.$forceUpdate();});
     },
     editQuestionClick: function (events, args) {
-      this.$router.push('/Dashboard/CreateAdmin', 1);
+      this.$router.push('/Dashboard/CreateQuestion', 1);
     },
     deleteQuestionClick: function (events, args) {
       this.$router.push('/Dashboard/CreateAdmin', 1);

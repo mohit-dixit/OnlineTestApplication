@@ -45,7 +45,7 @@ export default  {
       GetRequest('static/question.json').then(res => {this.testList = res; this.$forceUpdate();});
     },
     editTestClick: function (events, args) {
-      this.$router.push('/Dashboard/CreateAdmin', 1);
+      this.$router.push('/Dashboard/CreateTest', 1);
     },
     deleteTestClick: function (events, args) {
       this.$router.push('/Dashboard/CreateAdmin', 1);
