@@ -54,7 +54,6 @@ export default {
               Vue.lsobj.set('allow_student', loginUserDetails[0].user_institutes[0].institute.allow_student);
               Vue.lsobj.set('allow_subject', loginUserDetails[0].user_institutes[0].institute.allow_subject);
             }
-
             this.$router.push('Dashboard');
           } else {
               this.loader = false;

@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     onSubmit(evt) {
-
+      evt.preventDefault();
       let apiPath = 'api/admin/create/subject';
       let isEditMode = this.isEdit;
       if(isEditMode){
@@ -52,11 +52,33 @@ export default {
           if (res.status == 200) {
             this.createsubjectform = {};
             if(isEditMode){
-              this.ModalMessage = 'Subject updated successfully';
-              this.$refs.notificationModal.show();
+              /* this.ModalMessage = 'Subject updated successfully';
+              this.$refs.notificationModal.show(); */
+              /* this.$swal({
+                type: 'success',
+                title: 'Subject updated successfully'
+              }) */
+
+              this.$swal({
+                title: 'Great !',
+                text: "Subject updated successfully !",
+                type: 'success',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'OK'
+              }).then((result) => {
+                if (result) {
+                  this.$router.push('/Dashboard/Masters/SubjectList');
+                }
+              })
+
             }
             else{
-              this.responseMessage = 'Subject created successfully';
+              this.$swal({
+                type: 'success',
+                title: 'Subject created successfully',
+                showConfirmButton: false
+              })
               this.notifySuccess = true;
               this.notifyError = false;
             }

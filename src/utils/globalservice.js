@@ -15,7 +15,7 @@ function GetRequest(url, data) {
           return response.data
       })
       .catch(error => {
-        debugger;
+        // debugger;
         if(error.status === constants.STATUS_CODES.UNAUTHORIZED) {
           Router.push('/');
         } 
