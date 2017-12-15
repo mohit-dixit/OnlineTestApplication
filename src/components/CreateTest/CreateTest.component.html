@@ -82,23 +82,42 @@
                             </label>
                         </b-col>
                     </b-row>
+                    <b-row>
+                      <table class="table" v-show="checkedQuestions.length > 0">
+                        <thead>
+                            <th>Question Type</th>
+                            <th>Batch</th>
+                            <th>Subject</th>
+                            <th>Question</th>
+                            <th>Topic</th>
+                        </thead>
+                        <tbody>
+                            <tr v-for="row in checkedQuestions">
+                                <td>{{ row.scaleName }}</td>
+                                <td class="fancy">{{ row.subjectName }}</td>
+                                <td>{{ row.question }}</td>
+                                <td>{{ row.topicName }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </b-row>
                 </b-container>
                 <b-button type="submit" variant="primary" @click="openQuesModal()">Select Questions</b-button>&nbsp;&nbsp;
                 <b-button type="reset" variant="secondary">Reset</b-button>&nbsp;&nbsp;
                 <b-button type="submit" variant="primary">Create Test</b-button>
             </b-form>
         </div>
-        <vue-good-table title="Selected Questions" :columns="columnsSelectedQuestions" :rows="instituteList" :paginate="true" :globalSearch="true" :lineNumbers="true" styleClass="table table-bordered table-striped condensed">
+       <!--  <vue-good-table title="Selected Questions" :columns="columnsSelectedQuestions" :rows="instituteList" :paginate="true" :globalSearch="true" :lineNumbers="true" styleClass="table table-bordered table-striped condensed">
             <template slot="table-row-after" slot-scope="props">
                 <td>
                     <img width="18" title="Edit" @click="editInstituteClick(props)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/pencil.gif">
                     <img width="18" title="Delete" @click="deleteInstituteClick(props)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/delete.png">
                 </td>
             </template>
-        </vue-good-table>
+        </vue-good-table> -->
     </div>
     <!-- Modal Component (To Select the Questions from Grid)-->
-    <b-modal centered ref="listOfQuesModal" size="lg" v-model="show" title="Select Questions" :header-bg-variant="headerBgVariant" :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
+    <b-modal centered ref="listOfQuesModal" size="lg" v-model="showMOdal" title="Select Questions" :header-bg-variant="headerBgVariant" :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
         <b-container fluid>
             <b-row class="mb-1 text-center">
                 <b-row class="my-1">
@@ -127,16 +146,41 @@
                 <b-col sm="12">
                     <vue-good-table title="" :columns="columns" :rows="rows" :lineNumbers="true" :globalSearch="true" :paginate="true" styleClass="table condensed table-bordered table-striped">
                         <template slot="table-row" slot-scope="props">
+                    <!-- <vue-good-table title="" :columns="columns" :rows="rows" :lineNumbers="true" :globalSearch="true" :paginate="true" styleClass="table condensed table-bordered table-striped">
+                        <template slot="table-row" scope="props">
                             <td>
-                                <b-form-checkbox id="checkbox1" v-model="props.row.checked" value="true" unchecked-value="false">
-                                </b-form-checkbox>
+                               <!  <b-form-checkbox id="checkbox1" v-model="props.row.checked" value="true" unchecked-value="false" @click="updateObject(props.row)">{{props.row.checked}}
+                                </b-form-checkbox> -->
+                    <!--  <input type="checkbox" name="" @click="updateStatus(props.row)" v-model="props.row.checked" >{{props.row.checked}}
                             </td>
                             <td>{{ props.row.scaleName }}</td>
                             <td class="fancy">{{ props.row.subjectName }}</td>
                             <td>{{ props.row.question }}</td>
                              <td>{{ props.row.topicName }}</td>
                         </template>
-                    </vue-good-table>
+                    </vue-good-table>  -->
+                    <table class="table">
+                        <thead>
+                            <th>Question Type</th>
+                            <th>Batch</th>
+                            <th>Subject</th>
+                            <th>Question</th>
+                            <th>Topic</th>
+                        </thead>
+                        <tbody>
+                            <tr v-for="row in rows">
+                                <td>
+                                    <!--   <b-form-checkbox id="checkbox1" v-model="props.row.checked" value="true" unchecked-value="false" @click="updateObject(props.row)">{{props.row.checked}}
+                                    </b-form-checkbox> -->
+                                    <input type="checkbox" name="" v-model="row.checked">
+                                </td>
+                                <td>{{ row.scaleName }}</td>
+                                <td class="fancy">{{ row.subjectName }}</td>
+                                <td>{{ row.question }}</td>
+                                <td>{{ row.topicName }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <!-- <template>
                     <b-table hover :items="items"></b-table>
                 </template> -->
@@ -164,7 +208,7 @@
             <b-btn size="sm" class="float-right" style="margin-left: 5px;" variant="secondary" @click="closeModal()">
                 No
             </b-btn>
-            <b-btn size="sm" class="float-right" variant="danger" @click="confirm()">
+            <b-btn size="sm" class="float-right" variant="danger" @click="confirm(rows)">
                 Yes
             </b-btn>
         </div>

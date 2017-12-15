@@ -93,6 +93,17 @@
                             </label>
                         </b-col>
                     </b-row>
+                    <b-row class="my-1" style="text-align: left;">
+                        <b-col sm="4">
+                            <label for="input-none">Allow Teacher for admin access :</label>
+                        </b-col>
+                        <b-col sm="8">
+                            <label class="switch" style="width: 60px;">
+                                <input v-model="createteacherform.isAdmin" type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </b-col>
+                    </b-row>
                 </b-container>
                 <br>
                 <b-button type="submit" variant="primary">{{submitButtonText}}</b-button>
