@@ -21,11 +21,6 @@ export default  {
       footerTextVariant: 'dark',
       columnsInstitutes: [
         {
-          label: 'Id',
-          field: 'id',
-          filterable: true,
-        },
-        {
           label: 'Name',
           field: 'name',
           filterable: true,
@@ -43,6 +38,10 @@ export default  {
         {
           label: 'Address',
           field: 'address'
+        },
+        {
+          label: 'Status',
+          field: 'status'
         },
         {
           label: 'Action'
@@ -64,11 +63,12 @@ export default  {
           let list = [];
             response.forEach(function (element) {
               list.push({
-                id: element.id,
-                name: element.name,
-                emailID: element.emailID,
-                phone: element.phone,
-                address: element.address
+                id: element.id || '-',
+                name: element.name || '-',
+                emailID: element.emailID || '-',
+                phone: element.phone || '-',
+                address: element.address || '-',
+                status: element.status == '1' ? 'Active' : 'Inactive'
               })
             }, this);
             this.instituteList = list;

@@ -44,7 +44,7 @@ export default {
       addtopic:{subjectId:null},
       pointsOptions: [{
           value: null,
-          text: '--Select Points--'
+          text: 'Select Points'
         },
         {
           value: '1',
@@ -65,8 +65,8 @@ export default {
       ],
       scaleOptions: [],
       subjectOptions: [],
-      topicOptions:[{value:null, text:'--Select Topic--'}],
-      questionTypeOptions: [{value:null, text:'--Select Question Type--'},{value:1, text:'Single Selection'},{value:2, text:'Multi Selection'}]
+      topicOptions:[{value:null, text:'Select Topic'}],
+      questionTypeOptions: [{value:null, text:'Select Question Type'},{value:1, text:'Single Selection'},{value:2, text:'Multi Selection'}]
     }
   },
   computed: {
@@ -117,7 +117,7 @@ export default {
         this.subjectOptions = [];
         this.subjectOptions.push({
           value: null,
-          text: '--Select Subject--'
+          text: 'Select Subject'
         })
         if (res.status) {
           let response = res.result.message;
@@ -137,7 +137,7 @@ export default {
         this.scaleOptions = [];
         this.scaleOptions.push({
           value: null,
-          text: '--Select Scale--'
+          text: 'Select Scale'
         })
         if (res.status) {
           let response = res.result.message;
@@ -169,7 +169,7 @@ export default {
           self.topicOptions = [];
           self.topicOptions.push({
             value: null,
-            text: '--Select Topic--'
+            text: 'Select Topic'
           })
           if (res.status) {
             let response = res.body.message;

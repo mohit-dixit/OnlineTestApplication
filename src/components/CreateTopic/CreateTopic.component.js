@@ -44,7 +44,7 @@ export default  {
       GetRequest(this.BaseUrl + 'api/admin/subject/list').then(res => {
         this.subjectOptions.push({
           value: null,
-          text: '--Select Subject--'
+          text: 'Select Subject'
         })
         if (res.status) {
           let response = res.result.message;

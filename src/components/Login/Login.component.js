@@ -8,6 +8,7 @@ import {
   LoginAuthentication
 } from '../../utils/globalservice'
 
+// var $ = '';
 Vue.use(VueLocalStorage, {
   name: 'lsobj',
   createComputed: true //created computed members from your variable declarations
@@ -30,6 +31,9 @@ export default {
   },
   computed: {
 
+  },
+  beforeMount(){
+      this.onLoad();
   },
   mounted() {
 
@@ -84,6 +88,32 @@ export default {
       evt.preventDefault();
       //alert(JSON.stringify(this.loginform));
       this.checkAuthentication();
+    },
+    onLoad() {
+      // $(".log-in").click(function(){
+          /* $(".signIn").addClass("active-dx");
+          $(".signUp").addClass("inactive-sx");
+          $(".signUp").removeClass("active-sx");
+          $(".signIn").removeClass("inactive-dx"); */
+      /* document.getElementsByClassName(".log-in").addEventListener('click', function() {
+          debugger;
+          document.getElementsByClassName("signIn")[0].classList.add("active-dx");
+          document.getElementsByClassName("signUp")[0].classList.add("inactive-sx");
+          document.getElementsByClassName("signUp")[0].classList.remove("active-sx");
+          document.getElementsByClassName("signIn")[0].classList.removeadd("inactive-dx");
+      }, false); */
+
+      // $(".back").click(function(){
+          /* $(".signUp").addClass("active-sx");
+          $(".signIn").addClass("inactive-dx");
+          $(".signIn").removeClass("active-dx");
+          $(".signUp").removeClass("inactive-sx"); */
+      /* document.getElementsByClassName(".back").addEventListener('click', function() {
+          document.getElementsByClassName("signUp")[0].classList.add("active-sx");
+          document.getElementsByClassName("signIn")[0].classList.add("inactive-dx");
+          document.getElementsByClassName("signIn")[0].classList.removeadd("active-dx");
+          document.getElementsByClassName("signUp")[0].classList.remove("inactive-sx");
+      }, false); */
     }
   }
 }

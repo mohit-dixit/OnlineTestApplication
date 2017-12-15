@@ -57,7 +57,7 @@ export default {
       GetRequest(this.BaseUrl + 'api/superAdmin/institute/list').then(res => {
         this.associatedOptions.push({
           value: null,
-          text: '--Select Institute--'
+          text: 'Select Institute'
         })
         if (res.status) {
           let response = res.result.message;
@@ -73,9 +73,9 @@ export default {
     onSubmit(evt) {
           evt.preventDefault();
           //Making Post Data ==============================================================================
-              this.createadminform.instituteId = this.createadminform.associatedwith;
-              this.createadminform.password = config.DEFAULT_PASSWORD;
-              this.createadminform.token = Vue.lsobj.get('loginToken');
+          this.createadminform.instituteId = this.createadminform.associatedwith;
+          this.createadminform.password = config.DEFAULT_PASSWORD;
+          this.createadminform.token = Vue.lsobj.get('loginToken');
           //Making Post Data ==============================================================================
 
           let apiPath = 'api/superAdmin/create/admin';
@@ -90,29 +90,36 @@ export default {
             }
           }
           PostRequest(this.BaseUrl + apiPath, this.createadminform).then(res => {
-            if (res) {
-              if(res.status == 200)
-              {
-                this.createadminform = {};
-                if(isEditMode){
-                  alert('Admin updated successfully');
+            if (res && res.status == 200) {
+              this.createadminform = {};
+
+              let msg = '';
+              if(isEditMode){
+                msg = 'Admin updated successfully';
+              }
+              else{
+                this.createadminform.associatedwith = null;
+                msg = 'Admin created successfully';
+              }
+
+              this.$swal({
+                type: 'success',
+                title: 'Congratulation !',
+                text: msg,
+                showConfirmButton: true
+              }).then((result) => {
+                if (result) {
                   this.$router.push('/Dashboard/AdminList');
                 }
-                else{
-                  this.createadminform.associatedwith = null;
-                  this.notifySuccess = true;
-                  this.notifyError = false;
-                  this.responseMessage = 'Admin created successfully';
-                }
-              }
-              else
-              {
+              });
+
+            }
+              else {
                 this.errorMessage = res.statustext;
                 this.notifySuccess = false;
                 this.notifyError = true;
                 this.$forceUpdate();
               }
-            }
           });
     },
     onlyNumberKey: function (event) {

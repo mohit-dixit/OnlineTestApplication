@@ -1,13 +1,14 @@
 <div v-if="loginRole === '1' || loginRole === '2'">
+  <div class="loading" v-if='loader'>Loading&#8230;</div>
   <router-link to="/Dashboard/CreateAdmin">
-    <b-button variant="primary"><b>+ </b>Add Admin</b-button>
+    <b-button variant="primary" style='margin : 20px'><b>+ </b>Add Admin</b-button>
   </router-link>
   <br>
   <div style="background-color: white; border: 3px solid #E9ECEF;">
     <vue-good-table title="Admins" :columns="columnsAdmins" :rows="adminList" :paginate="true" :globalSearch="true" :lineNumbers="true"
       styleClass="table table-bordered table-striped condensed">
       <template slot="table-row-after" slot-scope="props">
-        <td>
+        <td v-if="loginRole === '2'">
           <img width="18" title="Edit" @click="editAdminClick(props)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/pencil.gif">
           <img width="18" title="Delete" @click="deleteAdminClick(props)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/delete.png">
         </td>
