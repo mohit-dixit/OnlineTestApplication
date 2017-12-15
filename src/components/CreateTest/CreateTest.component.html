@@ -32,7 +32,8 @@
                             <label for="input-none">Valid From:</label>
                         </b-col>
                         <b-col sm="8">
-                            <date-picker placeholder="click me" v-model="createtest.validfrom" :config="config" required></date-picker>
+                            <date-picker placeholder="click me" v-model="createtest.validfrom" :config="config" :limit="limit" required></date-picker>
+                            <!-- <datepicker></datepicker> -->
                         </b-col>
                     </b-row>
                     <b-row class="my-1">
@@ -83,23 +84,23 @@
                         </b-col>
                     </b-row>
                     <b-row>
-                      <table class="table" v-show="checkedQuestions.length > 0">
-                        <thead>
-                            <th>Question Type</th>
-                            <th>Batch</th>
-                            <th>Subject</th>
-                            <th>Question</th>
-                            <th>Topic</th>
-                        </thead>
-                        <tbody>
-                            <tr v-for="row in checkedQuestions">
-                                <td>{{ row.scaleName }}</td>
-                                <td class="fancy">{{ row.subjectName }}</td>
-                                <td>{{ row.question }}</td>
-                                <td>{{ row.topicName }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        <table class="table" v-show="checkedQuestions.length > 0">
+                            <thead>
+                                <th>Question Type</th>
+                                <th>Batch</th>
+                                <th>Subject</th>
+                                <th>Question</th>
+                                <th>Topic</th>
+                            </thead>
+                            <tbody>
+                                <tr v-for="row in checkedQuestions">
+                                    <td>{{ row.scaleName }}</td>
+                                    <td class="fancy">{{ row.subjectName }}</td>
+                                    <td>{{ row.question }}</td>
+                                    <td>{{ row.topicName }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </b-row>
                 </b-container>
                 <b-button type="submit" variant="primary" @click="openQuesModal()">Select Questions</b-button>&nbsp;&nbsp;
@@ -107,56 +108,43 @@
                 <b-button type="submit" variant="primary">Create Test</b-button>
             </b-form>
         </div>
-       <!--  <vue-good-table title="Selected Questions" :columns="columnsSelectedQuestions" :rows="instituteList" :paginate="true" :globalSearch="true" :lineNumbers="true" styleClass="table table-bordered table-striped condensed">
-            <template slot="table-row-after" slot-scope="props">
-                <td>
-                    <img width="18" title="Edit" @click="editInstituteClick(props)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/pencil.gif">
-                    <img width="18" title="Delete" @click="deleteInstituteClick(props)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/delete.png">
-                </td>
-            </template>
-        </vue-good-table> -->
     </div>
     <!-- Modal Component (To Select the Questions from Grid)-->
-    <b-modal centered ref="listOfQuesModal" size="lg" v-model="showMOdal" title="Select Questions" :header-bg-variant="headerBgVariant" :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
+    <b-modal style="height: 400px;width: 500px;" centered ref="listOfQuesModal" size="lg" v-model="showMOdal" title="Select Questions" :header-bg-variant="headerBgVariant" :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
         <b-container fluid>
             <b-row class="mb-1 text-center">
-                <b-row class="my-1">
+               <!--  <b-row class="my-1"> -->
                     <b-col sm="4">
                         <label for="input-none"><b>Filter By:</b></label>
                     </b-col>
                     <b-col sm="3">
-                        <multiselect v-model="createtest.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel" placeholder="Select Question Type">
-                        </multiselect>
+                        <!--  <multiselect v-model="createtest.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel" placeholder="Select Question Type">
+                        </multiselect> -->
+                        <b-form-select v-model="createtest.categoryId" @change.native="categoryChange()" placeholder="Select Question" :options="questionTypeOptions" required class="mb-3">
+                        </b-form-select>
+                    </b-col>
+                    
+                    <b-col sm="3">
+                        <!-- <multiselect v-model="createtest.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel" placeholder="Select Subject">
+                        </multiselect> -->
+                        <b-form-select v-model="createtest.subjectId" @change.native="subjectChange()"  :options="subjectOptions" required class="mb-3">
+                        </b-form-select>
                     </b-col>
                     <b-col sm="3">
-                        <multiselect v-model="createtest.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel" placeholder="Select Subject">
-                        </multiselect>
+                        <!-- <multiselect v-model="createtest.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel" placeholder="Select Topic">
+                        </multiselect> -->
+                        <b-form-select v-model="createtest.topicId" :options="topicOptions" required class="mb-3">
+                        </b-form-select>
                     </b-col>
                     <b-col sm="3">
-                        <multiselect v-model="createtest.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel" placeholder="Select Topic">
-                        </multiselect>
-                    </b-col>
-                    <b-col sm="3">
-                        <b-button variant="success">Search</b-button>
+                        <b-button variant="success" @click="search()">Search</b-button>
+                        <b-button variant="success" @click="reset()">Reset</b-button>
                     </b-col>
                 </b-row>
             </b-row>
             <br>
             <b-row class="mb-1 text-center">
                 <b-col sm="12">
-                    <!-- <vue-good-table title="" :columns="columns" :rows="rows" :lineNumbers="true" :globalSearch="true" :paginate="true" styleClass="table condensed table-bordered table-striped">
-                        <template slot="table-row" scope="props">
-                            <td>
-                               <!  <b-form-checkbox id="checkbox1" v-model="props.row.checked" value="true" unchecked-value="false" @click="updateObject(props.row)">{{props.row.checked}}
-                                </b-form-checkbox> -->
-                    <!--  <input type="checkbox" name="" @click="updateStatus(props.row)" v-model="props.row.checked" >{{props.row.checked}}
-                            </td>
-                            <td>{{ props.row.scaleName }}</td>
-                            <td class="fancy">{{ props.row.subjectName }}</td>
-                            <td>{{ props.row.question }}</td>
-                             <td>{{ props.row.topicName }}</td>
-                        </template>
-                    </vue-good-table>  -->
                     <table class="table">
                         <thead>
                             <th>Question Type</th>
@@ -179,25 +167,6 @@
                             </tr>
                         </tbody>
                     </table>
-                    <!-- <template>
-                    <b-table hover :items="items"></b-table>
-                </template> -->
-                    <!--  <table class="table">
-                    <thead>
-                        <th>Question Type</th>
-                        <th>Batch</th>
-                        <th>Subject</th>
-                        <th>Topic</th>
-                    </thead>
-                    <tbody>
-                        <tr v-for="item in items">
-                          <td>{{item.first_name}}</td>
-                          <td>{{item.first_name}}</td>
-                          <td>{{item.first_name}}</td>
-                          <td>{{item.first_name}}</td>
-                        </tr>
-                    </tbody>
-                </table> -->
                 </b-col>
             </b-row>
         </b-container>

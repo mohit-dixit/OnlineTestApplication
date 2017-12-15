@@ -62,7 +62,6 @@ export default {
       let postData = {};
       GetRequest(this.BaseUrl + 'api/superAdmin/switch/user', postData).then(res => {
           if (res) {
-            debugger;
             Vue.lsobj.set('loginToken', res.result.message[0].token);
 
             if(res.result.message[0].user_roles.length == 1) {
