@@ -16,7 +16,6 @@ export default {
     },
     props: [],
     data() {
-        this.ModalMessage = null;
         this.BaseUrl = config.BASE_URL;
         return {
           variants: [
@@ -40,9 +39,9 @@ export default {
 
     },
     methods: {
-        onSubmit() {
+        onSubmit(evt) {
+            evt.preventDefault();
             let apiPath = 'api/admin/update/config';
-
             this.adminconfigurationform.institute_allow_scale = this.adminconfigurationform.allow_scale  ? config.Active : config.Inactive;
             this.adminconfigurationform.institute_allow_subject = this.adminconfigurationform.allow_subject ? config.Active : config.Inactive;
             this.adminconfigurationform.institute_allow_batch = this.adminconfigurationform.allow_batch ? config.Active : config.Inactive;
@@ -52,7 +51,6 @@ export default {
             PostRequest(this.BaseUrl + apiPath, this.adminconfigurationform).then(res => {
                 if (res) {
                     if (res.status == 200) {
-                      this.ModalMessage = 'Configuration updated successfully';
                       Vue.lsobj.set('allow_scale', this.adminconfigurationform.institute_allow_scale);
                       Vue.lsobj.set('allow_student', this.adminconfigurationform.institute_allow_student);
                       Vue.lsobj.set('allow_subject', this.adminconfigurationform.institute_allow_subject);

@@ -11,7 +11,17 @@ export default  {
   data () {
     this.BaseUrl = config.BASE_URL;
     this.questionList = [];
+    this.selectedId = 0;
     return {
+      variants: [
+        'primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'
+      ],
+      headerBgVariant: 'dark',
+      headerTextVariant: 'light',
+      bodyBgVariant: 'light',
+      bodyTextVariant: 'dark',
+      footerBgVariant: 'warning',
+      footerTextVariant: 'dark',
       columnsQuestions: [
         {
           label: 'Id',
@@ -82,7 +92,25 @@ export default  {
       });
     },
     deleteQuestionClick: function (events, args) {
-      this.$router.push('/Dashboard/CreateAdmin', 1);
+      this.selectedId = events.row.id;
+      this.$refs.deleteModal.show();
+    },
+    closeModal: function (events, args) {
+      this.$refs.deleteModal.hide();
+    },
+    deleteConfirmation: function () {
+      if (this.selectedId) {
+        let postData = {};
+        postData.id = this.selectedId;
+        PostRequest(this.BaseUrl + 'api/admin/delete/question', postData).then(res => {
+          if (res) {
+            if (res.status == 200) {
+              this.getQuestionList();
+              this.$refs.deleteModal.hide();
+            }
+          }
+        });
+      }
     }
   },
   created: function () {

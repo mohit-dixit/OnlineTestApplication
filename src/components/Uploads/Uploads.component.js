@@ -13,7 +13,7 @@ export default {
       uploads: {type : null},
       options: [{
         value: null,
-        text: '--Select Type--'
+        text: 'Select Type'
       },{
         value: 1,
         text: 'Teacher'

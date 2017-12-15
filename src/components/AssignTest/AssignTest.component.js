@@ -33,7 +33,7 @@ export default  {
     //Controls bindings
     getTestList: function () {
       GetRequest('static/test.json').then(res => {
-        this.testOptions.push({ value: null,text: '--Select Test--'})
+        this.testOptions.push({ value: null,text: 'Select Test'})
         if (res) {
           res.forEach(function (element) {
             this.testOptions.push({
@@ -47,7 +47,7 @@ export default  {
 
     getStudentList: function () {
       GetRequest('static/student.json').then(res => {
-        this.studentOptions.push({ value: null,text: '--Select Student--'})
+        this.studentOptions.push({ value: null,text: 'Select Student'})
         if (res) {
           res.forEach(function (element) {
             this.studentOptions.push({

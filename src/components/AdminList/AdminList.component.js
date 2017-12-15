@@ -12,6 +12,7 @@ export default {
     this.BaseUrl = config.BASE_URL;
     this.adminList = [];
     this.selectedId = 0;
+    this.loader = false;
     return {
       variants: [
         'primary','secondary','success','warning','danger','info','light','dark'
@@ -22,6 +23,7 @@ export default {
        bodyTextVariant: 'dark',
        footerBgVariant: 'warning',
        footerTextVariant: 'dark',
+       
       columnsAdmins: [{
           label: 'Id',
           field: 'id',
@@ -56,9 +58,6 @@ export default {
           label: 'Status',
           field: 'isactive',
           filterable: true
-        },
-        {
-          label: 'Action'
         }
       ]
     }
@@ -69,13 +68,16 @@ export default {
   },
   methods: {
     bindAdmins: function () {
-      GetRequest(this.BaseUrl + 'api/superAdmin/admin/list').then(res => {
+      this.loader = true;
+      GetRequest(this.BaseUrl + 'api/superAdmin/admin/list')
+      .then(res => {
         if (res.status) {
+          this.loader = false;
           let response = res.result.message[0].user_roles;
           let list = [];
           response.forEach(function (element) {
             let userObject = element.user;
-            if(userObject){
+            if(userObject && userObject.user_institutes.length > 0){
               list.push({
                 id: userObject.id,
                 firstname: userObject.firstname,
@@ -90,9 +92,14 @@ export default {
           this.adminList = list;
           this.$forceUpdate();
         } else {
+          this.loader = false;
           this.adminList = [];
         }
-      });
+      })
+      .catch(error => {
+        this.loader = false;
+        console.log(error, "Error while Admin List")
+      })
     },
     redirectToNewAdmin: function () {
       this.$router.push('/Dashboard/CreateAdmin');
@@ -124,6 +131,9 @@ export default {
   },
   created: function () {
     this.loginRole = Vue.lsobj.get('loginRole');
+    if(this.loginRole === '2') {
+      this.columnsAdmins.push({label: 'Action'});
+    }
     this.bindAdmins();
   }
 }

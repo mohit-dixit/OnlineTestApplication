@@ -19,7 +19,8 @@ export default {
     this.isEdit = false;
     this.submitButtonText ='Create';
     return {
-      createinstituteform: {}
+      createinstituteform: {},
+      createinstituteData: {}
     }
   },
   computed: {
@@ -29,17 +30,28 @@ export default {
 
   },
   methods: {
+    resetEdit: function() {
+      debugger;
+      this.createinstituteform = this.createinstituteData;
+    },
     bindInstituteData: function () {
       let postData = {};
       postData.id = this.id;
-      PostRequest(this.BaseUrl + 'api/superAdmin/edit/institute', postData).then(res => {
-        if (res) {
-          if (res.status) {
-            let response = res.body.message[0];
-            this.createinstituteform = response;
-          }
+      PostRequest(this.BaseUrl + 'api/superAdmin/edit/institute', postData)
+      .then(res => {
+        if (res && res.status) {
+          let response = res.body.message[0];
+          this.createinstituteform = response;
+          this.createinstituteData = response;
         }
+      })
+      .catch(error => {
+        console.log(error);
       });
+    },
+
+    activeToggle : function(event) {
+      console.log(event);
     },
     onSubmit(evt) {
       evt.preventDefault();
@@ -48,25 +60,35 @@ export default {
       if(isEditMode){
         apiPath = 'api/superAdmin/update/institute';
       }
+      
       PostRequest(this.BaseUrl + apiPath  , this.createinstituteform).then(res => {
-        if (res) {
-          if (res.status == 200) {
+        if (res && res.status == 200) {
             this.createinstituteform = {};
+            
+            let msg = '';
             if(isEditMode){
-              alert('Institute updated successfully')
-              this.$router.push('/Dashboard/InstituteList');
+              msg = 'Institute updated successfully';
             }
             else{
-              this.responseMessage = 'Institute created successfully';
-              this.notifySuccess = true;
-              this.notifyError = false;
+              msg = 'Institute created successfully';
             }
+
+            this.$swal({
+              type: 'success',
+              title: 'Congratulation !',
+              text: msg,
+              showConfirmButton: true
+            }).then((result) => {
+              if (result) {
+                this.$router.push('/Dashboard/InstituteList');
+              }
+            });
+
           } else {
             this.errorMessage = res.statusText;
             this.notifySuccess = false;
             this.notifyError = true;
           }
-        }
       });
     }
   },

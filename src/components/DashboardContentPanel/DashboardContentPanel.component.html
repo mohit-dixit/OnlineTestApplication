@@ -81,11 +81,11 @@
         <span>Uploads</span>
       </a>
     </router-link>
-    <router-link to="/Dashboard/Profile">
+    <router-link to="/Dashboard/Profile" v-if='isUserAdmin'>
       <a href="" class="dashboard-module">
-                      <img src="../../assets/images/profile.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_files.gif" width="64" height="64" alt="edit" />
-                      <span>Profile</span>
-                    </a>
+        <img src="../../assets/images/profile.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_files.gif" width="64" height="64" alt="edit" />
+        <span>Profile</span>
+      </a>
     </router-link>
     <div style="clear: both"></div>
   </div>

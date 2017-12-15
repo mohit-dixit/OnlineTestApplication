@@ -44,7 +44,7 @@ export default {
       addtopic:{subjectId:null},
       pointsOptions: [{
           value: null,
-          text: '--Select Points--'
+          text: 'Select Points'
         },
         {
           value: '1',
@@ -65,8 +65,8 @@ export default {
       ],
       scaleOptions: [],
       subjectOptions: [],
-      topicOptions:[{value:null, text:'--Select Topic--'}],
-      questionTypeOptions: [{value:null, text:'--Select Question Type--'},{value:1, text:'Single Selection'},{value:2, text:'Multi Selection'}]
+      topicOptions:[{value:null, text:'Select Topic'}],
+      questionTypeOptions: [{value:null, text:'Select Question Type'},{value:1, text:'Single Selection'},{value:2, text:'Multi Selection'}]
     }
   },
   computed: {
@@ -86,25 +86,16 @@ export default {
             if(response){
               this.createquestion = response[0];
               this.subjectChange();
-              //let list = [];
-              // if(response.student_batches.length > 0){
-              //   response.student_batches.forEach(function(element){
-              //     let batchObject = element.batch;
-              //     if(batchObject){
-              //         list.push({
-              //           id: batchObject.id,
-              //           batchname: batchObject.batchName
-              //         })
-              //       }
-              //     }, this);
-              //   this.createstudentform.batch = list;
-              // }
-              // if(response.status < 2){
-              //   this.createstudentform.status = true;
-              // }
-              // else{
-              //   this.createstudentform.status = false;
-              // }
+              let answerOptions =  JSON.parse(response[0].options);
+              let answersList =  JSON.parse(response[0].answer).map(data => Object.keys(data)[0]*1);
+              this.answers=[];
+              answerOptions.forEach((element, index) => {
+                this.answers.push({
+                  answer: element[index],
+                  iscorrect: answersList.indexOf(index) > -1
+                });
+                this.toShowRemoveAnswer = true;
+              });
             }
           }
         }
@@ -117,7 +108,7 @@ export default {
         this.subjectOptions = [];
         this.subjectOptions.push({
           value: null,
-          text: '--Select Subject--'
+          text: 'Select Subject'
         })
         if (res.status) {
           let response = res.result.message;
@@ -137,7 +128,7 @@ export default {
         this.scaleOptions = [];
         this.scaleOptions.push({
           value: null,
-          text: '--Select Scale--'
+          text: 'Select Scale'
         })
         if (res.status) {
           let response = res.result.message;
@@ -169,7 +160,7 @@ export default {
           self.topicOptions = [];
           self.topicOptions.push({
             value: null,
-            text: '--Select Topic--'
+            text: 'Select Topic'
           })
           if (res.status) {
             let response = res.body.message;
@@ -189,6 +180,15 @@ export default {
     onSubmit(evt) {
       evt.preventDefault();
       let answers = this.getFinalAnswers();
+
+      if(this.createquestion.categoryId == 1){
+         let isMultipleAnswersSelected = answers.map(data => data.isAnswer).filter(data => data == true).length > 1
+         if(isMultipleAnswersSelected){
+           alert('Multiple answers not allowed if Single selection is selected as Question type')
+           return;
+         }
+      }
+
       console.log(JSON.stringify(answers));
       console.log(JSON.stringify(this.createquestion));
       let finalOptionsData = [];
@@ -212,7 +212,7 @@ export default {
       let apiPath = 'api/admin/create/question';
       let isEditMode = this.isEdit;
       if(isEditMode){
-        apiPath = 'api/superAdmin/update/admin';
+        apiPath = 'api/admin/update/question';
       }
       PostRequest(this.BaseUrl + apiPath, this.createquestion).then(res => {
         if (res) {
@@ -221,7 +221,7 @@ export default {
             this.createquestion = {};
             if(isEditMode){
               alert('Question updated successfully');
-              this.$router.push('/Dashboard/AdminList');
+              this.$router.push('/Dashboard/QuestionBank');
             }
             else{
               this.notifySuccess = true;
@@ -240,14 +240,14 @@ export default {
       });
     },
     addRow: function () {
-      let firstAnswerEditorText;
-      let editorControlList = document.getElementsByClassName('answerEditorClass');
-      for (let i = 0; i < editorControlList.length; i++) {
-        firstAnswerEditorText = editorControlList[i].textContent.trim();
-        break;
-      }
+      // let firstAnswerEditorText;
+      // let editorControlList = document.getElementsByClassName('answerEditorClass');
+      // for (let i = 0; i < editorControlList.length; i++) {
+      //   firstAnswerEditorText = editorControlList[i].textContent.trim();
+      //   break;
+      // }
       this.answers.push({
-        answer: firstAnswerEditorText,
+        answer: '',
         iscorrect: false
       });
       this.toShowRemoveAnswer = true;
@@ -320,6 +320,9 @@ export default {
       alert(this.addsubject.subjectname);
       this.addsubject = {};
       this.$refs.modalSubject.hide();
+    },
+    resetValues(){
+      this.getQuestionData();
     },
 
     //Modal Functions ------------------------------------------------------------------------------------------------------------

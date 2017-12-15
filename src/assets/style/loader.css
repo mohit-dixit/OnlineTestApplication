@@ -117,3 +117,6 @@
     transform: rotate(360deg);
   }
 }
+.is-danger {
+  color: red
+}
