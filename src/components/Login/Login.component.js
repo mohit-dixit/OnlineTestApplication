@@ -37,6 +37,7 @@ export default {
   methods: {
     checkAuthentication: function() {
       this.loader = true;
+      this.loginform.password = btoa(this.loginform.password);
       LoginAuthentication(this.BaseUrl + 'api/superAdmin/login', this.loginform).then(res => {
         if (res) {
           this.loader = false;

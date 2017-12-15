@@ -52,16 +52,10 @@
               <b-button class="w3-button w3-circle w3-blue" v-b-modal.modalTopic variant="primary"><b>+</b></b-button>
             </b-col>
           </b-row>
-
-
-
-
-        <!-- In Case of Creation  =========================================================================== -->
-
-        <b-row v-if="!isEdit" id="answerDiv" style="margin-top: 10px;" class="my-1" v-for="(createanswer,key,index) in answers" v-bind:key="key">
+        <b-row id="answerDiv" style="margin-top: 10px;" class="my-1" v-for="(createanswer,key,index) in answers" v-bind:key="key">
           <b-col sm="2"><label for="input-none">Answer option {{ key + 1 }}:</label></b-col>
           <b-col sm="9">
-            <vue-editor id="editor" class="answerEditorClass" placeholder="Enter Answer" v-model="createanswer.answer"></vue-editor>
+            <vue-editor v-bind:id='"fdfdf"+key' class="answerEditorClass" placeholder="Enter Answer" v-model="createanswer.answer"></vue-editor>
           </b-col>
           <b-col sm="1">
             Correct?
@@ -71,7 +65,7 @@
             </label>
           </b-col>
         </b-row>
-        <b-row v-if="!isEdit" class="my-1" style="margin-top: 5px;">
+        <b-row class="my-1" style="margin-top: 5px;">
           <b-col sm="2"></b-col>
           <b-col sm="9">
             <b-button v-on:click="addRow()" title="Add answer option" class="w3-blue" style="float: left;" variant="primary"><b>+</b></b-button>
@@ -80,30 +74,17 @@
           </b-col>
           <b-col sm="1"></b-col>
         </b-row>
-
-        <!-- In Case of Creation  =========================================================================== -->
-
-        <!-- In Case of Updation  =========================================================================== -->
-
-
-
-        <!-- In Case of Creation  =========================================================================== -->
-
         <b-row class="my-1">
             <b-col sm="2"><label for="input-none">Explanation:</label></b-col>
             <b-col sm="10">
-                <b-form-textarea
-                v-model="createquestion.explanation"
-                placeholder="Please Enter Explanation"
-                :rows="3"
-                :max-rows="6" required>
-                </b-form-textarea>
-            </b-col>
+              <vue-editor id="editor2" placeholder="Enter Explanation" v-model="createquestion.explanation"></vue-editor>
+          </b-col>
           </b-row>
       </b-container>
       <br>
       <b-button type="submit" variant="primary">{{submitButtonText}}</b-button>
       <b-button type="reset" v-if="!isEdit" variant="secondary">Reset</b-button>
+      <b-button @click="resetValues()" v-if="isEdit" variant="secondary">Reset</b-button>
       <div v-if="notifySuccess" style="margin-top: 10px;">
           <span class="notification n-success"><b>{{responseMessage}}</b></span>
         </div>

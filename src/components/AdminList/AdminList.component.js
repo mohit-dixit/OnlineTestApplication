@@ -75,7 +75,7 @@ export default {
           let list = [];
           response.forEach(function (element) {
             let userObject = element.user;
-            if(userObject){
+            if(userObject && userObject.user_institutes.length > 0){
               list.push({
                 id: userObject.id,
                 firstname: userObject.firstname,

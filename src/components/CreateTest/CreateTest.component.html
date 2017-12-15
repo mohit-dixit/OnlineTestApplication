@@ -126,7 +126,7 @@
             <b-row class="mb-1 text-center">
                 <b-col sm="12">
                     <vue-good-table title="" :columns="columns" :rows="rows" :lineNumbers="true" :globalSearch="true" :paginate="true" styleClass="table condensed table-bordered table-striped">
-                        <template slot="table-row" scope="props">
+                        <template slot="table-row" slot-scope="props">
                             <td>
                                 <b-form-checkbox id="checkbox1" v-model="props.row.checked" value="true" unchecked-value="false">
                                 </b-form-checkbox>
