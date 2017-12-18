@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+// import jquery from 'jquery'
 import BootstrapVue from 'bootstrap-vue'
 import VueResource from 'vue-resource'
 import VueEditor from 'vue2-quill-editor'
@@ -32,6 +33,7 @@ Vue.config.productionTip = false
 // Vue.use(RotateSquare2);
 Vue.use(VueSweetAlert)
 Vue.use(VeeValidate);
+// Vue.use(jquery);
 Vue.use(BootstrapVue);
 Vue.use(VueResource);
 Vue.use(VueEditor, {});

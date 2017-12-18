@@ -41,7 +41,8 @@ import Uploads from '@/components/Uploads'
 import CreateTopic from '@/components/CreateTopic'
 import TopicList from '@/components/TopicList'
 import EditTopic from '@/components/CreateTopic'
-import Profile from '@/components/Profile'
+import Profile from '@/components/Profile';
+import EditProfile from '@/components/edit-profile'
 import EditQuestion from '@/components/CreateQuestion'
 import SelectQuestionsView from '@/components/SelectQuestionsView'
 import SelectQuestionsPanel from '@/components/SelectQuestionsPanel'
@@ -273,8 +274,13 @@ export default new Router({
           name: 'Profile',
           component: Profile,
           meta: { AuthRequired: true , breadcrumb: 'Profile' }
-        }
-        ,
+        },
+        {
+          path: 'edit-profile',
+          name: 'EditProfile',
+          component: EditProfile,
+          meta: { AuthRequired: true , breadcrumb: 'Edit Profile' }
+        },
         {
           path: 'StudentList',
           name: 'StudentList',

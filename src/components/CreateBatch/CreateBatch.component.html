@@ -14,10 +14,20 @@
               <b-form-input id="name" type="text" v-model="createbatchform.batchName" required placeholder="Enter Batch Name"></b-form-input>
             </b-col>
           </b-row>
+          <b-row class="my-1" v-if="isEdit">
+              <b-col sm="4"><label for="input-none">Is Active?</label></b-col>
+              <b-col sm="8" style="text-align: left;">
+                <label class="switch" style="width: 60px;">
+                      <input v-model="createbatchform.status" type="checkbox">
+                      <span class="slider round"></span>
+                  </label>
+              </b-col>
+          </b-row>
         </b-container>
         <br>
         <b-button type="submit" variant="primary">{{submitButtonText}}</b-button>
-        <b-button type="reset" v-if="!isEdit" variant="secondary">Reset</b-button>
+        <b-button type="reset" v-if="!isEdit" variant="secondary">Clear</b-button>
+        <b-button v-if="isEdit" variant="secondary">Reset</b-button>
         <div v-if="notifySuccess" style="margin-top: 10px;">
           <span class="notification n-success"><b>{{responseMessage}}</b></span>
         </div>

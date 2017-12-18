@@ -24,6 +24,7 @@ export default {
         associatedwith: null,
         name: ''
       },
+      createadminformClone: {},
       associatedOptions: []
     }
   },
@@ -34,20 +35,32 @@ export default {
 
   },
   methods: {
+    /* --ResetONEdit method -- */
+    /* resetOnEdit: function() {
+      console.log(this.createadminform, this.createadminformClone);
+      this.createadminform = Object.assign({}, this.createadminformClone);
+      this.createadminform.associatedwith = this.createadminformClone.associatedwith
+      this.createadminform.status = this.createadminformClone.status; 
+    }, */
     getAdminData: function () {
       let postData = {};
       postData.id = this.id;
       PostRequest(this.BaseUrl + 'api/superAdmin/edit/admin', postData).then(res => {
         if (res) {
           if(res.status){
+            // debugger;
             let response = res.body.message[0];
             this.createadminform = response;
             this.createadminform.associatedwith = response.user_institutes[0].instituteId;
+            this.createadminformClone = Object.assign({}, this.createadminform);;
+            this.createadminformClone.associatedwith = response.user_institutes[0].instituteId;
             if(response.status < 2){
               this.createadminform.status = true;
+              this.createadminformClone.status = true;
             }
             else{
               this.createadminform.status = false;
+              this.createadminformClone.status = false;
             }
           }
         }

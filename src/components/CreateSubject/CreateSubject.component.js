@@ -76,11 +76,12 @@ export default {
             else{
               this.$swal({
                 type: 'success',
-                title: 'Subject created successfully',
-                showConfirmButton: false
+                title: 'Subject created successfully'
+              }).then((result) => {
+                if (result) {
+                  this.$router.push('/Dashboard/Masters/SubjectList');
+                }
               })
-              this.notifySuccess = true;
-              this.notifyError = false;
             }
           } else {
             this.errorMessage = res.statusText;
