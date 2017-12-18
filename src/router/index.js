@@ -93,6 +93,7 @@ export default new Router({
               path: '',
               name: 'SelectQuestionsPanel',
               component: CreateTest,
+              props: true,
               meta: { AuthRequired: true }
             },
             {

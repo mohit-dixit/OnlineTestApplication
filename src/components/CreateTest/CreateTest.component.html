@@ -79,11 +79,11 @@
             </b-col>
             <b-col sm="2" style="text-align: left;">
               <label class="switch" style="width: 60px;">
-                <input v-model="createtest.keepquestionssamemarks" value="true" type="checkbox">
+                <input v-model="createtest.keepquestionSamemarks" value="true" type="checkbox">
                 <span class="slider round"></span>
               </label>
             </b-col>
-            <b-col sm="6" v-show="createtest.keepquestionssamemarks">
+            <b-col sm="6" v-show="createtest.keepquestionSamemarks">
               <b-form-input class="sortQuestionsClass" type="number" placeholder="Enter Marks" v-model="createtest.sameMarks" required></b-form-input>
             </b-col>
           </b-row>
