@@ -9,7 +9,7 @@ import {
 export default  {
   name: 'create-batch',
   components: {},
-  props: ['id','name'],
+  props: ['id','name', 'status'],
   data() {
     this.responseMessage = null;
     this.ModalMessage = null;
@@ -51,13 +51,28 @@ export default  {
           if (res.status == 200) {
             this.createbatchform = {};
             if(isEditMode){
-              this.ModalMessage = 'Batch updated successfully';
-              this.$refs.notificationModal.show();
+              this.$swal({
+                title: 'Great !',
+                text: "Batch updated successfully !",
+                type: 'success',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'OK'
+              }).then((result) => {
+                if (result) {
+                  this.$router.push('/Dashboard/Masters/BatchList');
+                }
+              })
             }
             else{
-              this.responseMessage = 'Batch created successfully';
-              this.notifySuccess = true;
-              this.notifyError = false;
+              this.$swal({
+                type: 'success',
+                title: 'Batch created successfully'
+              }).then((result) => {
+                if (result) {
+                  this.$router.push('/Dashboard/Masters/BatchList');
+                }
+              })
             }
           } else {
             this.errorMessage = res.statusText;
@@ -81,6 +96,7 @@ export default  {
       this.isEdit = true;
       this.createbatchform.id = this.id;
       this.createbatchform.batchName = this.name;
+      this.createbatchform.status = this.status == 'Active' ? true : false;
     }
   }
 }

@@ -1,3 +1,71 @@
-.select-questions-view {
+/*@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
+body {
+  font-family: "Open Sans", Arial;
+  background: #CCC;
 }
+main {
+  background: #EEE;
+  width: 600px;
+  margin: 20px auto;
+  padding: 10px 0;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+}
+h2 {
+  text-align: center;
+}
+p {
+  font-size: 13px;
+}
+input {
+  display: none;
+  visibility: hidden;
+}
+label {
+  display: block;
+  padding: 0.5em;
+  text-align: center;
+  color: #666;
+}
+label:hover {
+  color: #000;
+}
+label::before {
+  font-family: Consolas, monaco, monospace;
+  font-weight: bold;
+  font-size: 19px;
+  content: "+";
+  vertical-align: middle;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(ellipse at center, transparent 50%);
+}
+#expand {
+  height: 0px;
+  overflow: hidden;
+  transition: height 0.5s;
+  color: #666666;
+  font-weight: bold;
+  font-size: small;
+}
+section {
+  padding: 0 20px;
+}
+#toggle:checked ~ #expand {
+  height: 380px;
+}
+#toggle:checked ~ label::before {
+  content: "-";
+}
+.filterBox {
+  display: inline-block;
+  border: 4px solid grey;
+  border-radius: 9px;
+  padding-left: 4px;
+  padding-right: 4px;
+  margin-right: 5px;
+  color: grey;
+  text-align: center;
+}
+*/

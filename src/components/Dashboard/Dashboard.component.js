@@ -24,7 +24,9 @@ export default {
     this.isUserStudent = false;
     this.asAdminToggle = false;
     return {
-      loginUserName: Vue.lsobj.get('loginName'),
+      get loginUserName() {
+        return  localStorage.getItem('loginName');
+      },
       loginRole: Vue.lsobj.get('rolename'),
       SecondryRolename: Vue.lsobj.get('SecondryRolename')
     }
@@ -70,7 +72,7 @@ export default {
             } else {
               Vue.lsobj.set('rolename', res.result.message[0].user_roles[0].role.rolename);
               Vue.lsobj.set('loginRole', 2);
-              Vue.lsobj.set('SecondryRolename', res.result.message[0].user_roles[1].role.rolename); 
+              Vue.lsobj.set('SecondryRolename', res.result.message[0].user_roles[1].role.rolename);
             }
 
             this.$router.push('/Dashboard');

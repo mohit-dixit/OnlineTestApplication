@@ -60,6 +60,7 @@ export default  {
       });
     },
     onSubmit(evt) {
+      evt.preventDefault();
       let apiPath = 'api/admin/create/topic';
       let isEditMode = this.isEdit;
       if(isEditMode){
@@ -70,13 +71,29 @@ export default  {
           if (res.status == 200) {
             this.createtopicform = {};
             if(isEditMode){
-              this.ModalMessage = 'Topic updated successfully';
-              this.$refs.notificationModal.show();
+              this.$swal({
+                title: 'Great !',
+                text: "Topic updated successfully !",
+                type: 'success',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'OK'
+              }).then((result) => {
+                if (result) {
+                  this.$router.push('/Dashboard/Masters/TopicList');
+                }
+              })
+
             }
             else{
-              this.responseMessage = 'Topic created successfully';
-              this.notifySuccess = true;
-              this.notifyError = false;
+              this.$swal({
+                type: 'success',
+                title: 'Topic created successfully !'
+              }).then((result) => {
+                if (result) {
+                  this.$router.push('/Dashboard/Masters/TopicList');
+                }
+              })
             }
           } else {
             this.errorMessage = res.statusText;

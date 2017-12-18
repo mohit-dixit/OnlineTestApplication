@@ -164,8 +164,14 @@ export default {
           let batch = this.createtest.batch.map(function(data){
             return data.id;
           });
+          let teacherId = this.checkedQuestions.map(function(data){
+            return data.id;
+          });
+          this.createtest.batch = batch;
+          this.createtest.teacherId = teacherId;
           debugger;
-            PostRequest(this.BaseUrl + 'api/admin/create/quiz', this.createtest).then(res => {
+            PostRequest(this.BaseUrl + 'api/admin/create/test', this.createtest).then(res => {
+              debugger;
                 if (res.status == 200) {
                     
                     this.$forceUpdate();

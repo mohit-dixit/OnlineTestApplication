@@ -1,0 +1,35 @@
+<div class="container">
+   <div class="loading" v-if='loader'>Loading&#8230;</div>
+   <div class="avatar-flip1">
+      <img class="profileimage" @click='editImageFunction()' :src="localImage || profileData.image" height="150" width="150">
+      <input id='imageUrl' type="file" @change="onFileChange" style='display:none'>
+   </div>
+   <div>
+      <b-row class="my-1">
+         <b-col sm="6">
+            <b-form-input type="text" v-model="profileData.firstname" required placeholder="Enter First Name"></b-form-input>
+         </b-col>
+         <b-col sm="6">
+            <b-form-input type="text" v-model="profileData.lastname" required placeholder="Enter Last Name"></b-form-input>
+         </b-col>
+      </b-row>
+   </div>
+   <div class="form-box">
+      <b-form>
+         <b-row class="my-1">
+            <!-- <b-col sm="6">
+               <b-form-input type="text" v-model="profileData.username" required placeholder="Enter Email"></b-form-input>
+            </b-col> -->
+            <b-col sm="6">
+               <b-form-input type="text" v-model="profileData.phone" required placeholder="Enter Phone"></b-form-input>
+            </b-col>
+         </b-row>
+      </b-form>
+   </div>
+   <b-form-input type="text" v-model="profileData.desciption" placeholder="Enter About You"></b-form-input>
+   <div>
+      <br>
+      <b-button  type="submit" v-on:click="updateClick()" variant="primary">Update</b-button>
+      <b-button type="reset" v-on:click="cancelClick()" variant="secondary">Cancel</b-button>
+   </div>
+</div>

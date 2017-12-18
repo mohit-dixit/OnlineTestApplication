@@ -1,17 +1,21 @@
 import Vue from 'vue'
+import * as config from '../../config/constants.js'
+import {
+  GetRequest,
+  PostRequest,
+  NumberKeyValidation
+} from '../../utils/globalservice'
+
 export default  {
   name: 'profile',
   components: {},
   props: [],
   data () {
     this.isEditMode = false;
+    this.BaseUrl = config.BASE_URL;
     return {
-      profile: {
-        loginUserName: Vue.lsobj.get('loginName'),
-        userEmail : 'mohit.dixit354@gmail.com',
-        userPhone:'+91-9968445395',
-        aboutMe:'Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Maecenas sed diam eget risus varius blandit sit amet non magna ip sum dolore.'
-      }
+      profileData: {},
+      image: ''
     }
   },
   computed: {
@@ -21,21 +25,56 @@ export default  {
 
   },
   methods: {
+    bindProfileData: function () {
+      GetRequest(this.BaseUrl + 'api/superAdmin/profile')
+        .then(res => {
+          if (res) {
+            this.profileData = res.result.message[0];
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
     editButtonClick : function(){
-      this.isEditMode = true;
-      if(this.profile.loginUserName){
-        let username = this.profile.loginUserName;
-        this.profile.userFirstName = username.split(' ')[0];
-        this.profile.userLastName = username.split(' ')[1];
-      }
-      this.$forceUpdate();
+      this.$router.push('/Dashboard/edit-profile');
+      /* this.isEditMode = true;
+      this.$forceUpdate(); */
     },
     cancelClick : function(){
       this.isEditMode = false;
       this.$forceUpdate();
     },
     updateClick: function(){
-      //Update Logic
+      console.log(this.profileData);
+      PostRequest(this.BaseUrl + 'api/superAdmin/profile/update', this.profileData)
+        .then(res => {
+          this.isEditMode = false;
+          console.log(res, "on Updation of profile");
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
-  }
+    onFileChange(e) {
+      var files = e.target.files || e.dataTransfer.files;
+      if (!files.length)
+        return;
+      this.createImage(files[0]);
+    },
+    createImage(file) {
+      console.log(file, "File--------");
+      var image = new Image();
+      var reader = new FileReader();
+      var vm = this;
+
+      reader.onload = (e) => {
+        this.profileData.image = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  },
+  created: function () {
+    this.bindProfileData();
+  },
 }

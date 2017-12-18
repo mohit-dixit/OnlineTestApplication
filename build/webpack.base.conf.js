@@ -1,5 +1,6 @@
 'use strict'
 const path = require('path')
+const webpack = require('webpack');
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
@@ -12,6 +13,14 @@ module.exports = {
   entry: {
     app: './src/main.js'
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jquery: 'jquery',
+      'window.jQuery': 'jquery',
+      jQuery: 'jquery'
+    })
+  ],
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
