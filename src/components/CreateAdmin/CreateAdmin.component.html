@@ -52,6 +52,7 @@
         </b-container>
         <b-button type="submit" variant="primary">{{submitButtonText}}</b-button>
         <b-button type="reset" v-if="!isEdit" variant="secondary">Clear</b-button>
+        <b-button v-on:click='getAdminData()' v-if="isEdit" variant="secondary">Reset</b-button>
         <div v-if="notifySuccess" style="margin-top: 10px;">
           <span class="notification n-success"><b>{{responseMessage}}</b></span>
         </div>
