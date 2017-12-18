@@ -66,7 +66,6 @@
         <vue-good-table title="" :columns="columns" :rows="rows" :lineNumbers="true" :defaultSortBy="{field: 'age', type: 'asc'}" :globalSearch="true" :paginate="true" styleClass="table condensed table-bordered table-striped">
           <template slot="table-row" scope="props">
             <td>
-<<<<<<< HEAD
               <input type="checkbox" name="" @click="updateCheck(props.row)" :disabled="checkedQuestions.length >= selectedNumber.maxNum && !props.row.checked" v-model="props.row.checked">
             </td>
             <td>{{ props.row.createdAt }}</td>
@@ -77,40 +76,6 @@
             <td>{{ props.row.topicName }}</td>
           </template>
         </vue-good-table>
-=======
-              <!--   <b-form-checkbox id="checkbox1" v-model="props.row.checked" value="true" unchecked-value="false" @click="updateObject(props.row)">{{props.row.checked}}
-                                    </b-form-checkbox> -->
-              <input type="checkbox" name="" @click="updateCheck(props.row)" :disabled="checkedQuestions.length >= selectedNumber.maxNum && !props.row.checked" v-model="props.row.checked">
-            </td>
-            <td>{{ props.row.scaleName }}</td>
-            <td class="fancy">{{ props.row.subjectName }}</td>
-            <td v-html="props.row.question"></td>
-            <td>{{ props.topicName }}</td>
-          </template>
-        </vue-good-table>
-        <!-- <table class="table">
-            <thead>
-              <th>Question Type</th>
-              <th>Batch</th>
-              <th>Subject</th>
-              <th>Question</th>
-              <th>Topic</th>
-            </thead>
-            <tbody>
-              <tr v-for="row in rows">
-                <td> -->
-        <!--   <b-form-checkbox id="checkbox1" v-model="props.row.checked" value="true" unchecked-value="false" @click="updateObject(props.row)">{{props.row.checked}}
-                                    </b-form-checkbox> -->
-        <!-- <input type="checkbox" name="" v-model="row.checked">
-                </td>
-                <td>{{ row.scaleName }}</td>
-                <td class="fancy">{{ row.subjectName }}</td>
-                <td>{{ row.question }}</td>
-                <td>{{ row.topicName }}</td>
-              </tr>
-            </tbody>
-          </table> -->
->>>>>>> 7540ee8b8e07cd16de672fb2a3d55b5247ed5c5a
       </b-col>
     </b-row>
   </b-container>

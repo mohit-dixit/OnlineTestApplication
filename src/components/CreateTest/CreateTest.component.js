@@ -5,13 +5,12 @@ import * as config from '../../config/constants.js'
 import Datepicker from 'vuejs-datepicker';
 import Vue from 'vue'
 import {
-  GetRequest,
-  PostRequest,
-  NumberKeyValidation
+    GetRequest,
+    PostRequest,
+    NumberKeyValidation
 } from '../../utils/globalservice'
 
 export default {
-<<<<<<< HEAD
     name: 'create-test',
     components: { Multiselect, Datepicker },
     props: ['questionArr', 'selectedQuestion'],
@@ -67,165 +66,21 @@ export default {
             }, {
                 label: 'Topic',
                 field: 'topicName',
-=======
-  name: 'create-test',
-  components: { Multiselect, Datepicker },
-  props: [],
-  data() {
-    this.toShowRemoveSort = false;
-    this.BaseUrl = config.BASE_URL;
-    this.showMOdal = false;
-    return {
-      date: new Date(),
-      config: {
-        format: 'DD/MM/YYYY',
-        useCurrent: false,
-      },
-      limit: {
-        type: 'fromto',
-        from: '2016-01-10',
-        to: '2016-01-30'
-      },
-      questionSortList: [{
-        scale: '0',
-        subject: '0',
-        numberquestions: ''
-      }, ],
-      createtest: {
-        negativemarking: 0,
-        points: null,
-        scaleId: null,
-        subjectId: null,
-        categoryId: null,
-        topicId: null
-      },
-      batchOptions: [],
-      checkedQuestions: [],
-      columns: [{
-        label: '',
-        field: 'checked',
-        filterable: true,
-      }, {
-        label: 'Scale',
-        field: 'scaleName',
-        // html: false,
-        filterable: true,
-      }, {
-        label: 'Subject',
-        field: 'subjectName',
-        // html: false,
-        filterable: true,
-      }, {
-        label: 'Question',
-        field: 'question',
-        html: true,
-        filterable: true,
-      }, {
-        label: 'Topic',
-        field: 'topicName',
 
-        filterable: true,
-      }],
-      rows: [],
-      subjectOptions: [],
-      topicOptions: [{ value: null, text: '--Select Topic--' }],
-      questionTypeOptions: [{ value: null, text: '--Select Question Type--' }, { value: 1, text: 'Single Selection' }, { value: 2, text: 'Multi Selection' }]
-    }
-  },
-  computed: {
->>>>>>> 7540ee8b8e07cd16de672fb2a3d55b5247ed5c5a
+                filterable: true,
+            }],
+            rows: [],
+            subjectOptions: [],
+            topicOptions: [{ value: null, text: '--Select Topic--' }],
+            questionTypeOptions: [{ value: null, text: '--Select Question Type--' }, { value: 1, text: 'Single Selection' }, { value: 2, text: 'Multi Selection' }]
+        }
+    },
+    computed: {
 
-  },
-  mounted() {
+    },
+    mounted() {
 
-  },
-  methods: {
-    init: function() {
-      //Find Promise.all type request here
-      GetRequest(this.BaseUrl + 'api/admin/batch/list').then(res => {
-        if (res) {
-          res.result.message.forEach(function(element) {
-            this.batchOptions.push({
-              id: element.id,
-              batchname: element.batchName
-            })
-          }, this);
-        }
-      });
-      GetRequest(this.BaseUrl + 'api/admin/question/list').then(res => {
-        if (res) {
-          res.result.message.forEach(function(element) {
-            this.rows.push({
-              id: element.id,
-              scaleName: element.scale.scaleName,
-              subjectName: element.subject.subjectName,
-              question: element.question,
-              topicName: element.topic.topicName,
-              checked: false
-            })
-          }, this);
-          this.$forceUpdate();
-        }
-      });
-
-      this.bindSubjects();
     },
-    bindSubjects: function() {
-      GetRequest(this.BaseUrl + 'api/admin/subject/list').then(res => {
-        this.subjectOptions = [];
-        this.subjectOptions.push({
-          value: null,
-          text: '--Select Subject--'
-        })
-        if (res.status) {
-          let response = res.result.message;
-          if (response) {
-            response.forEach(function(element) {
-              this.subjectOptions.push({
-                value: element.id,
-                text: element.subjectName
-              })
-            }, this);
-          }
-        }
-      });
-    },
-    confirm() {
-      let array = [];
-      let list = this.rows.filter(function(data, index) {
-        if (data.checked) {
-          array.push(data);
-          return array;
-        }
-      });
-
-      this.checkedQuestions = list;
-      this.closeModal();
-    },
-    updateCheck: function(rowValue) {
-      this.rows.forEach(function(element) {
-        if (element.id == rowValue.id) {
-          element.checked = true;
-        }
-      }, this);
-    },
-    openQuesModal() {
-       // this.$router.push('/Dashboard/CreateTest/SelectQuestionsView');
-      this.$router.push({
-        //path: '/Dashboard/CreateTest/SelectQuestionsView',
-        name : 'SelectQuestionsView',
-        params: {
-          id: this.createtest.numberofquestions        }
-      });
-      // this.$refs.listOfQuesModal.show();
-    },
-    closeModal: function(events, args) {
-      this.$refs.listOfQuesModal.hide();
-    },
-    customLabel(option) {
-      return `${option.batchname}`
-    },
-<<<<<<< HEAD
     methods: {
         init: function() {
             if (this.questionArr) {
@@ -258,65 +113,16 @@ export default {
                     this.$forceUpdate();
                 }
             });
-=======
->>>>>>> 7540ee8b8e07cd16de672fb2a3d55b5247ed5c5a
 
-    search() {
-      let filterValue = {
-        categoryId: this.createtest.categoryId,
-        subjectId: this.createtest.subjectId,
-        topicId: this.createtest.topicId
-      };
-      PostRequest(this.BaseUrl + 'api/admin/filterByQuestions', filterValue).then(res => {
-        if (res.status == 200) {
-          this.rows = [];
-          res.body.message.forEach(function(element) {
-            this.rows.push({
-              id: element.id,
-              scaleName: element.scale.scaleName,
-              subjectName: element.subject.subjectName,
-              question: element.question,
-              topicName: element.topic.topicName,
-              checked: false
-            })
-          }, this);
-          this.$forceUpdate();
-        }
-      });
-    },
-    reset() {
-      this.rows = [];
-      this.createtest = {
-        subjectId: null,
-        categoryId: null,
-        topicId: null
-      };
-      this.subjectOptions = [];
-      this.bindSubjects();
-      this.topicOptions = [{ value: null, text: '--Select Topic--' }];
-      this.questionTypeOptions = [{ value: null, text: '--Select Question Type--' }, { value: 1, text: 'Single Selection' }, { value: 2, text: 'Multi Selection' }];
-      this.init();
-    },
-    subjectChange() {
-      var self = this;
-      setTimeout(function() {
-        let postData = {};
-        postData.subjectId = self.createtest.subjectId;
-        PostRequest(self.BaseUrl + 'api/admin/subject/assosicated/topic', postData).then(res => {
-          self.topicOptions = [];
-          self.topicOptions.push({
-            value: null,
-            text: '--Select Topic--'
-          })
-          if (res.status) {
-            let response = res.body.message;
-            if (response) {
-              response.forEach(function(element) {
-                self.topicOptions.push({
-                  value: element.id,
-                  text: element.topicName
+            this.bindSubjects();
+        },
+        bindSubjects: function() {
+            GetRequest(this.BaseUrl + 'api/admin/subject/list').then(res => {
+                this.subjectOptions = [];
+                this.subjectOptions.push({
+                    value: null,
+                    text: '--Select Subject--'
                 })
-<<<<<<< HEAD
                 if (res.status) {
                     let response = res.result.message;
                     if (response) {
@@ -438,72 +244,56 @@ export default {
             alert(JSON.stringify(this.createtest));
             this.$router.go(this.$router.currentRoute);
         },
-=======
-              }, self);
+
+        addRow: function() {
+            this.questionSortList.push({
+                scale: '0',
+                subject: '0',
+                numberquestions: ''
+            });
+            this.toShowRemoveSort = true;
+        },
+
+        removeRow: function() {
+            this.questionSortList.pop();
+            let questionSortListLength = this.questionSortList.length;
+            if (questionSortListLength == 1) {
+                this.toShowRemoveSort = false;
             }
-            self.createtest.topic = null;
-          }
-        });
-      });
-    },
-    onSubmit(evt) {
-      evt.preventDefault();
-      // let sorts = this.getFinalSorts();
-      // alert(JSON.stringify(sorts));
-      alert(JSON.stringify(this.createtest));
-      this.$router.go(this.$router.currentRoute);
-    },
->>>>>>> 7540ee8b8e07cd16de672fb2a3d55b5247ed5c5a
+        },
+        answerCheckboxClick: function(sender) {
+            let controlList = document.getElementsByClassName('answerCheckboxClass');
+            let checkedCounter = 0;
+            for (let i = 0; i < controlList.length; i++) {
+                if (controlList[i].checked) {
+                    checkedCounter++;
+                }
+                if (checkedCounter > 1) {
+                    alert('You cannot select multiple answers')
+                    event.currentTarget.checked = false;
+                    break;
+                }
+            }
+        },
+        getFinalSorts: function() {
+            let finalSortObj = [];
+            let scaleList = document.getElementsByClassName('sortScaleClass');
+            let subjectList = document.getElementsByClassName('sortSubjectClass');
+            let questionList = document.getElementsByClassName('sortQuestionsClass');
 
-    addRow: function() {
-      this.questionSortList.push({
-        scale: '0',
-        subject: '0',
-        numberquestions: ''
-      });
-      this.toShowRemoveSort = true;
-    },
+            for (let i = 0; i < scaleList.length; i++) {
+                let sortObj = {};
+                sortObj.Scale = scaleList[i].value;
+                sortObj.Subject = subjectList[i].value;
+                sortObj.NoOfQuestions = questionList[i].value;
+                finalSortObj.push(sortObj);
+            }
 
-    removeRow: function() {
-      this.questionSortList.pop();
-      let questionSortListLength = this.questionSortList.length;
-      if (questionSortListLength == 1) {
-        this.toShowRemoveSort = false;
-      }
+            return finalSortObj;
+        },
     },
-    answerCheckboxClick: function(sender) {
-      let controlList = document.getElementsByClassName('answerCheckboxClass');
-      let checkedCounter = 0;
-      for (let i = 0; i < controlList.length; i++) {
-        if (controlList[i].checked) {
-          checkedCounter++;
-        }
-        if (checkedCounter > 1) {
-          alert('You cannot select multiple answers')
-          event.currentTarget.checked = false;
-          break;
-        }
-      }
-    },
-    getFinalSorts: function() {
-      let finalSortObj = [];
-      let scaleList = document.getElementsByClassName('sortScaleClass');
-      let subjectList = document.getElementsByClassName('sortSubjectClass');
-      let questionList = document.getElementsByClassName('sortQuestionsClass');
-
-      for (let i = 0; i < scaleList.length; i++) {
-        let sortObj = {};
-        sortObj.Scale = scaleList[i].value;
-        sortObj.Subject = subjectList[i].value;
-        sortObj.NoOfQuestions = questionList[i].value;
-        finalSortObj.push(sortObj);
-      }
-
-      return finalSortObj;
-    },
-  },
-  created: function() {
-    this.loginRole = Vue.lsobj.get('loginRole');
-    this.init();
-  }
+    created: function() {
+        this.loginRole = Vue.lsobj.get('loginRole');
+        this.init();
+    }
 }
