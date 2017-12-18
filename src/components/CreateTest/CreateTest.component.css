@@ -7,7 +7,11 @@
   background: #fff;
   border: 1px solid #ccc;
 }
-
+/*.modal.my-modal .modal-dialog {
+  width: 900px;
+  height: 900px;
+  !important;
+}*/
 #output{
   position: absolute;
   width: 300px;

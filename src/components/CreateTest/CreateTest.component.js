@@ -10,16 +10,10 @@ import {
     NumberKeyValidation
 } from '../../utils/globalservice'
 
-const items = [
-    { isActive: true, age: 40, first_name: 'Dickerson', last_name: 'Macdonald' },
-    { isActive: false, age: 21, first_name: 'Larsen', last_name: 'Shaw' },
-    { isActive: false, age: 89, first_name: 'Geneva', last_name: 'Wilson' },
-    { isActive: true, age: 38, first_name: 'Jami', last_name: 'Carney' }
-]
 export default {
     name: 'create-test',
     components: { Multiselect, Datepicker },
-    props: [],
+    props: ['questionArr', 'selectedQuestion'],
     data() {
         this.toShowRemoveSort = false;
         this.BaseUrl = config.BASE_URL;
@@ -89,6 +83,10 @@ export default {
     },
     methods: {
         init: function() {
+            if (this.questionArr) {
+                this.createtest = this.questionArr;
+                this.checkedQuestions = this.checkedQuestions.concat(this.selectedQuestion);
+            }
             //Find Promise.all type request here
             GetRequest(this.BaseUrl + 'api/admin/batch/list').then(res => {
                 if (res) {
@@ -158,8 +156,17 @@ export default {
             }, this);
         },
         openQuesModal() {
-
-            this.$refs.listOfQuesModal.show();
+            debugger;
+            // this.$router.push('/Dashboard/CreateTest/SelectQuestionsView');
+            this.$router.push({
+                //path: '/Dashboard/CreateTest/SelectQuestionsView',
+                name: 'SelectQuestionsView',
+                params: {
+                    createtestParams: this.createtest,
+                    selectedQuestion: this.checkedQuestions
+                }
+            });
+            // this.$refs.listOfQuesModal.show();
         },
         closeModal: function(events, args) {
             this.$refs.listOfQuesModal.hide();

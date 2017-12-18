@@ -43,6 +43,9 @@ import TopicList from '@/components/TopicList'
 import EditTopic from '@/components/CreateTopic'
 import Profile from '@/components/Profile'
 import EditQuestion from '@/components/CreateQuestion'
+import SelectQuestionsView from '@/components/SelectQuestionsView'
+import SelectQuestionsPanel from '@/components/SelectQuestionsPanel'
+const Foo = { template: '<div>Foo</div>' }
 
 Vue.use(Router)
 Vue.use(VueBreadcrumbs)
@@ -82,8 +85,23 @@ export default new Router({
         {
           path: 'CreateTest',
           name: 'CreateTest',
-          component: CreateTest,
-          meta: { AuthRequired: true  , breadcrumb: 'Create Test' }
+          component: SelectQuestionsPanel,
+          meta: { AuthRequired: true  , breadcrumb: 'Create Test' },
+          children: [
+          {
+              path: '',
+              name: 'SelectQuestionsPanel',
+              component: CreateTest,
+              props: true,
+              meta: { AuthRequired: true }
+            },
+            {
+              path: 'SelectQuestionsView',
+              name: 'SelectQuestionsView',    
+              component: SelectQuestionsView,
+              props: true,
+              meta: { AuthRequired: true, breadcrumb: 'Select Questions' }
+            }]
         },
         {
           path: 'Masters',
