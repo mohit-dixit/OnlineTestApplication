@@ -53,7 +53,7 @@ section {
   padding: 0 20px;
 }
 #toggle:checked ~ #expand {
-  height: 180px;
+  height: 380px;
 }
 #toggle:checked ~ label::before {
   content: "-";
