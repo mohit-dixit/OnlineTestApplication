@@ -1,94 +1,106 @@
 <section v-if="loginRole === '3' || loginRole === '2'">
-  <router-link to="/Dashboard/TestList">
-    <b-button variant="primary">Go To Test List</b-button>
-  </router-link>
- <!--  <router-view></router-view> -->
-  <div class="login-container">
-    <div class="form-box">
-      <label class="headingForm">Create Test</label>
-      <br>
-      <b-form @submit="onSubmit">
-        <b-container style="margin-bottom: 10px;" fluid>
-          <b-row class="my-1">
-            <b-col sm="4">
-              <label for="input-none">Test Name:</label>
-            </b-col>
-            <b-col sm="8">
-              <b-form-input id="name" type="text" v-model="createtest.testname" required placeholder="Enter Test Name"></b-form-input>
-            </b-col>
-          </b-row>
-          <b-row class="my-1">
-            <b-col sm="4">
-              <label for="input-none">Negative Marking(%):</label>
-            </b-col>
-            <b-col sm="8">
-              <b-form-input type="number" placeholder="Enter Negative Marking %" v-model="createtest.negativemarking" required>%</b-form-input>
-            </b-col>
-            <!-- <b-col sm="2">
+    <router-link to="/Dashboard/TestList">
+        <b-button variant="primary">Go To Test List</b-button>
+    </router-link>
+    <!--  <router-view></router-view> -->
+    <div class="login-container">
+        <div class="form-box">
+            <label class="headingForm">Create Test</label>
+            <br>
+            <b-form @submit="onSubmit">
+                <b-container style="margin-bottom: 10px;" fluid>
+                    <b-row class="my-1">
+                        <b-col sm="4">
+                            <label for="input-none">Test Name:</label>
+                        </b-col>
+                        <b-col sm="8">
+                            <b-form-input id="name" type="text" v-model="createtest.testname" required placeholder="Enter Test Name"></b-form-input>
+                        </b-col>
+                    </b-row>
+                    <b-row class="my-1">
+                        <b-col sm="4">
+                            <label for="input-none">Negative Marking(%):</label>
+                        </b-col>
+                        <b-col sm="8">
+                            <b-form-input type="number" placeholder="Enter Negative Marking %" v-model="createtest.negativemarking" required>%</b-form-input>
+                        </b-col>
+                        <!-- <b-col sm="2">
               <label for="input-none"><b>%</b></label>
             </b-col> -->
-          </b-row>
-          <b-row class="my-1">
-            <b-col sm="4">
-              <label for="input-none">Valid From:</label>
-            </b-col>
-            <b-col sm="8">
-              <date-picker placeholder="click me" v-model="createtest.validfrom" :config="config" :limit="limit" required></date-picker>
-              <!-- <datepicker></datepicker> -->
-            </b-col>
-          </b-row>
-          <b-row class="my-1">
-            <b-col sm="4">
-              <label for="input-none">Valid To:</label>
-            </b-col>
-            <b-col sm="8">
-              <date-picker placeholder="click me" v-model="createtest.validto" :config="config" required></date-picker>
-            </b-col>
-          </b-row>
-          <b-row class="my-1">
-            <b-col sm="4">
-              <label for="input-none">Batch:</label>
-            </b-col>
-            <b-col sm="8">
-              <multiselect v-model="createtest.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel">
-              </multiselect>
-            </b-col>
-          </b-row>
-          <b-row class="my-1">
-            <b-col sm="4">
-              <label for="input-none">Test Time (In minutes):</label>
-            </b-col>
-            <b-col sm="8">
-              <b-form-input type="number" placeholder="Enter Test Time" v-model="createtest.testtime" required></b-form-input>
-            </b-col>
-           <!--  <b-col sm="2">
+                    </b-row>
+                    <b-row class="my-1">
+                        <b-col sm="4">
+                            <label for="input-none">Valid From:</label>
+                        </b-col>
+                        <b-col sm="8">
+                            <date-picker placeholder="click me" v-model="createtest.validfrom" :config="config" :limit="limit" required></date-picker>
+                            <!-- <datepicker></datepicker> -->
+                        </b-col>
+                    </b-row>
+                    <b-row class="my-1">
+                        <b-col sm="4">
+                            <label for="input-none">Valid To:</label>
+                        </b-col>
+                        <b-col sm="8">
+                            <date-picker placeholder="click me" v-model="createtest.validto" :config="config" required></date-picker>
+                        </b-col>
+                    </b-row>
+                    <b-row class="my-1">
+                        <b-col sm="4">
+                            <label for="input-none">Batch:</label>
+                        </b-col>
+                        <b-col sm="8">
+                            <multiselect v-model="createtest.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel">
+                            </multiselect>
+                        </b-col>
+                    </b-row>
+                    <b-row class="my-1">
+                        <b-col sm="4">
+                            <label for="input-none">Test Time (In minutes):</label>
+                        </b-col>
+                        <b-col sm="8">
+                            <b-form-input type="number" placeholder="Enter Test Time" v-model="createtest.testtime" required></b-form-input>
+                        </b-col>
+                        <!--  <b-col sm="2">
               <label for="input-none">Minutes</label>
             </b-col> -->
-          </b-row>
-          <b-row class="my-1">
-            <b-col sm="4">
-              <label for="input-none">No. Of Questions:</label>
-            </b-col>
-            <b-col sm="8">
-              <b-form-input class="sortQuestionsClass" type="number" placeholder="No. of Questions" v-model="createtest.numberofquestions" required></b-form-input>
-            </b-col>
-          </b-row>
-          <b-row class="my-1">
-            <b-col sm="4">
-              <label for="input-none">Keep all questions with same marks:</label>
-            </b-col>
-            <b-col sm="2" style="text-align: left;">
-              <label class="switch" style="width: 60px;">
-                <input v-model="createtest.keepquestionSamemarks" value="true" type="checkbox">
-                <span class="slider round"></span>
-              </label>
-            </b-col>
-            <b-col sm="6" v-show="createtest.keepquestionSamemarks">
-              <b-form-input class="sortQuestionsClass" type="number" placeholder="Enter Marks" v-model="createtest.sameMarks" required></b-form-input>
-            </b-col>
-          </b-row>
-          <b-row>
-            <table class="table" v-show="checkedQuestions.length > 0">
+                    </b-row>
+                    <b-row class="my-1">
+                        <b-col sm="4">
+                            <label for="input-none">No. Of Questions:</label>
+                        </b-col>
+                        <b-col sm="8">
+                            <b-form-input class="sortQuestionsClass" type="number" placeholder="No. of Questions" v-model="createtest.numberofquestions" required></b-form-input>
+                        </b-col>
+                    </b-row>
+                    <b-row class="my-1">
+                        <b-col sm="2">
+                            <label for="input-none">Teacher Name:</label>
+                        </b-col>
+                        <b-col sm="9">
+                            <b-form-select v-model="createtest.teacherId" :options="teacherOptions" required class="mb-3">
+                            </b-form-select>
+                        </b-col>
+                    </b-row>
+                    <b-row class="my-1">
+                        <b-col sm="4">
+                            <label for="input-none">Keep all questions with same marks:</label>
+                        </b-col>
+                        <b-col sm="2" style="text-align: left;">
+                            <label class="switch" style="width: 60px;">
+                                <input v-model="createtest.keepquestionSamemarks" value="true" type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </b-col>
+                        <b-col sm="6" v-show="createtest.keepquestionSamemarks">
+                            <b-form-input class="sortQuestionsClass" type="number" placeholder="Enter Marks" v-model="createtest.sameMarks" required></b-form-input>
+                        </b-col>
+                    </b-row>
+                    <b-row>
+                        <b-col sm="4">
+                            <a style="color: blue; font-size: 15px; cursor: pointer;"><u>{{checkedQuestions.length}} Questions Selected</u></a>
+                        </b-col>
+                        <!-- <table class="table" v-show="checkedQuestions.length > 0">
               <thead>
                 <th>Question Type</th>
                 <th>Batch</th>
@@ -104,94 +116,93 @@
                   <td>{{ row.topicName }}</td>
                 </tr>
               </tbody>
-            </table>
-          </b-row>
-        </b-container>
-        <!-- <router-link to="/Dashboard/CreateTest/SelectQuestionsView">
+            </table> -->
+                    </b-row>
+                </b-container>
+                <!-- <router-link to="/Dashboard/CreateTest/SelectQuestionsView">
           <b-button variant="primary"><b>+ </b>Add</b-button>
         </router-link> -->
-        <b-button  variant="primary" @click="openQuesModal()">Select Questions</b-button>&nbsp;&nbsp;
-        <!-- <router-link to="/CreateTest/SelectQuestionsView">
+                <b-button variant="primary" @click="openQuesModal()">Select Questions</b-button>&nbsp;&nbsp;
+                <!-- <router-link to="/CreateTest/SelectQuestionsView">
           <a href="" class="dashboard-module">
                       <img src="../../assets/images/scale.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_write.gif" width="64" height="64" alt="edit" />
                       <span>Scales</span>
                     </a>
         </router-link> -->
-
-        <b-button type="reset" variant="secondary">Reset</b-button>&nbsp;&nbsp;
-        <b-button type="submit" variant="primary">Create Test</b-button>
-      </b-form>
+                <b-button type="reset" variant="secondary">Reset</b-button>&nbsp;&nbsp;
+                <b-button type="submit" variant="primary" @click="createTest()" v-show="checkedQuestions.length > 0">Create Test</b-button>
+            </b-form>
+        </div>
     </div>
-  </div>
-  <!-- Modal Component (To Select the Questions from Grid)-->
-  <b-modal centered ref="listOfQuesModal" size="lg" v-model="showMOdal" title="Select Questions" :header-bg-variant="headerBgVariant" :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
-    <b-container fluid>
-      <b-row class="mb-1 text-center">
-        <!--  <b-row class="my-1"> -->
-        <b-col sm="1">
-          <label for="input-none"><b>Filter By:</b></label>
-        </b-col>
-        <b-col sm="3">
-          <!--  <multiselect v-model="createtest.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel" placeholder="Select Question Type">
+    <!-- Modal Component (To Select the Questions from Grid)-->
+    <b-modal centered ref="listOfQuesModal" size="lg" v-model="showMOdal" title="Select Questions" :header-bg-variant="headerBgVariant" :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
+        <b-container fluid>
+            <b-row class="mb-1 text-center">
+                <!--  <b-row class="my-1"> -->
+                <b-col sm="1">
+                    <label for="input-none"><b>Filter By:</b></label>
+                </b-col>
+                <b-col sm="3">
+                    <!--  <multiselect v-model="createtest.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel" placeholder="Select Question Type">
                         </multiselect> -->
-          <b-form-select v-model="createtest.categoryId" @change.native="categoryChange()" placeholder="Select Question" :options="questionTypeOptions" required class="mb-3">
-          </b-form-select>
-        </b-col>
-        <b-col sm="3">
-          <!-- <multiselect v-model="createtest.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel" placeholder="Select Subject">
+                    <b-form-select v-model="createtest.categoryId" @change.native="categoryChange()" placeholder="Select Question" :options="questionTypeOptions" required class="mb-3">
+                    </b-form-select>
+                </b-col>
+                <b-col sm="3">
+                    <!-- <multiselect v-model="createtest.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel" placeholder="Select Subject">
                         </multiselect> -->
-          <b-form-select v-model="createtest.subjectId" @change.native="subjectChange()" :options="subjectOptions" required class="mb-3">
-          </b-form-select>
-        </b-col>
-        <b-col sm="3">
-          <!-- <multiselect v-model="createtest.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel" placeholder="Select Topic">
+                    <b-form-select v-model="createtest.subjectId" @change.native="subjectChange()" :options="subjectOptions" required class="mb-3">
+                    </b-form-select>
+                </b-col>
+                <b-col sm="3">
+                    <!-- <multiselect v-model="createtest.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel" placeholder="Select Topic">
                         </multiselect> -->
-          <b-form-select v-model="createtest.topicId" :options="topicOptions" required class="mb-3">
-          </b-form-select>
-        </b-col>
-        <b-col sm="2">
-          <b-button variant="success" @click="search()">S</b-button>
-          <b-button variant="success" @click="reset()">R</b-button>
-        </b-col>
-      </b-row>
-      </b-row>
-      <br>
-      <b-row class="mb-1 text-center">
-        <b-col sm="12">
-          <table class="table">
-            <thead>
-              <th>Question Type</th>
-              <th>Batch</th>
-              <th>Subject</th>
-              <th>Question</th>
-              <th>Topic</th>
-            </thead>
-            <tbody>
-              <tr v-for="row in rows">
-                <td>
-                  <!--   <b-form-checkbox id="checkbox1" v-model="props.row.checked" value="true" unchecked-value="false" @click="updateObject(props.row)">{{props.row.checked}}
+                    <b-form-select v-model="createtest.topicId" :options="topicOptions" required class="mb-3">
+                    </b-form-select>
+                </b-col>
+                <b-col sm="2">
+                    <b-button variant="success" @click="search()">S</b-button>
+                    <b-button variant="success" @click="reset()">R</b-button>
+                </b-col>
+            </b-row>
+            </b-row>
+            <br>
+            <b-row class="mb-1 text-center">
+                <b-col sm="12">
+                    <table class="table">
+                        <thead>
+                            <th>Question Type</th>
+                            <th>Batch</th>
+                            <th>Subject</th>
+                            <th>Question</th>
+                            <th>Topic</th>
+                        </thead>
+                        <tbody>
+                            <tr v-for="row in rows">
+                                <td>
+                                    <!--   <b-form-checkbox id="checkbox1" v-model="props.row.checked" value="true" unchecked-value="false" @click="updateObject(props.row)">{{props.row.checked}}
                                     </b-form-checkbox> -->
-                  <input type="checkbox" name="" v-model="row.checked">
-                </td>
-                <td>{{ row.scaleName }}</td>
-                <td class="fancy">{{ row.subjectName }}</td>
-                <td>{{ row.question }}</td>
-                <td>{{ row.topicName }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </b-col>
-      </b-row>
-    </b-container>
-    <div slot="modal-footer" class="w-100">
-      <p class="float-left"></p>
-      <b-btn size="sm" class="float-right" style="margin-left: 5px;" variant="secondary" @click="closeModal()">
-        No
-      </b-btn>
-      <b-btn size="sm" class="float-right" variant="danger" @click="confirm(rows)">
-        Yes
-      </b-btn>
-    </div>
-  </b-modal>
-  <!-- Modal Component -->
+                                    <input type="checkbox" name="" v-model="row.checked">
+                                </td>
+                                <td>{{ row.scaleName }}</td>
+                                <td class="fancy">{{ row.subjectName }}</td>
+                                <td>{{ row.question }}</td>
+                                <td>{{ row.topicName }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </b-col>
+            </b-row>
+        </b-container>
+        <div slot="modal-footer" class="w-100">
+            <p class="float-left"></p>
+            <b-btn size="sm" class="float-right" style="margin-left: 5px;" variant="secondary" @click="closeModal()">
+                No
+            </b-btn>
+            <b-btn size="sm" class="float-right" variant="danger" @click="confirm(rows)">
+                Yes
+            </b-btn>
+        </div>
+    </b-modal>
+    <!-- Modal Component -->
 </section>

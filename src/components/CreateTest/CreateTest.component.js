@@ -71,6 +71,7 @@ export default {
             }],
             rows: [],
             subjectOptions: [],
+            teacherOptions: [],
             topicOptions: [{ value: null, text: '--Select Topic--' }],
             questionTypeOptions: [{ value: null, text: '--Select Question Type--' }, { value: 1, text: 'Single Selection' }, { value: 2, text: 'Multi Selection' }]
         }
@@ -115,6 +116,28 @@ export default {
             });
 
             this.bindSubjects();
+            this.bindTeachers();
+        },
+        bindTeachers: function() {
+            GetRequest(this.BaseUrl + 'api/admin/teacher/list').then(res => {
+                this.teacherOptions = [];
+                this.teacherOptions.push({
+                    value: null,
+                    text: 'Select Teacher'
+                });
+                if (res.status) {
+                    let response = res.result.message;
+                    if (response) {
+                        response.forEach(function(element) {
+                            let teacherName = element.firstname + ' ' + element.lastname;
+                            this.teacherOptions.push({
+                                value: element.id,
+                                text: teacherName
+                            })
+                        }, this);
+                    }
+                }
+            });
         },
         bindSubjects: function() {
             GetRequest(this.BaseUrl + 'api/admin/subject/list').then(res => {
@@ -133,6 +156,19 @@ export default {
                             })
                         }, this);
                     }
+                }
+            });
+        },
+        createTest(){
+          debugger;
+          let batch = this.createtest.batch.map(function(data){
+            return data.id;
+          });
+          debugger;
+            PostRequest(this.BaseUrl + 'api/admin/create/quiz', this.createtest).then(res => {
+                if (res.status == 200) {
+                    
+                    this.$forceUpdate();
                 }
             });
         },
@@ -156,7 +192,6 @@ export default {
             }, this);
         },
         openQuesModal() {
-            debugger;
             // this.$router.push('/Dashboard/CreateTest/SelectQuestionsView');
             this.$router.push({
                 //path: '/Dashboard/CreateTest/SelectQuestionsView',

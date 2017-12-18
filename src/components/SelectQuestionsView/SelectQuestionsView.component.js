@@ -12,7 +12,7 @@ import {
 export default {
     name: 'select-questions-view',
     components: { Datepicker },
-    props: ['createtestParams','selectedQuestion'],
+    props: ['createtestParams', 'selectedQuestion'],
     data() {
         this.BaseUrl = config.BASE_URL;
         return {
@@ -90,9 +90,10 @@ export default {
     },
     methods: {
         init() {
-          if(this.selectedQuestion){
-            this.checkedQuestions = this.selectedQuestion; 
-          }
+            if (this.selectedQuestion.length >= 1) {
+                this.selectedNumber.intialNum = this.selectedQuestion.length;
+                this.checkedQuestions = this.checkedQuestions.concat(this.selectedQuestion); 
+            }
             this.selectedNumber.maxNum = this.createtestParams.numberofquestions || 0;
             //Find Promise.all type request here
 
@@ -116,6 +117,19 @@ export default {
                             checked: false
                         })
                     }, this);
+                    let numberOfQues = this.selectedQuestion;
+                    if (numberOfQues.length >= 1) {
+                        let result = this.rows.filter(function(o1) {
+                            return !numberOfQues.some(function(o2) {
+                                if (o1.id == o2.id) {
+                                    o1.checked = true;
+                                    // assumes unique id
+                                }
+                            });
+                            this.rows = [];
+                            this.rows = this.rows.concat(result);
+                        });
+                    }
                     this.$forceUpdate();
                 }
             });
@@ -250,6 +264,7 @@ export default {
             this.init();
         },
         confirm() {
+          debugger;
             this.$router.push({
                 //path: '/Dashboard/CreateTest/SelectQuestionsView',
                 name: 'SelectQuestionsPanel',
