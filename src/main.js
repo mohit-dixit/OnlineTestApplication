@@ -13,7 +13,7 @@ import vueXlsxTable from 'vue-xlsx-table'
 import CubeSpin from 'vue-loading-spinner/src/components/Circle8'
 import Multiselect from 'vue-multiselect'
 import VeeValidate from 'vee-validate';
-import Datepicker from 'vuejs-datepicker';
+//import Datepicker from 'vuejs-datepicker';
 /* For Spinner while HTTP calls  */
 // import {RotateSquare2} from 'vue-loading-spinner'
 

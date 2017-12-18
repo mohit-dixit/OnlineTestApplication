@@ -1,7 +1,5 @@
 import VueLocalStorage from 'vue-localstorage'
 import * as config from '../../config/constants.js'
-import Datepicker from 'vuejs-datepicker';
-
 import Vue from 'vue'
 import {
     GetRequest,
@@ -11,11 +9,19 @@ import {
 
 export default {
     name: 'select-questions-view',
-    components: { Datepicker },
+    components: {},
     props: ['createtestParams','selectedQuestion'],
     data() {
         this.BaseUrl = config.BASE_URL;
+        this.filterItems=[];
+        // this.filterItems.push('sasad');
+        // this.filterItems.push('dqwewqe');
         return {
+          date: new Date(),
+          config: {
+            format: 'DD/MM/YYYY',
+            useCurrent: false,
+          },
             selectedNumber: {
                 intialNum: 0
             },
@@ -69,11 +75,11 @@ export default {
                 filterable: true,
             }],
             subjectOptions: [],
-            topicOptions: [{ value: null, text: '--Select Topic--' }],
-            scaleOptions: [{ value: null, text: '--Select Scale--' }],
-            questionTypeOptions: [{ value: null, text: '--Select Question Type--' }, { value: 1, text: 'Single Selection' }, { value: 2, text: 'Multi Selection' }],
+            topicOptions: [{ value: null, text: 'Select Topic' }],
+            scaleOptions: [{ value: null, text: 'Select Scale' }],
+            questionTypeOptions: [{ value: null, text: 'Select Question Type' }, { value: 1, text: 'Single Selection' }, { value: 2, text: 'Multi Selection' }],
             filterOptions: [
-                { value: null, text: '--Select Filter--' },
+                { value: null, text: 'Select Filter' },
                 { value: "questionType", text: 'Question Type' },
                 { value: "subject", text: 'Subject' },
                 { value: "topic", text: 'Topic' },
@@ -91,11 +97,10 @@ export default {
     methods: {
         init() {
           if(this.selectedQuestion){
-            this.checkedQuestions = this.selectedQuestion; 
+            this.checkedQuestions = this.selectedQuestion;
           }
-            this.selectedNumber.maxNum = this.createtestParams.numberofquestions || 0;
+            this.selectedNumber.maxNum = this.createtestParams ? this.createtestParams.numberofquestions : 0;
             //Find Promise.all type request here
-
             this.getListOfQues();
             this.getListOfScale();
             this.getListOfSubjects();
@@ -125,7 +130,7 @@ export default {
                 this.scaleOptions = [];
                 this.scaleOptions.push({
                     value: null,
-                    text: '--Select Scale--'
+                    text: 'Select Scale'
                 })
                 if (res.status) {
                     let response = res.result.message;
@@ -145,7 +150,7 @@ export default {
                 this.subjectOptions = [];
                 this.subjectOptions.push({
                     value: null,
-                    text: '--Select Subject--'
+                    text: 'Select Subject'
                 })
                 if (res.status) {
                     let response = res.result.message;
@@ -161,24 +166,26 @@ export default {
             });
         },
         filterChange() {
-            debugger;
-            switch (this.filterByObj.selected) {
+          var self = this;
+          setTimeout(function(){
+            switch (self.filterByObj.selected) {
                 case "questionType":
-                    this.filterByObj.questionType = true;
+                self.filterByObj.questionType = true;
                     break;
                 case "subject":
-                    this.filterByObj.subject = true;
+                self.filterByObj.subject = true;
                     break;
                 case "topic":
-                    this.filterByObj.topic = true;
+                self.filterByObj.topic = true;
                     break;
                 case "scale":
-                    this.filterByObj.scale = true;
+                self.filterByObj.scale = true;
                     break;
                 case "dateRange":
-                    this.filterByObj.dateRange = true;
+                self.filterByObj.dateRange = true;
                     break;
             }
+          });
         },
         subjectChange() {
             var self = this;
@@ -189,7 +196,7 @@ export default {
                     self.topicOptions = [];
                     self.topicOptions.push({
                         value: null,
-                        text: '--Select Topic--'
+                        text: 'Select Topic'
                     })
                     if (res.status) {
                         let response = res.body.message;
@@ -243,10 +250,9 @@ export default {
                     topic: false
                 },
                 this.subjectOptions = [];
-            this.bindSubjects();
-            this.scaleOptions = [{ value: null, text: '--Select Scale--' }],
-                this.topicOptions = [{ value: null, text: '--Select Topic--' }];
-            this.questionTypeOptions = [{ value: null, text: '--Select Question Type--' }, { value: 1, text: 'Single Selection' }, { value: 2, text: 'Multi Selection' }];
+            this.scaleOptions = [{ value: null, text: 'Select Scale' }],
+                this.topicOptions = [{ value: null, text: 'Select Topic' }];
+            this.questionTypeOptions = [{ value: null, text: 'Select Question Type' }, { value: 1, text: 'Single Selection' }, { value: 2, text: 'Multi Selection' }];
             this.init();
         },
         confirm() {

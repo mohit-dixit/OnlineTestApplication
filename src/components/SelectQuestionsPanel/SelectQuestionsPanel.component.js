@@ -1,6 +1,6 @@
 export default  {
   name: 'select-questions-view',
-  components: {}, 
+  components: {},
   props: ['id'],
   data () {
     return {

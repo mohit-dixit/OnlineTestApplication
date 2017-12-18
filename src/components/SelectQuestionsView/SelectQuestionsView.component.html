@@ -3,55 +3,54 @@
   <b-container fluid>
     <b-row class="mb-1 text-center">
       <!--  <b-row class="my-1"> -->
-      <b-col sm="1">
-        <label for="input-none"><b>Filter By:</b></label>
-      </b-col>
-      <b-col sm="3">
-        <b-form-select v-model="filterByObj.selected" :options="filterOptions" @change.native="filterChange()">
-         <!--  <option :value="null">Please select an option</option>
-          <option value="questionType">Question Type</option>
-          <option value="subject">Subject</option>
-          <option value="topic">Topic</option>
-          <option value="scale">Scale</option>
-          <option value="dateRange">Date Range</option> -->
-        </b-form-select>
-      </b-col>
-      <b-col sm="3">
-        <!--  <multiselect v-model="createtest.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel" placeholder="Select Question Type">
-                        </multiselect> -->
-        <b-form-select v-show="filterByObj.questionType" v-model="createtest.categoryId" @change.native="categoryChange()" placeholder="Select Question" :options="questionTypeOptions" required class="mb-3">
-        </b-form-select>
-      </b-col>
-      <b-col sm="3">
-        <!-- <multiselect v-model="createtest.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel" placeholder="Select Subject">
-                        </multiselect> -->
-        <b-form-select v-show="filterByObj.subject" v-model="createtest.subjectId" @change.native="subjectChange()" :options="subjectOptions" required class="mb-3">
-        </b-form-select>
-      </b-col>
-      <b-col sm="3">
-        <!-- <multiselect v-model="createtest.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel" placeholder="Select Topic">
-                        </multiselect> -->
-        <b-form-select v-show="filterByObj.topic" v-model="createtest.topicId" :options="topicOptions" required class="mb-3">
-        </b-form-select>
-      </b-col>
-      <b-col sm="3">
-        <!-- <multiselect v-model="createtest.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel" placeholder="Select Topic">
-                        </multiselect> -->
-        <b-form-select v-show="filterByObj.scale" v-model="createtest.scaleId" :options="scaleOptions" required class="mb-3">
-        </b-form-select>
-      </b-col>
-      <b-col sm="3">
-        <!-- <multiselect v-model="createtest.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel" placeholder="Select Topic">
-                        </multiselect> -->
-        <!-- <b-form-select v-show="filterByObj.dateRange" v-model="createtest.topicId" :options="topicOptions" required class="mb-3">
-        </b-form-select> -->
-        <date-picker placeholder="--Select Date Range--" v-show="filterByObj.dateRange" v-model="createtest.validto" :config="config" required></date-picker>
-      </b-col>
-      <b-col sm="2">
-        <b-button variant="success" @click="search()">S</b-button>
-        <b-button variant="success" @click="reset()">R</b-button>
-        <b-button variant="success" @click="confirm()">D</b-button>
-      </b-col>
+          <b-col style="background-color: #E9ECEF" sm="12">
+          <input id="toggle" type="checkbox">
+          <label style="cursor: pointer; font-size: large; text-align: left;" for="toggle">Filters
+            <span v-for="items in filterItems" class="filterBox">{{items}}</span>
+          </label>
+          <div id="expand">
+            <b-row class="my-1">
+                <b-col sm="2">
+                  </b-col>
+                  <b-col sm="4">
+                      <b-form-select v-model="createtest.categoryId" @change.native="categoryChange()" placeholder="Select Question" :options="questionTypeOptions" class="mb-3">
+                        </b-form-select>
+                  </b-col>
+                    <b-col sm="4">
+                      <b-form-select v-model="createtest.subjectId" @change.native="subjectChange()" :options="subjectOptions" class="mb-3">
+                      </b-form-select>
+                    </b-col>
+                <b-col sm="2">
+                </b-col>
+              </b-row>
+              <b-row class="my-1">
+                  <b-col sm="2">
+                    </b-col>
+                    <b-col sm="4">
+                        <b-form-select v-model="createtest.topicId" :options="topicOptions" class="mb-3">
+                          </b-form-select>
+                    </b-col>
+                      <b-col sm="4">
+                          <b-form-select v-model="createtest.scaleId" :options="scaleOptions" class="mb-3">
+                            </b-form-select>
+                      </b-col>
+                  <b-col sm="2">
+                  </b-col>
+                </b-row>
+              <b-row class="my-1">
+                  <b-col sm="2"></b-col>
+                  <b-col sm="4">
+                      <date-picker placeholder="Select Date Range" v-model="createtest.fromdate" :config="config"></date-picker>
+                  </b-col>
+                  <b-col sm="4">
+                      <b-button variant="primary" @click="search()">Search</b-button>
+                      <b-button variant="primary" style="margin-left: 3px;" @click="reset()">Reset</b-button>
+                      <b-button variant="primary" style="margin-left: 3px;" @click="confirm()">Done</b-button>
+                  </b-col>
+                  <b-col sm="2"></b-col>
+              </b-row>
+          </div>
+        </b-col>
     </b-row>
     <b-row>
       <b-col sm="10"></b-col>

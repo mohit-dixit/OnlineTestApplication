@@ -19,6 +19,15 @@ export default {
         this.BaseUrl = config.BASE_URL;
         this.showMOdal = false;
         return {
+          variants: [
+            'primary','secondary','success','warning','danger','info','light','dark'
+           ],
+           headerBgVariant: 'dark',
+           headerTextVariant: 'light',
+           bodyBgVariant: 'light',
+           bodyTextVariant: 'dark',
+           footerBgVariant: 'warning',
+           footerTextVariant: 'dark',
             date: new Date(),
             config: {
                 format: 'DD/MM/YYYY',
