@@ -33,6 +33,11 @@ export default  {
           filterable: true
         },
         {
+          label: 'Status',
+          field: 'status',
+          filterable: true
+        },
+        {
           label: 'Action'
         }
       ]
@@ -54,6 +59,7 @@ export default  {
             list.push({
               id: element.id,
               batchname: element.batchName,
+              status: element.status ? 'Active' : 'Inactive',
               points: element.batchPoint,
             })
           }, this);
@@ -72,7 +78,8 @@ export default  {
         name: 'EditBatch',
         params: {
           id: events.row.id,
-          name: events.row.batchname
+          name: events.row.batchname,
+          status: events.row.status
         }
       });
     },

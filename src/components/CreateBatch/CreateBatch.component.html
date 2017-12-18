@@ -15,7 +15,7 @@
             </b-col>
           </b-row>
           <b-row class="my-1" v-if="isEdit">
-              <b-col sm="4"><label for="input-none">Is Active?</label></b-col>
+              <b-col sm="4"><label for="input-none">Is Active? {{createbatchform.status}}</label></b-col>
               <b-col sm="8" style="text-align: left;">
                 <label class="switch" style="width: 60px;">
                       <input v-model="createbatchform.status" type="checkbox">
@@ -38,7 +38,7 @@
     </div>
   </div>
    <!-- Modal Component -->
-   <b-modal size="sm" centered ref="notificationModal" v-model="show" title="Alert" :header-bg-variant="headerBgVariant" :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
+   <!-- <b-modal size="sm" centered ref="notificationModal" v-model="show" title="Alert" :header-bg-variant="headerBgVariant" :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
       <b-container fluid>
         <b-row class="mb-1 text-center">
           <b-col cols="12">{{ModalMessage}}</b-col>
@@ -50,6 +50,6 @@
          OK
         </b-btn>
       </div>
-    </b-modal>
+    </b-modal> -->
     <!-- Modal Component -->
 </section>
