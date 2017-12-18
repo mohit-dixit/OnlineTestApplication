@@ -79,11 +79,19 @@
             </b-col>
             <b-col sm="2" style="text-align: left;">
               <label class="switch" style="width: 60px;">
+<<<<<<< HEAD
                 <input v-model="createtest.keepquestionSamemarks" value="true" type="checkbox">
                 <span class="slider round"></span>
               </label>
             </b-col>
             <b-col sm="6" v-show="createtest.keepquestionSamemarks">
+=======
+                <input v-model="createtest.keepquestionssamemarks" value="true" type="checkbox">
+                <span class="slider round"></span>
+              </label>
+            </b-col>
+            <b-col sm="6" v-show="createtest.keepquestionssamemarks">
+>>>>>>> 7540ee8b8e07cd16de672fb2a3d55b5247ed5c5a
               <b-form-input class="sortQuestionsClass" type="number" placeholder="Enter Marks" v-model="createtest.sameMarks" required></b-form-input>
             </b-col>
           </b-row>
