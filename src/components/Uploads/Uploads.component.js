@@ -20,6 +20,18 @@ export default {
       }, {
         value: 2,
         text: 'Student'
+      }, {
+        value: 3,
+        text: 'Scale'
+      }, {
+        value: 4,
+        text: 'Subject'
+      }, {
+        value: 5,
+        text: 'Batch'
+      }, {
+        value: 6,
+        text: 'Topic'
       }]
     }
   },
@@ -31,6 +43,17 @@ export default {
   },
   methods: {
     handleSelectedFile(convertedData) {
+      let fileData = document.getElementById("upload-input").files[0];
+      if(fileData){
+        let fileName = fileData.name;
+        let arrFileName = fileName.split('.');
+        let arrFileNameLength = arrFileName.length;
+        let fileExtension = arrFileName[arrFileNameLength - 1];
+        if(['xlsx','xls'].indexOf(fileExtension) < 0){
+          alert('Please select the file of .xls or .xlsx format');
+          return;
+        }
+      }
       let excelData = convertedData.body;
       let excelHeader = convertedData.header;
       let finalExcelData = [];
