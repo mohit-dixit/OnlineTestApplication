@@ -100,7 +100,7 @@ export default {
                 this.selectedNumber.intialNum = this.selectedQuestion.length;
                 this.checkedQuestions = this.checkedQuestions.concat(this.selectedQuestion);
             }
-            this.selectedNumber.maxNum = this.createtestParams ? this.createtestParams.numberofquestions : 0;
+            this.selectedNumber.maxNum = this.createtestParams ? this.createtestParams.noOfQuestions : 0;
 
             //Find Promise.all type request here
             this.getListOfQues();
