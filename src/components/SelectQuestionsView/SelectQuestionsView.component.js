@@ -10,18 +10,17 @@ import {
 export default {
     name: 'select-questions-view',
     components: {},
-    props: ['createtestParams','selectedQuestion'],
+    props: ['createtestParams', 'selectedQuestion'],
     data() {
         this.BaseUrl = config.BASE_URL;
-        this.filterItems=[];
-        // this.filterItems.push('sasad');
-        // this.filterItems.push('dqwewqe');
+        this.filterItems = [];
+        this.showMOdal = false;
         return {
-          date: new Date(),
-          config: {
-            format: 'DD/MM/YYYY',
-            useCurrent: false,
-          },
+            date: new Date(),
+            config: {
+                format: 'DD/MM/YYYY',
+                useCurrent: false,
+            },
             selectedNumber: {
                 intialNum: 0
             },
@@ -100,12 +99,20 @@ export default {
                 this.selectedNumber.intialNum = this.selectedQuestion.length;
                 this.checkedQuestions = this.checkedQuestions.concat(this.selectedQuestion);
             }
-            this.selectedNumber.maxNum = this.createtestParams ? this.createtestParams.noOfQuestions : 0;
+            this.selectedNumber.maxNum = this.createtestParams.noOfQuestions ? this.createtestParams.noOfQuestions : 0;
 
             //Find Promise.all type request here
             this.getListOfQues();
             this.getListOfScale();
             this.getListOfSubjects();
+        },
+        openQuesModal() {
+            let value = this.checkedQuestions;
+            //alert(this.checkedQuestions.length);
+            this.$refs.listOfQuesModal.show();
+        },
+        closeModal: function(events, args) {
+            this.$refs.listOfQuesModal.hide();
         },
         getListOfQues() {
             GetRequest(this.BaseUrl + 'api/admin/question/list').then(res => {
@@ -129,7 +136,6 @@ export default {
                             return !numberOfQues.some(function(o2) {
                                 if (o1.id == o2.id) {
                                     o1.checked = true;
-                                    // assumes unique id
                                 }
                             });
                             this.rows = [];
@@ -181,26 +187,26 @@ export default {
             });
         },
         filterChange() {
-          var self = this;
-          setTimeout(function(){
-            switch (self.filterByObj.selected) {
-                case "questionType":
-                self.filterByObj.questionType = true;
-                    break;
-                case "subject":
-                self.filterByObj.subject = true;
-                    break;
-                case "topic":
-                self.filterByObj.topic = true;
-                    break;
-                case "scale":
-                self.filterByObj.scale = true;
-                    break;
-                case "dateRange":
-                self.filterByObj.dateRange = true;
-                    break;
-            }
-          });
+            var self = this;
+            setTimeout(function() {
+                switch (self.filterByObj.selected) {
+                    case "questionType":
+                        self.filterByObj.questionType = true;
+                        break;
+                    case "subject":
+                        self.filterByObj.subject = true;
+                        break;
+                    case "topic":
+                        self.filterByObj.topic = true;
+                        break;
+                    case "scale":
+                        self.filterByObj.scale = true;
+                        break;
+                    case "dateRange":
+                        self.filterByObj.dateRange = true;
+                        break;
+                }
+            });
         },
         subjectChange() {
             var self = this;
@@ -271,26 +277,14 @@ export default {
             this.init();
         },
         confirm() {
-          debugger;
+            debugger;
             this.$router.push({
-                //path: '/Dashboard/CreateTest/SelectQuestionsView',
                 name: 'SelectQuestionsPanel',
                 params: {
                     questionArr: this.createtestParams,
                     selectedQuestion: this.checkedQuestions
                 }
             });
-            // let array = [];
-            // debugger;
-            // let list = this.rows.filter(function(data, index) {
-            //   if (data.checked) {
-            //     array.push(data);
-            //     return array;
-            //   }
-            // });
-
-            // this.checkedQuestions = list;
-            // this.closeModal();
         },
         viewQues() {
             let value = this.checkedQuestions;
@@ -319,25 +313,23 @@ export default {
             }
 
         },
-        setStyleFilterDiv: function(checkedToggle){
-          setTimeout(function(){
-            let filterDiv = document.getElementById('expand');
-            if(checkedToggle){
-              if(!checkedToggle.checked){
-                filterDiv.style.overflow = 'hidden';
-              }
-              else{
-              filterDiv.style.overflow = '';
-              }
-            }
-            else{
-              filterDiv.style.overflow = 'hidden';
-            }
-          });
+        setStyleFilterDiv: function(checkedToggle) {
+            setTimeout(function() {
+                let filterDiv = document.getElementById('expand');
+                if (checkedToggle) {
+                    if (!checkedToggle.checked) {
+                        filterDiv.style.overflow = 'hidden';
+                    } else {
+                        filterDiv.style.overflow = '';
+                    }
+                } else {
+                    filterDiv.style.overflow = 'hidden';
+                }
+            });
         },
-        filterDivClick: function(){
-           let checkedToggle = document.getElementById('toggle');
-           this.setStyleFilterDiv(checkedToggle);
+        filterDivClick: function() {
+            let checkedToggle = document.getElementById('toggle');
+            this.setStyleFilterDiv(checkedToggle);
         }
     },
     created: function() {

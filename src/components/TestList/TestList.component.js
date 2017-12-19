@@ -1,10 +1,13 @@
 import Vue from "vue";
-import {GetRequest, PostRequest} from '../../utils/globalservice'
+import {GetRequest, PostRequest} from '../../utils/globalservice';
+import * as config from '../../config/constants.js';
+
 export default  {
   name: 'test-list',
   components: {},
   props: [],
   data () {
+    this.BaseUrl = config.BASE_URL;
     this.testList = [];
     return {
       columnsTests: [
@@ -41,6 +44,34 @@ export default  {
 
   },
   methods: {
+    bindTestList: function () {
+      GetRequest(this.BaseUrl + 'api/admin/test/list')
+        .then(res => {
+          if (res.status) {
+            let response = res.result.message;
+            let list = [];
+            // debugger;
+            response.forEach(function (element) {
+              list.push({
+                id: element.id || '-',
+                testname: 'Test Name 1',
+                testtime: '60',
+                noofquestions: '30',
+                totalmarks: '100',
+                status: element.status == '1' ? 'Active' : 'Inactive'
+              })
+            }, this);
+            this.testList = list;
+            this.$forceUpdate();
+          }
+          else{
+            this.instituteList = [];
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
     getTestList: function(){
       GetRequest('static/question.json').then(res => {this.testList = res; this.$forceUpdate();});
     },
@@ -53,11 +84,6 @@ export default  {
   },
   created: function () {
     this.loginRole = Vue.lsobj.get('loginRole');
-    this.testList.push({
-      testname: 'Test Name 1',
-      testtime: '60',
-      noofquestions: '30',
-      totalmarks: '100'
-    });
+    this.bindTestList();
   }
 }

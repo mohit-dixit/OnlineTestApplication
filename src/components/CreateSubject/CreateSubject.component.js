@@ -80,9 +80,11 @@ export default {
               })
             }
           } else {
-            this.errorMessage = res.statusText;
-            this.notifySuccess = false;
-            this.notifyError = true;
+            this.$swal({
+                type: 'error',
+                title: 'Sorry !',
+                text: res.statustext || 'Please try again after some time !',
+            }); 
           }
         }
       });

@@ -195,7 +195,6 @@ export default {
             });
         },
         onSubmit(evt) {
-          debugger;
             evt.preventDefault();
             let answers = this.getFinalAnswers();
 
@@ -233,23 +232,34 @@ export default {
                 apiPath = 'api/admin/update/question';
             }
             PostRequest(this.BaseUrl + apiPath, this.createquestion).then(res => {
-                if (res) {
-                    if (res.status == 200) {
-                        this.createquestion = {};
-                        if (isEditMode) {
-                            alert('Question updated successfully');
-                            this.$router.push('/Dashboard/QuestionBank');
-                        } else {
-                            this.notifySuccess = true;
-                            this.notifyError = false;
-                            this.responseMessage = 'Question created successfully';
-                        }
-                    } else {
-                        this.errorMessage = res.statustext;
-                        this.notifySuccess = false;
-                        this.notifyError = true;
-                        this.$forceUpdate();
+                if (res && res.status == 200) {
+                    this.createquestion = {};
+                    let msg = '';
+                    if(isEditMode){
+                        msg = 'Question updated successfully';
                     }
+                    else{
+                        msg = 'Question created successfully';
+                    }
+
+                    this.$swal({
+                        type: 'success',
+                        title: 'Done !',
+                        text: msg,
+                        showConfirmButton: true
+                    }).then((result) => {
+                        if (result) {
+                        this.$router.push('/Dashboard/QuestionBank');
+                        }
+                    });                        
+                }
+                else {
+                    this.$swal({
+                        type: 'error',
+                        title: 'Sorry !',
+                        text: res.statustext || 'Please try again after some time !',
+                    }); 
+                    this.$forceUpdate();
                 }
             });
         },

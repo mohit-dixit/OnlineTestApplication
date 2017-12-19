@@ -43,10 +43,13 @@ export default  {
           label: 'Subject',
           field: 'subject',
           filterable: true,
-        },
-        {
+        },{
           label: 'Topic',
           field: 'topic',
+          filterable: true,
+        },{
+          label: 'Status',
+          field: 'status',
           filterable: true,
         },
         {
@@ -75,7 +78,8 @@ export default  {
                 question: element.question,
                 scale: element.scale.scaleName,
                 subject: element.subject.subjectName,
-                topic: element.topic.topicName
+                topic: element.topic.topicName,
+                status: element.status ? 'Active' : 'Inactive'
               })
             }, this);
           }
