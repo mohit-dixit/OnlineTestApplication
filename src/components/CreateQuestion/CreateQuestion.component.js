@@ -25,10 +25,9 @@ export default {
             headerTextVariant: 'light',
             bodyBgVariant: 'light',
             bodyTextVariant: 'dark',
-            footerBgVariant: 'warning',
+            footerBgVariant: '',
             footerTextVariant: 'dark',
             //Modal Popup Variant
-            teacherOptions: [],
             answers: [{
                 answer: '',
                 iscorrect: false
@@ -60,9 +59,11 @@ export default {
                 value: '4',
                 text: '5'
             }],
+            fetchingData: false,
             scaleOptions: [],
             subjectOptions: [],
             topicOptions: [{ value: null, text: 'Select Topic' }],
+            teacherOptions: [{ value: null, text: 'Select Teacher' }],
             questionTypeOptions: [{ value: 1, text: 'Single Selection' }, { value: 2, text: 'Multi Selection' }]
         }
     },
@@ -169,30 +170,71 @@ export default {
             }
         },
         subjectChange() {
-            var self = this;
-            setTimeout(function() {
-                let postData = {};
-                postData.subjectId = self.createquestion.subjectId;
-                PostRequest(self.BaseUrl + 'api/admin/subject/assosicated/topic', postData).then(res => {
-                    self.topicOptions = [];
-                    self.topicOptions.push({
-                        value: null,
-                        text: 'Select Topic'
-                    })
-                    if (res.status) {
-                        let response = res.body.message;
-                        if (response) {
-                            response.forEach(function(element) {
-                                self.topicOptions.push({
-                                    value: element.id,
-                                    text: element.topicName
-                                })
-                            }, self);
-                        }
-                        self.createquestion.topic = null;
-                    }
-                });
+            setTimeout(() => {
+                this.getTopicBySubject(this.createquestion.subjectId)
+                this.getTeacherListBySubject(this.createquestion.subjectId);
             });
+        },
+        getTopicBySubject(sub_id){
+            this.fetchingData = true;
+            let postData = {};
+            postData.subjectId = sub_id;
+            PostRequest(this.BaseUrl + 'api/admin/subject/assosicated/topic', postData).then(res => {
+                this.fetchingData = false;
+                this.topicOptions = [];
+                this.topicOptions.push({
+                    value: null,
+                    text: 'Select Topic'
+                })
+                if (res.status) {
+                    let response = res.body.message;
+                    if (response) {
+                        response.forEach(function(element) {
+                            this.topicOptions.push({
+                                value: element.id,
+                                text: element.topicName
+                            })
+                        }, this);
+                    }
+                    this.createquestion.topic = null;
+                }
+            })
+            .catch(error => {
+                this.fetchingData = false;
+                console.log(error);
+            })
+        },
+        getTeacherListBySubject(sub_id) {
+            /* Get Teacher's List accordingly  */
+            let teacherPostData = {"subjectId": sub_id}
+            this.fetchingData = true;
+            PostRequest(this.BaseUrl + 'api/admin/subject/assosicated/teacher', teacherPostData)
+                .then(res => {
+                    this.fetchingData = false;
+                    this.teacherOptions = [];
+                    this.teacherOptions.push({
+                        value: null,
+                        text: 'Select Teacher'
+                    });
+                    if (res.status) {
+                        let resTeacherData = res.body.message;
+                        if (resTeacherData) {
+                            resTeacherData.forEach(function(element) {
+                                let teacherName = element.user.firstname + ' ' + element.user.lastname;
+                                this.teacherOptions.push({
+                                    value: element.id,
+                                    text: teacherName
+                                })
+                            }, this);
+                            console.log(this.teacherOptions,'----------------');
+                            this.$forceUpdate();
+                        }
+                    }
+                })
+                .catch(error => {
+                    this.fetchingData = false;
+                    console.log(error);
+                })
         },
         onSubmit(evt) {
             evt.preventDefault();
@@ -448,7 +490,7 @@ export default {
         this.loginRole = Vue.lsobj.get('loginRole');
         this.bindSubjects();
         this.bindScale();
-        this.bindTeachers();
+        // this.bindTeachers();
 
 
         //Show hide controls on the basis of Configuration (Institute level)

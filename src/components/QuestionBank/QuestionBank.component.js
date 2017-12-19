@@ -76,6 +76,9 @@ export default  {
               list.push({
                 id: element.id,
                 question: element.question,
+                categoryId: element.categoryId,
+                options: element.options,
+                answer: element.answer,
                 scale: element.scale.scaleName,
                 subject: element.subject.subjectName,
                 topic: element.topic.topicName,
@@ -95,6 +98,48 @@ export default  {
           id: events.row.id
         }
       });
+    },
+    getQuestionDetails(event) {
+      console.log(event);
+      this.$swal({
+        title: '<i><b>'+event.row.question+'</b></i>',
+        type: 'info',
+        html: '<ul>'+ this.getAnswerOptions(JSON.parse(event.row.options), JSON.parse(event.row.answer)) +'</ul>'
+      })
+    },
+    getAnswerOptions(options, answer) {
+      let data = [];
+      let wrongOption = 'red';
+      let correctOption = 'green';
+
+      for(let i=0; i < answer.length; i++) {
+        for(let j=0; j < options.length; j++) { 
+          if(answer[i][i] == options[j][j]){
+            options[j].active = 'green';
+          } else {
+            options[j].active = 'red'
+          }
+        }  
+      }  
+
+      /* For Multiple Options */
+      /* for(let i=0; i < answer.length; i++) {
+        // debugger;
+        for(let j=0; j < options.length; j++) { 
+          if(answer[i][i] == options[j][j] && options[j].active != 'green'){
+            options[j].active = 'green';
+            break;
+          } else {
+            options[j].active = 'red';
+          }
+        }  
+      } */
+
+      for(let k = 0; k < options.length; k++) {
+        data.push('<li style="color : '+options[k].active+'">'+options[k][k] +'</li>');
+      }
+      console.log(data);
+      return data;
     },
     deleteQuestionClick: function (events, args) {
       this.selectedId = events.row.id;

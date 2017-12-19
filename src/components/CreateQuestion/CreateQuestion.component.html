@@ -45,7 +45,7 @@
         <b-row class="my-1">
             <b-col sm="2"><label for="input-none">Topic*</label></b-col>
             <b-col sm="9">
-              <b-form-select v-model="createquestion.topicId" :options="topicOptions" required class="mb-3">
+              <b-form-select :disabled="fetchingData" v-model="createquestion.topicId" :options="topicOptions" required class="mb-3">
               </b-form-select>
             </b-col>
             <b-col sm="1" v-if="toShowTopic">
@@ -55,7 +55,7 @@
         <b-row class="my-1">
             <b-col sm="2"><label for="input-none">Teacher Name*</label></b-col>
             <b-col sm="9">
-              <b-form-select v-model="createquestion.teacherId" :options="teacherOptions" required class="mb-3">
+              <b-form-select :disabled="fetchingData" v-model="createquestion.teacherId" :options="teacherOptions" required class="mb-3">
               </b-form-select>
             </b-col>
         </b-row>
