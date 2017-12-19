@@ -4,8 +4,8 @@
     <b-row class="mb-1 text-center">
       <!--  <b-row class="my-1"> -->
           <b-col style="background-color: #E9ECEF" sm="12">
-          <input id="toggle" type="checkbox">
-          <label style="cursor: pointer; font-size: large; text-align: left;" for="toggle">Filters
+          <input class="sliderCheckbox" id="toggle" type="checkbox">
+          <label style="cursor: pointer; font-size: large; text-align: left;" @click="filterDivClick()" for="toggle">Filters
             <span v-for="items in filterItems" class="filterBox">{{items}}</span>
           </label>
           <div id="expand">
@@ -40,7 +40,7 @@
               <b-row class="my-1">
                   <b-col sm="2"></b-col>
                   <b-col sm="4">
-                      <date-picker style="display: block !important; visibility: visible !important;" placeholder="Select Date Range" v-model="createtest.fromdate" :config="config"></date-picker>
+                      <date-picker placeholder="Select Date Range" v-model="createtest.fromdate" :config="config"></date-picker>
                   </b-col>
                   <b-col sm="4">
                       <b-button variant="primary" @click="search()">Search</b-button>

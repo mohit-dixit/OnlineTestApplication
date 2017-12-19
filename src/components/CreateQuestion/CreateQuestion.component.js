@@ -38,7 +38,8 @@ export default {
                 scaleId: null,
                 subjectId: null,
                 categoryId: null,
-                topicId: null
+                topicId: null,
+                teacherId: null
             },
             addscale: {},
             addsubject: {},

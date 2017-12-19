@@ -22,7 +22,7 @@
                             <label for="input-none">Negative Marking(%):</label>
                         </b-col>
                         <b-col sm="8">
-                            <b-form-input type="number" placeholder="Enter Negative Marking %" v-model="createtest.negativemarking" required>%</b-form-input>
+                            <b-form-input type="number" placeholder="Enter Negative Marking %" v-model="createtest.negativeMarkingPercent" required>%</b-form-input>
                         </b-col>
                         <!-- <b-col sm="2">
               <label for="input-none"><b>%</b></label>
@@ -33,7 +33,7 @@
                             <label for="input-none">Valid From:</label>
                         </b-col>
                         <b-col sm="8">
-                            <date-picker placeholder="click me" v-model="createtest.validfrom" :config="config" :limit="limit" required></date-picker>
+                            <date-picker placeholder="click me" v-model="createtest.validFrom" :config="config" :limit="limit" required></date-picker>
                             <!-- <datepicker></datepicker> -->
                         </b-col>
                     </b-row>
@@ -42,7 +42,7 @@
                             <label for="input-none">Valid To:</label>
                         </b-col>
                         <b-col sm="8">
-                            <date-picker placeholder="click me" v-model="createtest.validto" :config="config" required></date-picker>
+                            <date-picker placeholder="click me" v-model="createtest.ValidTo" :config="config" required></date-picker>
                         </b-col>
                     </b-row>
                     <b-row class="my-1">
@@ -59,7 +59,7 @@
                             <label for="input-none">Test Time (In minutes):</label>
                         </b-col>
                         <b-col sm="8">
-                            <b-form-input type="number" placeholder="Enter Test Time" v-model="createtest.testtime" required></b-form-input>
+                            <b-form-input type="number" placeholder="Enter Test Time" v-model="createtest.testTime" required></b-form-input>
                         </b-col>
                         <!--  <b-col sm="2">
               <label for="input-none">Minutes</label>
@@ -70,14 +70,14 @@
                             <label for="input-none">No. Of Questions:</label>
                         </b-col>
                         <b-col sm="8">
-                            <b-form-input class="sortQuestionsClass" type="number" placeholder="No. of Questions" v-model="createtest.numberofquestions" required></b-form-input>
+                            <b-form-input class="sortQuestionsClass" type="number" placeholder="No. of Questions" v-model="createtest.noOfQuestions" required></b-form-input>
                         </b-col>
                     </b-row>
                     <b-row class="my-1">
-                        <b-col sm="2">
+                        <b-col sm="4">
                             <label for="input-none">Teacher Name:</label>
                         </b-col>
-                        <b-col sm="9">
+                        <b-col sm="8">
                             <b-form-select v-model="createtest.teacherId" :options="teacherOptions" required class="mb-3">
                             </b-form-select>
                         </b-col>
@@ -93,7 +93,7 @@
                             </label>
                         </b-col>
                         <b-col sm="6" v-show="createtest.keepquestionSamemarks">
-                            <b-form-input class="sortQuestionsClass" type="number" placeholder="Enter Marks" v-model="createtest.sameMarks" required></b-form-input>
+                            <b-form-input class="sortQuestionsClass" type="number" placeholder="Enter Marks" v-model="createtest.sameMarksQuestions" required></b-form-input>
                         </b-col>
                     </b-row>
                     <b-row>

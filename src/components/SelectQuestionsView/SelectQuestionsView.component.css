@@ -1,4 +1,4 @@
-/*@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
 body {
   font-family: "Open Sans", Arial;
@@ -17,7 +17,7 @@ h2 {
 p {
   font-size: 13px;
 }
-input {
+.sliderCheckbox {
   display: none;
   visibility: hidden;
 }
@@ -43,7 +43,7 @@ label::before {
 }
 #expand {
   height: 0px;
-  overflow: hidden;
+  /* overflow: hidden; */
   transition: height 0.5s;
   color: #666666;
   font-weight: bold;
@@ -53,7 +53,7 @@ section {
   padding: 0 20px;
 }
 #toggle:checked ~ #expand {
-  height: 380px;
+  height: 180px;
 }
 #toggle:checked ~ label::before {
   content: "-";
@@ -68,4 +68,3 @@ section {
   color: grey;
   text-align: center;
 }
-*/
