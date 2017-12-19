@@ -1,13 +1,12 @@
 <div class="container_12">
   <!-- Dashboard icons -->
   <div class="grid_12">
-    <router-link to="/Dashboard/CreateAdmin" v-if="isUserSuperAdmin">
+    <!-- <router-link to="/Dashboard/CreateAdmin" v-if="isUserSuperAdmin">
       <a href="" class="dashboard-module">
                       <img src="../../assets/dashboardfiles/newadmin.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_write.gif" width="64" height="64" alt="edit" />
-                      <!-- <span><router-link to="/Dashboard/CreateAdmin"></router-link></span> -->
                       <span>Create Admin</span>
                     </a>
-    </router-link>
+    </router-link> -->
     <!-- <router-link to="/Dashboard/CreateTeacher" v-if="isUserAdmin">
       <a href="" class="dashboard-module">
                       <img src="../../assets/dashboardfiles/teacher.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_files.gif" width="64" height="64" alt="edit" />
@@ -44,12 +43,12 @@
                       <span>Start Test</span>
                     </a>
     </router-link>
-    <router-link to="/Dashboard/CreateInstitute" v-if="isUserSuperAdmin">
+    <!-- <router-link to="/Dashboard/CreateInstitute" v-if="isUserSuperAdmin">
       <a href="" class="dashboard-module">
                       <img src="../../assets/dashboardfiles/institutionicon.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_file.gif" width="64" height="64" alt="edit" />
                       <span>Create Institute</span>
                     </a>
-    </router-link>
+    </router-link> -->
     <router-link to="/Dashboard/QuestionBank" v-if="isUserTeacher || isUserAdmin">
       <a href="" class="dashboard-module">
                       <img src="../../assets/images/questionbank.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_settings.gif" width="64" height="64" alt="edit" />
