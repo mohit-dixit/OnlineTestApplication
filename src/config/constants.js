@@ -13,6 +13,16 @@ const STATUS_CODES = {
     UNAUTHORIZED: 401
 };
 
+const CRUD_CODES = {
+  BATCH       : 1,
+  INSTITUTE   : 2,
+  QUESTION    : 3,
+  SCALE       : 4,
+  SUBJECT     : 5,
+  TEST        : 6,
+  USER        : 7
+};
+
 //========================== Export Module Start ===========================
 
 module.exports = {
@@ -20,7 +30,8 @@ module.exports = {
     BASE_URL,
     DEFAULT_PASSWORD,
     Active,
-    Inactive
+    Inactive,
+    CRUD_CODES
 };
 
 //========================== Export Module END ===========================

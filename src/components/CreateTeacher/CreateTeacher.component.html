@@ -13,24 +13,26 @@
                             <label for="input-none">First Name</label>
                         </b-col>
                         <b-col sm="8">
-                            <b-form-input id="name" type="text" v-model="createteacherform.firstname" required placeholder="Enter First Name"></b-form-input>
-                        </b-col>
+                            <b-form-input id="name" type="text" name="First Name" v-model="createteacherform.firstname" v-validate="'required'" placeholder="Enter First Name"></b-form-input>
+                            <span v-show="errors.has('First Name')" class="help is-danger">{{ errors.first('First Name') }}</span>
+                          </b-col>
                     </b-row>
                     <b-row class="my-1">
                         <b-col sm="4">
                             <label for="input-none">Last Name</label>
                         </b-col>
                         <b-col sm="8">
-                            <b-form-input id="name" type="text" v-model="createteacherform.lastname" required placeholder="Enter Last Name"></b-form-input>
-                        </b-col>
+                            <b-form-input id="name" name="Last Name" type="text" v-model="createteacherform.lastname" v-validate="'required'" placeholder="Enter Last Name"></b-form-input>
+                            <span v-show="errors.has('Last Name')" class="help is-danger">{{ errors.first('Last Name') }}</span>
+                          </b-col>
                     </b-row>
                     <b-row class="my-1">
                         <b-col sm="4">
                             <label for="email">Email</label>
                         </b-col>
                         <b-col sm="8">
-                            <b-form-input id="email" :state="null" type="email" v-model="createteacherform.username" v-validate="'required|email'" placeholder="Enter Email" name='email'></b-form-input>
-                            <span v-show="errors.has('email')" class="help is-danger">{{ errors.first('email') }}</span>
+                            <b-form-input id="email" :state="null" type="email" v-model="createteacherform.username" v-validate="'required|email'" placeholder="Enter Email" name='Email'></b-form-input>
+                            <span v-show="errors.has('Email')" class="help is-danger">{{ errors.first('Email') }}</span>
                         </b-col>
                     </b-row>
                    <!--  <b-row class="my-1">
@@ -46,8 +48,9 @@
                             <label for="input-none">Phone</label>
                         </b-col>
                         <b-col sm="8">
-                            <b-form-input id="input-none" :state="null" type="text" maxlength="15" v-validate="'required|numeric|min:10'" name='phone' v-model="createteacherform.phone" required placeholder="Enter Phone"></b-form-input>
-                        </b-col>
+                            <b-form-input id="input-none" :state="null" type="text" maxlength="15" v-validate="'required|numeric|min:10'" name='Phone' v-model="createteacherform.phone" placeholder="Enter Phone"></b-form-input>
+                            <span v-show="errors.has('Phone')" class="help is-danger">{{ errors.first('Phone') }}</span>
+                          </b-col>
                     </b-row>
                     <!-- Multi select -->
                     <b-row class="my-1">
@@ -57,8 +60,9 @@
                         <b-col sm="8">
                             <!-- <b-form-select v-model="createteacherform.subject" :options="subjectoptions" required class="mb-3">
                             </b-form-select> -->
-                            <multiselect v-model="subjectsVal.subjects" :options="subjectoptions" :multiple="true" track-by="id" :custom-label="customLabel">
-                    </multiselect>
+                            <multiselect v-model="subjectsVal.subjects" name="Subject" :options="subjectoptions" :multiple="true" v-validate="'required'" track-by="id" :custom-label="customLabel">
+                            </multiselect>
+                            <span v-show="errors.has('Subject')" class="help is-danger">{{ errors.first('Subject') }}</span>
                         </b-col>
                     </b-row>
                     <b-row class="my-1">

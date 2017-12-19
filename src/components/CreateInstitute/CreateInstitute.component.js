@@ -55,43 +55,47 @@ export default {
     },
     onSubmit(evt) {
       evt.preventDefault();
-      let apiPath = 'api/superAdmin/create/institute';
-      let isEditMode = this.isEdit;
-      if(isEditMode){
-        apiPath = 'api/superAdmin/update/institute';
-      }
-      
-      PostRequest(this.BaseUrl + apiPath  , this.createinstituteform).then(res => {
-        if (res && res.status == 200) {
-            this.createinstituteform = {};
-            
-            let msg = '';
-            if(isEditMode){
-              msg = 'Institute updated successfully';
-            }
-            else{
-              msg = 'Institute created successfully';
-            }
-
-            this.$swal({
-              type: 'success',
-              title: 'Congratulation !',
-              text: msg,
-              showConfirmButton: true
-            }).then((result) => {
-              if (result) {
-                this.$router.push('/Dashboard/InstituteList');
-              }
-            });
-
-          } else {
-            this.$swal({
-                type: 'error',
-                title: 'Sorry !',
-                text: res.statustext || 'Please try again after some time !',
-            });
+      this.$validator.validateAll().then((result) => {
+        if (result) {
+          let apiPath = 'api/superAdmin/create/institute';
+          let isEditMode = this.isEdit;
+          if(isEditMode){
+            apiPath = 'api/superAdmin/update/institute';
           }
-      });
+
+          PostRequest(this.BaseUrl + apiPath  , this.createinstituteform).then(res => {
+            if (res && res.status == 200) {
+                this.createinstituteform = {};
+
+                let msg = '';
+                if(isEditMode){
+                  msg = 'Institute updated successfully';
+                }
+                else{
+                  msg = 'Institute created successfully';
+                }
+
+                this.$swal({
+                  type: 'success',
+                  title: 'Congratulation !',
+                  text: msg,
+                  showConfirmButton: true
+                }).then((result) => {
+                  if (result) {
+                    this.$router.push('/Dashboard/InstituteList');
+                  }
+                });
+
+              } else {
+                this.$swal({
+                    type: 'error',
+                    title: 'Sorry !',
+                    text: res.statustext || 'Please try again after some time !',
+                });
+              }
+          });
+        }
+      })
     }
   },
   created: function () {

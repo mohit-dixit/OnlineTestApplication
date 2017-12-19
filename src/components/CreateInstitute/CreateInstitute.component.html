@@ -11,28 +11,30 @@
           <b-row class="my-1">
             <b-col sm="5"><label for="input-none">Name*</label></b-col>
             <b-col sm="7">
-              <b-form-input id="name" type="text" v-model="createinstituteform.name" required placeholder="Enter Name"></b-form-input>
+              <b-form-input id="name" type="text" name="Name" v-model="createinstituteform.name" v-validate="'required'" placeholder="Enter Name"></b-form-input>
+              <span v-show="errors.has('Name')" class="help is-danger">{{ errors.first('Name') }}</span>
             </b-col>
           </b-row>
           <b-row class="my-1">
             <b-col sm="5"><label for="input-none">Email</label></b-col>
             <b-col sm="7">
-              <b-form-input id="input-none" :state="null" type="text" v-model="createinstituteform.emailID" v-validate="'email'" name='email' placeholder="Enter Email"></b-form-input>
-              <span v-show="errors.has('email')" class="help is-danger">{{ errors.first('email') }}</span>
+              <b-form-input id="input-none" :state="null" type="text" v-model="createinstituteform.emailID" v-validate="'required|email'" name='Email' placeholder="Enter Email"></b-form-input>
+              <span v-show="errors.has('Email')" class="help is-danger">{{ errors.first('Email') }}</span>
             </b-col>
           </b-row>
           <b-row class="my-1">
             <b-col sm="5"><label for="input-none">Phone*</label></b-col>
             <b-col sm="7">
-              <b-form-input id="input-none" :state="null" type="text" v-model="createinstituteform.phone" v-validate="'required|numeric'"  required placeholder="Enter Phone" name='mobile' maxlength='15'></b-form-input>
-              <span v-show="errors.has('mobile')" class="help is-danger">{{ errors.first('mobile') }}</span>
+              <b-form-input id="input-none" :state="null" type="text" v-model="createinstituteform.phone" v-validate="'required|numeric|min:10'" placeholder="Enter Phone" name='Phone' maxlength='15'></b-form-input>
+              <span v-show="errors.has('Phone')" class="help is-danger">{{ errors.first('Phone') }}</span>
             </b-col>
           </b-row>
           <b-row class="my-1">
             <b-col sm="5"><label for="input-none">Address*</label></b-col>
             <b-col sm="7">
               <!-- <b-form-textarea v-model="createinstituteform.address" placeholder="Enter Address" required class="mb-3"></b-form-textarea>-->
-              <b-form-input :state="null" type="text" placeholder="Enter Address" v-model="createinstituteform.address" required></b-form-input>
+              <b-form-input :state="null" type="text" name="Address" placeholder="Enter Address" v-validate="'required'" v-model="createinstituteform.address"></b-form-input>
+              <span v-show="errors.has('Address')" class="help is-danger">{{ errors.first('Address') }}</span>
             </b-col>
           </b-row>
           <!-- Toggle active/Inactive state -->

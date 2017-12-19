@@ -21,6 +21,11 @@ export default  {
       footerTextVariant: 'dark',
       columnsInstitutes: [
         {
+        label: 'Id',
+        field: 'id',
+        hidden : true
+        },
+        {
           label: 'Name',
           field: 'name',
           filterable: true,
@@ -102,6 +107,20 @@ export default  {
           }
         });
       }
+    },
+    activeInactiveChange: function(sender, rowVals){
+      let row = rowVals.formattedRow;
+      let postData = {};
+      postData.id = row.id;
+      postData.status = sender.currentTarget.checked ? 1 : 0;
+      postData.type = config.CRUD_CODES.INSTITUTE;
+      PostRequest(this.BaseUrl + 'api/admin/status/update', postData).then(res => {
+        if (res) {
+          if (res.status == 200) {
+            //this.bindInstitutes();
+          }
+        }
+      });
     }
   },
   created: function () {

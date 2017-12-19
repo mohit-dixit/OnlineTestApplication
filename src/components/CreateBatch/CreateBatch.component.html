@@ -11,7 +11,8 @@
           <b-row class="my-1">
             <b-col sm="4"><label for="input-none">Batch Name:</label></b-col>
             <b-col sm="8">
-              <b-form-input id="name" type="text" v-model="createbatchform.batchName" required placeholder="Enter Batch Name"></b-form-input>
+              <b-form-input id="name" name="Batch Name" type="text" v-model="createbatchform.batchName" v-validate="'required'" placeholder="Enter Batch Name"></b-form-input>
+              <span v-show="errors.has('Batch Name')" class="help is-danger">{{ errors.first('Batch Name') }}</span>
             </b-col>
           </b-row>
           <b-row class="my-1" v-if="isEdit">

@@ -78,57 +78,60 @@ export default {
         },
         onSubmit(evt) {
             evt.preventDefault();
+            this.$validator.validateAll().then((result) => {
+              if (result) {
+                //Making Post Data ==============================================================================
+                //this.createteacherform.password = config.DEFAULT_PASSWORD;
+                //Making Post Data ==============================================================================
+                let subjectId = [];
+                this.createteacherform.subjects = this.subjectsVal.subjects.map(function(key, value) {
+                    return key.id;
+                });
+                this.createteacherform.teacher_allow_scale = this.createteacherform.teacher_allow_scale ? 1 : 2;
+                this.createteacherform.teacher_allow_subject = this.createteacherform.teacher_allow_subject ? 1 : 2;
+                this.createteacherform.teacher_allow_student = this.createteacherform.teacher_allow_student ? 1 : 2;
+                this.createteacherform.isAdmin = this.createteacherform.isAdmin ? 1 : 2;
 
-            //Making Post Data ==============================================================================
-            //this.createteacherform.password = config.DEFAULT_PASSWORD;
-            //Making Post Data ==============================================================================
-            let subjectId = [];
-            this.createteacherform.subjects = this.subjectsVal.subjects.map(function(key, value) {
-                return key.id;
-            });
-            this.createteacherform.teacher_allow_scale = this.createteacherform.teacher_allow_scale ? 1 : 2;
-            this.createteacherform.teacher_allow_subject = this.createteacherform.teacher_allow_subject ? 1 : 2;
-            this.createteacherform.teacher_allow_student = this.createteacherform.teacher_allow_student ? 1 : 2;
-            this.createteacherform.isAdmin = this.createteacherform.isAdmin ? 1 : 2;
+                let apiPath = 'api/admin/create/teacher';
+                let isEditMode = this.isEdit;
+                if (isEditMode) {
+                    apiPath = 'api/admin/update/teacher';
+                }
+                PostRequest(this.BaseUrl + apiPath, this.createteacherform).then(res => {
+                    if (res && res.status == 200) {
+                        this.createteacherform = {};
+                        this.subjectsVal = {};
 
-            let apiPath = 'api/admin/create/teacher';
-            let isEditMode = this.isEdit;
-            if (isEditMode) {
-                apiPath = 'api/admin/update/teacher';
-            }
-            PostRequest(this.BaseUrl + apiPath, this.createteacherform).then(res => {
-                if (res && res.status == 200) {
-                    this.createteacherform = {};
-                    this.subjectsVal = {};
-
-                    let msg = '';
-                    if(isEditMode){
-                        msg = 'Teacher updated successfully';
-                    }
-                    else{
-                        this.$forceUpdate();
-                        msg = 'Teacher created successfully';
-                    }
-
-                    this.$swal({
-                        type: 'success',
-                        title: 'Done !',
-                        text: msg,
-                        showConfirmButton: true
-                    }).then((result) => {
-                        if (result) {
-                        this.$router.push('/Dashboard/TeacherList');
+                        let msg = '';
+                        if(isEditMode){
+                            msg = 'Teacher updated successfully';
                         }
-                    });
-                }
-                else {
-                    this.$swal({
-                        type: 'error',
-                        title: 'Sorry !',
-                        text: res.statustext || 'Please try again after some time !',
-                    });
-                    this.$forceUpdate();
-                }
+                        else{
+                            this.$forceUpdate();
+                            msg = 'Teacher created successfully';
+                        }
+
+                        this.$swal({
+                            type: 'success',
+                            title: 'Done !',
+                            text: msg,
+                            showConfirmButton: true
+                        }).then((result) => {
+                            if (result) {
+                            this.$router.push('/Dashboard/TeacherList');
+                            }
+                        });
+                    }
+                    else {
+                        this.$swal({
+                            type: 'error',
+                            title: 'Sorry !',
+                            text: res.statustext || 'Please try again after some time !',
+                        });
+                        this.$forceUpdate();
+                    }
+                });
+              }
             });
         },
         onlyNumberKey: function(event) {
@@ -143,7 +146,7 @@ export default {
         this.createteacherform.teacher_allow_subject = Vue.lsobj.get('allow_subject') == 1 ? true : false;
         this.createteacherform.teacher_allow_student = Vue.lsobj.get('allow_student') == 1 ? true : false;
         this.createteacherform.isAdmin = Vue.lsobj.get('isAdmin') == 1 ? true : false;
-    
+
         this.bindSubjects();
         if (this.id) {
             this.submitButtonText = 'Update';

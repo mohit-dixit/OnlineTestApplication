@@ -41,46 +41,50 @@ export default  {
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
-      let apiPath = 'api/admin/create/batch';
-      let isEditMode = this.isEdit;
-      if(isEditMode){
-        apiPath = 'api/admin/update/batch';
-      }
-      PostRequest(this.BaseUrl + apiPath  , this.createbatchform).then(res => {
-        if (res) {
-          if (res.status == 200) {
-            this.createbatchform = {};
-            if(isEditMode){
-              this.$swal({
-                title: 'Great !',
-                text: "Batch updated successfully !",
-                type: 'success',
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'OK'
-              }).then((result) => {
-                if (result) {
-                  this.$router.push('/Dashboard/Masters/BatchList');
-                }
-              })
-            }
-            else{
-              this.$swal({
-                type: 'success',
-                title: 'Batch created successfully'
-              }).then((result) => {
-                if (result) {
-                  this.$router.push('/Dashboard/Masters/BatchList');
-                }
-              })
-            }
-          } else {
-            this.$swal({
-                type: 'error',
-                title: 'Sorry !',
-                text: res.statustext || 'Please try again after some time !',
-            });
+      this.$validator.validateAll().then((result) => {
+        if (result) {
+          let apiPath = 'api/admin/create/batch';
+          let isEditMode = this.isEdit;
+          if(isEditMode){
+            apiPath = 'api/admin/update/batch';
           }
+          PostRequest(this.BaseUrl + apiPath  , this.createbatchform).then(res => {
+            if (res) {
+              if (res.status == 200) {
+                this.createbatchform = {};
+                if(isEditMode){
+                  this.$swal({
+                    title: 'Great !',
+                    text: "Batch updated successfully !",
+                    type: 'success',
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                  }).then((result) => {
+                    if (result) {
+                      this.$router.push('/Dashboard/Masters/BatchList');
+                    }
+                  })
+                }
+                else{
+                  this.$swal({
+                    type: 'success',
+                    title: 'Batch created successfully'
+                  }).then((result) => {
+                    if (result) {
+                      this.$router.push('/Dashboard/Masters/BatchList');
+                    }
+                  })
+                }
+              } else {
+                this.$swal({
+                    type: 'error',
+                    title: 'Sorry !',
+                    text: res.statustext || 'Please try again after some time !',
+                });
+              }
+            }
+          });
         }
       });
     },

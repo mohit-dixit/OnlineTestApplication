@@ -6,6 +6,24 @@
   <div style="background-color: white; border: 3px solid #E9ECEF;">
     <vue-good-table title="Institutes" :columns="columnsInstitutes" :rows="instituteList" :paginate="true" :globalSearch="true"
       :lineNumbers="true" styleClass="table table-bordered table-striped condensed">
+      <template slot="table-row" slot-scope="props">
+          <td>{{ props.row.name }}</td>
+          <td>{{ props.row.emailID }}</td>
+          <td>{{ props.row.phone }}</td>
+          <td>{{ props.row.address }}</td>
+          <td v-if="props.row.status =='Inactive'">
+              <label class="switch" style="width: 60px;">
+                  <input type="checkbox" @click="activeInactiveChange($event,props)">
+                  <span class="slider round"></span>
+              </label>
+          </td>
+          <td v-else-if="props.row.status =='Active'">
+              <label class="switch" style="width: 60px;">
+                  <input type="checkbox" @click="activeInactiveChange($event,props)" checked>
+                  <span class="slider round"></span>
+              </label>
+          </td>
+      </template>
       <template slot="table-row-after" slot-scope="props">
         <td>
           <img width="18" title="Edit" @click="editInstituteClick(props)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/pencil.gif">
@@ -15,7 +33,7 @@
     </vue-good-table>
   </div>
    <!-- Modal Component -->
-   <b-modal centered ref="deleteModal" v-model="show" title="Delete Confirmation" :header-bg-variant="headerBgVariant" :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
+   <b-modal centered ref="deleteModal" title="Delete Confirmation" :header-bg-variant="headerBgVariant" :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
       <b-container fluid>
         <b-row class="mb-1 text-center">
           <b-col cols="12">Are you sure you want to delete?</b-col>
