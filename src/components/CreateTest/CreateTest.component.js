@@ -40,7 +40,8 @@ export default {
                 scaleId: null,
                 subjectId: null,
                 categoryId: null,
-                topicId: null
+                topicId: null,
+                teacherId: null
             },
             batchOptions: [],
             checkedQuestions: [],
@@ -173,7 +174,7 @@ export default {
             PostRequest(this.BaseUrl + 'api/admin/create/test', this.createtest).then(res => {
               debugger;
                 if (res.status == 200) {
-                    
+
                     this.$forceUpdate();
                 }
             });

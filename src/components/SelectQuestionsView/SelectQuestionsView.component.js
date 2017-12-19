@@ -96,9 +96,9 @@ export default {
     },
     methods: {
         init() {
-            if (this.selectedQuestion.length >= 1) {
+            if (this.selectedQuestion && this.selectedQuestion.length >= 1) {
                 this.selectedNumber.intialNum = this.selectedQuestion.length;
-                this.checkedQuestions = this.checkedQuestions.concat(this.selectedQuestion); 
+                this.checkedQuestions = this.checkedQuestions.concat(this.selectedQuestion);
             }
             this.selectedNumber.maxNum = this.createtestParams ? this.createtestParams.numberofquestions : 0;
 
@@ -319,9 +319,30 @@ export default {
             }
 
         },
+        setStyleFilterDiv: function(checkedToggle){
+          setTimeout(function(){
+            let filterDiv = document.getElementById('expand');
+            if(checkedToggle){
+              if(!checkedToggle.checked){
+                filterDiv.style.overflow = 'hidden';
+              }
+              else{
+              filterDiv.style.overflow = '';
+              }
+            }
+            else{
+              filterDiv.style.overflow = 'hidden';
+            }
+          });
+        },
+        filterDivClick: function(){
+           let checkedToggle = document.getElementById('toggle');
+           this.setStyleFilterDiv(checkedToggle);
+        }
     },
     created: function() {
         //this.loginRole = Vue.lsobj.get('loginRole');
         this.init();
+        this.setStyleFilterDiv();
     }
 }

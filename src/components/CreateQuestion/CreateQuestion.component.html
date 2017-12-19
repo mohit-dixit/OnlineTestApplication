@@ -43,13 +43,6 @@
           </b-col>
         </b-row>
         <b-row class="my-1">
-          <b-col sm="2"><label for="input-none">Teacher Name:</label></b-col>
-          <b-col sm="9">
-            <b-form-select v-model="createquestion.teacherId" :options="teacherOptions" required class="mb-3">
-            </b-form-select>
-          </b-col>
-        </b-row>
-        <b-row class="my-1">
             <b-col sm="2"><label for="input-none">Topic:</label></b-col>
             <b-col sm="9">
               <b-form-select v-model="createquestion.topicId" :options="topicOptions" required class="mb-3">
@@ -58,7 +51,14 @@
             <b-col sm="1" v-if="toShowTopic">
               <b-button class="w3-button w3-circle w3-blue" v-b-modal.modalTopic variant="primary"><b>+</b></b-button>
             </b-col>
-          </b-row>
+        </b-row>
+        <b-row class="my-1">
+            <b-col sm="2"><label for="input-none">Teacher Name:</label></b-col>
+            <b-col sm="9">
+              <b-form-select v-model="createquestion.teacherId" :options="teacherOptions" required class="mb-3">
+              </b-form-select>
+            </b-col>
+        </b-row>
         <b-row id="answerDiv" style="margin-top: 10px;" class="my-1" v-for="(createanswer,key,index) in answers" v-bind:key="key">
           <b-col sm="2"><label for="input-none">Answer option {{ key + 1 }}:</label></b-col>
           <b-col sm="9">
