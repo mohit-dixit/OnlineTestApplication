@@ -41,7 +41,11 @@ export default {
                     label: 'Phone',
                     field: 'phone',
                     filterable: true
-                }, {
+                } ,{
+                    label: 'Subject',
+                    field: 'subject',
+                    filterable: true
+                },{
                     label: 'Email/Username',
                     field: 'email',
                     filterable: true
@@ -72,6 +76,7 @@ export default {
                             lastname: element.lastname,
                             phone: element.phone,
                             email: element.username,
+                            subject: element.teacher_subjects[0] ? element.teacher_subjects[0].subject.subjectName : '-',
                             status: element.status == 1 ? 'Active' : 'Inactive'
                         })
                     }, this);

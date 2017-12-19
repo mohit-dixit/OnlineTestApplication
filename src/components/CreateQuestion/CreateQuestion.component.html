@@ -9,21 +9,21 @@
     <b-form @submit="onSubmit">
       <b-container fluid>
         <b-row class="my-1">
-          <b-col sm="2"><label for="input-none">Question Type</label></b-col>
+          <b-col sm="2"><label for="input-none">Question Type* </label></b-col>
           <b-col sm="10">
               <b-form-select v-model="createquestion.categoryId" @change.native="categoryChange()" :options="questionTypeOptions" required class="mb-3">
               </b-form-select>
           </b-col>
         </b-row>
         <b-row class="my-1">
-          <b-col sm="2"><label for="input-none">Question</label></b-col>
+          <b-col sm="2"><label for="input-none">Question*</label></b-col>
           <b-col sm="10">
             <vue-editor id="editor1" placeholder="Enter Question" required v-model="createquestion.question"></vue-editor>
           </b-col>
         </b-row>
         <br>
         <b-row class="my-1">
-          <b-col sm="2"><label for="input-none">Scale</label></b-col>
+          <b-col sm="2"><label for="input-none">Scale*</label></b-col>
           <b-col sm="9">
             <b-form-select v-model="createquestion.scaleId" :options="scaleOptions" required class="mb-3">
             </b-form-select>
@@ -33,7 +33,7 @@
           </b-col>
         </b-row>
         <b-row class="my-1">
-          <b-col sm="2"><label for="input-none">Subject</label></b-col>
+          <b-col sm="2"><label for="input-none">Subject*</label></b-col>
           <b-col sm="9">
             <b-form-select v-model="createquestion.subjectId" @change.native="subjectChange()" :options="subjectOptions" required class="mb-3">
             </b-form-select>
@@ -43,7 +43,7 @@
           </b-col>
         </b-row>
         <b-row class="my-1">
-            <b-col sm="2"><label for="input-none">Topic</label></b-col>
+            <b-col sm="2"><label for="input-none">Topic*</label></b-col>
             <b-col sm="9">
               <b-form-select v-model="createquestion.topicId" :options="topicOptions" required class="mb-3">
               </b-form-select>
@@ -53,7 +53,7 @@
             </b-col>
         </b-row>
         <b-row class="my-1">
-            <b-col sm="2"><label for="input-none">Teacher Name</label></b-col>
+            <b-col sm="2"><label for="input-none">Teacher Name*</label></b-col>
             <b-col sm="9">
               <b-form-select v-model="createquestion.teacherId" :options="teacherOptions" required class="mb-3">
               </b-form-select>
@@ -82,7 +82,7 @@
           <b-col sm="1"></b-col>
         </b-row>
         <b-row class="my-1">
-            <b-col sm="2"><label for="input-none">Explanation</label></b-col>
+            <b-col sm="2"><label for="input-none">Explanation*</label></b-col>
             <b-col sm="10">
               <vue-editor id="editor2" placeholder="Enter Explanation" v-model="createquestion.explanation"></vue-editor>
           </b-col>
