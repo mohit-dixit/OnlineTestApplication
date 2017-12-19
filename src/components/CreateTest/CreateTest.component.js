@@ -173,19 +173,13 @@ export default {
             });
         },
         createTest(){
-          debugger;
-          let batch = this.createtest.batch.map(function(data){
+          this.createtest.batch = this.createtest.batch.map(function(data){
             return data.id;
           });
-          // let teacherId = this.createtest.map(function(data){
-          //   return data.id;
-          // });
-          this.createtest.batch = batch;
           this.createtest.teacherId = this.createtest.teacherId;
           this.createtest.question = this.checkedQuestions.map(function(data){
             return data.id;
           });
-          debugger;
             PostRequest(this.BaseUrl + 'api/admin/create/test', this.createtest).then(res => {
               debugger;
                 if (res.status == 200) {
@@ -213,10 +207,8 @@ export default {
                 }
             }, this);
         },
-        openQuesModal() {
-            // this.$router.push('/Dashboard/CreateTest/SelectQuestionsView');
+        selectQuestions() {
             this.$router.push({
-                //path: '/Dashboard/CreateTest/SelectQuestionsView',
                 name: 'SelectQuestionsView',
                 params: {
                     createtestParams: this.createtest,
