@@ -23,7 +23,7 @@ export default {
        bodyTextVariant: 'dark',
        footerBgVariant: 'warning',
        footerTextVariant: 'dark',
-       
+
       columnsAdmins: [{
           label: 'Id',
           field: 'id',
@@ -127,6 +127,9 @@ export default {
           }
         });
       }
+    },
+    activeInactiveChange: function(sender, rowVals){
+      alert(sender.currentTarget.checked);
     }
   },
   created: function () {

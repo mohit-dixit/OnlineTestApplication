@@ -32,6 +32,7 @@ export default  {
           label: 'Question',
           field: 'question',
           filterable: true,
+          html: true,
         },
         {
           label: 'Scale',
