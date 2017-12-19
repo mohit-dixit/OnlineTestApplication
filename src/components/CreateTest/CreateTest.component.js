@@ -20,9 +20,21 @@ export default {
         this.showMOdal = false;
         return {
             date: new Date(),
+            //Modal Popup Variant
+            variants: [
+                'primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'
+            ],
+            headerBgVariant: 'dark',
+            headerTextVariant: 'light',
+            bodyBgVariant: 'light',
+            bodyTextVariant: 'dark',
+            footerBgVariant: 'warning',
+            footerTextVariant: 'dark',
+            //Modal Popup Variant
             config: {
                 format: 'DD/MM/YYYY',
                 useCurrent: false,
+                minDate: 0
             },
             limit: {
                 type: 'fromto',

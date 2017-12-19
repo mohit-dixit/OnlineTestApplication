@@ -120,7 +120,7 @@ export default  {
               this.$forceUpdate();
             }
           } else {
-            this.errorMessage = res.statustext;
+            this.errorMessage = res.statustext || 'Please try again after some time !';
             this.notifySuccess = false;
             this.notifyError = true;
             this.$forceUpdate();

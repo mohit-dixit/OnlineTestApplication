@@ -33,9 +33,9 @@
         and your password for Login.
       </p>
       <input class="w100" type="email" v-model="loginform.username" v-validate="'required|email'" placeholder="Enter Email" name='email' reqired autocomplete='off' />
-      <span v-show="errors.has('email')" class="help is-danger">{{ errors.first('email') }}</span>
+      <p v-show="errors.has('email')" class="help is-danger">{{ errors.first('email') }}</p>
       <input type="password" v-model="loginform.password" v-validate="'required|min:6'" name='password' placeholder="Enter Password" reqired />
-      <span v-show="errors.has('password')" class="help is-danger">{{ errors.first('password') }}</span>
+      <p v-show="errors.has('password')" class="help is-danger">{{ errors.first('password') }}</p>
       <button class="form-btn sx log-in" type='submit'>Log In</button>
     </form>
   </div>

@@ -96,7 +96,7 @@ export default  {
               })
             }
           } else {
-            this.errorMessage = res.statusText;
+            this.errorMessage = res.statustext || 'Please try again after some time !';
             this.notifySuccess = false;
             this.notifyError = true;
           }
