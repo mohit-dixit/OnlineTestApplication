@@ -40,7 +40,7 @@ export default {
       console.log(this.createadminform, this.createadminformClone);
       this.createadminform = Object.assign({}, this.createadminformClone);
       this.createadminform.associatedwith = this.createadminformClone.associatedwith
-      this.createadminform.status = this.createadminformClone.status; 
+      this.createadminform.status = this.createadminformClone.status;
     }, */
     getAdminData: function () {
       let postData = {};
