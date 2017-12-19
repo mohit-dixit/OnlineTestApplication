@@ -85,57 +85,61 @@ export default {
     },
     onSubmit(evt) {
           evt.preventDefault();
-          //Making Post Data ==============================================================================
-          this.createadminform.instituteId = this.createadminform.associatedwith;
-          this.createadminform.password = config.DEFAULT_PASSWORD;
-          this.createadminform.token = Vue.lsobj.get('loginToken');
-          //Making Post Data ==============================================================================
+          this.$validator.validateAll().then((result) => {
+              if (result) {
+            //Making Post Data ==============================================================================
+            this.createadminform.instituteId = this.createadminform.associatedwith;
+            this.createadminform.password = config.DEFAULT_PASSWORD;
+            this.createadminform.token = Vue.lsobj.get('loginToken');
+            //Making Post Data ==============================================================================
 
-          let apiPath = 'api/superAdmin/create/admin';
-          let isEditMode = this.isEdit;
-          if(isEditMode){
-            apiPath = 'api/superAdmin/update/admin';
-            if(this.createadminform.status){
-              this.createadminform.status = config.Active;
-            }
-            else{
-              this.createadminform.status = config.Inactive;
-            }
-          }
-          PostRequest(this.BaseUrl + apiPath, this.createadminform).then(res => {
-            if (res && res.status == 200) {
-              this.createadminform = {};
-
-              let msg = '';
-              if(isEditMode){
-                msg = 'Admin updated successfully';
+            let apiPath = 'api/superAdmin/create/admin';
+            let isEditMode = this.isEdit;
+            if(isEditMode){
+              apiPath = 'api/superAdmin/update/admin';
+              if(this.createadminform.status){
+                this.createadminform.status = config.Active;
               }
               else{
-                this.createadminform.associatedwith = null;
-                msg = 'Admin created successfully';
+                this.createadminform.status = config.Inactive;
               }
-
-              this.$swal({
-                type: 'success',
-                title: 'Done !',
-                text: msg,
-                showConfirmButton: true
-              }).then((result) => {
-                if (result) {
-                  this.$router.push('/Dashboard/AdminList');
-                }
-              });
-
             }
-              else {
+            PostRequest(this.BaseUrl + apiPath, this.createadminform).then(res => {
+              if (res && res.status == 200) {
+                this.createadminform = {};
+
+                let msg = '';
+                if(isEditMode){
+                  msg = 'Admin updated successfully';
+                }
+                else{
+                  this.createadminform.associatedwith = null;
+                  msg = 'Admin created successfully';
+                }
+
                 this.$swal({
-                    type: 'error',
-                    title: 'Sorry !',
-                    text: res.statustext || 'Please try again after some time !',
-                }); 
-                this.$forceUpdate();
+                  type: 'success',
+                  title: 'Done !',
+                  text: msg,
+                  showConfirmButton: true
+                }).then((result) => {
+                  if (result) {
+                    this.$router.push('/Dashboard/AdminList');
+                  }
+                });
+
               }
+                else {
+                  this.$swal({
+                      type: 'error',
+                      title: 'Sorry !',
+                      text: res.statustext || 'Please try again after some time !',
+                  });
+                  this.$forceUpdate();
+                }
           });
+        }
+      });
     },
     onlyNumberKey: function (event) {
       return NumberKeyValidation(event);

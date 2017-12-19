@@ -80,51 +80,54 @@ export default  {
     },
     onSubmit(evt) {
       evt.preventDefault();
+      this.$validator.validateAll().then((result) => {
+        if (result) {
+          //Making Post Data ==============================================================================
+          this.createstudentform.password = config.DEFAULT_PASSWORD;
+          //Making Post Data ==============================================================================
 
-       //Making Post Data ==============================================================================
-       this.createstudentform.password = config.DEFAULT_PASSWORD;
-       //Making Post Data ==============================================================================
-
-      let apiPath = 'api/admin/create/student';
-      let isEditMode = this.isEdit;
-      if (isEditMode) {
-        apiPath = 'api/admin/update/student';
-        if(this.createstudentform.status){
-          this.createstudentform.status = config.Active;
-        }
-        else{
-          this.createstudentform.status = config.Inactive;
-        }
-      }
-      let BatchIds=[];
-      if(this.createstudentform.batch){
-        this.createstudentform.batch.forEach(function(element){
-          BatchIds.push(element.id);
-        }, this);
-      }
-      if(BatchIds.length > 0)
-      {
-        this.createstudentform.batch = BatchIds;
-      }
-      PostRequest(this.BaseUrl + apiPath, this.createstudentform).then(res => {
-        if (res) {
-          if (res.status == 200) {
-            this.createstudentform = {};
-            if (isEditMode) {
-              alert('Student updated successfully')
-              this.$router.push('/Dashboard/StudentList');
-            } else {
-              this.notifySuccess = true;
-              this.notifyError = false;
-              this.responseMessage = 'Student created successfully';
-              this.$forceUpdate();
+          let apiPath = 'api/admin/create/student';
+          let isEditMode = this.isEdit;
+          if (isEditMode) {
+            apiPath = 'api/admin/update/student';
+            if(this.createstudentform.status){
+              this.createstudentform.status = config.Active;
             }
-          } else {
-            this.errorMessage = res.statustext || 'Please try again after some time !';
-            this.notifySuccess = false;
-            this.notifyError = true;
-            this.$forceUpdate();
+            else{
+              this.createstudentform.status = config.Inactive;
+            }
           }
+          let BatchIds=[];
+          if(this.createstudentform.batch){
+            this.createstudentform.batch.forEach(function(element){
+              BatchIds.push(element.id);
+            }, this);
+          }
+          if(BatchIds.length > 0)
+          {
+            this.createstudentform.batch = BatchIds;
+          }
+          PostRequest(this.BaseUrl + apiPath, this.createstudentform).then(res => {
+            if (res) {
+              if (res.status == 200) {
+                this.createstudentform = {};
+                if (isEditMode) {
+                  alert('Student updated successfully')
+                  this.$router.push('/Dashboard/StudentList');
+                } else {
+                  this.notifySuccess = true;
+                  this.notifyError = false;
+                  this.responseMessage = 'Student created successfully';
+                  this.$forceUpdate();
+                }
+              } else {
+                this.errorMessage = res.statustext || 'Please try again after some time !';
+                this.notifySuccess = false;
+                this.notifyError = true;
+                this.$forceUpdate();
+              }
+            }
+          });
         }
       });
     },

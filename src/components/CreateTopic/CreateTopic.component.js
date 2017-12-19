@@ -61,45 +61,49 @@ export default  {
     },
     onSubmit(evt) {
       evt.preventDefault();
-      let apiPath = 'api/admin/create/topic';
-      let isEditMode = this.isEdit;
-      if(isEditMode){
-        apiPath = 'api/admin/update/topic';
-      }
-      PostRequest(this.BaseUrl + apiPath  , this.createtopicform).then(res => {
-        if (res) {
-          if (res.status == 200) {
-            this.createtopicform = {};
-            if(isEditMode){
-              this.$swal({
-                title: 'Great !',
-                text: "Topic updated successfully !",
-                type: 'success',
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'OK'
-              }).then((result) => {
-                if (result) {
-                  this.$router.push('/Dashboard/Masters/TopicList');
-                }
-              })
-
-            }
-            else{
-              this.$swal({
-                type: 'success',
-                title: 'Topic created successfully !'
-              }).then((result) => {
-                if (result) {
-                  this.$router.push('/Dashboard/Masters/TopicList');
-                }
-              })
-            }
-          } else {
-            this.errorMessage = res.statustext || 'Please try again after some time !';
-            this.notifySuccess = false;
-            this.notifyError = true;
+      this.$validator.validateAll().then((result) => {
+        if (result) {
+          let apiPath = 'api/admin/create/topic';
+          let isEditMode = this.isEdit;
+          if(isEditMode){
+            apiPath = 'api/admin/update/topic';
           }
+          PostRequest(this.BaseUrl + apiPath  , this.createtopicform).then(res => {
+            if (res) {
+              if (res.status == 200) {
+                this.createtopicform = {};
+                if(isEditMode){
+                  this.$swal({
+                    title: 'Great !',
+                    text: "Topic updated successfully !",
+                    type: 'success',
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                  }).then((result) => {
+                    if (result) {
+                      this.$router.push('/Dashboard/Masters/TopicList');
+                    }
+                  })
+
+                }
+                else{
+                  this.$swal({
+                    type: 'success',
+                    title: 'Topic created successfully !'
+                  }).then((result) => {
+                    if (result) {
+                      this.$router.push('/Dashboard/Masters/TopicList');
+                    }
+                  })
+                }
+              } else {
+                this.errorMessage = res.statustext || 'Please try again after some time !';
+                this.notifySuccess = false;
+                this.notifyError = true;
+              }
+            }
+          });
         }
       });
     },

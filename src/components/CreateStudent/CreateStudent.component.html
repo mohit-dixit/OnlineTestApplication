@@ -13,33 +13,38 @@
                 <label for="input-none">Batch:</label>
             </b-col>
             <b-col sm="8">
-                <multiselect v-model="createstudentform.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel">
+                <multiselect v-model="createstudentform.batch" name="Batch" v-validate="'required'" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel">
                 </multiselect>
+                <span v-show="errors.has('Batch')" class="help is-danger">{{ errors.first('Batch') }}</span>
             </b-col>
           </b-row>
           <b-row class="my-1">
             <b-col sm="4"><label for="input-none">First Name:</label></b-col>
             <b-col sm="8">
-              <b-form-input id="name" type="text" v-model="createstudentform.firstname" required placeholder="Enter First Name"></b-form-input>
+              <b-form-input id="name" type="text" name="First Name" v-model="createstudentform.firstname" v-validate="'required'" placeholder="Enter First Name"></b-form-input>
+              <span v-show="errors.has('First Name')" class="help is-danger">{{ errors.first('First Name') }}</span>
             </b-col>
           </b-row>
           <b-row class="my-1">
             <b-col sm="4"><label for="input-none">Last Name:</label></b-col>
             <b-col sm="8">
-              <b-form-input id="name" type="text" v-model="createstudentform.lastname" required placeholder="Enter Last Name"></b-form-input>
+              <b-form-input id="name" type="text" name="Last Name" v-model="createstudentform.lastname" v-validate="'required|email'" placeholder="Enter Last Name"></b-form-input>
+              <span v-show="errors.has('Last Name')" class="help is-danger">{{ errors.first('Last Name') }}</span>
             </b-col>
           </b-row>
           <b-row class="my-1">
             <b-col sm="4"><label for="input-none">Email:</label></b-col>
             <b-col sm="8">
-              <b-form-input id="input-none" :state="null" type="email" v-model="createstudentform.username" required placeholder="Enter Email"></b-form-input>
+              <b-form-input id="input-none" name="Email" :state="null" type="email" v-model="createstudentform.username" v-validate="'required|email'" placeholder="Enter Email"></b-form-input>
+              <span v-show="errors.has('Email')" class="help is-danger">{{ errors.first('Email') }}</span>
             </b-col>
           </b-row>
           <b-row class="my-1">
             <b-col sm="4"><label for="input-none">Phone:</label></b-col>
             <b-col sm="8">
-              <b-form-input id="input-none" :state="null" type="text" maxlength="15" @keydown.native="onlyNumberKey" v-model="createstudentform.phone"
-                required placeholder="Enter Phone"></b-form-input>
+              <b-form-input id="input-none" name="Phone" :state="null" type="text" maxlength="15" @keydown.native="onlyNumberKey" v-model="createstudentform.phone"
+              v-validate="'required|numeric|min:10'" placeholder="Enter Phone"></b-form-input>
+                <span v-show="errors.has('Phone')" class="help is-danger">{{ errors.first('Phone') }}</span>
             </b-col>
           </b-row>
           <b-row class="my-1" v-if="isEdit">

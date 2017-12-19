@@ -11,13 +11,15 @@
           <b-row class="my-1">
             <b-col sm="4"><label for="input-none">Scale Name*</label></b-col>
             <b-col sm="8">
-              <b-form-input id="name" type="text" v-model="createscaleform.scaleName" required placeholder="Enter Scale Name"></b-form-input>
+              <b-form-input id="name" name="Scale Name" type="text" v-model="createscaleform.scaleName" v-validate="'required'" placeholder="Enter Scale Name"></b-form-input>
+              <span v-show="errors.has('Scale Name')" class="help is-danger">{{ errors.first('Scale Name') }}</span>
             </b-col>
           </b-row>
           <b-row class="my-1">
             <b-col sm="4"><label for="input-none">Points*</label></b-col>
             <b-col sm="8">
-              <b-form-input id="name" type="text" v-model="createscaleform.scalePoint" required placeholder="Enter Points"></b-form-input>
+              <b-form-input id="name" name="Points" type="text" v-model="createscaleform.scalePoint" v-validate="'required'" placeholder="Enter Points"></b-form-input>
+              <span v-show="errors.has('Points')" class="help is-danger">{{ errors.first('Points') }}</span>
             </b-col>
           </b-row>
         </b-container>

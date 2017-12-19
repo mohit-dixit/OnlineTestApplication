@@ -6,7 +6,7 @@ import {
   PostRequest,
   NumberKeyValidation
 } from '../../utils/globalservice'
-var $ = window.jQuery = require('jquery') 
+var $ = window.jQuery = require('jquery')
 Vue.use(VueLocalStorage, {
   name: 'lsobj',
   createComputed: true //created computed members from your variable declarations
@@ -47,29 +47,31 @@ export default  {
         $("#imageUrl").click();
     },
     updateClick: function(){
-      // debugger;
-      let formData = new FormData();
-      formData.append('firstname', this.profileData.firstname);
-      formData.append('lastname', this.profileData.lastname);
-      formData.append('phone', this.profileData.phone);
-      formData.append('username', this.profileData.username);
-      formData.append('desciption', this.profileData.desciption);
-      formData.append('image', this.profileData.image);
+      this.$validator.validateAll().then((result) => {
+        if (result) {
+          let formData = new FormData();
+          formData.append('firstname', this.profileData.firstname);
+          formData.append('lastname', this.profileData.lastname);
+          formData.append('phone', this.profileData.phone);
+          formData.append('username', this.profileData.username);
+          formData.append('desciption', this.profileData.desciption);
+          formData.append('image', this.profileData.image);
 
-      console.log(this.profileData, formData, "Data on Uploading image and Profile");
-      // debugger;
-      this.loader = true;
-      PostRequest(this.BaseUrl + 'api/superAdmin/profile/update', formData)
-        .then(res => {
-          this.loader = false;
-          Vue.lsobj.set('loginName', this.profileData.firstname + ' ' + this.profileData.lastname);
-          this.$forceUpdate();
-          console.log(res, "on Updation of profile");
-          this.$router.push('/Dashboard/Profile');
-        })
-        .catch(error => {
-          this.loader = false;
-          console.log(error);
+          console.log(this.profileData, formData, "Data on Uploading image and Profile");
+          this.loader = true;
+          PostRequest(this.BaseUrl + 'api/superAdmin/profile/update', formData)
+            .then(res => {
+              this.loader = false;
+              Vue.lsobj.set('loginName', this.profileData.firstname + ' ' + this.profileData.lastname);
+              this.$forceUpdate();
+              console.log(res, "on Updation of profile");
+              this.$router.push('/Dashboard/Profile');
+            })
+            .catch(error => {
+              this.loader = false;
+              console.log(error);
+            });
+          }
         });
     },
     onFileChange(e) {

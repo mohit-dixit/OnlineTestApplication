@@ -42,50 +42,54 @@ export default {
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
-      let apiPath = 'api/admin/create/subject';
-      let isEditMode = this.isEdit;
-      if(isEditMode){
-        apiPath = 'api/admin/update/subject';
-      }
-      PostRequest(this.BaseUrl + apiPath , this.createsubjectform).then(res => {
-        if (res) {
-          if (res.status == 200) {
-            this.createsubjectform = {};
-            if(isEditMode){
-              /* this.ModalMessage = 'Subject updated successfully';
-              this.$refs.notificationModal.show(); */
-
-              this.$swal({
-                title: 'Great !',
-                text: "Subject updated successfully !",
-                type: 'success',
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'OK'
-              }).then((result) => {
-                if (result) {
-                  this.$router.push('/Dashboard/Masters/SubjectList');
-                }
-              })
-
-            }
-            else{
-              this.$swal({
-                type: 'success',
-                title: 'Subject created successfully'
-              }).then((result) => {
-                if (result) {
-                  this.$router.push('/Dashboard/Masters/SubjectList');
-                }
-              })
-            }
-          } else {
-            this.$swal({
-                type: 'error',
-                title: 'Sorry !',
-                text: res.statustext || 'Please try again after some time !',
-            }); 
+      this.$validator.validateAll().then((result) => {
+        if (result) {
+          let apiPath = 'api/admin/create/subject';
+          let isEditMode = this.isEdit;
+          if(isEditMode){
+            apiPath = 'api/admin/update/subject';
           }
+          PostRequest(this.BaseUrl + apiPath , this.createsubjectform).then(res => {
+            if (res) {
+              if (res.status == 200) {
+                this.createsubjectform = {};
+                if(isEditMode){
+                  /* this.ModalMessage = 'Subject updated successfully';
+                  this.$refs.notificationModal.show(); */
+
+                  this.$swal({
+                    title: 'Great !',
+                    text: "Subject updated successfully !",
+                    type: 'success',
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                  }).then((result) => {
+                    if (result) {
+                      this.$router.push('/Dashboard/Masters/SubjectList');
+                    }
+                  })
+
+                }
+                else{
+                  this.$swal({
+                    type: 'success',
+                    title: 'Subject created successfully'
+                  }).then((result) => {
+                    if (result) {
+                      this.$router.push('/Dashboard/Masters/SubjectList');
+                    }
+                  })
+                }
+              } else {
+                this.$swal({
+                    type: 'error',
+                    title: 'Sorry !',
+                    text: res.statustext || 'Please try again after some time !',
+                });
+              }
+            }
+          });
         }
       });
     },

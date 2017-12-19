@@ -11,7 +11,8 @@
            <b-row class="my-1">
             <b-col sm="4"><label for="input-none">Subject Name:</label></b-col>
             <b-col sm="8">
-              <b-form-input id="name" type="text" v-model="createsubjectform.subjectName" required placeholder="Enter Subject Name"></b-form-input>
+              <b-form-input id="name" name="Subject Name" type="text" v-model="createsubjectform.subjectName" v-validate="'required'" placeholder="Enter Subject Name"></b-form-input>
+              <span v-show="errors.has('Subject Name')" class="help is-danger">{{ errors.first('Subject Name') }}</span>
             </b-col>
           </b-row>
           <b-row class="my-1" v-if="isEdit">

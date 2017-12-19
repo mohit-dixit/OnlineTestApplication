@@ -43,41 +43,45 @@ export default {
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
-      let apiPath = 'api/admin/create/scale';
-      let isEditMode = this.isEdit;
-      if(isEditMode){
-        apiPath = 'api/admin/update/scale';
-      }
-      PostRequest(this.BaseUrl + apiPath  , this.createscaleform).then(res => {
-        if (res && res.status == 200) {
-          this.createscaleform = {};
-          let msg = '';
-            if(isEditMode){
-              msg = 'Scale updated successfully';
-            }
-            else{
-              msg = 'Scale created successfully';
-            }
-
-            this.$swal({
-              type: 'success',
-              title: 'Done !',
-              text: msg,
-              showConfirmButton: true
-            }).then((result) => {
-              if (result) {
-                this.$router.push('/Dashboard/Masters/ScaleList');
+      this.$validator.validateAll().then((result) => {
+      if (result) {
+        let apiPath = 'api/admin/create/scale';
+        let isEditMode = this.isEdit;
+        if(isEditMode){
+          apiPath = 'api/admin/update/scale';
+        }
+        PostRequest(this.BaseUrl + apiPath  , this.createscaleform).then(res => {
+          if (res && res.status == 200) {
+            this.createscaleform = {};
+            let msg = '';
+              if(isEditMode){
+                msg = 'Scale updated successfully';
               }
+              else{
+                msg = 'Scale created successfully';
+              }
+
+              this.$swal({
+                type: 'success',
+                title: 'Done !',
+                text: msg,
+                showConfirmButton: true
+              }).then((result) => {
+                if (result) {
+                  this.$router.push('/Dashboard/Masters/ScaleList');
+                }
+              });
+          }
+          else {
+            this.$swal({
+                type: 'error',
+                title: 'Sorry !',
+                text: res.statustext || 'Please try again after some time !',
             });
-        }
-        else {
-          this.$swal({
-              type: 'error',
-              title: 'Sorry !',
-              text: res.statustext || 'Please try again after some time !',
-          });
-        }
-      });
+          }
+        });
+      }
+    });
     },
     closeModal: function (events, args) {
       this.$router.push('/Dashboard/Masters/ScaleList');

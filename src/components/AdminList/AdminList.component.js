@@ -137,7 +137,7 @@ export default {
       PostRequest(this.BaseUrl + 'api/admin/status/update', postData).then(res => {
         if (res) {
           if (res.status == 200) {
-            this.bindAdmins();
+            //this.bindAdmins();
           }
         }
       });
