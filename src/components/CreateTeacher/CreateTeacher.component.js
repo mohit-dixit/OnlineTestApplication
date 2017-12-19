@@ -97,25 +97,35 @@ export default {
                 apiPath = 'api/admin/update/teacher';
             }
             PostRequest(this.BaseUrl + apiPath, this.createteacherform).then(res => {
-                if (res) {
-                    if (res.status == 200) {
-                        this.createteacherform = {};
-                        this.subjectsVal = {};
-                        if (isEditMode) {
-                            alert('Teacher updated successfully')
-                            this.$router.push('/Dashboard/TeacherList');
-                        } else {
-                            this.notifySuccess = true;
-                            this.notifyError = false;
-                            this.responseMessage = 'Teacher created successfully';
-                            this.$forceUpdate();
-                        }
-                    } else {
-                        this.errorMessage = res.statustext;
-                        this.notifySuccess = false;
-                        this.notifyError = true;
-                        this.$forceUpdate();
+                if (res && res.status == 200) {
+                    this.createteacherform = {};
+                    this.subjectsVal = {};
+
+                    let msg = '';
+                    if(isEditMode){
+                        msg = 'Teacher updated successfully';
                     }
+                    else{
+                        this.$forceUpdate();
+                        msg = 'Teacher created successfully';
+                    }
+
+                    this.$swal({
+                        type: 'success',
+                        title: 'Done !',
+                        text: msg,
+                        showConfirmButton: true
+                    }).then((result) => {
+                        if (result) {
+                        this.$router.push('/Dashboard/TeacherList');
+                        }
+                    });
+                }
+                else {
+                    this.errorMessage = res.statustext;
+                    this.notifySuccess = false;
+                    this.notifyError = true;
+                    this.$forceUpdate();
                 }
             });
         },

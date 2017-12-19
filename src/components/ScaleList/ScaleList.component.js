@@ -31,13 +31,15 @@ export default {
           label: 'Scale',
           field: 'scalename',
           filterable: true
-        },
-        {
+        },{
           label: 'Points',
           field: 'points',
           filterable: true
-        },
-        {
+        },{
+          label: 'Status',
+          field: 'status',
+          filterable: true
+        },{
           label: 'Action'
         }
       ]
@@ -61,6 +63,7 @@ export default {
                 id: element.id,
                 scalename: element.scaleName,
                 points: element.scalePoint,
+                status: element.status,
               })
             }, this);
             this.scaleList = list;
@@ -80,7 +83,8 @@ export default {
         params: {
           id: events.row.id,
           name:events.row.scalename,
-          points: events.row.points
+          points: events.row.points,
+          status: events.row.stauts
         }
       });
     },

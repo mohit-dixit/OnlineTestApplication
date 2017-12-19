@@ -34,6 +34,11 @@ export default {
           filterable: true
         },
         {
+          label: 'Status',
+          field: 'status',
+          filterable: true
+        },
+        {
           label: 'Action'
         }
       ]
@@ -54,7 +59,8 @@ export default {
           response.forEach(function (element) {
             list.push({
               id: element.id,
-              subjectname: element.subjectName
+              subjectname: element.subjectName,
+              status: element.status ? 'Active' : 'Inactive',
             })
           }, this);
           this.subjectList = list;
@@ -72,7 +78,8 @@ export default {
         name: 'EditSubject',
         params: {
           id: events.row.id,
-          name: events.row.subjectname
+          name: events.row.subjectname,
+          status: events.row.status
         }
       });
     },

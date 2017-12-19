@@ -10,7 +10,7 @@
                 <b-container fluid>
                     <b-row class="my-1">
                         <b-col sm="4">
-                            <label for="input-none">First Name:</label>
+                            <label for="input-none">First Name</label>
                         </b-col>
                         <b-col sm="8">
                             <b-form-input id="name" type="text" v-model="createteacherform.firstname" required placeholder="Enter First Name"></b-form-input>
@@ -18,7 +18,7 @@
                     </b-row>
                     <b-row class="my-1">
                         <b-col sm="4">
-                            <label for="input-none">Last Name:</label>
+                            <label for="input-none">Last Name</label>
                         </b-col>
                         <b-col sm="8">
                             <b-form-input id="name" type="text" v-model="createteacherform.lastname" required placeholder="Enter Last Name"></b-form-input>
@@ -26,15 +26,16 @@
                     </b-row>
                     <b-row class="my-1">
                         <b-col sm="4">
-                            <label for="input-none">Email:</label>
+                            <label for="email">Email</label>
                         </b-col>
                         <b-col sm="8">
-                            <b-form-input id="input-none" :state="null" type="email" v-model="createteacherform.username" required placeholder="Enter Email"></b-form-input>
+                            <b-form-input id="email" :state="null" type="email" v-model="createteacherform.username" v-validate="'required|email'" placeholder="Enter Email" name='email'></b-form-input>
+                            <span v-show="errors.has('email')" class="help is-danger">{{ errors.first('email') }}</span>
                         </b-col>
                     </b-row>
                    <!--  <b-row class="my-1">
                         <b-col sm="4">
-                            <label for="input-none">Password:</label>
+                            <label for="input-none">Password</label>
                         </b-col>
                         <b-col sm="8">
                             <b-form-input id="input-none" :state="null" type="password" v-model="createteacherform.password" required placeholder="Enter Email"></b-form-input>
@@ -42,16 +43,16 @@
                     </b-row> -->
                     <b-row class="my-1">
                         <b-col sm="4">
-                            <label for="input-none">Phone:</label>
+                            <label for="input-none">Phone</label>
                         </b-col>
                         <b-col sm="8">
-                            <b-form-input id="input-none" :state="null" type="text" maxlength="15" @keydown.native="onlyNumberKey" v-model="createteacherform.phone" required placeholder="Enter Phone"></b-form-input>
+                            <b-form-input id="input-none" :state="null" type="text" maxlength="15" v-validate="'required|numeric|min:10'" name='phone' v-model="createteacherform.phone" required placeholder="Enter Phone"></b-form-input>
                         </b-col>
                     </b-row>
                     <!-- Multi select -->
                     <b-row class="my-1">
                         <b-col sm="4">
-                            <label for="input-none">Subject:</label>
+                            <label for="input-none">Subject</label>
                         </b-col>
                         <b-col sm="8">
                             <!-- <b-form-select v-model="createteacherform.subject" :options="subjectoptions" required class="mb-3">
@@ -62,7 +63,7 @@
                     </b-row>
                     <b-row class="my-1">
                         <b-col sm="4">
-                            <label for="input-none">Allow Teacher to add Scale?:</label>
+                            <label for="input-none">Allow Teacher to add Scale?</label>
                         </b-col>
                         <b-col sm="8" style="text-align: left;">
                             <label class="switch" style="width: 60px;">
@@ -73,7 +74,7 @@
                     </b-row>
                     <b-row class="my-1" style="text-align: left;">
                         <b-col sm="4">
-                            <label for="input-none">Allow Teacher to add Subject?:</label>
+                            <label for="input-none">Allow Teacher to add Subject?</label>
                         </b-col>
                         <b-col sm="8">
                             <label class="switch" style="width: 60px;">
@@ -84,7 +85,7 @@
                     </b-row>
                     <b-row class="my-1" style="text-align: left;">
                         <b-col sm="4">
-                            <label for="input-none">Allow Teacher to add Student?:</label>
+                            <label for="input-none">Allow Teacher to add Student?</label>
                         </b-col>
                         <b-col sm="8">
                             <label class="switch" style="width: 60px;">
@@ -95,7 +96,7 @@
                     </b-row>
                     <b-row class="my-1" style="text-align: left;">
                         <b-col sm="4">
-                            <label for="input-none">Allow Teacher for admin access :</label>
+                            <label for="input-none">Allow Teacher for admin access </label>
                         </b-col>
                         <b-col sm="8">
                             <label class="switch" style="width: 60px;">
@@ -107,7 +108,8 @@
                 </b-container>
                 <br>
                 <b-button type="submit" variant="primary">{{submitButtonText}}</b-button>
-                <b-button type="reset" v-if="!isEdit" variant="secondary">Reset</b-button>
+                <b-button type="reset" v-if="!isEdit" variant="secondary">Clear</b-button>
+                <b-button type="button" v-if="isEdit" variant="secondary" @click='getTeacherData'>Reset</b-button>
                 <div v-if="notifySuccess" style="margin-top: 10px;">
                     <span class="notification n-success"><b>{{responseMessage}}</b></span>
                 </div>

@@ -9,7 +9,7 @@ import {
 export default {
   name: 'create-subject',
   components: {},
-  props: ['id', 'name'],
+  props: ['id', 'name', 'status'],
   data() {
     this.responseMessage = null;
     this.ModalMessage = null;
@@ -54,10 +54,6 @@ export default {
             if(isEditMode){
               /* this.ModalMessage = 'Subject updated successfully';
               this.$refs.notificationModal.show(); */
-              /* this.$swal({
-                type: 'success',
-                title: 'Subject updated successfully'
-              }) */
 
               this.$swal({
                 title: 'Great !',
@@ -105,6 +101,7 @@ export default {
       this.isEdit = true;
       this.createsubjectform.id = this.id;
       this.createsubjectform.subjectName = this.name;
+      this.createsubjectform.status = this.status;
     }
   }
 }

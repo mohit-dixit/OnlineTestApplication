@@ -9,13 +9,13 @@
       <b-form @submit="onSubmit">
         <b-container fluid>
           <b-row class="my-1">
-            <b-col sm="4"><label for="input-none">Scale Name:</label></b-col>
+            <b-col sm="4"><label for="input-none">Scale Name*</label></b-col>
             <b-col sm="8">
               <b-form-input id="name" type="text" v-model="createscaleform.scaleName" required placeholder="Enter Scale Name"></b-form-input>
             </b-col>
           </b-row>
           <b-row class="my-1">
-            <b-col sm="4"><label for="input-none">Points:</label></b-col>
+            <b-col sm="4"><label for="input-none">Points*</label></b-col>
             <b-col sm="8">
               <b-form-input id="name" type="text" v-model="createscaleform.scalePoint" required placeholder="Enter Points"></b-form-input>
             </b-col>
@@ -23,7 +23,7 @@
         </b-container>
         <br>
         <b-button type="submit" variant="primary">{{submitButtonText}}</b-button>
-        <b-button type="reset" v-if="!isEdit" variant="secondary">Reset</b-button>
+        <b-button type="reset" v-if="!isEdit" variant="secondary">Clear</b-button>
         <div v-if="notifySuccess" style="margin-top: 10px;">
           <span class="notification n-success">{{responseMessage}}</span>
         </div>
@@ -34,7 +34,7 @@
     </div>
   </div>
    <!-- Modal Component -->
-   <b-modal size="sm" centered ref="notificationModal" v-model="show" title="Alert" :header-bg-variant="headerBgVariant" :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
+   <!-- <b-modal size="sm" centered ref="notificationModal" v-model="show" title="Alert" :header-bg-variant="headerBgVariant" :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
       <b-container fluid>
         <b-row class="mb-1 text-center">
           <b-col cols="12">{{ModalMessage}}</b-col>
@@ -46,6 +46,6 @@
          OK
         </b-btn>
       </div>
-    </b-modal>
+    </b-modal> -->
     <!-- Modal Component -->
 </section>

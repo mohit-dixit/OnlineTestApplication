@@ -117,7 +117,7 @@ export default {
 
               this.$swal({
                 type: 'success',
-                title: 'Congratulation !',
+                title: 'Done !',
                 text: msg,
                 showConfirmButton: true
               }).then((result) => {

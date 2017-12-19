@@ -42,29 +42,38 @@ export default {
   },
   methods: {
     onSubmit(evt) {
+      evt.preventDefault();
       let apiPath = 'api/admin/create/scale';
       let isEditMode = this.isEdit;
       if(isEditMode){
         apiPath = 'api/admin/update/scale';
       }
       PostRequest(this.BaseUrl + apiPath  , this.createscaleform).then(res => {
-        if (res) {
-          if (res.status == 200) {
-            this.createscaleform = {};
+        if (res && res.status == 200) {
+          this.createscaleform = {};
+          let msg = '';
             if(isEditMode){
-              this.ModalMessage = 'Scale updated successfully';
-              this.$refs.notificationModal.show();
+              msg = 'Scale updated successfully';
             }
             else{
-              this.responseMessage = 'Scale created successfully';
-              this.notifySuccess = true;
-              this.notifyError = false;
+              msg = 'Scale created successfully';
             }
-          } else {
-            this.errorMessage = res.statusText;
-            this.notifySuccess = false;
-            this.notifyError = true;
-          }
+
+            this.$swal({
+              type: 'success',
+              title: 'Done !',
+              text: msg,
+              showConfirmButton: true
+            }).then((result) => {
+              if (result) {
+                this.$router.push('/Dashboard/Masters/ScaleList');
+              }
+            });
+        }
+        else {
+          this.errorMessage = res.statusText;
+          this.notifySuccess = false;
+          this.notifyError = true;
         }
       });
     },

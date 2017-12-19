@@ -46,6 +46,7 @@ body {
 .avatar-flip img {
   position: absolute;
   left: 0;
+  cursor: pointer;
   top: 0;
   border-radius: 100px;
   transition: all 0.3s ease-in-out;
