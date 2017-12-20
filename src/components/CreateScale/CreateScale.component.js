@@ -11,7 +11,7 @@ export default {
   name: 'create-scale',
   components: {
   },
-  props: ['id','name','points'],
+  props: ['id','name','points','status'],
   data() {
     this.responseMessage = null;
     this.ModalMessage = null;
@@ -98,6 +98,7 @@ export default {
       this.createscaleform.id = this.id;
       this.createscaleform.scaleName = this.name;
       this.createscaleform.scalePoint = this.points;
+      this.createscaleform.status = this.status == 'Active' ? true : false;
     }
   }
 }

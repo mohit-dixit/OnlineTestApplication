@@ -46,6 +46,10 @@ export default {
           label: 'Email/Username',
           field: 'email',
           filterable: true
+        },{
+          label: 'Status',
+          field: 'status',
+          filterable: true
         },
         {
           label: 'Action'
@@ -70,7 +74,8 @@ export default {
               firstname: userObject.firstname,
               lastname: userObject.lastname,
               phone: userObject.phone,
-              email: userObject.username
+              email: userObject.username,
+              status: element.status ? 'Active' : 'Inactive',
             })
           }, this);
           this.studentList = list;
@@ -111,6 +116,20 @@ export default {
           }
         });
       }
+    },
+    activeInactiveChange: function(sender, rowVals){
+      let row = rowVals.formattedRow;
+      let postData = {};
+      postData.id = row.id;
+      postData.status = sender.currentTarget.checked ? 1 : 0;
+      postData.type = config.CRUD_CODES.USER;
+      PostRequest(this.BaseUrl + 'api/admin/status/update', postData).then(res => {
+        if (res) {
+          if (res.status == 200) {
+            //this.bindAdmins();
+          }
+        }
+      });
     }
   },
   created: function () {

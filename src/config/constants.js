@@ -4,7 +4,7 @@
 const BASE_URL = 'http://180.151.103.85:3013/';
 const DEFAULT_PASSWORD = '123456';
 const Active = 1;
-const Inactive = 2;
+const Inactive = 0;
 
 const STATUS_CODES = {
     ERROR: 400,
@@ -20,7 +20,8 @@ const CRUD_CODES = {
   SCALE       : 4,
   SUBJECT     : 5,
   TEST        : 6,
-  USER        : 7
+  USER        : 7,
+  TOPIC       : 8
 };
 
 //========================== Export Module Start ===========================

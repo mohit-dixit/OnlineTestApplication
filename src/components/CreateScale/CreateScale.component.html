@@ -22,6 +22,15 @@
               <span v-show="errors.has('Points')" class="help is-danger">{{ errors.first('Points') }}</span>
             </b-col>
           </b-row>
+          <b-row class="my-1" v-if="isEdit">
+              <b-col sm="4"><label for="input-none">Is Active?</label></b-col>
+              <b-col sm="8" style="text-align: left;">
+                <label class="switch" style="width: 60px;">
+                      <input v-model="createscaleform.status" type="checkbox">
+                      <span class="slider round"></span>
+                  </label>
+              </b-col>
+          </b-row>
         </b-container>
         <br>
         <b-button type="submit" variant="primary">{{submitButtonText}}</b-button>
