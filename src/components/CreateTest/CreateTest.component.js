@@ -189,6 +189,50 @@ export default {
     },
     showSelectedQuestions() {
       console.log(this.selectedQuestion, "Selected Question in Params");
+      if(this.selectedQuestion && this.selectedQuestion.length){
+        var steps = [],
+            progressStepsArray = [];
+
+        this.$swal.setDefaults({
+          confirmButtonText: 'Next &rarr;',
+          showCancelButton: true,
+          width: 1000,
+          progressSteps: progressStepsArray
+        })
+
+        for(let i=0; i< this.selectedQuestion.length; i++) {
+          progressStepsArray.push(i+1);
+          steps.push({
+            title: '<i><b>'+ this.selectedQuestion[i].question+'</b></i>',
+            html: '<ul>'+ this.getAnswerOptions(JSON.parse(this.selectedQuestion[i].options), JSON.parse(this.selectedQuestion[i].answer)) +'</ul>'
+          })
+        }
+
+        this.$swal.queue(steps).then((result) => {
+          this.$swal.resetDefaults()
+        })
+      }
+    },
+    getAnswerOptions(options, answer) {
+      let data = [];            
+      options.map(data => {
+        answer.map(answerKey => {
+          if(Object.keys(data)[0]*1 == Object.keys(answerKey)[0]*1){
+            data.active = 'green';
+          } else{
+            if(data.active == 'green'){
+              // let it go as it is
+            } else
+              data.active = 'red';
+          }
+        })
+      })
+      
+      for(let k = 0; k < options.length; k++) {
+        data.push('<li style="color : '+options[k].active+'">'+options[k][k] +'</li>');
+      }
+
+      return data;
     },
     createTest() {
       this.createtest.batch = this.createtest.batch.map(function(data) {
@@ -201,10 +245,18 @@ export default {
 
       PostRequest(this.BaseUrl + 'api/admin/create/test', this.createtest)
         .then(res => {
-            debugger;
             if (res.status == 200) {
+                this.$swal({
+                  type: 'success',
+                  title: 'Done !',
+                  text: 'Test created successfully',
+                  showConfirmButton: true
+                }).then((result) => {
+                  if (result) {
+                    this.$router.push('/Dashboard/TestList');
+                  }
+                });
                 this.$forceUpdate();
-                this.$router.push('Dashboard/TestList');
             }
         })
         .catch(error => {

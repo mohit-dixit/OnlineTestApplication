@@ -32,25 +32,33 @@ export default  {
           label: 'Question',
           field: 'question',
           filterable: true,
-          html: true,
+          html: true
         },
         {
           label: 'Scale',
           field: 'scale',
           filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },
         {
           label: 'Subject',
           field: 'subject',
           filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },{
           label: 'Topic',
           field: 'topic',
           filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },{
           label: 'Status',
           field: 'status',
           filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },
         {
           label: 'Action'
@@ -109,11 +117,24 @@ export default  {
     },
     getAnswerOptions(options, answer) {
       let data = [];
-      let wrongOption = 'red';
-      let correctOption = 'green';
-
+            
       console.log(options, answer, "OPtion and Answer array");
-      for(let i=0; i < answer.length; i++) {
+      options.map(data => {
+        answer.map(answerKey => {
+          if(Object.keys(data)[0]*1 == Object.keys(answerKey)[0]*1){
+            data.active = 'green';
+          } else{
+            if(data.active == 'green'){
+              // let it go as it is
+            } else
+              data.active = 'red';
+          }
+        })
+      })
+      console.log(options,'%%%%%%%%%%%%%%%%%%%%%%')
+      
+      /* Code as per correct response from backedn side */
+      /* for(let i=0; i < answer.length; i++) {
         for(let j=0; j < options.length; j++) {
           // console.log(answer[i][i] == options[j][j], answer[i][i], options[j][j], options[j].active)
           if(answer[i][i] == options[j][j]){
@@ -125,13 +146,12 @@ export default  {
               options[j].active = 'red'
           }
         }  
-      }  
+      } */  
 
       for(let k = 0; k < options.length; k++) {
         data.push('<li style="color : '+options[k].active+'">'+options[k][k] +'</li>');
       }
-      // data.join('')
-      console.log(data);
+
       return data;
     },
     deleteQuestionClick: function (events, args) {

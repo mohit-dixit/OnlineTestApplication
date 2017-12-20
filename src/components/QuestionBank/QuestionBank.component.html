@@ -5,7 +5,7 @@
   <br>
   <div style="background-color: white; border: 3px solid #E9ECEF;">
     <vue-good-table title="Questions List" :columns="columnsQuestions" :rows="questionList" :paginate="true" :globalSearch="true"
-      :lineNumbers="true" styleClass="table table-bordered table-striped condensed">
+     :lineNumbers="true" styleClass="table table-bordered table-striped condensed">
       <template slot="table-row-after" slot-scope="props">
         <td>
           <img width="18" title="Edit" @click="editQuestionClick(props)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/pencil.gif">

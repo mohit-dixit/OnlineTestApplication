@@ -36,7 +36,8 @@ export default  {
       return `${option.batchname}`
     },
     bindBatches: function() {
-      GetRequest(this.BaseUrl + 'api/admin/batch/list').then(res => {
+      GetRequest(this.BaseUrl + 'api/admin/batch/list')
+        .then(res => {
           if (res) {
               res.result.message.forEach(function(element) {
                   this.batchOptions.push({
@@ -45,7 +46,10 @@ export default  {
                   })
               }, this);
           }
-      });
+        })
+        .catch(error => {
+          console.log(error)
+        });
     },
     getStudentData: function () {
       let postData = {};
@@ -107,27 +111,41 @@ export default  {
           {
             this.createstudentform.batch = BatchIds;
           }
-          PostRequest(this.BaseUrl + apiPath, this.createstudentform).then(res => {
-            if (res) {
-              if (res.status == 200) {
-                this.createstudentform = {};
-                if (isEditMode) {
-                  alert('Student updated successfully')
-                  this.$router.push('/Dashboard/StudentList');
+          PostRequest(this.BaseUrl + apiPath, this.createstudentform)
+            .then(res => {
+              if (res && res.status == 200) {
+                  this.createstudentform = {};
+                  let msg = '';
+                  if(isEditMode){
+                    msg = 'Student updated successfully';
+                  }
+                  else{
+                    msg = 'Student created successfully';
+                  }
+                  this.$forceUpdate();
+
+                  this.$swal({
+                    type: 'success',
+                    title: 'Done !',
+                    text: msg,
+                    showConfirmButton: true
+                  }).then((result) => {
+                    if (result) {
+                      this.$router.push('/Dashboard/StudentList');
+                    }
+                  }); 
                 } else {
-                  this.notifySuccess = true;
-                  this.notifyError = false;
-                  this.responseMessage = 'Student created successfully';
+                  this.$swal({
+                      type: 'error',
+                      title: 'Sorry !',
+                      text: res.statustext || 'Please try again after some time !',
+                  });
                   this.$forceUpdate();
                 }
-              } else {
-                this.errorMessage = res.statustext || 'Please try again after some time !';
-                this.notifySuccess = false;
-                this.notifyError = true;
-                this.$forceUpdate();
-              }
-            }
-          });
+            })
+            .catch(error => {
+              console.log(error)
+            });
         }
       });
     },

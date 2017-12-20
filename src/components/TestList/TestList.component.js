@@ -50,13 +50,12 @@ export default  {
           if (res.status) {
             let response = res.result.message;
             let list = [];
-            // debugger;
             response.forEach(function (element) {
               list.push({
                 id: element.id || '-',
-                testname: 'Test Name 1',
-                testtime: '60',
-                noofquestions: '30',
+                testname: element.testName || 'Test Name',
+                testtime: element.testTime || '-',
+                noofquestions: element.noOfQuestions || '-',
                 totalmarks: '100',
                 status: element.status == '1' ? 'Active' : 'Inactive'
               })
