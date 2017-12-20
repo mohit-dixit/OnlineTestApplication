@@ -80,8 +80,9 @@ export default  {
     getTestList: function(){
       GetRequest('static/question.json').then(res => {this.testList = res; this.$forceUpdate();});
     },
-    editTestClick: function (events, args) {
-      this.$router.push('/Dashboard/CreateTest', 1);
+    editTestClick: function (test) {
+      debugger;
+      this.$router.push('/Dashboard/EditTest/' + test.row.id);
     },
     deleteTestClick: function (events, args) {
       this.$router.push('/Dashboard/CreateAdmin', 1);

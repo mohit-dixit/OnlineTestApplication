@@ -7,6 +7,14 @@ import {
     NumberKeyValidation
 } from '../../utils/globalservice'
 
+import moment from 'moment';
+
+Vue.filter('formatDate', function(value) {
+  if (value) {
+    return moment(String(value)).format('DD-MM-YYYY')
+  }
+});
+
 export default {
     name: 'select-questions-view',
     components: {},
@@ -47,11 +55,20 @@ export default {
                 label: '',
                 field: 'checked',
                 filterable: true,
-            }, {
-                label: 'Date(Created)',
-                field: 'createdAt',
+            },
+            {
+                label: 'Question',
+                field: 'question',
+                html: true,
                 filterable: true,
-            }, {
+                tdClass: 'left-align'
+            }, 
+            {
+                label: 'Topic',
+                field: 'topicName',
+                filterable: true,
+            }, 
+            {
                 label: 'Assigned To',
                 field: 'teacherName',
                 filterable: true,
@@ -63,16 +80,16 @@ export default {
                 label: 'Subject',
                 field: 'subjectName',
                 filterable: true,
-            }, {
-                label: 'Question',
-                field: 'question',
-                html: true,
+            },
+            {
+                label: 'Date(Created)',
+                field: 'createdAt',
                 filterable: true,
-            }, {
-                label: 'Topic',
-                field: 'topicName',
-                filterable: true,
-            }],
+            },
+            {
+                label: 'Action'
+            }
+            ],
             currentPage: 1,
             //Modal Popup Variant
             variants: [
@@ -125,6 +142,36 @@ export default {
         },
         closeModal: function(events, args) {
             this.$refs.listOfQuesModal.hide();
+        },
+        getQuestionDetails(event) {
+            console.log(event);
+            this.$swal({
+                title: '<i><b>'+event.row.question+'</b></i>',
+                type: 'info',
+                html: '<ul>'+ this.getAnswerOptions(JSON.parse(event.row.options), JSON.parse(event.row.answer)) +'</ul>'
+            })
+        },
+        getAnswerOptions(options, answer) {
+            let data = [];
+            console.log(options, answer, "OPtion and Answer array");
+            options.map(data => {
+                answer.map(answerKey => {
+                if(Object.keys(data)[0]*1 == Object.keys(answerKey)[0]*1){
+                    data.active = 'green';
+                } else{
+                    if(data.active == 'green'){
+                    // let it go as it is
+                    } else
+                    data.active = 'red';
+                }
+                })
+            })
+
+            for(let k = 0; k < options.length; k++) {
+                data.push('<li style="color : '+options[k].active+'">'+options[k][k] +'</li>');
+            }
+
+            return data;
         },
         getListOfQues() {
             GetRequest(this.BaseUrl + 'api/admin/question/list')

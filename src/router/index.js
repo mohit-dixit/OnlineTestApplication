@@ -84,6 +84,13 @@ export default new Router({
           meta: { AuthRequired: true , breadcrumb: 'Edit Admin' }
         },
         {
+          path: 'EditTest/:id',
+          name: 'EditTest',
+          component: CreateTest,
+          props: true,
+          meta: { AuthRequired: true , breadcrumb: 'Edit Test' }
+        },
+        {
           path: 'CreateTest',
           name: 'CreateTest',
           component: SelectQuestionsPanel,

@@ -16,7 +16,7 @@ export default {
     Multiselect,
     Datepicker
   },
-  props: ['questionArr', 'selectedQuestion'],
+  props: ['questionArr', 'selectedQuestion', 'id'],
   data() {
     this.toShowRemoveSort = false;
     this.BaseUrl = config.BASE_URL;
@@ -283,14 +283,22 @@ export default {
       }, this);
     },
     selectQuestions() {
-      this.$router.push({
-        name: 'SelectQuestionsView',
-        params: {
-          createtestParams: this.createtest,
-          selectedQuestion: this.checkedQuestions
-        }
-      });
-      // this.$refs.listOfQuesModal.show();
+      if(this.createtest.noOfQuestions){
+        this.$router.push({
+          name: 'SelectQuestionsView',
+          params: {
+            createtestParams: this.createtest,
+            selectedQuestion: this.checkedQuestions
+          }
+        });
+        // this.$refs.listOfQuesModal.show();
+      } else {
+          this.$swal({
+            type: 'info',
+            title: 'Please Wait !',
+            text: 'Enter number of question you want in this test to proceed.'
+          })        
+      }
     },
     closeModal: function(events, args) {
       this.$refs.listOfQuesModal.hide();

@@ -67,12 +67,13 @@
             <td>
               <input type="checkbox" name="" @click="updateCheck(props.row)" :disabled="checkedQuestions.length >= selectedNumber.maxNum && !props.row.checked" v-model="props.row.checked">
             </td>
-            <td>{{ props.row.createdAt }}</td>
+            <td v-html="props.row.question"></td>
+            <td>{{ props.row.topicName }}</td>
             <td>{{ props.row.teacherName }}</td>
             <td>{{ props.row.scaleName }}</td>
             <td>{{ props.row.subjectName }}</td>
-            <td v-html="props.row.question"></td>
-            <td>{{ props.row.topicName }}</td>
+            <td>{{ props.row.createdAt | formatDate }}</td>
+            <td><img width="20" title="View" @click="getQuestionDetails(props)" style="cursor: pointer;" height="20" src="../../assets/images/view.png"></td>
           </template>
         </vue-good-table>
       </b-col>

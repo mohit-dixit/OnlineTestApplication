@@ -11,7 +11,7 @@
             <b-container style="margin-bottom: 10px;" fluid>
                <b-row class="my-1">
                   <b-col sm="4">
-                     <label for="input-none">Test Name</label>
+                     <label for="input-none">Test Name*</label>
                   </b-col>
                   <b-col sm="8">
                      <b-form-input id="name" type="text" v-model="createtest.testName" required placeholder="Enter Test Name"></b-form-input>
@@ -19,7 +19,7 @@
                </b-row>
                <b-row class="my-1">
                   <b-col sm="4">
-                     <label for="input-none">Negative Marking(%)</label>
+                     <label for="input-none">Negative Marking(%)*</label>
                   </b-col>
                   <b-col sm="8">
                      <b-form-input type="number" placeholder="Enter Negative Marking %" v-model="createtest.negativeMarkingPercent" required>%</b-form-input>
@@ -30,7 +30,7 @@
                </b-row>
                <b-row class="my-1">
                   <b-col sm="4">
-                     <label for="input-none">Valid From</label>
+                     <label for="input-none">Valid From*</label>
                   </b-col>
                   <b-col sm="8">
                      <date-picker v-model="createtest.validFrom" :config="config" :limit="limit" required></date-picker>
@@ -39,7 +39,7 @@
                </b-row>
                <b-row class="my-1">
                   <b-col sm="4">
-                     <label for="input-none">Valid To</label>
+                     <label for="input-none">Valid To*</label>
                   </b-col>
                   <b-col sm="8">
                      <date-picker v-model="createtest.ValidTo" :config="config" required></date-picker>
@@ -47,7 +47,7 @@
                </b-row>
                <b-row class="my-1">
                   <b-col sm="4">
-                     <label for="input-none">Batch</label>
+                     <label for="input-none">Batch*</label>
                   </b-col>
                   <b-col sm="8">
                      <multiselect v-model="createtest.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel">
@@ -56,7 +56,7 @@
                </b-row>
                <b-row class="my-1">
                   <b-col sm="4">
-                     <label for="input-none">Test Time (In minutes)</label>
+                     <label for="input-none">Test Time (In minutes)*</label>
                   </b-col>
                   <b-col sm="8">
                      <b-form-input type="number" placeholder="Enter Test Time" v-model="createtest.testTime" required></b-form-input>
@@ -67,7 +67,7 @@
                </b-row>
                <b-row class="my-1">
                   <b-col sm="4">
-                     <label for="input-none">No. Of Questions</label>
+                     <label for="input-none">No. Of Questions*</label>
                   </b-col>
                   <b-col sm="8">
                      <b-form-input class="sortQuestionsClass" type="number" placeholder="No. of Questions" v-model="createtest.noOfQuestions" required></b-form-input>
@@ -75,7 +75,7 @@
                </b-row>
                <b-row class="my-1">
                   <b-col sm="4">
-                     <label for="input-none">Teacher Name</label>
+                     <label for="input-none">Teacher Name*</label>
                   </b-col>
                   <b-col sm="8">
                      <b-form-select v-model="createtest.teacherId" :options="teacherOptions" required class="mb-3">
