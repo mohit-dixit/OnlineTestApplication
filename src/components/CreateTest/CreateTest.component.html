@@ -98,7 +98,7 @@
                </b-row>
                <b-row>
                   <b-col sm="4">
-                     <a style="color: blue; font-size: 15px; cursor: pointer;"><u>{{checkedQuestions.length}} Questions Selected</u></a>
+                     <a style="color: blue; font-size: 15px; cursor: pointer;" @click='showSelectedQuestions()'><u>{{checkedQuestions.length}} Questions Selected</u></a>
                   </b-col>
                   <!-- <table class="table" v-show="checkedQuestions.length > 0">
                      <thead>

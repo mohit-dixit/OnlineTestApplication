@@ -112,32 +112,25 @@ export default  {
       let wrongOption = 'red';
       let correctOption = 'green';
 
+      console.log(options, answer, "OPtion and Answer array");
       for(let i=0; i < answer.length; i++) {
-        for(let j=0; j < options.length; j++) { 
+        for(let j=0; j < options.length; j++) {
+          // console.log(answer[i][i] == options[j][j], answer[i][i], options[j][j], options[j].active)
           if(answer[i][i] == options[j][j]){
             options[j].active = 'green';
           } else {
-            options[j].active = 'red'
+            if(options[j].active == 'green'){
+
+            } else
+              options[j].active = 'red'
           }
         }  
       }  
 
-      /* For Multiple Options */
-      /* for(let i=0; i < answer.length; i++) {
-        // debugger;
-        for(let j=0; j < options.length; j++) { 
-          if(answer[i][i] == options[j][j] && options[j].active != 'green'){
-            options[j].active = 'green';
-            break;
-          } else {
-            options[j].active = 'red';
-          }
-        }  
-      } */
-
       for(let k = 0; k < options.length; k++) {
         data.push('<li style="color : '+options[k].active+'">'+options[k][k] +'</li>');
       }
+      // data.join('')
       console.log(data);
       return data;
     },

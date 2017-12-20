@@ -67,7 +67,7 @@
         <b-row id="answerDiv" style="margin-top: 10px;" class="my-1" v-for="(createanswer,key,index) in answers" v-bind:key="key">
           <b-col sm="2"><label for="input-none">Answer option {{ key + 1 }}</label></b-col>
           <b-col sm="9">
-            <vue-editor v-bind:id='"fdfdf"+key' v-bind:name='"Answer "+(key + 1)' class="answerEditorClass" placeholder="Enter Answer" v-model="createanswer.answer"></vue-editor>
+            <vue-editor v-bind:id='"unique"+key' v-bind:name='"Answer "+(key + 1)' class="answerEditorClass" placeholder="Enter Answer" v-model="createanswer.answer"></vue-editor>
           </b-col>
           <b-col sm="1">
             Correct?
@@ -89,7 +89,8 @@
         <b-row class="my-1">
             <b-col sm="2"><label for="input-none">Explanation*</label></b-col>
             <b-col sm="10">
-              <vue-editor id="editor2" placeholder="Enter Explanation" v-model="createquestion.explanation"></vue-editor>
+              <vue-editor id="editor2" name="Explanation" placeholder="Enter Explanation" v-validate="'required'" v-model="createquestion.explanation"></vue-editor>
+              <span v-show="errors.has('Explanation')" class="help is-danger">{{ errors.first('Explanation') }}</span>
           </b-col>
           </b-row>
       </b-container>

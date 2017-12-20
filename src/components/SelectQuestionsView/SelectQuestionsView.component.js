@@ -73,6 +73,18 @@ export default {
                 field: 'topicName',
                 filterable: true,
             }],
+            currentPage: 1,
+            //Modal Popup Variant
+            variants: [
+                'primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'
+            ],
+            headerBgVariant: 'dark',
+            headerTextVariant: 'light',
+            bodyBgVariant: 'light',
+            bodyTextVariant: 'dark',
+            footerBgVariant: 'warning',
+            footerTextVariant: 'dark',
+            //Modal Popup Variant
             subjectOptions: [],
             topicOptions: [{ value: null, text: 'Select Topic' }],
             scaleOptions: [{ value: null, text: 'Select Scale' }],
@@ -99,7 +111,7 @@ export default {
                 this.selectedNumber.intialNum = this.selectedQuestion.length;
                 this.checkedQuestions = this.checkedQuestions.concat(this.selectedQuestion);
             }
-            this.selectedNumber.maxNum = this.createtestParams.noOfQuestions ? this.createtestParams.noOfQuestions : 0;
+            this.selectedNumber.maxNum = this.createtestParams ? this.createtestParams.noOfQuestions : 0;
 
             //Find Promise.all type request here
             this.getListOfQues();
@@ -115,76 +127,88 @@ export default {
             this.$refs.listOfQuesModal.hide();
         },
         getListOfQues() {
-            GetRequest(this.BaseUrl + 'api/admin/question/list').then(res => {
-                if (res) {
-                    res.result.message.forEach(function(element) {
-                        let teacherName = element.user.firstname + '' + element.user.lastname;
-                        this.rows.push({
-                            id: element.id,
-                            scaleName: element.scale.scaleName,
-                            subjectName: element.subject.subjectName,
-                            question: element.question,
-                            topicName: element.topic.topicName,
-                            createdAt: element.createdAt,
-                            teacherName: teacherName,
-                            checked: false
-                        })
-                    }, this);
-                    let numberOfQues = this.selectedQuestion;
-                    if (numberOfQues.length >= 1) {
-                        let result = this.rows.filter(function(o1) {
-                            return !numberOfQues.some(function(o2) {
-                                if (o1.id == o2.id) {
-                                    o1.checked = true;
-                                }
+            GetRequest(this.BaseUrl + 'api/admin/question/list')
+                .then(res => {
+                    if (res) {
+                        res.result.message.forEach(function(element) {
+                            let teacherName = element.user ? element.user.firstname + '' + element.user.lastname : '-';
+                            this.rows.push({
+                                id: element.id,
+                                scaleName: element.scale.scaleName,
+                                subjectName: element.subject.subjectName,
+                                question: element.question,
+                                topicName: element.topic.topicName,
+                                createdAt: element.createdAt,
+                                teacherName: teacherName,
+                                checked: false
+                            })
+                        }, this);
+                        let numberOfQues = this.selectedQuestion;
+                        if (numberOfQues.length >= 1) {
+                            let result = this.rows.filter(function(o1) {
+                                return !numberOfQues.some(function(o2) {
+                                    if (o1.id == o2.id) {
+                                        o1.checked = true;
+                                    }
+                                });
+                                this.rows = [];
+                                this.rows = this.rows.concat(result);
                             });
-                            this.rows = [];
-                            this.rows = this.rows.concat(result);
-                        });
+                        }
+                        this.$forceUpdate();
                     }
-                    this.$forceUpdate();
-                }
-            });
+                })
+                .catch(error => {
+                    console.log(error);
+                })
         },
         getListOfScale() {
-            GetRequest(this.BaseUrl + 'api/admin/scale/list').then(res => {
-                this.scaleOptions = [];
-                this.scaleOptions.push({
-                    value: null,
-                    text: 'Select Scale'
-                })
-                if (res.status) {
-                    let response = res.result.message;
-                    if (response) {
-                        response.forEach(function(element) {
-                            this.scaleOptions.push({
-                                value: element.id,
-                                text: element.scaleName + ' (' + element.scalePoint + ' Point)'
-                            })
-                        }, this);
+            GetRequest(this.BaseUrl + 'api/admin/scale/list')
+                .then(res => {
+                    this.scaleOptions = [];
+                    this.scaleOptions.push({
+                        value: null,
+                        text: 'Select Scale'
+                    })
+                    if (res.status) {
+                        let response = res.result.message;
+                        if (response) {
+                            response.forEach(function(element) {
+                                this.scaleOptions.push({
+                                    value: element.id,
+                                    text: element.scaleName + ' (' + element.scalePoint + ' Point)'
+                                })
+                            }, this);
+                        }
                     }
-                }
-            });
+                })
+                .catch(error => {
+                    console.log(error);
+                })
         },
         getListOfSubjects() {
-            GetRequest(this.BaseUrl + 'api/admin/subject/list').then(res => {
-                this.subjectOptions = [];
-                this.subjectOptions.push({
-                    value: null,
-                    text: 'Select Subject'
-                })
-                if (res.status) {
-                    let response = res.result.message;
-                    if (response) {
-                        response.forEach(function(element) {
-                            this.subjectOptions.push({
-                                value: element.id,
-                                text: element.subjectName
-                            })
-                        }, this);
+            GetRequest(this.BaseUrl + 'api/admin/subject/list')
+                .then(res => {
+                    this.subjectOptions = [];
+                    this.subjectOptions.push({
+                        value: null,
+                        text: 'Select Subject'
+                    })
+                    if (res.status) {
+                        let response = res.result.message;
+                        if (response) {
+                            response.forEach(function(element) {
+                                this.subjectOptions.push({
+                                    value: element.id,
+                                    text: element.subjectName
+                                })
+                            }, this);
+                        }
                     }
-                }
-            });
+                })
+                .catch(error => {
+                    console.log(error);
+                })
         },
         filterChange() {
             var self = this;
@@ -240,25 +264,29 @@ export default {
                 subjectId: this.createtest.subjectId,
                 topicId: this.createtest.topicId
             };
-            PostRequest(this.BaseUrl + 'api/admin/filterByQuestions', filterValue).then(res => {
-                if (res.status == 200) {
-                    this.rows = [];
-                    res.body.message.forEach(function(element) {
-                        let teacherName = element.user.firstname + '' + element.user.lastname;
-                        this.rows.push({
-                            id: element.id,
-                            scaleName: element.scale.scaleName,
-                            subjectName: element.subject.subjectName,
-                            question: element.question,
-                            topicName: element.topic.topicName,
-                            createdAt: element.createdAt,
-                            teacherName: teacherName,
-                            checked: false
-                        })
-                    }, this);
-                    this.$forceUpdate();
-                }
-            });
+            PostRequest(this.BaseUrl + 'api/admin/filterByQuestions', filterValue)
+                .then(res => {
+                    if (res.status == 200) {
+                        this.rows = [];
+                        res.body.message.forEach(function(element) {
+                            let teacherName = element.user.firstname + '' + element.user.lastname;
+                            this.rows.push({
+                                id: element.id,
+                                scaleName: element.scale.scaleName,
+                                subjectName: element.subject.subjectName,
+                                question: element.question,
+                                topicName: element.topic.topicName,
+                                createdAt: element.createdAt,
+                                teacherName: teacherName,
+                                checked: false
+                            })
+                        }, this);
+                        this.$forceUpdate();
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                })
         },
         reset() {
             this.rows = [];

@@ -254,7 +254,7 @@ export default {
                         return;
                     }
                 }
-                if(!this.createquestion.question) {
+                if(!this.createquestion.question.trim()) {
                     errorMsgBeforeSubmit = 'You must have to enter question title !'
                     this.$swal({
                         type: 'info',
@@ -270,7 +270,50 @@ export default {
                         text: errorMsgBeforeSubmit,
                     })
                     return;
-                } else if(answers.length == 1 && !answers[0].isAnswer){
+                }
+
+                console.log(answers,"answer list here");
+
+                let finalOptionsData = [];
+                let finalAnswerData = [];
+                let counter = 0;
+                /* OLd code using wrong way but WORKING FINE */
+                answers.forEach(function(element) {
+                    // console.log('Answer text here - ', element.answerText);
+                    let finalOptionsObj = {};
+                    finalOptionsObj[counter] = element.answerText.trim();
+                    if(element.answerText.trim()) {
+                        finalOptionsData.push(finalOptionsObj);
+                    }
+                    if (element.isAnswer) {
+                        finalAnswerData.push(finalOptionsObj);
+                    }
+                    counter++;
+                }, this);
+                /* -------------------------- */
+                /* answers.forEach(function(element) {
+                    // console.log('Answer text here - ', element.answerText);
+                    let finalOptionsObj = {};
+                    // finalOptionsObj[counter] = element.answerText.trim();
+                    if(element.answerText.trim()) {
+                        finalOptionsData.push(element.answerText.trim());
+                    }
+                    if (element.isAnswer) {
+                        finalAnswerData.push(element.answerText.trim());
+                    }
+                    // counter++;
+                }, this); */
+
+                /* Check for whether question have answer selected/and have options or not */
+                if(!finalOptionsData.length) {
+                    errorMsgBeforeSubmit = 'You must have to enter at least one option for answer !'
+                    this.$swal({
+                        type: 'info',
+                        title: 'Wait !',
+                        text: errorMsgBeforeSubmit,
+                    })
+                    return;
+                } else if(!finalAnswerData.length){
                     errorMsgBeforeSubmit = 'You must have to select at lease one option as answer in order to post new question !'
                     this.$swal({
                         type: 'info',
@@ -279,30 +322,21 @@ export default {
                     })
                     return;
                 }
-                let finalOptionsData = [];
-                let finalAnswerData = [];
-                let counter = 0;
-                answers.forEach(function(element) {
-                    console.log('In ' + element.answerText);
-                    let finalOptionsObj = {};
-                    finalOptionsObj[counter] = element.answerText;
-                    finalOptionsData.push(finalOptionsObj);
-                    if (element.isAnswer) {
-                        finalAnswerData.push(finalOptionsObj);
-                    }
-                    counter++;
-                }, this);
+
                 //Making Post Data ==============================================================================
                 this.createquestion.instituteId = Vue.lsobj.get('instituteID');
                 this.createquestion.options = JSON.stringify(finalOptionsData);
                 this.createquestion.answer = JSON.stringify(finalAnswerData);
                 console.log('answer array is' , answers, 'createquestion array is ',this.createquestion);
-                //Making Post Data ==============================================================================
+                
+                // Set URL accordingly  ==============================================================================
                 let apiPath = 'api/admin/create/question';
                 let isEditMode = this.isEdit;
                 if (isEditMode) {
                     apiPath = 'api/admin/update/question';
                 }
+
+                /* ----Rest CALL for question here---- */
                 PostRequest(this.BaseUrl + apiPath, this.createquestion)
                     .then(res => {
                         if (res && res.status == 200) {
@@ -375,11 +409,13 @@ export default {
                         checkedCounter++;
                     }
                     if (checkedCounter > 1) {
-                        this.$swal({
-                            type: 'info',
-                            title: 'Wait !',
-                            text: 'You cannot select multiple answers as you have selected question type single selection',
-                        })
+                        if(event.target.checked){
+                            this.$swal({
+                                type: 'info',
+                                title: 'Wait !',
+                                text: 'You cannot select multiple answers as you have selected question type single selection',
+                            })
+                        }
                         event.currentTarget.checked = false;
                         break;
                     }
@@ -392,7 +428,7 @@ export default {
             let editorControlList = document.getElementsByClassName('answerEditorClass');
             for (let i = 0; i < checkboxControlList.length; i++) {
                 let answerObj = {};
-                answerObj.answerText = editorControlList[i].outerText;
+                answerObj.answerText = editorControlList[i].outerText.trim();
                 answerObj.isAnswer = false;
                 if (checkboxControlList[i].firstElementChild.checked) {
                     answerObj.isAnswer = true;

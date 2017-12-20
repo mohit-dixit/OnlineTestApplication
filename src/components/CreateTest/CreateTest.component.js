@@ -187,6 +187,9 @@ export default {
         }
       });
     },
+    showSelectedQuestions() {
+      console.log(this.selectedQuestion, "Selected Question in Params");
+    },
     createTest() {
       this.createtest.batch = this.createtest.batch.map(function(data) {
         return data.id;

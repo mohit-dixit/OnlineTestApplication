@@ -80,8 +80,8 @@
   </b-container>
   <b-modal centered ref="listOfQuesModal" size="lg" v-model="showMOdal" title="Selected Questions & Answer" :header-bg-variant="headerBgVariant" :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
         <b-container fluid>
-              <b-pagination size="md" :total-rows="checkedQuestions.length" v-model="currentPage" :per-page="4">
-    </b-pagination>
+            <b-pagination size="md" :total-rows="checkedQuestions.length" v-model="currentPage" :per-page="4">
+            </b-pagination>
         </b-container>
         <div slot="modal-footer" class="w-100">
             <p class="float-left"></p>
