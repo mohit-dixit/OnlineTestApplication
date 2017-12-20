@@ -76,7 +76,7 @@ export default {
                             lastname: element.lastname,
                             phone: element.phone,
                             email: element.username,
-                            subject: element.teacher_subjects[0] ? element.teacher_subjects[0].subject.subjectName : '-',
+                            subject: element.teacher_subjects[0] && element.teacher_subjects[0].subject ? element.teacher_subjects[0].subject.subjectName : '-',
                             status: element.status == 1 ? 'Active' : 'Inactive'
                         })
                     }, this);

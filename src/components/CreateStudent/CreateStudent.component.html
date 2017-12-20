@@ -28,7 +28,7 @@
           <b-row class="my-1">
             <b-col sm="4"><label for="input-none">Last Name:</label></b-col>
             <b-col sm="8">
-              <b-form-input id="name" type="text" name="Last Name" v-model="createstudentform.lastname" v-validate="'required|email'" placeholder="Enter Last Name"></b-form-input>
+              <b-form-input id="name" type="text" name="Last Name" v-model="createstudentform.lastname" v-validate="'required'" placeholder="Enter Last Name"></b-form-input>
               <span v-show="errors.has('Last Name')" class="help is-danger">{{ errors.first('Last Name') }}</span>
             </b-col>
           </b-row>

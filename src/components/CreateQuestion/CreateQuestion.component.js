@@ -238,113 +238,112 @@ export default {
         },
         onSubmit(evt) {
             evt.preventDefault();
-            let answers = this.getFinalAnswers();
-            // debugger;
-
-            let errorMsgBeforeSubmit;
-            if (this.createquestion.categoryId == 1) {
-                let isMultipleAnswersSelected = answers.map(data => data.isAnswer).filter(data => data == true).length > 1
-                if (isMultipleAnswersSelected) {
-                    // alert('Multiple answers not allowed if Single selection is selected as Question type')
+            this.$validator.validateAll().then((result) => {
+              if (result) {
+                let answers = this.getFinalAnswers();
+                let errorMsgBeforeSubmit;
+                if (this.createquestion.categoryId == 1) {
+                    let isMultipleAnswersSelected = answers.map(data => data.isAnswer).filter(data => data == true).length > 1
+                    if (isMultipleAnswersSelected) {
+                        // alert('Multiple answers not allowed if Single selection is selected as Question type')
+                        this.$swal({
+                            type: 'info',
+                            title: 'Wait !',
+                            text: 'Multiple answers not allowed if Single selection is selected as Question type',
+                        })
+                        return;
+                    }
+                }
+                if(!this.createquestion.question) {
+                    errorMsgBeforeSubmit = 'You must have to enter question title !'
                     this.$swal({
                         type: 'info',
                         title: 'Wait !',
-                        text: 'Multiple answers not allowed if Single selection is selected as Question type',
+                        text: errorMsgBeforeSubmit,
+                    })
+                    return;
+                } else if(!this.createquestion.explanation) {
+                    errorMsgBeforeSubmit = 'You must have to enter explanation !'
+                    this.$swal({
+                        type: 'info',
+                        title: 'Wait !',
+                        text: errorMsgBeforeSubmit,
+                    })
+                    return;
+                } else if(answers.length == 1 && !answers[0].isAnswer){
+                    errorMsgBeforeSubmit = 'You must have to select at lease one option as answer in order to post new question !'
+                    this.$swal({
+                        type: 'info',
+                        title: 'Wait !',
+                        text: errorMsgBeforeSubmit,
                     })
                     return;
                 }
-            }
-
-            if(!this.createquestion.question) {
-                errorMsgBeforeSubmit = 'You must have to enter question title !'
-                this.$swal({
-                    type: 'info',
-                    title: 'Wait !',
-                    text: errorMsgBeforeSubmit,
-                })
-                return;
-            } else if(!this.createquestion.explanation) {
-                errorMsgBeforeSubmit = 'You must have to enter explanation !'
-                this.$swal({
-                    type: 'info',
-                    title: 'Wait !',
-                    text: errorMsgBeforeSubmit,
-                })
-                return;
-            } else if(answers.length == 1 && !answers[0].isAnswer){
-                errorMsgBeforeSubmit = 'You must have to select at lease one option as answer in order to post new question !'
-                this.$swal({
-                    type: 'info',
-                    title: 'Wait !',
-                    text: errorMsgBeforeSubmit,
-                })
-                return;
-            }
-
-            let finalOptionsData = [];
-            let finalAnswerData = [];
-            let counter = 0;
-            answers.forEach(function(element) {
-                console.log('In ' + element.answerText);
-                let finalOptionsObj = {};
-                finalOptionsObj[counter] = element.answerText;
-                finalOptionsData.push(finalOptionsObj);
-                if (element.isAnswer) {
-                    finalAnswerData.push(finalOptionsObj);
-                }
-                counter++;
-            }, this);
-            //Making Post Data ==============================================================================
-            this.createquestion.instituteId = Vue.lsobj.get('instituteID');
-            this.createquestion.options = JSON.stringify(finalOptionsData);
-            this.createquestion.answer = JSON.stringify(finalAnswerData);
-            console.log('answer array is' , answers, 'createquestion array is ',this.createquestion);
-            //Making Post Data ==============================================================================
-            let apiPath = 'api/admin/create/question';
-            let isEditMode = this.isEdit;
-            if (isEditMode) {
-                apiPath = 'api/admin/update/question';
-            }
-            PostRequest(this.BaseUrl + apiPath, this.createquestion)
-                .then(res => {
-                    if (res && res.status == 200) {
-                        this.createquestion = {};
-                        let msg = '';
-                        if(isEditMode){
-                            msg = 'Question updated successfully';
-                        }
-                        else{
-                            msg = 'Question created successfully';
-                        }
-
-                        this.$swal({
-                            type: 'success',
-                            title: 'Done !',
-                            text: msg,
-                            showConfirmButton: true
-                        }).then((result) => {
-                            if (result) {
-                            this.$router.push('/Dashboard/QuestionBank');
-                            }
-                        });                        
+                let finalOptionsData = [];
+                let finalAnswerData = [];
+                let counter = 0;
+                answers.forEach(function(element) {
+                    console.log('In ' + element.answerText);
+                    let finalOptionsObj = {};
+                    finalOptionsObj[counter] = element.answerText;
+                    finalOptionsData.push(finalOptionsObj);
+                    if (element.isAnswer) {
+                        finalAnswerData.push(finalOptionsObj);
                     }
-                    else {
+                    counter++;
+                }, this);
+                //Making Post Data ==============================================================================
+                this.createquestion.instituteId = Vue.lsobj.get('instituteID');
+                this.createquestion.options = JSON.stringify(finalOptionsData);
+                this.createquestion.answer = JSON.stringify(finalAnswerData);
+                console.log('answer array is' , answers, 'createquestion array is ',this.createquestion);
+                //Making Post Data ==============================================================================
+                let apiPath = 'api/admin/create/question';
+                let isEditMode = this.isEdit;
+                if (isEditMode) {
+                    apiPath = 'api/admin/update/question';
+                }
+                PostRequest(this.BaseUrl + apiPath, this.createquestion)
+                    .then(res => {
+                        if (res && res.status == 200) {
+                            this.createquestion = {};
+                            let msg = '';
+                            if(isEditMode){
+                                msg = 'Question updated successfully';
+                            }
+                            else{
+                                msg = 'Question created successfully';
+                            }
+                            this.$swal({
+                                type: 'success',
+                                title: 'Done !',
+                                text: msg,
+                                showConfirmButton: true
+                            }).then((result) => {
+                                if (result) {
+                                this.$router.push('/Dashboard/QuestionBank');
+                                }
+                            });
+                        }
+                        else {
+                            this.$swal({
+                                type: 'error',
+                                title: 'Sorry !',
+                                text: res.statustext || 'Please try again after some time !',
+                            });
+                            this.$forceUpdate();
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
                         this.$swal({
                             type: 'error',
                             title: 'Sorry !',
-                            text: res.statustext || 'Please try again after some time !',
-                        }); 
-                        this.$forceUpdate();
-                    }
-                })
-                .catch(error => {
-                    console.log(error);
-                    this.$swal({
-                        type: 'error',
-                        title: 'Sorry !',
-                        text: error.statustext || 'Please try again after some time !',
-                    });
-                })
+                            text: error.statustext || 'Please try again after some time !',
+                        });
+                  })
+                }
+            });
         },
         addRow: function() {
             // let firstAnswerEditorText;
