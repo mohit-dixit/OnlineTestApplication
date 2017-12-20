@@ -24,37 +24,51 @@ export default {
             footerBgVariant: 'warning',
             footerTextVariant: 'dark',
             columnsTeachers: [
-                // {
-                //   label: 'Id',
-                //   field: 'id',
-                //   visible: false
-                // },
+                {
+                    label: 'Id',
+                    field: 'id',
+                    hidden : true
+                },
                 {
                     label: 'First Name',
                     field: 'firstname',
-                    filterable: true
+                    filterable: true,
+                    thClass:'text-center',
+                    tdClass:'text-center'
                 }, {
                     label: 'Last Name',
                     field: 'lastname',
-                    filterable: true
+                    filterable: true,
+                    thClass:'text-center',
+                    tdClass:'text-center'
                 }, {
                     label: 'Phone',
                     field: 'phone',
-                    filterable: true
+                    filterable: true,
+                    thClass:'text-center',
+                    tdClass:'text-center'
                 } ,{
                     label: 'Subject',
                     field: 'subject',
-                    filterable: true
+                    filterable: true,
+                    thClass:'text-center',
+                    tdClass:'text-center'
                 },{
                     label: 'Email/Username',
                     field: 'email',
-                    filterable: true
+                    filterable: true,
+                    thClass:'text-center',
+                    tdClass:'text-center'
                 }, {
                     label: 'Status',
                     field: 'status',
-                    filterable: true
+                    filterable: true,
+                    thClass:'text-center',
+                    tdClass:'text-center'
                 }, {
-                    label: 'Action'
+                    label: 'Action',
+                    thClass:'text-center',
+                    tdClass:'text-center'
                 }
             ]
         }
@@ -77,7 +91,7 @@ export default {
                             phone: element.phone,
                             email: element.username,
                             subject: element.teacher_subjects[0] && element.teacher_subjects[0].subject ? element.teacher_subjects[0].subject.subjectName : '-',
-                            status: element.status == 1 ? 'Active' : 'Inactive'
+                            status: element.status ? 'Active' : 'Inactive'
                         })
                     }, this);
                     this.teacherList = list;
@@ -119,6 +133,20 @@ export default {
                     }
                 });
             }
+        },
+        activeInactiveChange: function(sender, rowVals){
+          let row = rowVals.formattedRow;
+          let postData = {};
+          postData.id = row.id;
+          postData.status = sender.currentTarget.checked ? 1 : 0;
+          postData.type = config.CRUD_CODES.USER;
+          PostRequest(this.BaseUrl + 'api/admin/status/update', postData).then(res => {
+            if (res) {
+              if (res.status == 200) {
+
+              }
+            }
+          });
         }
     },
     created: function() {

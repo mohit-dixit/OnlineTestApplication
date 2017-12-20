@@ -161,14 +161,6 @@ export default {
                 }
             });
         },
-
-        categoryChange() {
-            let controlList = document.getElementsByClassName('answerCheckboxClass');
-            for (let i = 0; i < controlList.length; i++) {
-                //debugger;
-                //Need to Work
-            }
-        },
         subjectChange() {
             setTimeout(() => {
                 this.getTopicBySubject(this.createquestion.subjectId)
@@ -328,7 +320,7 @@ export default {
                 this.createquestion.options = JSON.stringify(finalOptionsData);
                 this.createquestion.answer = JSON.stringify(finalAnswerData);
                 console.log('answer array is' , answers, 'createquestion array is ',this.createquestion);
-                
+
                 // Set URL accordingly  ==============================================================================
                 let apiPath = 'api/admin/create/question';
                 let isEditMode = this.isEdit;

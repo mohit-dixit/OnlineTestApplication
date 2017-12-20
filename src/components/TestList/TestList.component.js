@@ -14,22 +14,28 @@ export default  {
         {
           label: 'Test Name',
           field: 'testname',
-          filterable: true,
+          filterable: true
         },
         {
           label: 'Test Time (In Minutes)',
           field: 'testtime',
           filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },
         {
           label: 'No. Of Questions',
           field: 'noofquestions',
           filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },
         {
           label: 'Total Marks',
           field: 'totalmarks',
           filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },
         {
           label: 'Action'

@@ -63,7 +63,7 @@ export default {
                         this.createteacherform.teacher_allow_scale = res.body.message.allow_scale == 1 ? true : false;
                         this.createteacherform.teacher_allow_subject = res.body.message.allow_subject == 1 ? true : false;
                         this.createteacherform.teacher_allow_student = res.body.message.allow_student == 1 ? true : false;
-                        this.createteacherform.isAdmin = res.body.message.isAdmin == 1 ? true : false;
+                        this.createteacherform.isAdmin = res.body.message.user_roles.length > 1 ? true : false;
                         let list = [];
                         res.body.message.teacher_subjects.forEach(function(element) {
                             list.push({

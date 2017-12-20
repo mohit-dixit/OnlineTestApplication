@@ -42,6 +42,7 @@ export default {
 
   },
   methods: {
+    onSubmit: function(){},
     handleSelectedFile(convertedData) {
       let fileData = document.getElementById("upload-input").files[0];
       if(fileData){

@@ -31,15 +31,21 @@ export default {
         {
           label: 'Subject Name',
           field: 'subjectname',
-          filterable: true
+          filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },
         {
           label: 'Status',
           field: 'status',
-          filterable: true
+          filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },
         {
-          label: 'Action'
+          label: 'Action',
+          thClass:'text-center',
+          tdClass:'text-center'
         }
       ]
     }

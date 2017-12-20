@@ -27,37 +27,51 @@ export default {
       columnsAdmins: [{
           label: 'Id',
           field: 'id',
-          hidden : true
+          hidden : true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },
         {
           label: 'First Name',
           field: 'firstname',
-          filterable: true
+          filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },
         {
           label: 'Last Name',
           field: 'lastname',
-          filterable: true
+          filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },
         {
           label: 'Phone',
           field: 'phone',
-          filterable: true
+          filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },
         {
           label: 'Email/Username',
           field: 'email',
-          filterable: true
+          filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },
         {
           label: 'Associated Institute',
           field: 'associatedwith',
-          filterable: true
+          filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },
         {
           label: 'Status',
           field: 'status',
-          filterable: true
+          filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         }
       ]
     }
@@ -146,7 +160,9 @@ export default {
   created: function () {
     this.loginRole = Vue.lsobj.get('loginRole');
     if(this.loginRole === '2') {
-      this.columnsAdmins.push({label: 'Action'});
+      this.columnsAdmins.push({label: 'Action',
+      thClass:'text-center',
+      tdClass:'text-center'});
     }
     this.bindAdmins();
   }

@@ -30,29 +30,41 @@ export default {
         {
           label: 'First Name',
           field: 'firstname',
-          filterable: true
+          filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },
         {
           label: 'Last Name',
           field: 'lastname',
-          filterable: true
+          filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },
         {
           label: 'Phone',
           field: 'phone',
-          filterable: true
+          filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },
         {
           label: 'Email/Username',
           field: 'email',
-          filterable: true
+          filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },{
           label: 'Status',
           field: 'status',
-          filterable: true
+          filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },
         {
-          label: 'Action'
+          label: 'Action',
+          thClass:'text-center',
+          tdClass:'text-center'
         }
       ]
     }

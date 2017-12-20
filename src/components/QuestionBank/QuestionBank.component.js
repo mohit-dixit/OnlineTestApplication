@@ -61,7 +61,9 @@ export default  {
           tdClass:'text-center'
         },
         {
-          label: 'Action'
+          label: 'Action',
+          thClass:'text-center',
+          tdClass:'text-center'
         }
       ]
     }
