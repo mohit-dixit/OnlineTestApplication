@@ -6,6 +6,25 @@
   <div style="background-color: white; border: 3px solid #E9ECEF;">
     <vue-good-table title="Teachers" :columns="columnsTeachers" :rows="teacherList" :paginate="true" :globalSearch="true" :lineNumbers="true"
       styleClass="table table-bordered table-striped condensed">
+      <template slot="table-row" slot-scope="props">
+          <td>{{ props.row.firstname }}</td>
+          <td>{{ props.row.lastname }}</td>
+          <td>{{ props.row.phone }}</td>
+          <td>{{ props.row.subject }}</td>
+          <td>{{ props.row.email }}</td>
+          <td v-if="props.row.status =='Inactive'">
+              <label class="switch" style="width: 60px;">
+                  <input type="checkbox" @click="activeInactiveChange($event,props)">
+                  <span class="slider round"></span>
+              </label>
+          </td>
+          <td v-else-if="props.row.status =='Active'">
+              <label class="switch" style="width: 60px;">
+                  <input type="checkbox" @click="activeInactiveChange($event,props)" checked>
+                  <span class="slider round"></span>
+              </label>
+          </td>
+      </template>
       <template slot="table-row-after" slot-scope="props">
         <td>
           <img width="18" title="Edit" @click="editTeacherClick(props)" style="cursor: pointer;" height="18" src="../../assets/dashboardfiles/pencil.gif">

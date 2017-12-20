@@ -32,28 +32,38 @@ export default  {
           label: 'Question',
           field: 'question',
           filterable: true,
-          html: true,
+          html: true
         },
         {
           label: 'Scale',
           field: 'scale',
           filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },
         {
           label: 'Subject',
           field: 'subject',
           filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },{
           label: 'Topic',
           field: 'topic',
           filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },{
           label: 'Status',
           field: 'status',
           filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },
         {
-          label: 'Action'
+          label: 'Action',
+          thClass:'text-center',
+          tdClass:'text-center'
         }
       ]
     }
@@ -124,8 +134,8 @@ export default  {
             } else
               options[j].active = 'red'
           }
-        }  
-      }  
+        }
+      }
 
       for(let k = 0; k < options.length; k++) {
         data.push('<li style="color : '+options[k].active+'">'+options[k][k] +'</li>');

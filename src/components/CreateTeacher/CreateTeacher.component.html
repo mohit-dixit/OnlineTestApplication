@@ -31,7 +31,9 @@
                             <label for="email">Email</label>
                         </b-col>
                         <b-col sm="7">
-                            <b-form-input id="email" :state="null" type="email" v-model="createteacherform.username" v-validate="'required|email'" placeholder="Enter Email" name='Email'></b-form-input>
+                            <b-input-group left="📩" class="mb-2 mr-sm-2 mb-sm-0">
+                                <b-form-input id="email" :state="null" type="email" v-model="createteacherform.username" v-validate="'required|email'" placeholder="Enter Email" name='Email'></b-form-input>
+                            </b-input-group>
                             <span v-show="errors.has('Email')" class="help is-danger">{{ errors.first('Email') }}</span>
                         </b-col>
                     </b-row>
@@ -48,7 +50,9 @@
                             <label for="input-none">Phone</label>
                         </b-col>
                         <b-col sm="7">
-                            <b-form-input id="input-none" :state="null" type="text" maxlength="15" v-validate="'required|numeric|min:10'" name='Phone' v-model="createteacherform.phone" placeholder="Enter Phone"></b-form-input>
+                            <b-input-group left="📞" class="mb-2 mr-sm-2 mb-sm-0">
+                                <b-form-input id="input-none" :state="null" type="text" maxlength="15" v-validate="'required|numeric|min:10'" name='Phone' v-model="createteacherform.phone" placeholder="Enter Phone"></b-form-input>
+                            </b-input-group>
                             <span v-show="errors.has('Phone')" class="help is-danger">{{ errors.first('Phone') }}</span>
                           </b-col>
                     </b-row>
@@ -100,11 +104,20 @@
                     </b-row>
                     <b-row class="my-1" style="text-align: left;">
                         <b-col sm="5">
-                            <label for="input-none">Allow Teacher for admin access </label>
+                            <label for="input-none">Allow Teacher for admin access? </label>
                         </b-col>
                         <b-col sm="7">
                             <label class="switch" style="width: 60px;">
                                 <input v-model="createteacherform.isAdmin" type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </b-col>
+                    </b-row>
+                    <b-row class="my-1" v-if="isEdit">
+                        <b-col sm="5"><label for="input-none">Is Active?</label></b-col>
+                        <b-col sm="7" style="text-align: left;">
+                          <label class="switch" style="width: 60px;">
+                                <input v-model="createteacherform.status" type="checkbox">
                                 <span class="slider round"></span>
                             </label>
                         </b-col>

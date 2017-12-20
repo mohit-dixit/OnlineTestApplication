@@ -29,27 +29,39 @@ export default  {
           label: 'Name',
           field: 'name',
           filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },
         {
           label: 'Email',
           field: 'emailID',
           filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },
         {
           label: 'Phone',
           field: 'phone',
           filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },
         {
           label: 'Address',
-          field: 'address'
+          field: 'address',
+          thClass:'text-center',
+          tdClass:'text-center'
         },
         {
           label: 'Status',
-          field: 'status'
+          field: 'status',
+          thClass:'text-center',
+          tdClass:'text-center'
         },
         {
-          label: 'Action'
+          label: 'Action',
+          thClass:'text-center',
+          tdClass:'text-center'
         }
       ]
     }

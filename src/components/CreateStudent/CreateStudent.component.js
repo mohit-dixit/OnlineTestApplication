@@ -68,7 +68,7 @@ export default  {
                 }, this);
               this.createstudentform.batch = list;
             }
-            if(response.status < 2){
+            if(response.status){
               this.createstudentform.status = true;
             }
             else{
@@ -90,12 +90,6 @@ export default  {
           let isEditMode = this.isEdit;
           if (isEditMode) {
             apiPath = 'api/admin/update/student';
-            if(this.createstudentform.status){
-              this.createstudentform.status = config.Active;
-            }
-            else{
-              this.createstudentform.status = config.Inactive;
-            }
           }
           let BatchIds=[];
           if(this.createstudentform.batch){

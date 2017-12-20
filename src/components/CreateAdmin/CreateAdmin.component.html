@@ -25,15 +25,19 @@
           <b-row class="my-1">
             <b-col sm="4"><label for="input-none">Email/Username*</label></b-col>
             <b-col sm="8">
-              <b-form-input id="input" name="Email" :state="null" type="email" v-model="createadminform.username" v-validate="'required|email'" placeholder="Enter Email"></b-form-input>
-              <span v-show="errors.has('Email')" class="help is-danger">{{ errors.first('Email') }}</span>
+                <b-input-group left="📩" class="mb-2 mr-sm-2 mb-sm-0">
+                  <b-form-input id="input" name="Email" :state="null" type="email" v-model="createadminform.username" v-validate="'required|email'" placeholder="Enter Email"></b-form-input>
+                </b-input-group>
+                  <span v-show="errors.has('Email')" class="help is-danger">{{ errors.first('Email') }}</span>
             </b-col>
           </b-row>
           <b-row class="my-1">
             <b-col sm="4"><label for="input-none">Phone*</label></b-col>
             <b-col sm="8">
-              <b-form-input id="input-none" :state="null" type="text" maxlength="15" @keydown.native="onlyNumberKey" v-model="createadminform.phone"
-              v-validate="'required|numeric|min:10'" name='Phone' placeholder="Enter Phone"></b-form-input>
+                <b-input-group left="📞" class="mb-2 mr-sm-2 mb-sm-0">
+                  <b-form-input id="input-none" :state="null" type="text" maxlength="15" @keydown.native="onlyNumberKey" v-model="createadminform.phone"
+                  v-validate="'required|numeric|min:10'" name='Phone' placeholder="Enter Phone"></b-form-input>
+                </b-input-group>
               <span v-show="errors.has('Phone')" class="help is-danger">{{ errors.first('Phone') }}</span>
             </b-col>
           </b-row>
