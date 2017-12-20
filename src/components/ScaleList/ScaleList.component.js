@@ -63,7 +63,7 @@ export default {
                 id: element.id,
                 scalename: element.scaleName,
                 points: element.scalePoint,
-                status: element.status,
+                status: element.status ? 'Active' : 'Inactive',
               })
             }, this);
             this.scaleList = list;
@@ -84,7 +84,7 @@ export default {
           id: events.row.id,
           name:events.row.scalename,
           points: events.row.points,
-          status: events.row.stauts
+          status: events.row.status
         }
       });
     },
@@ -108,6 +108,20 @@ export default {
           }
         });
       }
+    },
+    activeInactiveChange: function(sender, rowVals){
+      let row = rowVals.formattedRow;
+      let postData = {};
+      postData.id = row.id;
+      postData.status = sender.currentTarget.checked ? 1 : 0;
+      postData.type = config.CRUD_CODES.SCALE;
+      PostRequest(this.BaseUrl + 'api/admin/status/update', postData).then(res => {
+        if (res) {
+          if (res.status == 200) {
+            //this.bindAdmins();
+          }
+        }
+      });
     }
   },
   created: function () {

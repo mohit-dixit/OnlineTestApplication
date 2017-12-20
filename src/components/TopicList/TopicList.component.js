@@ -42,6 +42,10 @@ export default  {
           label: 'Subject',
           field: 'subjectname',
           filterable: true
+        },{
+          label: 'Status',
+          field: 'status',
+          filterable: true
         },
         {
           label: 'Action'
@@ -67,6 +71,7 @@ export default  {
               topicname: element.topicName,
               subjectname: element.subject.subjectName,
               subjectId: element.subject.id,
+              status: element.status ? 'Active' : 'Inactive',
             })
           }, this);
           this.topicList = list;
@@ -85,7 +90,8 @@ export default  {
         params: {
           id: events.row.id,
           name: events.row.topicname,
-          subjectId: events.row.subjectId
+          subjectId: events.row.subjectId,
+          status: events.row.status
         }
       });
     },
@@ -109,6 +115,20 @@ export default  {
           }
         });
       }
+    },
+    activeInactiveChange: function(sender, rowVals){
+      let row = rowVals.formattedRow;
+      let postData = {};
+      postData.id = row.id;
+      postData.status = sender.currentTarget.checked ? 1 : 0;
+      postData.type = config.CRUD_CODES.TOPIC;
+      PostRequest(this.BaseUrl + 'api/admin/status/update', postData).then(res => {
+        if (res) {
+          if (res.status == 200) {
+            //this.bindAdmins();
+          }
+        }
+      });
     }
   },
   created: function () {

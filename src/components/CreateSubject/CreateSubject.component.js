@@ -107,7 +107,7 @@ export default {
       this.isEdit = true;
       this.createsubjectform.id = this.id;
       this.createsubjectform.subjectName = this.name;
-      this.createsubjectform.status = this.status;
+      this.createsubjectform.status = this.status == 'Active' ? true : false;
     }
   }
 }

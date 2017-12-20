@@ -9,7 +9,7 @@ import {
 export default  {
   name: 'create-topic',
   components: {},
-  props: ['id','subjectId','name'],
+  props: ['id','subjectId','name','status'],
   data() {
     this.responseMessage = null;
     this.ModalMessage = null;
@@ -123,6 +123,7 @@ export default  {
       this.createtopicform.topic_id = this.id;
       this.createtopicform.topicName = this.name;
       this.createtopicform.subjectId = this.subjectId;
+      this.createtopicform.status = this.status == 'Active' ? true : false;
     }
   }
 }

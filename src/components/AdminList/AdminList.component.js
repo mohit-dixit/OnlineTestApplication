@@ -56,7 +56,7 @@ export default {
         },
         {
           label: 'Status',
-          field: 'isactive',
+          field: 'status',
           filterable: true
         }
       ]
@@ -85,7 +85,7 @@ export default {
                 phone: userObject.phone,
                 email: userObject.username,
                 associatedwith: userObject.user_institutes[0].institute.name,
-                isactive: (userObject.status < 2) ? 'Active' : 'Inactive',
+                status: userObject.status ? 'Active' : 'Inactive',
               })
             }
           }, this);
