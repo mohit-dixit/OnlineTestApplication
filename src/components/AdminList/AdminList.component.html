@@ -1,9 +1,8 @@
 <div v-if="loginRole === '1' || loginRole === '2'">
   <div class="loading" v-if='loader'>Loading&#8230;</div>
   <router-link to="/Dashboard/CreateAdmin">
-    <b-button variant="primary" style='margin : 20px'><b>+ </b>Add Admin</b-button>
+    <b-button variant="primary"><b>+ </b>Add Admin</b-button>
   </router-link>
-  <br>
   <div style="background-color: white; border: 3px solid #E9ECEF;">
     <vue-good-table title="Admins" :columns="columnsAdmins" :rows="adminList" :paginate="true" :globalSearch="true" :lineNumbers="true"
       styleClass="table table-bordered table-striped condensed">

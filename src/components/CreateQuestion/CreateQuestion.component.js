@@ -83,7 +83,7 @@ export default {
                         let response = res.body.message;
                         if (response) {
                             this.createquestion = response[0];
-                            this.subjectChange();
+                            this.subjectChange(this.createquestion);
                             let answerOptions = JSON.parse(response[0].options);
                             let answersList = JSON.parse(response[0].answer).map(data => Object.keys(data)[0] * 1);
                             this.answers = [];
@@ -161,13 +161,14 @@ export default {
                 }
             });
         },
-        subjectChange() {
+        subjectChange(model) {
+          let modelObj = model;
             setTimeout(() => {
-                this.getTopicBySubject(this.createquestion.subjectId)
-                this.getTeacherListBySubject(this.createquestion.subjectId);
+                this.getTopicBySubject(this.createquestion.subjectId, modelObj)
+                this.getTeacherListBySubject(this.createquestion.subjectId, modelObj);
             });
         },
-        getTopicBySubject(sub_id){
+        getTopicBySubject(sub_id, model){
             this.fetchingData = true;
             let postData = {};
             postData.subjectId = sub_id;
@@ -188,15 +189,15 @@ export default {
                             })
                         }, this);
                     }
-                    this.createquestion.topic = null;
                 }
+                this.createquestion.topicId =  model ? model.topicId : null;
             })
             .catch(error => {
                 this.fetchingData = false;
                 console.log(error);
             })
         },
-        getTeacherListBySubject(sub_id) {
+        getTeacherListBySubject(sub_id, model) {
             /* Get Teacher's List accordingly  */
             let teacherPostData = {"subjectId": sub_id}
             this.fetchingData = true;
@@ -222,6 +223,7 @@ export default {
                             this.$forceUpdate();
                         }
                     }
+                    this.createquestion.teacherId =  model ? model.createdBy : null;
                 })
                 .catch(error => {
                     this.fetchingData = false;

@@ -54,7 +54,7 @@ export default {
             this.createadminform.associatedwith = response.user_institutes[0].instituteId;
             this.createadminformClone = Object.assign({}, this.createadminform);;
             this.createadminformClone.associatedwith = response.user_institutes[0].instituteId;
-            if(response.status < 2){
+            if(response.status){
               this.createadminform.status = true;
               this.createadminformClone.status = true;
             }

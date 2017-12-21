@@ -54,9 +54,7 @@ export default  {
           thClass:'text-center',
           tdClass:'text-center'
         },{
-          label: 'Status',
-          field: 'status',
-          filterable: true,
+          label: 'Action',
           thClass:'text-center',
           tdClass:'text-center'
         },
@@ -119,7 +117,7 @@ export default  {
     },
     getAnswerOptions(options, answer) {
       let data = [];
-            
+
       console.log(options, answer, "OPtion and Answer array");
       options.map(data => {
         answer.map(answerKey => {
@@ -134,7 +132,7 @@ export default  {
         })
       })
       console.log(options,'%%%%%%%%%%%%%%%%%%%%%%')
-      
+
       /* Code as per correct response from backedn side */
       /* for(let i=0; i < answer.length; i++) {
         for(let j=0; j < options.length; j++) {
@@ -147,8 +145,8 @@ export default  {
             } else
               options[j].active = 'red'
           }
-        }  
-      } */  
+        }
+      } */
 
       for(let k = 0; k < options.length; k++) {
         data.push('<li style="color : '+options[k].active+'">'+options[k][k] +'</li>');
@@ -176,6 +174,20 @@ export default  {
           }
         });
       }
+    },
+    activeInactiveChange: function(sender, rowVals){
+      let row = rowVals.formattedRow;
+      let postData = {};
+      postData.id = row.id;
+      postData.status = sender.currentTarget.checked ? 1 : 0;
+      postData.type = config.CRUD_CODES.QUESTION;
+      PostRequest(this.BaseUrl + 'api/admin/status/update', postData).then(res => {
+        if (res) {
+          if (res.status == 200) {
+            //this.bindAdmins();
+          }
+        }
+      });
     }
   },
   created: function () {
