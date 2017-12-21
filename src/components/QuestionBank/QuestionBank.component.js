@@ -53,8 +53,23 @@ export default  {
           filterable: true,
           thClass:'text-center',
           tdClass:'text-center'
-        },{
-          label: 'Action',
+        },
+        {
+          label: 'Teacher Name',
+          field: 'teacherName',
+          filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
+        },
+        {
+          label: 'Date(Created)',
+          field: 'createdAt',
+          filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
+        }
+        ,{
+          label: 'Status',
           thClass:'text-center',
           tdClass:'text-center'
         },
@@ -81,6 +96,7 @@ export default  {
           let list = [];
           if(response){
             response.forEach(function (element) {
+              let teacherName = element.user ? element.user.firstname + ' ' + element.user.lastname : '-';
               list.push({
                 id: element.id,
                 question: element.question,
@@ -90,7 +106,9 @@ export default  {
                 scale: element.scale.scaleName,
                 subject: element.subject.subjectName,
                 topic: element.topic.topicName,
-                status: element.status ? 'Active' : 'Inactive'
+                status: element.status ? 'Active' : 'Inactive',
+                createdAt: element.createdAt,
+                teacherName: teacherName,
               })
             }, this);
           }
@@ -131,7 +149,6 @@ export default  {
           }
         })
       })
-      console.log(options,'%%%%%%%%%%%%%%%%%%%%%%')
 
       /* Code as per correct response from backedn side */
       /* for(let i=0; i < answer.length; i++) {

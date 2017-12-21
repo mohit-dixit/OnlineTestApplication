@@ -99,22 +99,12 @@ export default {
                 }
                 PostRequest(this.BaseUrl + apiPath, this.createteacherform).then(res => {
                     if (res && res.status == 200) {
-                        this.createteacherform = {};
-                        this.subjectsVal = {};
-
-                        let msg = '';
-                        if(isEditMode){
-                            msg = 'Teacher updated successfully';
-                        }
-                        else{
-                            this.$forceUpdate();
-                            msg = 'Teacher created successfully';
-                        }
-
+                        let msg = isEditMode ? 'Teacher updated successfully' : 'Teacher created successfully';
                         this.$swal({
                             type: 'success',
                             title: 'Done !',
                             text: msg,
+                            allowOutsideClick: false,
                             showConfirmButton: true
                         }).then((result) => {
                             if (result) {

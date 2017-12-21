@@ -1,23 +1,23 @@
 <div class="container">
-    <div v-if="!isEditMode" class="avatar-flip">
-      <img :src="profileData.image || '../../assets/images/SampleProfile.png'" height="150" width="150">
-      <img :src="profileData.image || '../../assets/images/SampleProfile.png'" height="150" width="150">
-    </div>
+  <div v-if="!isEditMode" class="avatar-flip">
+    <img :src="profileData.image || 'static/img/profile.png'" height="150" width="150">
+    <img :src="profileData.image || 'static/img/profile.png'" height="150" width="150">
+  </div>
 
-    <div>
-    <h2 v-if="!isEditMode">{{profileData.firstname}} {{profileData.lastname}}
-        <img src="../../assets/images/pen-blue-round.png" v-on:click="editButtonClick()" style="cursor:pointer;" height="36" width="36">
-    </h2>
-    </div>
-    <div class="form-box">
-        <b-form>
-            <b-row class="my-1">
-                <b-col v-if="!isEditMode" sm="12">
-                    <label for="input-none"><h4>{{profileData.username}} | {{profileData.phone}}</h4></label>
-                </b-col>
-            </b-row>
-        </b-form>
-    </div>
-    <p v-if="!isEditMode">{{profileData.desciption}}</p>
-    <b-form-input type="text" v-if="isEditMode" v-model="profileData.desciption" placeholder="Enter About You"></b-form-input>
+  <div>
+  <h2 v-if="!isEditMode">{{profileData.firstname}} {{profileData.lastname}}
+      <img src="../../assets/images/pen-blue-round.png" v-on:click="editButtonClick()" style="cursor:pointer;" height="36" width="36">
+  </h2>
+  </div>
+  <div class="form-box">
+      <b-form>
+          <b-row class="my-1">
+              <b-col v-if="!isEditMode" sm="12">
+                  <label for="input-none"><h4>{{profileData.username}} | {{profileData.phone}}</h4></label>
+              </b-col>
+          </b-row>
+      </b-form>
+  </div>
+  <p v-if="!isEditMode">{{profileData.desciption}}</p>
+  <b-form-input type="text" v-if="isEditMode" v-model="profileData.desciption" placeholder="Enter About You"></b-form-input>
 </div>

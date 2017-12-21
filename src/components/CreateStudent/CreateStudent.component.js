@@ -108,26 +108,18 @@ export default  {
           PostRequest(this.BaseUrl + apiPath, this.createstudentform)
             .then(res => {
               if (res && res.status == 200) {
-                  this.createstudentform = {};
-                  let msg = '';
-                  if(isEditMode){
-                    msg = 'Student updated successfully';
-                  }
-                  else{
-                    msg = 'Student created successfully';
-                  }
-                  this.$forceUpdate();
-
+                  let msg = isEditMode ? 'Student updated successfully' : 'Student created successfully';
                   this.$swal({
                     type: 'success',
                     title: 'Done !',
                     text: msg,
+                    allowOutsideClick: false,
                     showConfirmButton: true
                   }).then((result) => {
                     if (result) {
                       this.$router.push('/Dashboard/StudentList');
                     }
-                  }); 
+                  });
                 } else {
                   this.$swal({
                       type: 'error',

@@ -8,14 +8,16 @@
             <b-row class="my-1">
                 <b-col sm="4"><label for="input-none">Select Type:</label></b-col>
                 <b-col sm="8">
-                    <b-form-select v-model="uploads.type" :options="options" required class="mb-3">
+                    <b-form-select name="Type" v-model="uploads.type" v-validate="'required'" :options="options" class="mb-3">
                     </b-form-select>
+                    <span v-show="errors.has('Type')" class="help is-danger">{{ errors.first('Type') }}</span>
                 </b-col>
               </b-row>
           <b-row class="my-1">
-            <b-col sm="4"><label for="input-none">Subject Name:</label></b-col>
+            <b-col sm="4"><label for="input-none">Select File:</label></b-col>
             <b-col sm="8" style="text-align: left;">
-              <vue-xlsx-table @on-select-file="handleSelectedFile">Select File</vue-xlsx-table>
+              <vue-xlsx-table name="File" v-validate="'required'" @on-select-file="handleSelectedFile">Select File</vue-xlsx-table>
+              <span style="margin-left: 28px;" v-show="errors.has('File')" class="help is-danger">{{ errors.first('File') }}</span>
             </b-col>
           </b-row>
         </b-container>

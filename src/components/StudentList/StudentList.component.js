@@ -28,15 +28,15 @@ export default {
           hidden : true
         },
         {
-          label: 'First Name',
+          label: 'Name',
           field: 'firstname',
           filterable: true,
           thClass:'text-center',
           tdClass:'text-center'
         },
         {
-          label: 'Last Name',
-          field: 'lastname',
+          label: 'Batch',
+          field: 'batch',
           filterable: true,
           thClass:'text-center',
           tdClass:'text-center'
@@ -49,7 +49,7 @@ export default {
           tdClass:'text-center'
         },
         {
-          label: 'Email/Username',
+          label: 'Email',
           field: 'email',
           filterable: true,
           thClass:'text-center',
@@ -85,6 +85,7 @@ export default {
               id: userObject.id,
               firstname: userObject.firstname,
               lastname: userObject.lastname,
+              batch: userObject.student_batches[0].batch.batchName,
               phone: userObject.phone,
               email: userObject.username,
               status: element.status ? 'Active' : 'Inactive',

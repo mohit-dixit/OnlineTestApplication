@@ -71,14 +71,15 @@ export default  {
           PostRequest(this.BaseUrl + apiPath  , this.createtopicform).then(res => {
             if (res) {
               if (res.status == 200) {
-                this.createtopicform = {};
+                let msg = isEditMode ? 'Topic updated successfully' : 'Topic created successfully';
                 if(isEditMode){
                   this.$swal({
                     title: 'Great !',
-                    text: "Topic updated successfully !",
+                    text: msg,
                     type: 'success',
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
+                    allowOutsideClick: false,
                     confirmButtonText: 'OK'
                   }).then((result) => {
                     if (result) {
@@ -90,7 +91,8 @@ export default  {
                 else{
                   this.$swal({
                     type: 'success',
-                    title: 'Topic created successfully !'
+                    allowOutsideClick: false,
+                    title: msg
                   }).then((result) => {
                     if (result) {
                       this.$router.push('/Dashboard/Masters/TopicList');

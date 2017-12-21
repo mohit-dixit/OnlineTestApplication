@@ -12,9 +12,16 @@ export default  {
     return {
       columnsTests: [
         {
+          label: 'Id',
+          field: 'id',
+          hidden : true
+        },
+        {
           label: 'Test Name',
           field: 'testname',
-          filterable: true
+          filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
         },
         {
           label: 'Test Duration (In Minutes)',
@@ -38,10 +45,14 @@ export default  {
           tdClass:'text-center'
         },
         {
-          label: 'Status'
+          label: 'Status',
+          thClass:'text-center',
+          tdClass:'text-center'
         },
         {
-          label: 'Action'
+          label: 'Action',
+          thClass:'text-center',
+          tdClass:'text-center'
         }
       ]
     }
@@ -65,7 +76,7 @@ export default  {
                 testname: element.testName || 'Test Name',
                 testtime: element.testTime || '-',
                 noofquestions: element.noOfQuestions || '-',
-                totalmarks: element.totalmarks || '-',
+                totalmarks: element.totalMarks || '-',
                 status: element.status ? 'Active' : 'Inactive'
               })
             }, this);
@@ -80,20 +91,18 @@ export default  {
           console.log(error);
         });
     },
-    activeInactiveChange(event,props) {
-      console.log(event,props);
-      /* let row = rowVals.formattedRow;
+    activeInactiveChange: function(sender, rowVals){
+      let row = rowVals.row;
       let postData = {};
       postData.id = row.id;
       postData.status = sender.currentTarget.checked ? 1 : 0;
-      postData.type = config.CRUD_CODES.USER;
+      postData.type = config.CRUD_CODES.TEST;
       PostRequest(this.BaseUrl + 'api/admin/status/update', postData).then(res => {
         if (res) {
           if (res.status == 200) {
-            //this.bindAdmins();
           }
         }
-      }); */
+      });
     },
     getTestList: function(){
       GetRequest('static/question.json').then(res => {this.testList = res; this.$forceUpdate();});

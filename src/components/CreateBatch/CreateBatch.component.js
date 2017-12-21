@@ -51,13 +51,14 @@ export default  {
           PostRequest(this.BaseUrl + apiPath  , this.createbatchform).then(res => {
             if (res) {
               if (res.status == 200) {
-                this.createbatchform = {};
+                let msg = isEditMode ? 'Batch updated successfully' : 'Batch created successfully';
                 if(isEditMode){
                   this.$swal({
                     title: 'Great !',
-                    text: "Batch updated successfully !",
+                    text: msg,
                     type: 'success',
                     confirmButtonColor: '#3085d6',
+                    allowOutsideClick: false,
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'OK'
                   }).then((result) => {
@@ -69,7 +70,8 @@ export default  {
                 else{
                   this.$swal({
                     type: 'success',
-                    title: 'Batch created successfully'
+                    allowOutsideClick: false,
+                    title: msg
                   }).then((result) => {
                     if (result) {
                       this.$router.push('/Dashboard/Masters/BatchList');

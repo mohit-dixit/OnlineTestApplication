@@ -11,6 +11,8 @@
         <td>{{ props.row.scale }}</td>
         <td>{{ props.row.subject }}</td>
         <td>{{ props.row.topic }}</td>
+        <td>{{ props.row.teacherName }}</td>
+        <td>{{ props.row.createdAt | formatDate }}</td>
         <td v-if="props.row.status == 'Inactive'">
             <label class="switch" style="width: 60px;">
                 <input type="checkbox" @click="activeInactiveChange($event,props)">

@@ -52,17 +52,15 @@ export default {
           PostRequest(this.BaseUrl + apiPath , this.createsubjectform).then(res => {
             if (res) {
               if (res.status == 200) {
-                this.createsubjectform = {};
+                let msg = isEditMode ? 'Subject updated successfully' : 'Subject created successfully';
                 if(isEditMode){
-                  /* this.ModalMessage = 'Subject updated successfully';
-                  this.$refs.notificationModal.show(); */
-
                   this.$swal({
                     title: 'Great !',
-                    text: "Subject updated successfully !",
+                    text: msg,
                     type: 'success',
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
+                    allowOutsideClick: false,
                     confirmButtonText: 'OK'
                   }).then((result) => {
                     if (result) {
@@ -74,7 +72,8 @@ export default {
                 else{
                   this.$swal({
                     type: 'success',
-                    title: 'Subject created successfully'
+                    title: msg,
+                    allowOutsideClick: false
                   }).then((result) => {
                     if (result) {
                       this.$router.push('/Dashboard/Masters/SubjectList');

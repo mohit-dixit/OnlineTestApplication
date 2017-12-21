@@ -334,18 +334,12 @@ export default {
                 PostRequest(this.BaseUrl + apiPath, this.createquestion)
                     .then(res => {
                         if (res && res.status == 200) {
-                            this.createquestion = {};
-                            let msg = '';
-                            if(isEditMode){
-                                msg = 'Question updated successfully';
-                            }
-                            else{
-                                msg = 'Question created successfully';
-                            }
+                            let msg = isEditMode ? 'Question updated successfully' : 'Question created successfully';
                             this.$swal({
                                 type: 'success',
                                 title: 'Done !',
                                 text: msg,
+                                allowOutsideClick: false,
                                 showConfirmButton: true
                             }).then((result) => {
                                 if (result) {
