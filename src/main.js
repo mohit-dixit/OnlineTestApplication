@@ -18,9 +18,10 @@ import VeeValidate from 'vee-validate';
 /* For Spinner while HTTP calls  */
 // import {RotateSquare2} from 'vue-loading-spinner'
 
+import 'hideseek';
+
 /* For sweet Alert as notification */
 import VueSweetAlert from 'vue-sweetalert'
-
 import './assets/style/loader.css';
 import './assets/style/bootstrap-datetimepicker.css'
 import '../node_modules/bootstrap/dist/css/bootstrap.css'

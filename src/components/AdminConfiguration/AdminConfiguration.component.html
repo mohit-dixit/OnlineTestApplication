@@ -53,24 +53,8 @@
         </b-container>
         <br>
         <b-button type="submit" variant="primary">Save</b-button>
-        <b-button type="reset" variant="secondary">Reset Default</b-button>
-        <!-- <success-notification v-if="notifySuccess">Configuration saved successfully</success-notification> -->
+        <b-button @click='resetAll()' type='reset' variant="secondary">Reset Default</b-button>
       </b-form>
     </div>
   </div>
-   <!-- Modal Component -->
-   <b-modal size="sm" centered ref="notificationModal" v-model="show" title="Alert" :header-bg-variant="headerBgVariant" :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
-      <b-container fluid>
-        <b-row class="mb-1 text-center">
-          <b-col cols="12">Configuration updated successfully</b-col>
-        </b-row>
-      </b-container>
-      <div slot="modal-footer" class="w-100">
-        <p class="float-left"></p>
-        <b-btn size="sm" class="float-right" style="margin-left: 5px;" variant="danger" @click="closeModal()">
-         OK
-        </b-btn>
-      </div>
-    </b-modal>
-    <!-- Modal Component -->
 </section>

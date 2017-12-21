@@ -39,6 +39,19 @@ export default {
 
     },
     methods: {
+        /* Reset call yet pending */
+        /* resetAll() {
+            this.allow_scale = 0;
+            this.allow_subject = 0;
+            this.allow_batch = 0;
+            this.allow_topic = 0;
+            this.allow_student = 0;
+            this.adminconfigurationform.institute_allow_scale = false;
+            this.adminconfigurationform.institute_allow_subject = false;
+            this.adminconfigurationform.institute_allow_batch = false;
+            this.adminconfigurationform.institute_allow_topic = false;
+            this.adminconfigurationform.institute_allow_student = false;
+        }, */
         onSubmit(evt) {
             evt.preventDefault();
             let apiPath = 'api/admin/update/config';
@@ -49,16 +62,23 @@ export default {
             this.adminconfigurationform.institute_allow_student = this.adminconfigurationform.allow_student ? config.Active : config.Inactive;
 
             PostRequest(this.BaseUrl + apiPath, this.adminconfigurationform).then(res => {
-                if (res) {
-                    if (res.status == 200) {
-                      Vue.lsobj.set('allow_scale', this.adminconfigurationform.institute_allow_scale);
-                      Vue.lsobj.set('allow_student', this.adminconfigurationform.institute_allow_student);
-                      Vue.lsobj.set('allow_subject', this.adminconfigurationform.institute_allow_subject);
-                      Vue.lsobj.set('allow_batch', this.adminconfigurationform.institute_allow_batch);
-                      Vue.lsobj.set('allow_topic', this.adminconfigurationform.institute_allow_topic);
-                      this.$refs.notificationModal.show();
-                    }
+                if (res && res.status == 200) {
+                    Vue.lsobj.set('allow_scale', this.adminconfigurationform.institute_allow_scale);
+                    Vue.lsobj.set('allow_student', this.adminconfigurationform.institute_allow_student);
+                    Vue.lsobj.set('allow_subject', this.adminconfigurationform.institute_allow_subject);
+                    Vue.lsobj.set('allow_batch', this.adminconfigurationform.institute_allow_batch);
+                    Vue.lsobj.set('allow_topic', this.adminconfigurationform.institute_allow_topic);
                 }
+                this.$swal({
+                  type: 'success',
+                  title: 'Done !',
+                  text: 'Configuration updated successfully',
+                  showConfirmButton: true
+                }).then((result) => {
+                  if (result) {
+                    this.$router.push('/Dashboard');
+                  }
+                });
             });
         },
         closeModal: function (events, args) {
