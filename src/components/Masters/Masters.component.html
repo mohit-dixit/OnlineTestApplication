@@ -1,30 +1,26 @@
 <div>
-  <router-link to="/Dashboard/AdminList" v-if="loginRole === '1' || loginRole === '2'">
-    <a class="dashboard-module">
-                            <img src="../../assets/images/adminlist.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_write.gif" width="64" height="64" alt="edit" />
-                            <!-- <span><router-link to="/Dashboard/CreateAdmin"></router-link></span> -->
-                            <span>Admins</span>
-      </a>
-  </router-link>
-  <router-link to="/Dashboard/InstituteList" v-if="loginRole === '1'">
-    <a class="dashboard-module">
+    <router-link to="/Dashboard/AdminList" v-if="loginRole === '1' || loginRole === '2'">
+        <a class="dashboard-module">
+        <img src="../../assets/images/adminlist.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_write.gif" width="64" height="64" alt="edit" />
+        <span>Admins</span>
+        </a>
+    </router-link>
+    <router-link to="/Dashboard/InstituteList" v-if="loginRole === '1'">
+        <a class="dashboard-module">
         <img src="../../assets/images/multiInstitutes.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_write.gif" width="64" height="64" alt="edit" />
-        <!-- <span><router-link to="/Dashboard/CreateAdmin"></router-link></span> -->
         <span>Institutes</span>
-      </a>
-  </router-link>
-  <router-link to="/Dashboard/TeacherList" v-if="loginRole === '2'">
-    <a class="dashboard-module">
-          <img src="../../assets/images/teachersList.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_write.gif" width="64" height="64" alt="edit" />
-          <!-- <span><router-link to="/Dashboard/CreateAdmin"></router-link></span> -->
-          <span>Teachers</span>
         </a>
-  </router-link>
-  <router-link to="/Dashboard/StudentList" v-if="loginRole === '2'">
-    <a class="dashboard-module">
-          <img src="../../assets/images/studentsList.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_write.gif" width="64" height="64" alt="edit" />
-          <!-- <span><router-link to="/Dashboard/CreateAdmin"></router-link></span> -->
-          <span>Students</span>
+    </router-link>
+    <router-link to="/Dashboard/TeacherList" v-if="loginRole === '2'">
+        <a class="dashboard-module">
+        <img src="../../assets/images/teachersList.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_write.gif" width="64" height="64" alt="edit" />
+        <span>Teachers</span>
         </a>
-  </router-link>
+    </router-link>
+    <router-link to="/Dashboard/StudentList" v-if="loginRole === '2'">
+        <a class="dashboard-module">
+        <img src="../../assets/images/studentsList.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_write.gif" width="64" height="64" alt="edit" />
+        <span>Students</span>
+        </a>
+    </router-link>
 </div>

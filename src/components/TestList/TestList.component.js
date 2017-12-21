@@ -17,7 +17,7 @@ export default  {
           filterable: true
         },
         {
-          label: 'Test Time (In Minutes)',
+          label: 'Test Duration (In Minutes)',
           field: 'testtime',
           filterable: true,
           thClass:'text-center',
@@ -36,6 +36,9 @@ export default  {
           filterable: true,
           thClass:'text-center',
           tdClass:'text-center'
+        },
+        {
+          label: 'Status'
         },
         {
           label: 'Action'
@@ -62,8 +65,8 @@ export default  {
                 testname: element.testName || 'Test Name',
                 testtime: element.testTime || '-',
                 noofquestions: element.noOfQuestions || '-',
-                totalmarks: '100',
-                status: element.status == '1' ? 'Active' : 'Inactive'
+                totalmarks: element.totalmarks || '-',
+                status: element.status ? 'Active' : 'Inactive'
               })
             }, this);
             this.testList = list;
@@ -76,6 +79,21 @@ export default  {
         .catch(error => {
           console.log(error);
         });
+    },
+    activeInactiveChange(event,props) {
+      console.log(event,props);
+      /* let row = rowVals.formattedRow;
+      let postData = {};
+      postData.id = row.id;
+      postData.status = sender.currentTarget.checked ? 1 : 0;
+      postData.type = config.CRUD_CODES.USER;
+      PostRequest(this.BaseUrl + 'api/admin/status/update', postData).then(res => {
+        if (res) {
+          if (res.status == 200) {
+            //this.bindAdmins();
+          }
+        }
+      }); */
     },
     getTestList: function(){
       GetRequest('static/question.json').then(res => {this.testList = res; this.$forceUpdate();});

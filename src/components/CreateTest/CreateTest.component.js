@@ -146,6 +146,9 @@ export default {
       this.bindSubjects();
       this.bindTeachers();
     },
+    resetTestForm() {
+      this.checkedQuestions = [];
+    },
     bindTeachers: function() {
       GetRequest(this.BaseUrl + 'api/admin/teacher/list').then(res => {
         this.teacherOptions = [];
@@ -234,16 +237,43 @@ export default {
 
       return data;
     },
-    createTest() {
-      this.createtest.batch = this.createtest.batch.map(function(data) {
-        return data.id;
-      });
-      this.createtest.teacherId = this.createtest.teacherId;
-      this.createtest.question = this.checkedQuestions.map(function(data) {
-        return data.id;
-      });
+    createTestCall() {
+      /* Check validation before creating test */
+      let msg = null;
+      if(!this.checkedQuestions.length){
+        msg = 'You must have to selecte questions for test before proceed.'
+      } else if(!this.createtest.batch) {
+        msg = 'You must have to selecte at least one batch for test before proceed.'
+      } else if(!this.createtest.testName) {
+        msg = 'Choose test name before proceed.'
+      } else if(!this.createtest.testTime) {
+        msg = 'Choose test time before proceed.'
+      } else if(!this.createtest.teacherId) {
+        msg = 'Choose at least one teacher before proceed.'
+      } else if(this.checkedQuestions.length != this.createtest.noOfQuestions) {
+        msg = 'Question count and No. of question mismatch.'
+      }
 
-      PostRequest(this.BaseUrl + 'api/admin/create/test', this.createtest)
+      console.log(this.createtest, msg)
+      if(msg) {
+        this.$swal({
+          type: 'info',
+          title: 'Please wait !',
+          text: msg
+        })
+        return
+      } else {
+      this.createtest.batch = this.createtest.batch ? 
+        this.createtest.batch.map(function(data) {
+          return data.id;
+        }) : []
+
+      this.createtest.question = this.checkedQuestions.length ?
+        this.checkedQuestions.map(function(data) {
+          return data.id;
+        }) : []
+        
+       PostRequest(this.BaseUrl + 'api/admin/create/test', this.createtest)
         .then(res => {
             if (res.status == 200) {
                 this.$swal({
@@ -262,6 +292,7 @@ export default {
         .catch(error => {
             console.log(error);
         });
+      }
     },
     confirm() {
       let array = [];
@@ -381,13 +412,11 @@ export default {
         });
       });
     },
-    onSubmit(evt) {
-      evt.preventDefault();
-      // let sorts = this.getFinalSorts();
-      // alert(JSON.stringify(sorts));
-      alert(JSON.stringify(this.createtest));
+    /* onSubmit(evt) {
+      
+      alert(this.createtest);
       this.$router.go(this.$router.currentRoute);
-    },
+    }, */
 
     addRow: function() {
       this.questionSortList.push({

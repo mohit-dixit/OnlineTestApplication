@@ -7,14 +7,14 @@
       <div class="form-box">
          <label class="headingForm">Create Test</label>
          <br>
-         <b-form @submit="onSubmit">
+         <b-form>
             <b-container style="margin-bottom: 10px;" fluid>
                <b-row class="my-1">
                   <b-col sm="4">
                      <label for="input-none">Test Name*</label>
                   </b-col>
                   <b-col sm="8">
-                     <b-form-input id="name" type="text" v-model="createtest.testName" required placeholder="Enter Test Name"></b-form-input>
+                     <b-form-input id="name" type="text" v-model="createtest.testName" placeholder="Enter Test Name"></b-form-input>
                   </b-col>
                </b-row>
                <b-row class="my-1">
@@ -22,7 +22,7 @@
                      <label for="input-none">Negative Marking(%)*</label>
                   </b-col>
                   <b-col sm="8">
-                     <b-form-input type="number" placeholder="Enter Negative Marking %" v-model="createtest.negativeMarkingPercent" required>%</b-form-input>
+                     <b-form-input type="number" placeholder="Enter Negative Marking %" v-model="createtest.negativeMarkingPercent">%</b-form-input>
                   </b-col>
                   <!-- <b-col sm="2">
                      <label for="input-none"><b>%</b></label>
@@ -33,7 +33,7 @@
                      <label for="input-none">Valid From*</label>
                   </b-col>
                   <b-col sm="8">
-                     <date-picker v-model="createtest.validFrom" :config="config" :limit="limit" required></date-picker>
+                     <date-picker v-model="createtest.validFrom" :config="config" :limit="limit"></date-picker>
                      <!-- <datepicker></datepicker> -->
                   </b-col>
                </b-row>
@@ -42,7 +42,7 @@
                      <label for="input-none">Valid To*</label>
                   </b-col>
                   <b-col sm="8">
-                     <date-picker v-model="createtest.ValidTo" :config="config" required></date-picker>
+                     <date-picker v-model="createtest.ValidTo" :config="config"></date-picker>
                   </b-col>
                </b-row>
                <b-row class="my-1">
@@ -59,7 +59,7 @@
                      <label for="input-none">Test Time (In minutes)*</label>
                   </b-col>
                   <b-col sm="8">
-                     <b-form-input type="number" placeholder="Enter Test Time" v-model="createtest.testTime" required></b-form-input>
+                     <b-form-input type="number" placeholder="Enter Test Time" v-model="createtest.testTime"></b-form-input>
                   </b-col>
                   <!--  <b-col sm="2">
                      <label for="input-none">Minutes</label>
@@ -70,7 +70,7 @@
                      <label for="input-none">No. Of Questions*</label>
                   </b-col>
                   <b-col sm="8">
-                     <b-form-input class="sortQuestionsClass" type="number" placeholder="No. of Questions" v-model="createtest.noOfQuestions" required></b-form-input>
+                     <b-form-input class="sortQuestionsClass" type="number" placeholder="No. of Questions" v-model="createtest.noOfQuestions"></b-form-input>
                   </b-col>
                </b-row>
                <b-row class="my-1">
@@ -78,7 +78,7 @@
                      <label for="input-none">Teacher Name*</label>
                   </b-col>
                   <b-col sm="8">
-                     <b-form-select v-model="createtest.teacherId" :options="teacherOptions" required class="mb-3">
+                     <b-form-select v-model="createtest.teacherId" :options="teacherOptions" class="mb-3">
                      </b-form-select>
                   </b-col>
                </b-row>
@@ -93,7 +93,7 @@
                      </label>
                   </b-col>
                   <b-col sm="6" v-show="createtest.keepquestionSamemarks">
-                     <b-form-input class="sortQuestionsClass" type="number" placeholder="Enter Marks" v-model="createtest.sameMarksQuestions" required></b-form-input>
+                     <b-form-input class="sortQuestionsClass" type="number" placeholder="Enter Marks" v-model="createtest.sameMarksQuestions"></b-form-input>
                   </b-col>
                </b-row>
                <b-row>
@@ -130,9 +130,9 @@
                            <span>Scales</span>
                          </a>
                </router-link> -->
-            <b-button type="reset" variant="secondary">Reset</b-button>
+            <b-button @click='resetTestForm()' type="reset" variant="secondary">Reset</b-button>
             &nbsp;&nbsp;
-            <b-button type="submit" variant="primary" @click="createTest()" v-show="checkedQuestions.length > 0">Create Test</b-button>
+            <b-button variant="primary" @click="createTestCall()" v-show="checkedQuestions.length > 0">Create Test</b-button>
          </b-form>
       </div>
    </div>
@@ -147,19 +147,19 @@
             <b-col sm="3">
                <!--  <multiselect v-model="createtest.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel" placeholder="Select Question Type">
                   </multiselect> -->
-               <b-form-select v-model="createtest.categoryId" @change.native="categoryChange()" placeholder="Select Question" :options="questionTypeOptions" required class="mb-3">
+               <b-form-select v-model="createtest.categoryId" @change.native="categoryChange()" placeholder="Select Question" :options="questionTypeOptions" class="mb-3">
                </b-form-select>
             </b-col>
             <b-col sm="3">
                <!-- <multiselect v-model="createtest.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel" placeholder="Select Subject">
                   </multiselect> -->
-               <b-form-select v-model="createtest.subjectId" @change.native="subjectChange()" :options="subjectOptions" required class="mb-3">
+               <b-form-select v-model="createtest.subjectId" @change.native="subjectChange()" :options="subjectOptions" class="mb-3">
                </b-form-select>
             </b-col>
             <b-col sm="3">
                <!-- <multiselect v-model="createtest.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel" placeholder="Select Topic">
                   </multiselect> -->
-               <b-form-select v-model="createtest.topicId" :options="topicOptions" required class="mb-3">
+               <b-form-select v-model="createtest.topicId" :options="topicOptions" class="mb-3">
                </b-form-select>
             </b-col>
             <b-col sm="2">

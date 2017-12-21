@@ -1,9 +1,11 @@
 <section class="select-questions-view">
   <!-- <router-view/> -->
   <b-container fluid>
+    <div class="loading" v-if='loader'>Loading&#8230;</div>
     <b-row class="mb-1 text-center">
       <!--  <b-row class="my-1"> -->
           <b-col style="background-color: #E9ECEF" sm="12">
+          <b-button variant="primary" style="margin: 10px; float:right" @click="confirm()">Done</b-button>
           <input class="sliderCheckbox" id="toggle" type="checkbox">
           <label style="cursor: pointer; font-size: large; text-align: left;" @click="filterDivClick()" for="toggle">Filters
             <span v-for="items in filterItems" class="filterBox">{{items}}</span>
@@ -45,7 +47,6 @@
                   <b-col sm="4">
                       <b-button variant="primary" @click="search()">Search</b-button>
                       <b-button variant="primary" style="margin-left: 3px;" @click="reset()">Reset</b-button>
-                      <b-button variant="primary" style="margin-left: 3px;" @click="confirm()">Done</b-button>
                   </b-col>
                   <b-col sm="2"></b-col>
               </b-row>

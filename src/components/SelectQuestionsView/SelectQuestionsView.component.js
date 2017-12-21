@@ -24,6 +24,7 @@ export default {
         this.filterItems = [];
         this.showMOdal = false;
         return {
+            loader: false,
             date: new Date(),
             config: {
                 format: 'DD/MM/YYYY',
@@ -174,9 +175,11 @@ export default {
             return data;
         },
         getListOfQues() {
+            this.loader = true;
             GetRequest(this.BaseUrl + 'api/admin/question/list')
                 .then(res => {
                     if (res) {
+                        this.loader = false;
                         res.result.message.forEach(function(element) {
                             let teacherName = element.user ? element.user.firstname + '' + element.user.lastname : '-';
                             this.rows.push({
@@ -209,12 +212,15 @@ export default {
                     }
                 })
                 .catch(error => {
+                    this.loader = false;
                     console.log(error);
                 })
         },
         getListOfScale() {
+            this.loader = true;
             GetRequest(this.BaseUrl + 'api/admin/scale/list')
                 .then(res => {
+                    this.loader = false;
                     this.scaleOptions = [];
                     this.scaleOptions.push({
                         value: null,
@@ -233,12 +239,15 @@ export default {
                     }
                 })
                 .catch(error => {
+                    this.loader = false;
                     console.log(error);
                 })
         },
         getListOfSubjects() {
+            this.loader = true;
             GetRequest(this.BaseUrl + 'api/admin/subject/list')
                 .then(res => {
+                    this.loader = false;
                     this.subjectOptions = [];
                     this.subjectOptions.push({
                         value: null,
@@ -257,6 +266,7 @@ export default {
                     }
                 })
                 .catch(error => {
+                    this.loader = false;
                     console.log(error);
                 })
         },
@@ -287,7 +297,10 @@ export default {
             setTimeout(function() {
                 let postData = {};
                 postData.subjectId = self.createtest.subjectId;
-                PostRequest(self.BaseUrl + 'api/admin/subject/assosicated/topic', postData).then(res => {
+                this.loader = true;
+                PostRequest(self.BaseUrl + 'api/admin/subject/assosicated/topic', postData)
+                .then(res => {
+                    this.loader = false;
                     self.topicOptions = [];
                     self.topicOptions.push({
                         value: null,
@@ -305,7 +318,11 @@ export default {
                         }
                         self.createtest.topic = null;
                     }
-                });
+                })
+                .catch(error => {
+                    this.loader = false;
+                    console.log(error);
+                })
             });
         },
         search() {
@@ -314,8 +331,10 @@ export default {
                 subjectId: this.createtest.subjectId,
                 topicId: this.createtest.topicId
             };
+            this.loader = true;
             PostRequest(this.BaseUrl + 'api/admin/filterByQuestions', filterValue)
                 .then(res => {
+                    this.loader = false;
                     if (res.status == 200) {
                         this.rows = [];
                         res.body.message.forEach(function(element) {
@@ -338,6 +357,7 @@ export default {
                     }
                 })
                 .catch(error => {
+                    this.loader = false;
                     console.log(error);
                 })
         },
@@ -358,7 +378,7 @@ export default {
             this.init();
         },
         confirm() {
-            debugger;
+            // debugger;
             this.$router.push({
                 name: 'SelectQuestionsPanel',
                 params: {
