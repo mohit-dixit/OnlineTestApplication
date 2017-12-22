@@ -6,6 +6,7 @@ export default  {
   components: {},
   props: [],
   data () {
+    this.filters={};
     this.BaseUrl = config.BASE_URL;
     this.instituteList = [];
     this.selectedId = 0;
@@ -74,7 +75,10 @@ export default  {
   },
   methods: {
     bindInstitutes: function () {
-      GetRequest(this.BaseUrl + 'api/superAdmin/institute/list').then(res => {
+      let postData = {};
+      postData.status = 0;
+      PostRequest(this.BaseUrl + 'api/superAdmin/institute/list', postData).then(res => {
+        debugger;
         if (res.status) {
           let response = res.result.message;
           let list = [];

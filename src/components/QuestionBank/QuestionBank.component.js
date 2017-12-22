@@ -9,10 +9,21 @@ export default  {
   components: {},
   props: [],
   data () {
+    this.filters={};
+    this.questionTypeOptions = [];
+    this.subjectOptions = [];
+    this.topicOptions = [];
+    this.scaleOptions = [];
+
     this.BaseUrl = config.BASE_URL;
     this.questionList = [];
     this.selectedId = 0;
     return {
+      date: new Date(),
+      config: {
+          format: 'DD/MM/YYYY',
+          useCurrent: false,
+      },
       variants: [
         'primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'
       ],
@@ -88,6 +99,7 @@ export default  {
 
   },
   methods: {
+
     getQuestionList: function(){
 
       GetRequest(this.BaseUrl + 'api/admin/question/list').then(res => {

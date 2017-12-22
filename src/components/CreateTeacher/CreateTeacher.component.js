@@ -142,7 +142,6 @@ export default {
             this.submitButtonText = 'Update';
             this.isEdit = true;
             this.getTeacherData();
-
         }
     }
 }

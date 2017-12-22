@@ -5,7 +5,7 @@
    <!--  <router-view></router-view> -->
    <div class="login-container">
       <div class="form-box">
-         <label class="headingForm">Create Test</label>
+         <label class="headingForm">{{submitButtonText}} Test</label>
          <br>
          <b-form>
             <b-container style="margin-bottom: 10px;" fluid>
@@ -35,7 +35,7 @@
                      <label for="input-none">Valid From*</label>
                   </b-col>
                   <b-col sm="8">
-                     <date-picker v-model="createtest.validFrom" v-validate="'required'" name="Valid From" :config="config" :limit="limit"></date-picker>
+                     <date-picker v-model="createtest.validFrom" placeholder="DD/MM/YYYY" v-validate="'required'" name="Valid From" :config="config" :limit="limit"></date-picker>
                      <span v-show="errors.has('Valid From')" class="help is-danger">{{ errors.first('Valid From') }}</span>
                   </b-col>
                </b-row>
@@ -44,7 +44,7 @@
                      <label for="input-none">Valid To*</label>
                   </b-col>
                   <b-col sm="8">
-                     <date-picker v-model="createtest.ValidTo" v-validate="'required'" name="Valid To" :config="config"></date-picker>
+                     <date-picker v-model="createtest.ValidTo" placeholder="DD/MM/YYYY" v-validate="'required'" name="Valid To" :config="config"></date-picker>
                      <span v-show="errors.has('Valid To')" class="help is-danger">{{ errors.first('Valid To') }}</span>
                   </b-col>
                </b-row>
@@ -60,7 +60,7 @@
                </b-row>
                <b-row class="my-1">
                   <b-col sm="4">
-                     <label for="input-none">Test Time (In minutes)*</label>
+                     <label for="input-none">Test Duration (In minutes)*</label>
                   </b-col>
                   <b-col sm="8">
                      <b-form-input type="number" placeholder="Enter Test Time" v-validate="'required|numeric'" name="Test Time" v-model="createtest.testTime"></b-form-input>
@@ -139,7 +139,7 @@
                </router-link> -->
             <b-button @click='resetTestForm()' type="reset" variant="secondary">Reset</b-button>
             &nbsp;&nbsp;
-            <b-button variant="primary" @click="createTestCall()" v-show="checkedQuestions.length > 0">Create Test</b-button>
+            <b-button variant="primary" @click="createTestCall()" v-show="checkedQuestions.length > 0">{{submitButtonText}} Test</b-button>
          </b-form>
       </div>
    </div>

@@ -16,11 +16,12 @@ export default {
     Multiselect,
     Datepicker
   },
-  props: ['questionArr', 'selectedQuestion', 'id'],
+  props: ['id', 'questionArr', 'selectedQuestion'],
   data() {
     this.toShowRemoveSort = false;
     this.BaseUrl = config.BASE_URL;
     this.showMOdal = false;
+    this.submitButtonText ='Create';
     return {
       date: new Date(),
       //Modal Popup Variant
@@ -113,7 +114,40 @@ export default {
   methods: {
     customLabel1(option) {
       return `${option.teacher}`
-  },
+    },
+    getTestData: function(){
+      let postData = {};
+      postData.id = this.id;
+      PostRequest(this.BaseUrl + 'api/admin/edit/test', postData)
+      .then(res => {
+          if(res.status){
+            let response = res.body.message[0];
+            this.createtest = response;
+            this.createtest.validFrom = new Date(response.validFrom);
+            this.createtest.ValidTo = new Date(response.ValidTo);
+            this.checkedQuestions = response.questionDetails;
+            this.createtest.keepquestionSamemarks = this.createtest.sameMarksQuestions;
+
+            let list = [];
+            response.batchDetails.forEach(function(element) {
+              list.push({
+                  id: element.id,
+                  batchname: element.batchName
+              })
+            }, this);
+            this.createtest.batch = list;
+            list = [];
+            response.teacherDetails.forEach(function(element) {
+              let teacherName = element.firstname + ' ' + element.lastname;
+              list.push({
+                  id: element.id,
+                  teacher: teacherName
+              })
+            }, this);
+            this.createtest.teacherId = list;
+          }
+      });
+    },
     init: function() {
       if (this.questionArr) {
         this.createtest = this.questionArr;
@@ -261,6 +295,11 @@ export default {
           } else {
           this.createtest.batch = this.createtest.batch ?
             this.createtest.batch.map(function(data) {
+              return data.id;
+            }) : []
+
+            this.createtest.teacherId = this.createtest.teacherId ?
+            this.createtest.teacherId.map(function(data) {
               return data.id;
             }) : []
 
@@ -466,5 +505,10 @@ export default {
   created: function() {
     this.loginRole = Vue.lsobj.get('loginRole');
     this.init();
+    if(this.id){
+      this.submitButtonText = 'Update';
+      this.isEdit = true;
+      this.getTestData();
+    }
   }
 }

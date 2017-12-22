@@ -2,7 +2,54 @@
   <router-link to="/Dashboard/CreateStudent">
     <b-button variant="primary"><b>+ </b>Add Student</b-button>
   </router-link>
-  <br>
+  <br><br>
+  <div class="tab">
+      <input id="tab-one" style="display: none" type="checkbox" name="tabs">
+      <label for="tab-one" class="FilterPanel">+ Filters</label>
+      <div class="tab-content">
+          <b-row class="my-1">
+              <b-col sm="2">
+                </b-col>
+                <b-col sm="4">
+                    <b-form-select v-model="filters.scale" :options="questionTypeOptions" class="mb-3">
+                      </b-form-select>
+                </b-col>
+                  <b-col sm="4">
+                    <b-form-select v-model="filters.subject" :options="subjectOptions" class="mb-3">
+                    </b-form-select>
+                  </b-col>
+              <b-col sm="2">
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+                <b-col sm="2">
+                  </b-col>
+                  <b-col sm="4">
+                      <b-form-select v-model="filters.topic" :options="topicOptions" class="mb-3">
+                        </b-form-select>
+                  </b-col>
+                    <b-col sm="4">
+                        <b-form-select v-model="filters.teacher" :options="teacherOptions" class="mb-3">
+                          </b-form-select>
+                    </b-col>
+                <b-col sm="2">
+                </b-col>
+              </b-row>
+            <b-row class="my-1">
+                <b-col sm="2"></b-col>
+                <b-col sm="4">
+                    <date-picker placeholder="Select Date Range" v-model="filters.fromdate" :config="config"></date-picker>
+                </b-col>
+                <b-col sm="4">
+                    <b-button variant="primary">Search</b-button>
+                    <b-button variant="primary" style="margin-left: 3px;">Reset</b-button>
+                </b-col>
+                <b-col sm="2"></b-col>
+            </b-row>
+            <br>
+      </div>
+    </div>
+    <br>
   <div style="background-color: white; border: 3px solid #E9ECEF;">
     <vue-good-table title="Students" :columns="columnsStudents" :rows="studentList" :paginate="true" :globalSearch="true" :lineNumbers="true"
       styleClass="table table-bordered table-striped condensed">
@@ -32,22 +79,4 @@
       </template>
     </vue-good-table>
   </div>
- <!-- Modal Component -->
- <!-- <b-modal centered ref="deleteModal" v-model="show" title="Delete Confirmation" :header-bg-variant="headerBgVariant" :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
-    <b-container fluid>
-      <b-row class="mb-1 text-center">
-        <b-col cols="12">Are you sure you want to delete?</b-col>
-      </b-row>
-    </b-container>
-    <div slot="modal-footer" class="w-100">
-      <p class="float-left"></p>
-      <b-btn size="sm" class="float-right" style="margin-left: 5px;" variant="secondary" @click="closeModal()">
-        No
-      </b-btn>
-      <b-btn size="sm" class="float-right" variant="danger" @click="deleteConfirmation()">
-        Yes
-      </b-btn>
-    </div>
-  </b-modal> -->
-  <!-- Modal Component -->
 </div>

@@ -108,7 +108,6 @@ export default  {
       GetRequest('static/question.json').then(res => {this.testList = res; this.$forceUpdate();});
     },
     editTestClick: function (test) {
-      debugger;
       this.$router.push('/Dashboard/EditTest/' + test.row.id);
     },
     deleteTestClick: function (events, args) {
