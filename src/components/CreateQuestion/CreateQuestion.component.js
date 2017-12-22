@@ -122,14 +122,16 @@ export default {
         },
         //Controls bindings
         bindSubjects: function() {
-            GetRequest(this.BaseUrl + 'api/admin/subject/list').then(res => {
+          let postData = {};
+          postData.status = config.Active;
+          PostRequest(this.BaseUrl + 'api/admin/subject/list', postData).then(res => {
                 this.subjectOptions = [];
                 this.subjectOptions.push({
                     value: null,
                     text: 'Select Subject'
                 })
                 if (res.status) {
-                    let response = res.result.message;
+                    let response = res.body.message;
                     if (response) {
                         response.forEach(function(element) {
                             this.subjectOptions.push({
@@ -142,14 +144,16 @@ export default {
             });
         },
         bindScale: function() {
-            GetRequest(this.BaseUrl + 'api/admin/scale/list').then(res => {
+          let postData = {};
+          postData.status = config.Active;
+          PostRequest(this.BaseUrl + 'api/admin/scale/list', postData).then(res => {
                 this.scaleOptions = [];
                 this.scaleOptions.push({
                     value: null,
                     text: 'Select Scale'
                 })
                 if (res.status) {
-                    let response = res.result.message;
+                    let response = res.body.message;
                     if (response) {
                         response.forEach(function(element) {
                             this.scaleOptions.push({

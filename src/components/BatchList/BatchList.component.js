@@ -57,9 +57,11 @@ export default  {
   },
   methods: {
     bindBatches: function () {
-      GetRequest(this.BaseUrl + 'api/admin/batch/list').then(res => {
-        if (res.status) {
-          let response = res.result.message;
+      let postData = {};
+      postData.status = null;
+      PostRequest(this.BaseUrl + 'api/admin/batch/list', postData).then(res => {
+        if (res.body) {
+          let response = res.body.message;
           let list = [];
           response.forEach(function (element) {
             list.push({

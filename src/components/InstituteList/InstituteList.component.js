@@ -76,11 +76,10 @@ export default  {
   methods: {
     bindInstitutes: function () {
       let postData = {};
-      postData.status = 0;
+      postData.status = null;
       PostRequest(this.BaseUrl + 'api/superAdmin/institute/list', postData).then(res => {
-        debugger;
         if (res.status) {
-          let response = res.result.message;
+          let response = res.body.message;
           let list = [];
             response.forEach(function (element) {
               list.push({

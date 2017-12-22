@@ -36,10 +36,11 @@ export default  {
       return `${option.batchname}`
     },
     bindBatches: function() {
-      GetRequest(this.BaseUrl + 'api/admin/batch/list')
-        .then(res => {
+      let postData = {};
+      postData.status = config.Active;
+      PostRequest(this.BaseUrl + 'api/admin/batch/list', postData).then(res => {
           if (res) {
-              res.result.message.forEach(function(element) {
+              res.body.message.forEach(function(element) {
                   this.batchOptions.push({
                     id: element.id,
                     batchname: element.batchName

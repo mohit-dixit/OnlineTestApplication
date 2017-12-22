@@ -101,10 +101,11 @@ export default  {
   methods: {
 
     getQuestionList: function(){
-
-      GetRequest(this.BaseUrl + 'api/admin/question/list').then(res => {
+      let postData = {};
+      postData.status = null;
+      PostRequest(this.BaseUrl + 'api/admin/question/list', postData).then(res => {
         if (res.status) {
-          let response = res.result.message;
+          let response = res.body.message;
           let list = [];
           if(response){
             response.forEach(function (element) {

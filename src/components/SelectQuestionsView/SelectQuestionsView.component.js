@@ -18,7 +18,7 @@ Vue.filter('formatDate', function(value) {
 export default {
     name: 'select-questions-view',
     components: {},
-    props: ['createtestParams', 'selectedQuestion'],
+    props: ['createtestParams', 'selectedQuestion', 'id'],
     data() {
         this.BaseUrl = config.BASE_URL;
         this.filterItems = [];
@@ -63,12 +63,12 @@ export default {
                 html: true,
                 filterable: true,
                 tdClass: 'left-align'
-            }, 
+            },
             {
                 label: 'Topic',
                 field: 'topicName',
                 filterable: true,
-            }, 
+            },
             {
                 label: 'Assigned To',
                 field: 'teacherName',
@@ -176,11 +176,12 @@ export default {
         },
         getListOfQues() {
             this.loader = true;
-            GetRequest(this.BaseUrl + 'api/admin/question/list')
-                .then(res => {
+            let postData = {};
+            postData.status = config.Active;
+            PostRequest(this.BaseUrl + 'api/admin/question/list', postData).then(res => {
                     if (res) {
                         this.loader = false;
-                        res.result.message.forEach(function(element) {
+                        res.body.message.forEach(function(element) {
                             let teacherName = element.user ? element.user.firstname + '' + element.user.lastname : '-';
                             this.rows.push({
                                 id: element.id,
@@ -383,7 +384,8 @@ export default {
                 name: 'SelectQuestionsPanel',
                 params: {
                     questionArr: this.createtestParams,
-                    selectedQuestion: this.checkedQuestions
+                    selectedQuestion: this.checkedQuestions,
+                    id: this.id
                 }
             });
         },

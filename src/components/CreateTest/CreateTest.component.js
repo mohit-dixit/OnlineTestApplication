@@ -154,9 +154,11 @@ export default {
         this.checkedQuestions = this.checkedQuestions.concat(this.selectedQuestion);
       }
       //Find Promise.all type request here
-      GetRequest(this.BaseUrl + 'api/admin/batch/list').then(res => {
+      let postData = {};
+      postData.status = config.Active;
+      PostRequest(this.BaseUrl + 'api/admin/batch/list', postData).then(res => {
         if (res) {
-          res.result.message.forEach(function(element) {
+          res.body.message.forEach(function(element) {
             this.batchOptions.push({
               id: element.id,
               batchname: element.batchName
@@ -164,9 +166,11 @@ export default {
           }, this);
         }
       });
-      GetRequest(this.BaseUrl + 'api/admin/question/list').then(res => {
+      let questionPostData = {};
+      questionPostData.status = config.Active;
+      PostRequest(this.BaseUrl + 'api/admin/question/list', questionPostData).then(res => {
         if (res) {
-          res.result.message.forEach(function(element) {
+          res.body.message.forEach(function(element) {
             this.rows.push({
               id: element.id,
               scaleName: element.scale.scaleName,
@@ -187,9 +191,11 @@ export default {
       this.checkedQuestions = [];
     },
     bindTeachers: function() {
-      GetRequest(this.BaseUrl + 'api/admin/teacher/list').then(res => {
+    let postData = {};
+    postData.status = config.Active;
+    PostRequest(this.BaseUrl + 'api/admin/teacher/list', postData).then(res => {
           if (res) {
-              res.result.message.forEach(function(element) {
+              res.body.message.forEach(function(element) {
                 let teacherName = element.firstname + ' ' + element.lastname;
                   this.teacherOptions.push({
                       id: element.id,
@@ -200,14 +206,16 @@ export default {
       });
     },
     bindSubjects: function() {
-      GetRequest(this.BaseUrl + 'api/admin/subject/list').then(res => {
+      let postData = {};
+        postData.status = config.Active;
+        PostRequest(self.BaseUrl + 'api/admin/subject/list', postData).then(res => {
         this.subjectOptions = [];
         this.subjectOptions.push({
           value: null,
           text: 'Select Subject'
         })
         if (res.status) {
-          let response = res.result.message;
+          let response = res.body.message;
           if (response) {
             response.forEach(function(element) {
               this.subjectOptions.push({
@@ -271,9 +279,9 @@ export default {
           /* Check validation before creating test */
           let msg = null;
           if(!this.checkedQuestions.length){
-            msg = 'You must have to selecte questions for test before proceed.'
+            msg = 'You must have to select questions for test before proceed.'
           } else if(!this.createtest.batch) {
-            msg = 'You must have to selecte at least one batch for test before proceed.'
+            msg = 'You must have to select at least one batch for test before proceed.'
           } else if(!this.createtest.testName) {
             msg = 'Choose test name before proceed.'
           } else if(!this.createtest.testTime) {
@@ -307,15 +315,22 @@ export default {
             this.checkedQuestions.map(function(data) {
               return data.id;
             }) : []
+            let msgText = 'created';
+            let apiPath = 'api/admin/create/topic';
+            let isEditMode = this.isEdit;
+            if(isEditMode){
+              apiPath = 'api/admin/update/topic';
+              msgText = 'updated';
+            }
 
-          PostRequest(this.BaseUrl + 'api/admin/create/test', this.createtest)
+          PostRequest(this.BaseUrl + apiPath, this.createtest)
             .then(res => {
                 if (res.status == 200) {
                     this.$swal({
                       type: 'success',
                       title: 'Done !',
                       allowOutsideClick: false,
-                      text: 'Test created successfully',
+                      text: 'Test '+ msgText +' successfully',
                       showConfirmButton: true
                     }).then((result) => {
                       if (result) {
@@ -356,7 +371,8 @@ export default {
           name: 'SelectQuestionsView',
           params: {
             createtestParams: this.createtest,
-            selectedQuestion: this.checkedQuestions
+            selectedQuestion: this.checkedQuestions,
+            id : this.id ? this.id : null
           }
         });
         // this.$refs.listOfQuesModal.show();

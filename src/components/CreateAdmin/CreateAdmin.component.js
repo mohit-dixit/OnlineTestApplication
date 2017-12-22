@@ -67,13 +67,15 @@ export default {
       });
     },
     bindInstitutes: function () {
-      GetRequest(this.BaseUrl + 'api/superAdmin/institute/list').then(res => {
+      let postData = {};
+      postData.status = config.Active;
+      PostRequest(this.BaseUrl + 'api/superAdmin/institute/list', postData).then(res => {
         this.associatedOptions.push({
           value: null,
           text: 'Select Institute'
         })
         if (res.status) {
-          let response = res.result.message;
+          let response = res.body.message;
           response.forEach(function (element) {
             this.associatedOptions.push({
               value: element.id,

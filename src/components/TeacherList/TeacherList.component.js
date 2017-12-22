@@ -80,11 +80,13 @@ export default {
     },
     methods: {
         bindTeachers: function(params) {
-            GetRequest(this.BaseUrl + 'api/admin/teacher/list').then(res => {
+          let postData = {};
+          postData.status = null;
+          PostRequest(this.BaseUrl + 'api/admin/teacher/list', postData).then(res => {
                 if (res.status) {
-                    let response = res.result.message[0].user_roles;
+                    let response = res.body.message[0].user_roles;
                     let list = [];
-                    res.result.message.forEach(function(element) {
+                    res.body.message.forEach(function(element) {
                         list.push({
                             id: element.id,
                             firstname: element.firstname,

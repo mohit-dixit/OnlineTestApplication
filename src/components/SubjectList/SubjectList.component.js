@@ -58,9 +58,11 @@ export default {
   },
   methods: {
     bindSubjects: function () {
-      GetRequest(this.BaseUrl + 'api/admin/subject/list').then(res => {
+      let postData = {};
+      postData.status = null;
+      PostRequest(this.BaseUrl + 'api/admin/subject/list', postData).then(res => {
         if (res.status) {
-          let response = res.result.message;
+          let response = res.body.message;
           let list = [];
           response.forEach(function (element) {
             list.push({
