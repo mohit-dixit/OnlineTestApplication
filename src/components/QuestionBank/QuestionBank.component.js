@@ -9,10 +9,21 @@ export default  {
   components: {},
   props: [],
   data () {
+    this.filters={};
+    this.questionTypeOptions = [];
+    this.subjectOptions = [];
+    this.topicOptions = [];
+    this.scaleOptions = [];
+
     this.BaseUrl = config.BASE_URL;
     this.questionList = [];
     this.selectedId = 0;
     return {
+      date: new Date(),
+      config: {
+          format: 'DD/MM/YYYY',
+          useCurrent: false,
+      },
       variants: [
         'primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'
       ],
@@ -53,8 +64,23 @@ export default  {
           filterable: true,
           thClass:'text-center',
           tdClass:'text-center'
-        },{
-          label: 'Action',
+        },
+        {
+          label: 'Teacher Name',
+          field: 'teacherName',
+          filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
+        },
+        {
+          label: 'Date(Created)',
+          field: 'createdAt',
+          filterable: true,
+          thClass:'text-center',
+          tdClass:'text-center'
+        }
+        ,{
+          label: 'Status',
           thClass:'text-center',
           tdClass:'text-center'
         },
@@ -73,14 +99,17 @@ export default  {
 
   },
   methods: {
-    getQuestionList: function(){
 
-      GetRequest(this.BaseUrl + 'api/admin/question/list').then(res => {
+    getQuestionList: function(){
+      let postData = {};
+      postData.status = null;
+      PostRequest(this.BaseUrl + 'api/admin/question/list', postData).then(res => {
         if (res.status) {
-          let response = res.result.message;
+          let response = res.body.message;
           let list = [];
           if(response){
             response.forEach(function (element) {
+              let teacherName = element.user ? element.user.firstname + ' ' + element.user.lastname : '-';
               list.push({
                 id: element.id,
                 question: element.question,
@@ -90,7 +119,9 @@ export default  {
                 scale: element.scale.scaleName,
                 subject: element.subject.subjectName,
                 topic: element.topic.topicName,
-                status: element.status ? 'Active' : 'Inactive'
+                status: element.status ? 'Active' : 'Inactive',
+                createdAt: element.createdAt,
+                teacherName: teacherName,
               })
             }, this);
           }
@@ -131,7 +162,6 @@ export default  {
           }
         })
       })
-      console.log(options,'%%%%%%%%%%%%%%%%%%%%%%')
 
       /* Code as per correct response from backedn side */
       /* for(let i=0; i < answer.length; i++) {

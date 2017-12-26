@@ -65,19 +65,11 @@ export default {
 
           PostRequest(this.BaseUrl + apiPath  , this.createinstituteform).then(res => {
             if (res && res.status == 200) {
-                this.createinstituteform = {};
-
-                let msg = '';
-                if(isEditMode){
-                  msg = 'Institute updated successfully';
-                }
-                else{
-                  msg = 'Institute created successfully';
-                }
-
+                let msg = isEditMode ? 'Institute updated successfully' : 'Institute created successfully';
                 this.$swal({
                   type: 'success',
                   title: 'Congratulation !',
+                  allowOutsideClick: false,
                   text: msg,
                   showConfirmButton: true
                 }).then((result) => {

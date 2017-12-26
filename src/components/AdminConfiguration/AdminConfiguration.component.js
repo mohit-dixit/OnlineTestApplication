@@ -52,8 +52,16 @@ export default {
             this.adminconfigurationform.institute_allow_topic = false;
             this.adminconfigurationform.institute_allow_student = false;
         }, */
+         resetAll() {
+            this.adminconfigurationform.allow_scale = 0;
+            this.adminconfigurationform.allow_subject = 0;
+            this.adminconfigurationform.allow_batch = 0;
+            this.adminconfigurationform.allow_topic = 0;
+            this.adminconfigurationform.allow_student = 0;
+            this.onSubmit();
+        },
         onSubmit(evt) {
-            evt.preventDefault();
+            evt && evt.preventDefault();
             let apiPath = 'api/admin/update/config';
             this.adminconfigurationform.institute_allow_scale = this.adminconfigurationform.allow_scale  ? config.Active : config.Inactive;
             this.adminconfigurationform.institute_allow_subject = this.adminconfigurationform.allow_subject ? config.Active : config.Inactive;

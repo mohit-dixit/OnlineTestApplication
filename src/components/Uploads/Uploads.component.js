@@ -42,7 +42,12 @@ export default {
 
   },
   methods: {
-    onSubmit: function(){},
+    onSubmit: function(evt){
+      evt.preventDefault();
+      this.$validator.validateAll().then((result) => {
+
+      });
+    },
     handleSelectedFile(convertedData) {
       let fileData = document.getElementById("upload-input").files[0];
       if(fileData){

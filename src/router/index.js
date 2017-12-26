@@ -108,7 +108,7 @@ export default new Router({
             },
             {
               path: 'SelectQuestionsView',
-              name: 'SelectQuestionsView',    
+              name: 'SelectQuestionsView',
               component: SelectQuestionsView,
               props: true,
               meta: { AuthRequired: true, breadcrumb: 'Select Questions' }

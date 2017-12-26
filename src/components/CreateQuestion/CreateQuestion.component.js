@@ -122,14 +122,16 @@ export default {
         },
         //Controls bindings
         bindSubjects: function() {
-            GetRequest(this.BaseUrl + 'api/admin/subject/list').then(res => {
+          let postData = {};
+          postData.status = config.Active;
+          PostRequest(this.BaseUrl + 'api/admin/subject/list', postData).then(res => {
                 this.subjectOptions = [];
                 this.subjectOptions.push({
                     value: null,
                     text: 'Select Subject'
                 })
                 if (res.status) {
-                    let response = res.result.message;
+                    let response = res.body.message;
                     if (response) {
                         response.forEach(function(element) {
                             this.subjectOptions.push({
@@ -142,14 +144,16 @@ export default {
             });
         },
         bindScale: function() {
-            GetRequest(this.BaseUrl + 'api/admin/scale/list').then(res => {
+          let postData = {};
+          postData.status = config.Active;
+          PostRequest(this.BaseUrl + 'api/admin/scale/list', postData).then(res => {
                 this.scaleOptions = [];
                 this.scaleOptions.push({
                     value: null,
                     text: 'Select Scale'
                 })
                 if (res.status) {
-                    let response = res.result.message;
+                    let response = res.body.message;
                     if (response) {
                         response.forEach(function(element) {
                             this.scaleOptions.push({
@@ -334,18 +338,12 @@ export default {
                 PostRequest(this.BaseUrl + apiPath, this.createquestion)
                     .then(res => {
                         if (res && res.status == 200) {
-                            this.createquestion = {};
-                            let msg = '';
-                            if(isEditMode){
-                                msg = 'Question updated successfully';
-                            }
-                            else{
-                                msg = 'Question created successfully';
-                            }
+                            let msg = isEditMode ? 'Question updated successfully' : 'Question created successfully';
                             this.$swal({
                                 type: 'success',
                                 title: 'Done !',
                                 text: msg,
+                                allowOutsideClick: false,
                                 showConfirmButton: true
                             }).then((result) => {
                                 if (result) {

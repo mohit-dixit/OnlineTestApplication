@@ -9,6 +9,7 @@ export default {
   components: {},
   props: [],
   data() {
+    this.filters={};
     this.BaseUrl = config.BASE_URL;
     this.studentList = [];
     this.selectedId = 0;

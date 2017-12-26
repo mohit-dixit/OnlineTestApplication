@@ -52,18 +52,11 @@ export default {
         }
         PostRequest(this.BaseUrl + apiPath  , this.createscaleform).then(res => {
           if (res && res.status == 200) {
-            this.createscaleform = {};
-            let msg = '';
-              if(isEditMode){
-                msg = 'Scale updated successfully';
-              }
-              else{
-                msg = 'Scale created successfully';
-              }
-
+            let msg = isEditMode ? 'Scale updated successfully' : 'Scale created successfully';
               this.$swal({
                 type: 'success',
                 title: 'Done !',
+                allowOutsideClick: false,
                 text: msg,
                 showConfirmButton: true
               }).then((result) => {

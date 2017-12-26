@@ -5,7 +5,7 @@
    <!--  <router-view></router-view> -->
    <div class="login-container">
       <div class="form-box">
-         <label class="headingForm">Create Test</label>
+         <label class="headingForm">{{submitButtonText}} Test</label>
          <br>
          <b-form>
             <b-container style="margin-bottom: 10px;" fluid>
@@ -14,7 +14,8 @@
                      <label for="input-none">Test Name*</label>
                   </b-col>
                   <b-col sm="8">
-                     <b-form-input id="name" type="text" v-model="createtest.testName" placeholder="Enter Test Name"></b-form-input>
+                     <b-form-input id="name" type="text" name="Test Name" v-validate="'required'" v-model="createtest.testName" placeholder="Enter Test Name"></b-form-input>
+                     <span v-show="errors.has('Test Name')" class="help is-danger">{{ errors.first('Test Name') }}</span>
                   </b-col>
                </b-row>
                <b-row class="my-1">
@@ -22,7 +23,8 @@
                      <label for="input-none">Negative Marking(%)*</label>
                   </b-col>
                   <b-col sm="8">
-                     <b-form-input type="number" placeholder="Enter Negative Marking %" v-model="createtest.negativeMarkingPercent">%</b-form-input>
+                     <b-form-input type="number" name="Negative Marking" v-validate="'required|numeric'" placeholder="Enter Negative Marking %" v-model="createtest.negativeMarkingPercent">%</b-form-input>
+                     <span v-show="errors.has('Negative Marking')" class="help is-danger">{{ errors.first('Negative Marking') }}</span>
                   </b-col>
                   <!-- <b-col sm="2">
                      <label for="input-none"><b>%</b></label>
@@ -33,8 +35,8 @@
                      <label for="input-none">Valid From*</label>
                   </b-col>
                   <b-col sm="8">
-                     <date-picker v-model="createtest.validFrom" :config="config" :limit="limit"></date-picker>
-                     <!-- <datepicker></datepicker> -->
+                     <date-picker v-model="createtest.validFrom" placeholder="DD/MM/YYYY" v-validate="'required'" name="Valid From" :config="config" :limit="limit"></date-picker>
+                     <span v-show="errors.has('Valid From')" class="help is-danger">{{ errors.first('Valid From') }}</span>
                   </b-col>
                </b-row>
                <b-row class="my-1">
@@ -42,7 +44,8 @@
                      <label for="input-none">Valid To*</label>
                   </b-col>
                   <b-col sm="8">
-                     <date-picker v-model="createtest.ValidTo" :config="config"></date-picker>
+                     <date-picker v-model="createtest.ValidTo" placeholder="DD/MM/YYYY" v-validate="'required'" name="Valid To" :config="config"></date-picker>
+                     <span v-show="errors.has('Valid To')" class="help is-danger">{{ errors.first('Valid To') }}</span>
                   </b-col>
                </b-row>
                <b-row class="my-1">
@@ -50,16 +53,18 @@
                      <label for="input-none">Batch*</label>
                   </b-col>
                   <b-col sm="8">
-                     <multiselect v-model="createtest.batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel">
+                     <multiselect v-model="createtest.batch" v-validate="'required'" name="Batch" :options="batchOptions" :multiple="true" track-by="id" :custom-label="customLabel">
                      </multiselect>
+                     <span v-show="errors.has('Batch')" class="help is-danger">{{ errors.first('Batch') }}</span>
                   </b-col>
                </b-row>
                <b-row class="my-1">
                   <b-col sm="4">
-                     <label for="input-none">Test Time (In minutes)*</label>
+                     <label for="input-none">Test Duration (In minutes)*</label>
                   </b-col>
                   <b-col sm="8">
-                     <b-form-input type="number" placeholder="Enter Test Time" v-model="createtest.testTime"></b-form-input>
+                     <b-form-input type="number" placeholder="Enter Test Time" v-validate="'required|numeric'" name="Test Time" v-model="createtest.testTime"></b-form-input>
+                     <span v-show="errors.has('Test Time')" class="help is-danger">{{ errors.first('Test Time') }}</span>
                   </b-col>
                   <!--  <b-col sm="2">
                      <label for="input-none">Minutes</label>
@@ -70,7 +75,8 @@
                      <label for="input-none">No. Of Questions*</label>
                   </b-col>
                   <b-col sm="8">
-                     <b-form-input class="sortQuestionsClass" type="number" placeholder="No. of Questions" v-model="createtest.noOfQuestions"></b-form-input>
+                     <b-form-input class="sortQuestionsClass" type="number" name="No. Of Questions" v-validate="'required|numeric'" placeholder="No. of Questions" v-model="createtest.noOfQuestions"></b-form-input>
+                     <span v-show="errors.has('No. Of Questions')" class="help is-danger">{{ errors.first('No. Of Questions') }}</span>
                   </b-col>
                </b-row>
                <b-row class="my-1">
@@ -78,8 +84,9 @@
                      <label for="input-none">Teacher Name*</label>
                   </b-col>
                   <b-col sm="8">
-                     <b-form-select v-model="createtest.teacherId" :options="teacherOptions" class="mb-3">
-                     </b-form-select>
+                     <multiselect v-model="createtest.teacherId" name="Teacher" :options="teacherOptions" :multiple="true" v-validate="'required'" track-by="id" :custom-label="customLabel1">
+                     </multiselect>
+                     <span v-show="errors.has('Teacher')" class="help is-danger">{{ errors.first('Teacher') }}</span>
                   </b-col>
                </b-row>
                <b-row class="my-1">
@@ -97,7 +104,7 @@
                   </b-col>
                </b-row>
                <b-row>
-                  <b-col sm="4">
+                  <b-col v-if="checkedQuestions.length" sm="4">
                      <a style="color: blue; font-size: 15px; cursor: pointer;" @click='showSelectedQuestions()'><u>{{checkedQuestions.length}} Questions Selected</u></a>
                   </b-col>
                   <!-- <table class="table" v-show="checkedQuestions.length > 0">
@@ -132,7 +139,7 @@
                </router-link> -->
             <b-button @click='resetTestForm()' type="reset" variant="secondary">Reset</b-button>
             &nbsp;&nbsp;
-            <b-button variant="primary" @click="createTestCall()" v-show="checkedQuestions.length > 0">Create Test</b-button>
+            <b-button variant="primary" @click="createTestCall()" v-show="checkedQuestions.length > 0">{{submitButtonText}} Test</b-button>
          </b-form>
       </div>
    </div>

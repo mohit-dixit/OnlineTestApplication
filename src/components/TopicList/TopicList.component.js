@@ -69,9 +69,11 @@ export default  {
   },
   methods: {
     bindTopics: function () {
-      GetRequest(this.BaseUrl + 'api/admin/topic/list').then(res => {
-        if (res.status) {
-          let response = res.result.message;
+      let postData = {};
+      postData.status = null;
+      PostRequest(this.BaseUrl + 'api/admin/topic/list', postData).then(res => {
+        if (res.body) {
+          let response = res.body.message;
           let list = [];
           response.forEach(function (element) {
             list.push({

@@ -41,13 +41,15 @@ export default  {
   },
   methods: {
     bindSubjects: function () {
-      GetRequest(this.BaseUrl + 'api/admin/subject/list').then(res => {
+      let postData = {};
+      postData.status = config.Active;
+      PostRequest(this.BaseUrl + 'api/admin/subject/list', postData).then(res => {
         this.subjectOptions.push({
           value: null,
           text: 'Select Subject'
         })
         if (res.status) {
-          let response = res.result.message;
+          let response = res.body.message;
           if(response){
             response.forEach(function (element) {
               this.subjectOptions.push({
@@ -71,14 +73,15 @@ export default  {
           PostRequest(this.BaseUrl + apiPath  , this.createtopicform).then(res => {
             if (res) {
               if (res.status == 200) {
-                this.createtopicform = {};
+                let msg = isEditMode ? 'Topic updated successfully' : 'Topic created successfully';
                 if(isEditMode){
                   this.$swal({
                     title: 'Great !',
-                    text: "Topic updated successfully !",
+                    text: msg,
                     type: 'success',
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
+                    allowOutsideClick: false,
                     confirmButtonText: 'OK'
                   }).then((result) => {
                     if (result) {
@@ -90,7 +93,8 @@ export default  {
                 else{
                   this.$swal({
                     type: 'success',
-                    title: 'Topic created successfully !'
+                    allowOutsideClick: false,
+                    title: msg
                   }).then((result) => {
                     if (result) {
                       this.$router.push('/Dashboard/Masters/TopicList');

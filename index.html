@@ -24,3 +24,54 @@
     <script src="/static/js/plugins/pace/pace.min.js"></script>
   </body>
 </html>
+<style>
+body {
+  color: #2c3e50;
+  background: #ecf0f1;
+}
+h1 {
+  text-align: center;
+}
+.half {
+  float: left;
+  width: 50%;
+  padding: 0 1em;
+}
+/* Acordeon styles */
+.tab {
+  position: relative;
+  margin-bottom: 1px;
+  width: 100%;
+  color: #000000;
+  overflow: hidden;
+  text-align: left;
+  background: #D7DCDD;
+  border-radius: 4px;
+}
+.blue label {
+  background: #2980b9;
+}
+.tab-content {
+  max-height: 0;
+  overflow: hidden;
+  background: #D7DCDD;
+  -webkit-transition: max-height .35s;
+  -o-transition: max-height .35s;
+  transition: max-height .35s;
+}
+.blue .tab-content {
+  background: #3498db;
+}
+.tab-content p {
+  margin: 1em;
+}
+/* :checked */
+input:checked ~ .tab-content {
+  max-height: 40em;
+}
+
+.FilterPanel{
+  position: relative;display: block;padding: 0 0 0 1em;background: #D7DCDD;font-weight: bold;line-height: 3;cursor: pointer;
+}
+
+</style>

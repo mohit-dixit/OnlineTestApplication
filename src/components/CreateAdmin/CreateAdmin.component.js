@@ -67,13 +67,15 @@ export default {
       });
     },
     bindInstitutes: function () {
-      GetRequest(this.BaseUrl + 'api/superAdmin/institute/list').then(res => {
+      let postData = {};
+      postData.status = config.Active;
+      PostRequest(this.BaseUrl + 'api/superAdmin/institute/list', postData).then(res => {
         this.associatedOptions.push({
           value: null,
           text: 'Select Institute'
         })
         if (res.status) {
-          let response = res.result.message;
+          let response = res.body.message;
           response.forEach(function (element) {
             this.associatedOptions.push({
               value: element.id,
@@ -106,20 +108,11 @@ export default {
             }
             PostRequest(this.BaseUrl + apiPath, this.createadminform).then(res => {
               if (res && res.status == 200) {
-                this.createadminform = {};
-
-                let msg = '';
-                if(isEditMode){
-                  msg = 'Admin updated successfully';
-                }
-                else{
-                  this.createadminform.associatedwith = null;
-                  msg = 'Admin created successfully';
-                }
-
+                let msg = isEditMode ? 'Admin updated successfully' : 'Admin created successfully';
                 this.$swal({
                   type: 'success',
                   title: 'Done !',
+                  allowOutsideClick: false,
                   text: msg,
                   showConfirmButton: true
                 }).then((result) => {
@@ -127,7 +120,6 @@ export default {
                     this.$router.push('/Dashboard/AdminList');
                   }
                 });
-
               }
               else {
                 this.$swal({

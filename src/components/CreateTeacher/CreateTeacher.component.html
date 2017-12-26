@@ -32,7 +32,7 @@
                         </b-col>
                         <b-col sm="7">
                             <b-input-group left="📩" class="mb-2 mr-sm-2 mb-sm-0">
-                                <b-form-input id="email" :state="null" type="email" v-model="createteacherform.username" v-validate="'required|email'" placeholder="Enter Email" name='Email'></b-form-input>
+                                <b-form-input id="email" style="z-index: 0;" :state="null" type="email" v-model="createteacherform.username" v-validate="'required|email'" placeholder="Enter Email" name='Email'></b-form-input>
                             </b-input-group>
                             <span v-show="errors.has('Email')" class="help is-danger">{{ errors.first('Email') }}</span>
                         </b-col>
@@ -51,7 +51,7 @@
                         </b-col>
                         <b-col sm="7">
                             <b-input-group left="📞" class="mb-2 mr-sm-2 mb-sm-0">
-                                <b-form-input id="input-none" :state="null" type="text" maxlength="15" v-validate="'required|numeric|min:10'" name='Phone' v-model="createteacherform.phone" placeholder="Enter Phone"></b-form-input>
+                                <b-form-input id="input-none" style="z-index: 0;" :state="null" type="text" maxlength="15" v-validate="'required|numeric|min:10'" name='Phone' v-model="createteacherform.phone" placeholder="Enter Phone"></b-form-input>
                             </b-input-group>
                             <span v-show="errors.has('Phone')" class="help is-danger">{{ errors.first('Phone') }}</span>
                           </b-col>
@@ -62,8 +62,6 @@
                             <label for="input-none">Subject</label>
                         </b-col>
                         <b-col sm="7">
-                            <!-- <b-form-select v-model="createteacherform.subject" :options="subjectoptions" required class="mb-3">
-                            </b-form-select> -->
                             <multiselect v-model="subjectsVal.subjects" name="Subject" :options="subjectoptions" :multiple="true" v-validate="'required'" track-by="id" :custom-label="customLabel">
                             </multiselect>
                             <span v-show="errors.has('Subject')" class="help is-danger">{{ errors.first('Subject') }}</span>

@@ -16,11 +16,12 @@ export default {
     Multiselect,
     Datepicker
   },
-  props: ['questionArr', 'selectedQuestion', 'id'],
+  props: ['id', 'questionArr', 'selectedQuestion'],
   data() {
     this.toShowRemoveSort = false;
     this.BaseUrl = config.BASE_URL;
     this.showMOdal = false;
+    this.submitButtonText ='Create';
     return {
       date: new Date(),
       //Modal Popup Variant
@@ -111,15 +112,53 @@ export default {
 
   },
   methods: {
+    customLabel1(option) {
+      return `${option.teacher}`
+    },
+    getTestData: function(){
+      let postData = {};
+      postData.id = this.id;
+      PostRequest(this.BaseUrl + 'api/admin/edit/test', postData)
+      .then(res => {
+          if(res.status){
+            let response = res.body.message[0];
+            this.createtest = response;
+            this.createtest.validFrom = new Date(response.validFrom);
+            this.createtest.ValidTo = new Date(response.ValidTo);
+            this.checkedQuestions = response.questionDetails;
+            this.createtest.keepquestionSamemarks = this.createtest.sameMarksQuestions;
+
+            let list = [];
+            response.batchDetails.forEach(function(element) {
+              list.push({
+                  id: element.id,
+                  batchname: element.batchName
+              })
+            }, this);
+            this.createtest.batch = list;
+            list = [];
+            response.teacherDetails.forEach(function(element) {
+              let teacherName = element.firstname + ' ' + element.lastname;
+              list.push({
+                  id: element.id,
+                  teacher: teacherName
+              })
+            }, this);
+            this.createtest.teacherId = list;
+          }
+      });
+    },
     init: function() {
       if (this.questionArr) {
         this.createtest = this.questionArr;
         this.checkedQuestions = this.checkedQuestions.concat(this.selectedQuestion);
       }
       //Find Promise.all type request here
-      GetRequest(this.BaseUrl + 'api/admin/batch/list').then(res => {
+      let postData = {};
+      postData.status = config.Active;
+      PostRequest(this.BaseUrl + 'api/admin/batch/list', postData).then(res => {
         if (res) {
-          res.result.message.forEach(function(element) {
+          res.body.message.forEach(function(element) {
             this.batchOptions.push({
               id: element.id,
               batchname: element.batchName
@@ -127,9 +166,11 @@ export default {
           }, this);
         }
       });
-      GetRequest(this.BaseUrl + 'api/admin/question/list').then(res => {
+      let questionPostData = {};
+      questionPostData.status = config.Active;
+      PostRequest(this.BaseUrl + 'api/admin/question/list', questionPostData).then(res => {
         if (res) {
-          res.result.message.forEach(function(element) {
+          res.body.message.forEach(function(element) {
             this.rows.push({
               id: element.id,
               scaleName: element.scale.scaleName,
@@ -150,35 +191,31 @@ export default {
       this.checkedQuestions = [];
     },
     bindTeachers: function() {
-      GetRequest(this.BaseUrl + 'api/admin/teacher/list').then(res => {
-        this.teacherOptions = [];
-        this.teacherOptions.push({
-          value: null,
-          text: 'Select Teacher'
-        });
-        if (res.status) {
-          let response = res.result.message;
-          if (response) {
-            response.forEach(function(element) {
-              let teacherName = element.firstname + ' ' + element.lastname;
-              this.teacherOptions.push({
-                value: element.id,
-                text: teacherName
-              })
-            }, this);
+    let postData = {};
+    postData.status = config.Active;
+    PostRequest(this.BaseUrl + 'api/admin/teacher/list', postData).then(res => {
+          if (res) {
+              res.body.message.forEach(function(element) {
+                let teacherName = element.firstname + ' ' + element.lastname;
+                  this.teacherOptions.push({
+                      id: element.id,
+                      teacher: teacherName
+                  })
+              }, this);
           }
-        }
       });
     },
     bindSubjects: function() {
-      GetRequest(this.BaseUrl + 'api/admin/subject/list').then(res => {
+      let postData = {};
+        postData.status = config.Active;
+        PostRequest(self.BaseUrl + 'api/admin/subject/list', postData).then(res => {
         this.subjectOptions = [];
         this.subjectOptions.push({
           value: null,
           text: 'Select Subject'
         })
         if (res.status) {
-          let response = res.result.message;
+          let response = res.body.message;
           if (response) {
             response.forEach(function(element) {
               this.subjectOptions.push({
@@ -217,7 +254,7 @@ export default {
       }
     },
     getAnswerOptions(options, answer) {
-      let data = [];            
+      let data = [];
       options.map(data => {
         answer.map(answerKey => {
           if(Object.keys(data)[0]*1 == Object.keys(answerKey)[0]*1){
@@ -230,7 +267,7 @@ export default {
           }
         })
       })
-      
+
       for(let k = 0; k < options.length; k++) {
         data.push('<li style="color : '+options[k].active+'">'+options[k][k] +'</li>');
       }
@@ -238,61 +275,76 @@ export default {
       return data;
     },
     createTestCall() {
-      /* Check validation before creating test */
-      let msg = null;
-      if(!this.checkedQuestions.length){
-        msg = 'You must have to selecte questions for test before proceed.'
-      } else if(!this.createtest.batch) {
-        msg = 'You must have to selecte at least one batch for test before proceed.'
-      } else if(!this.createtest.testName) {
-        msg = 'Choose test name before proceed.'
-      } else if(!this.createtest.testTime) {
-        msg = 'Choose test time before proceed.'
-      } else if(!this.createtest.teacherId) {
-        msg = 'Choose at least one teacher before proceed.'
-      } else if(this.checkedQuestions.length != this.createtest.noOfQuestions) {
-        msg = 'Question count and No. of question mismatch.'
-      }
+      this.$validator.validateAll().then((result) => {
+          /* Check validation before creating test */
+          let msg = null;
+          if(!this.checkedQuestions.length){
+            msg = 'You must have to select questions for test before proceed.'
+          } else if(!this.createtest.batch) {
+            msg = 'You must have to select at least one batch for test before proceed.'
+          } else if(!this.createtest.testName) {
+            msg = 'Choose test name before proceed.'
+          } else if(!this.createtest.testTime) {
+            msg = 'Choose test time before proceed.'
+          } else if(!this.createtest.teacherId) {
+            msg = 'Choose at least one teacher before proceed.'
+          } else if(this.checkedQuestions.length != this.createtest.noOfQuestions) {
+            msg = 'Question count and No. of question mismatch.'
+          }
 
-      console.log(this.createtest, msg)
-      if(msg) {
-        this.$swal({
-          type: 'info',
-          title: 'Please wait !',
-          text: msg
-        })
-        return
-      } else {
-      this.createtest.batch = this.createtest.batch ? 
-        this.createtest.batch.map(function(data) {
-          return data.id;
-        }) : []
+          console.log(this.createtest, msg)
+          if(msg) {
+            this.$swal({
+              type: 'info',
+              title: 'Please wait !',
+              text: msg
+            })
+            return
+          } else {
+          this.createtest.batch = this.createtest.batch ?
+            this.createtest.batch.map(function(data) {
+              return data.id;
+            }) : []
 
-      this.createtest.question = this.checkedQuestions.length ?
-        this.checkedQuestions.map(function(data) {
-          return data.id;
-        }) : []
-        
-       PostRequest(this.BaseUrl + 'api/admin/create/test', this.createtest)
-        .then(res => {
-            if (res.status == 200) {
-                this.$swal({
-                  type: 'success',
-                  title: 'Done !',
-                  text: 'Test created successfully',
-                  showConfirmButton: true
-                }).then((result) => {
-                  if (result) {
-                    this.$router.push('/Dashboard/TestList');
-                  }
-                });
-                this.$forceUpdate();
+            this.createtest.teacherId = this.createtest.teacherId ?
+            this.createtest.teacherId.map(function(data) {
+              return data.id;
+            }) : []
+
+          this.createtest.question = this.checkedQuestions.length ?
+            this.checkedQuestions.map(function(data) {
+              return data.id;
+            }) : []
+            let msgText = 'created';
+            let apiPath = 'api/admin/create/topic';
+            let isEditMode = this.isEdit;
+            if(isEditMode){
+              apiPath = 'api/admin/update/topic';
+              msgText = 'updated';
             }
-        })
-        .catch(error => {
-            console.log(error);
+
+          PostRequest(this.BaseUrl + apiPath, this.createtest)
+            .then(res => {
+                if (res.status == 200) {
+                    this.$swal({
+                      type: 'success',
+                      title: 'Done !',
+                      allowOutsideClick: false,
+                      text: 'Test '+ msgText +' successfully',
+                      showConfirmButton: true
+                    }).then((result) => {
+                      if (result) {
+                        this.$router.push('/Dashboard/TestList');
+                      }
+                    });
+                    this.$forceUpdate();
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+          }
         });
-      }
     },
     confirm() {
       let array = [];
@@ -319,7 +371,8 @@ export default {
           name: 'SelectQuestionsView',
           params: {
             createtestParams: this.createtest,
-            selectedQuestion: this.checkedQuestions
+            selectedQuestion: this.checkedQuestions,
+            id : this.id ? this.id : null
           }
         });
         // this.$refs.listOfQuesModal.show();
@@ -328,7 +381,7 @@ export default {
             type: 'info',
             title: 'Please Wait !',
             text: 'Enter number of question you want in this test to proceed.'
-          })        
+          })
       }
     },
     closeModal: function(events, args) {
@@ -413,7 +466,7 @@ export default {
       });
     },
     /* onSubmit(evt) {
-      
+
       alert(this.createtest);
       this.$router.go(this.$router.currentRoute);
     }, */
@@ -468,5 +521,10 @@ export default {
   created: function() {
     this.loginRole = Vue.lsobj.get('loginRole');
     this.init();
+    if(this.id){
+      this.submitButtonText = 'Update';
+      this.isEdit = true;
+      this.getTestData();
+    }
   }
 }
