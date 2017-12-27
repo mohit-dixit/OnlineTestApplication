@@ -24,7 +24,7 @@ import 'hideseek';
 import VueSweetAlert from 'vue-sweetalert'
 import './assets/style/loader.css';
 import './assets/style/bootstrap-datetimepicker.css'
-import '../node_modules/bootstrap/dist/css/bootstrap.css'
+// import '../node_modules/bootstrap/dist/css/bootstrap.css'
 import '../node_modules/bootstrap-vue/dist/bootstrap-vue.css'
 import './assets/style/commonstyle.css'
 import '../node_modules/vue-multiselect/dist/vue-multiselect.min.css'

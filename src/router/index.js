@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/Login'
+import ForgotPassword from '@/components/forgot-password'
 import Dashboard from '@/components/Dashboard'
 import DashboardContentPanel from '@/components/DashboardContentPanel'
 import Register from '@/components/Register'
@@ -60,6 +61,11 @@ export default new Router({
       path: '/',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/forgot-password',
+      name: 'ForgotPassword',
+      component: ForgotPassword
     },
     {
       path: '/Dashboard',

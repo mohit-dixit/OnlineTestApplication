@@ -1,69 +1,3 @@
-<!-- <div id="dashboard">
-    <div id="header">
-        <div id="header-status">
-            <div class="container_12">
-                <div class="grid_8">
-                    &nbsp;
-                </div>
-                <div class="grid_4">
-                    <a class="simpletext" style="color: #02BEEE;">
-                    <b>
-                    Welcome,&nbsp;
-                    {{loginUserName}} | 
-                    {{SecondryRolename ? 'Teacher' : loginRole}}
-                    </b>
-                    </a>
-                    <router-link id="logout" @click.native="logout()" to="/">Logout</router-link>
-                </div>
-            </div>
-            <div style="clear:both;"></div>
-        </div>
-        <div id="header-main">
-            <div class="container_12">
-                <div class="grid_12">
-                    <div id="logo">
-                        <ul id="nav">
-                        </ul>
-                    </div>
-                </div>
-                <div style="clear: both;"></div>
-            </div>
-        </div>
-        <div style="clear: both;"></div>
-        <div id="subnav">
-            <b-row v-if='SecondryRolename'>
-                <b-col sm="11">
-                </b-col>
-                <b-col sm="1" style='float:right'>
-                    <label class="switch">
-                    <input v-model="asAdminToggle" type="checkbox"  @change='roleToggle'> 
-                    <span class="slider round"></span>
-                    </label>
-                </b-col>
-            </b-row>
-            <div class="container_12">
-            </div>
-            <div style="clear: both;"></div>
-        </div>
-        <b>
-            <breadcrumbs/>
-        </b>
-    </div>
-    <div style='margin:0 30px'>
-        <router-view/>
-    </div>
-    <slot></slot>
-    <div id="footer">
-        <div class="container_12">
-            <div class="grid_12">
-                <p>&copy; 2017. All rights reserved.</p>
-            </div>
-        </div>
-        <div style="clear:both;"></div>
-    </div>
-</div> -->
-<!-- <label for="input-none">{{asAdminToggle}}Allow Teacher to act as ADMIN:</label> -->
-
 <div id="dashboard">
     <div :class="['wrapper', classes]">
         <header class="main-header">
@@ -74,15 +8,28 @@
                 <a href="javascript:;" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                 <span class="sr-only">Toggle navigation</span>
                 </a>
-                <div>
-                    <a class="simpletext" style="color: #02BEEE;">
-                    <b>
-                    Welcome,&nbsp;
-                    {{loginUserName}} | 
-                    {{SecondryRolename ? 'Teacher' : loginRole}}
-                    </b>
-                    </a>
-                    <router-link id="logout" @click.native="logout()" to="/">Logout</router-link>
+                <!-- Navbar Right Menu -->
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <!-- User Account Menu -->
+                        <li class="dropdown messages-menu user-menu">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                                <!-- The user image in the navbar-->
+                                <img src="/static/img/profile-icon.jpg" class="user-image" alt="User">
+                                <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                <span class="hidden-xs">
+                                {{loginUserName}} | {{SecondryRolename ? 'Teacher' : loginRole}}
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="footer">
+                                    <router-link @click.native="logout()" to="/">
+                                        Logout
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
                 <!-- Role Toggle for Teacher as admin -->
                 <b-row v-if='SecondryRolename'>
@@ -99,7 +46,7 @@
                 <!-- ########################## -->
             </nav>
         </header>
-        <sidebar display-name="Pardeep Jain" picture-url="/static/img/profile-icon.jpg" />
+        <sidebar :display-name="loginUserName" picture-url="/static/img/profile-icon.jpg" />
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -118,7 +65,9 @@
                     <!-- <li class="active">{{$route.name.toUpperCase()}}</li> -->
                 </ol>
             </section>
-            <router-view></router-view>
+            <section class="content">
+                <router-view></router-view>
+            </section>
         </div>
         <!-- Main Footer -->
         <footer class="main-footer">

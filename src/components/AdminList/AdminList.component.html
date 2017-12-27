@@ -12,11 +12,11 @@
               <b-col sm="2">
                 </b-col>
                 <b-col sm="4">
-                    <b-form-select v-model="filters.scale" :options="questionTypeOptions" class="mb-3">
+                    <b-form-select v-model="filters.scale" class="mb-3">
                       </b-form-select>
                 </b-col>
                   <b-col sm="4">
-                    <b-form-select v-model="filters.subject" :options="subjectOptions" class="mb-3">
+                    <b-form-select v-model="filters.subject" class="mb-3">
                     </b-form-select>
                   </b-col>
               <b-col sm="2">
@@ -26,11 +26,11 @@
                 <b-col sm="2">
                   </b-col>
                   <b-col sm="4">
-                      <b-form-select v-model="filters.topic" :options="topicOptions" class="mb-3">
+                      <b-form-select v-model="filters.topic" class="mb-3">
                         </b-form-select>
                   </b-col>
                     <b-col sm="4">
-                        <b-form-select v-model="filters.teacher" :options="teacherOptions" class="mb-3">
+                        <b-form-select v-model="filters.teacher" class="mb-3">
                           </b-form-select>
                     </b-col>
                 <b-col sm="2">
@@ -39,7 +39,7 @@
             <b-row class="my-1">
                 <b-col sm="2"></b-col>
                 <b-col sm="4">
-                    <date-picker placeholder="Select Date Range" v-model="filters.fromdate" :config="config"></date-picker>
+                    <date-picker placeholder="Select Date Range" v-model="filters.fromdate"></date-picker>
                 </b-col>
                 <b-col sm="4">
                     <b-button variant="primary">Search</b-button>

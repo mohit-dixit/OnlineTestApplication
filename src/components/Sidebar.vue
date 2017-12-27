@@ -25,6 +25,7 @@
           <input type="text"
             name="search"
             id="search"
+            placeholdetr = 'Search here...'
             class="search form-control"
             data-toggle="hideseek" p
             laceholder="Search Menus"
