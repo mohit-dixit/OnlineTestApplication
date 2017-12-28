@@ -1,6 +1,7 @@
+import Vue from 'vue';
+import { Tabs } from 'bootstrap-vue/es/components';
 import VueLocalStorage from 'vue-localstorage'
 import * as config from '../../config/constants.js'
-import Vue from 'vue'
 import {
     GetRequest,
     PostRequest,
@@ -17,8 +18,8 @@ Vue.filter('formatDate', function(value) {
 
 export default {
     name: 'select-questions-view',
-    components: {},
-    props: ['createtestParams', 'selectedQuestion', 'id'],
+    components: {Tabs},
+    props: ['createtestParams', 'selectedQuestion','selectedSubjects' ,'id'],
     data() {
         this.BaseUrl = config.BASE_URL;
         this.filterItems = [];
@@ -125,6 +126,7 @@ export default {
     },
     methods: {
         init() {
+            console.log(this.selectedSubjects, "Selected Subjects List");
             if (this.selectedQuestion && this.selectedQuestion.length >= 1) {
                 this.selectedNumber.intialNum = this.selectedQuestion.length;
                 this.checkedQuestions = this.checkedQuestions.concat(this.selectedQuestion);
@@ -178,10 +180,11 @@ export default {
             this.loader = true;
             let postData = {};
             postData.status = config.Active;
-            PostRequest(this.BaseUrl + 'api/admin/question/list', postData).then(res => {
+            PostRequest(this.BaseUrl + 'api/admin/question/list', postData)
+                .then(res => {
                     if (res) {
                         this.loader = false;
-                        res.body.message.forEach(function(element) {
+                        res.body.message.forEach((element) => {
                             let teacherName = element.user ? element.user.firstname + '' + element.user.lastname : '-';
                             this.rows.push({
                                 id: element.id,
@@ -219,7 +222,8 @@ export default {
         },
         getListOfScale() {
             this.loader = true;
-            GetRequest(this.BaseUrl + 'api/admin/scale/list')
+            let data = {};
+            PostRequest(this.BaseUrl + 'api/admin/scale/list', data)
                 .then(res => {
                     this.loader = false;
                     this.scaleOptions = [];
@@ -227,16 +231,13 @@ export default {
                         value: null,
                         text: 'Select Scale'
                     })
-                    if (res.status) {
-                        let response = res.result.message;
-                        if (response) {
-                            response.forEach(function(element) {
-                                this.scaleOptions.push({
-                                    value: element.id,
-                                    text: element.scaleName + ' (' + element.scalePoint + ' Point)'
-                                })
-                            }, this);
-                        }
+                    if (res.status && res.body.message) {
+                        res.body.message.forEach(function(element) {
+                            this.scaleOptions.push({
+                                value: element.id,
+                                text: element.scaleName + ' (' + element.scalePoint + ' Point)'
+                            })
+                        }, this);
                     }
                 })
                 .catch(error => {
@@ -246,7 +247,8 @@ export default {
         },
         getListOfSubjects() {
             this.loader = true;
-            GetRequest(this.BaseUrl + 'api/admin/subject/list')
+            let data = {};
+            PostRequest(this.BaseUrl + 'api/admin/subject/list', data)
                 .then(res => {
                     this.loader = false;
                     this.subjectOptions = [];
@@ -254,16 +256,13 @@ export default {
                         value: null,
                         text: 'Select Subject'
                     })
-                    if (res.status) {
-                        let response = res.result.message;
-                        if (response) {
-                            response.forEach(function(element) {
-                                this.subjectOptions.push({
-                                    value: element.id,
-                                    text: element.subjectName
-                                })
-                            }, this);
-                        }
+                    if ( res.status && res.body.message ) {
+                        res.body.message.forEach((element) => {
+                            this.subjectOptions.push({
+                                value: element.id,
+                                text: element.subjectName
+                            })
+                        }, this);
                     }
                 })
                 .catch(error => {

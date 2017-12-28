@@ -5,7 +5,7 @@
   <br>
   <div style="background-color: white; border: 3px solid #E9ECEF;">
     <vue-good-table title="Tests" :columns="columnsTests" :rows="testList" :paginate="true" :globalSearch="true" :lineNumbers="true"
-                    styleClass="table table-bordered table-striped condensed">
+                    styleClass="table table-bordered table-striped condensed" placeholder='no content'>
                     <template slot="table-row" slot-scope="props">
                       <td>{{ props.row.testname }}</td>
                       <td>{{ props.row.testtime }}</td>
@@ -13,13 +13,13 @@
                       <td>{{ props.row.totalmarks }}</td>
                       <td v-if="props.row.status == 'Inactive'">
                           <label class="switch" style="width: 60px;">
-                              <input type="checkbox" @click="activeInactiveChange($event,props)">
+                              <input type="checkbox" @click="activeInactiveChange($event,props)" style='display:none'>
                               <span class="slider round"></span>
                           </label>
                       </td>
                       <td v-else-if="props.row.status =='Active'">
                           <label class="switch" style="width: 60px;">
-                              <input type="checkbox" @click="activeInactiveChange($event,props)" checked>
+                              <input type="checkbox" @click="activeInactiveChange($event,props)" checked style='display:none'>
                               <span class="slider round"></span>
                           </label>
                       </td>

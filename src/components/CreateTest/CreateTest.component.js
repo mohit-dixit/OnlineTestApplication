@@ -57,7 +57,8 @@ export default {
         subjectId: null,
         categoryId: null,
         topicId: null,
-        teacherId: null
+        teacherId: null,
+        subjectId: null
       },
       batchOptions: [],
       checkedQuestions: [],
@@ -170,7 +171,7 @@ export default {
       questionPostData.status = config.Active;
       PostRequest(this.BaseUrl + 'api/admin/question/list', questionPostData).then(res => {
         if (res) {
-          res.body.message.forEach(function(element) {
+          res.body.message.forEach((element) => {
             this.rows.push({
               id: element.id,
               scaleName: element.scale.scaleName,
@@ -184,18 +185,19 @@ export default {
         }
       });
 
-      this.bindSubjects();
       this.bindTeachers();
     },
     resetTestForm() {
       this.checkedQuestions = [];
     },
-    bindTeachers: function() {
+    /* Binding Teacher List in this method */
+    bindTeachers() {
     let postData = {};
     postData.status = config.Active;
-    PostRequest(this.BaseUrl + 'api/admin/teacher/list', postData).then(res => {
-          if (res) {
-              res.body.message.forEach(function(element) {
+    PostRequest(this.BaseUrl + 'api/admin/teacher/list', postData)
+      .then(res => {
+          if (res && res.body.message) {
+              res.body.message.forEach((element) => {
                 let teacherName = element.firstname + ' ' + element.lastname;
                   this.teacherOptions.push({
                       id: element.id,
@@ -203,30 +205,33 @@ export default {
                   })
               }, this);
           }
-      });
+      })
+      .catch(err => {
+        console.log(err);
+      })
     },
-    bindSubjects: function() {
+
+    /* Binding Subject List in this method */
+    bindSubjects() {
       let postData = {};
-        postData.status = config.Active;
-        PostRequest(self.BaseUrl + 'api/admin/subject/list', postData).then(res => {
-        this.subjectOptions = [];
-        this.subjectOptions.push({
-          value: null,
-          text: 'Select Subject'
+      postData.status = config.Active;
+      PostRequest(this.BaseUrl + 'api/admin/subject/list', postData)
+        .then(res => {
+            this.subjectOptions = [];
+            if (res.status && res.body.message) {         
+                res.body.message.forEach((element) => {
+                    this.subjectOptions.push({
+                        id: element.id,
+                        teacher: element.subjectName
+                    })
+                }, this);
+            }
         })
-        if (res.status) {
-          let response = res.body.message;
-          if (response) {
-            response.forEach(function(element) {
-              this.subjectOptions.push({
-                value: element.id,
-                text: element.subjectName
-              })
-            }, this);
-          }
-        }
-      });
+        .catch(err => {
+          console.log(err);
+        })
     },
+
     showSelectedQuestions() {
       console.log(this.selectedQuestion, "Selected Question in Params");
       if(this.selectedQuestion && this.selectedQuestion.length){
@@ -316,10 +321,10 @@ export default {
               return data.id;
             }) : []
             let msgText = 'created';
-            let apiPath = 'api/admin/create/topic';
+            let apiPath = 'api/admin/create/test';
             let isEditMode = this.isEdit;
             if(isEditMode){
-              apiPath = 'api/admin/update/topic';
+              apiPath = 'api/admin/update/test';
               msgText = 'updated';
             }
 
@@ -366,22 +371,30 @@ export default {
       }, this);
     },
     selectQuestions() {
-      if(this.createtest.noOfQuestions){
-        this.$router.push({
-          name: 'SelectQuestionsView',
-          params: {
-            createtestParams: this.createtest,
-            selectedQuestion: this.checkedQuestions,
-            id : this.id ? this.id : null
-          }
-        });
-        // this.$refs.listOfQuesModal.show();
-      } else {
+      console.log(this.createtest.subjectId);
+      if(!this.createtest.subjectId){
+          this.$swal({
+            type: 'info',
+            title: 'Please Wait !',
+            text: 'Please select Subject first to proceed.'
+          })
+      } else if (!this.createtest.noOfQuestions) {
           this.$swal({
             type: 'info',
             title: 'Please Wait !',
             text: 'Enter number of question you want in this test to proceed.'
           })
+      } else {
+        this.$router.push({
+          name: 'SelectQuestionsView',
+          params: {
+            createtestParams: this.createtest,
+            selectedQuestion: this.checkedQuestions,
+            selectedSubjects: this.createtest.subjectId,
+            id : this.id ? this.id : null
+          }
+        });
+        // this.$refs.listOfQuesModal.show();
       }
     },
     closeModal: function(events, args) {
@@ -520,6 +533,7 @@ export default {
   },
   created: function() {
     this.loginRole = Vue.lsobj.get('loginRole');
+    this.bindSubjects();
     this.init();
     if(this.id){
       this.submitButtonText = 'Update';

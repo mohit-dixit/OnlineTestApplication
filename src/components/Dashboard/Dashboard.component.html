@@ -22,10 +22,24 @@
                                 </span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li class="footer">
-                                    <router-link @click.native="logout()" to="/">
-                                        Logout
-                                    </router-link>
+                                <li class="user-header">
+                                    <img src="/static/img/profile-icon.jpg" class="img-circle" alt="User Image">
+                                    <p>
+                                        {{loginUserName}} - {{SecondryRolename ? 'Teacher' : loginRole}}
+                                        <small>Member since Nov. 2017</small>
+                                    </p>
+                                </li>
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <router-link to="/Dashboard/Profile" class="btn btn-default btn-flat">
+                                            Profile
+                                        </router-link>
+                                    </div>
+                                    <div class="pull-right">
+                                        <router-link @click.native="logout()" to="/" class="btn btn-default btn-flat">
+                                            Logout
+                                        </router-link>
+                                    </div>
                                 </li>
                             </ul>
                         </li>

@@ -8,15 +8,9 @@
       styleClass="table table-bordered table-striped condensed" v-if='subjectList.length'>
       <template slot="table-row" slot-scope="props">
           <td>{{ props.row.subjectname }}</td>
-          <td v-if="props.row.status =='Inactive'">
-              <label class="switch" style="width: 60px;">
-                  <input type="checkbox" @click="activeInactiveChange($event,props)">
-                  <span class="slider round"></span>
-              </label>
-          </td>
-          <td v-else-if="props.row.status =='Active'">
-              <label class="switch" style="width: 60px;">
-                  <input type="checkbox" @click="activeInactiveChange($event,props)" checked>
+          <td>
+              <label class="switch">
+                  <input type="checkbox" @click="activeInactiveChange($event,props)" :checked="props.row.status =='Active'" style='display:none'>
                   <span class="slider round"></span>
               </label>
           </td>
@@ -28,24 +22,7 @@
         </td>
       </template>
     </vue-good-table>
-    <img src='../../assets/images/nodatafound.jpeg' v-if='!subjectList.length' />
+    <div class="loading" v-if='loader'>Loading&#8230;</div>
+    <img src='../../assets/images/nodatafound.jpeg' v-if='!subjectList.length && !loader' />
   </div>
-   <!-- Modal Component -->
-   <!-- <b-modal centered ref="deleteModal" v-model="show" title="Delete Confirmation" :header-bg-variant="headerBgVariant" :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
-      <b-container fluid>
-        <b-row class="mb-1 text-center">
-          <b-col cols="12">Are you sure you want to delete?</b-col>
-        </b-row>
-      </b-container>
-      <div slot="modal-footer" class="w-100">
-        <p class="float-left"></p>
-        <b-btn size="sm" class="float-right" style="margin-left: 5px;" variant="secondary" @click="closeModal()">
-          No
-        </b-btn>
-        <b-btn size="sm" class="float-right" variant="danger" @click="deleteConfirmation()">
-          Yes
-        </b-btn>
-      </div>
-    </b-modal> -->
-    <!-- Modal Component -->
 </div>

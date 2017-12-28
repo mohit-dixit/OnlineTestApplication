@@ -4,7 +4,7 @@
     <b-button variant="primary"><b>+ </b>Add Admin</b-button>
   </router-link>
   <br><br>
-  <div class="tab">
+    <!-- <div class="tab">
       <input id="tab-one" style="display: none" type="checkbox" name="tabs">
       <label for="tab-one" class="FilterPanel">+ Filters</label>
       <div class="tab-content">
@@ -49,7 +49,7 @@
             </b-row>
             <br>
       </div>
-    </div>
+    </div> -->
     <br>
   <div style="background-color: white; border: 3px solid #E9ECEF;">
     <vue-good-table title="Admins" :columns="columnsAdmins" :rows="adminList" :paginate="true" :globalSearch="true" :lineNumbers="true"
@@ -60,16 +60,10 @@
           <td>{{ props.row.phone }}</td>
           <td>{{ props.row.email }}</td>
           <td>{{ props.row.associatedwith }}</td>
-          <td v-if="props.row.status =='Inactive'">
-              <label class="switch" style="width: 60px;">
-                  <input type="checkbox" @click="activeInactiveChange($event,props)">
-                  <span class="slider round"></span>
-              </label>
-          </td>
-          <td v-else-if="props.row.status =='Active'">
-              <label class="switch" style="width: 60px;">
-                  <input type="checkbox" @click="activeInactiveChange($event,props)" checked>
-                  <span class="slider round"></span>
+          <td>
+              <label class="switch">
+                <input type="checkbox" @click="activeInactiveChange($event,props)" :checked="props.row.status =='Active'" style='display:none'>
+                <span class="slider round"></span>
               </label>
           </td>
       </template>
@@ -81,22 +75,4 @@
       </template>
     </vue-good-table>
   </div>
-  <!-- Modal Component -->
-  <b-modal centered ref="deleteModal" title="Delete Confirmation" :header-bg-variant="headerBgVariant" :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
-    <b-container fluid>
-      <b-row class="mb-1 text-center">
-        <b-col cols="12">Are you sure you want to delete?</b-col>
-      </b-row>
-    </b-container>
-    <div slot="modal-footer" class="w-100">
-      <p class="float-left"></p>
-      <b-btn size="sm" class="float-right" style="margin-left: 5px;" variant="secondary" @click="closeModal()">
-        No
-      </b-btn>
-      <b-btn size="sm" class="float-right" variant="danger" @click="deleteConfirmation()">
-        Yes
-      </b-btn>
-    </div>
-  </b-modal>
-  <!-- Modal Component -->
 </div>

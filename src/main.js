@@ -10,6 +10,7 @@ import VueEditor from 'vue2-quill-editor'
 import DatePicker from 'vue-bootstrap-datetimepicker'
 import BreabCrumbs from 'vue-2-breadcrumbs'
 import VueGoodTable from 'vue-good-table'
+import { Tabs } from 'bootstrap-vue/es/components';
 import vueXlsxTable from 'vue-xlsx-table'
 import CubeSpin from 'vue-loading-spinner/src/components/Circle8'
 import Multiselect from 'vue-multiselect'
@@ -36,6 +37,7 @@ Vue.use(VueSweetAlert)
 Vue.use(VeeValidate);
 // Vue.use(jquery);
 Vue.use(BootstrapVue);
+Vue.use(Tabs);
 Vue.use(VueResource);
 Vue.use(VueEditor, {});
 Vue.use(BreabCrumbs);

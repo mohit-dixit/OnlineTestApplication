@@ -1,6 +1,5 @@
 .createstudent-container{
   position: relative;
-  width: 50%;
   margin: 10px auto;
   padding: 20px 40px 40px;
   text-align: center;
@@ -38,12 +37,13 @@
 
 }
 
-.form-box input{
+.form-box input, .form-box input:focus{
   width: 100%;
   padding: 10px;
+  outline: 0;
   height:40px;
-  border: 1px solid #ccc;;
-  background: #fafafa;
+  border: 1px solid #e8e8e8;;
+  background: white;
   transition:0.2s ease-in-out;
 }
 
@@ -52,14 +52,9 @@
   width: 100%;
   font-size: 15px;
   line-height: 15px;
-  text-align: center;
+  text-align: right;
   margin: 15px 0;
   background-color: #fff;
-}
-
-.form-box input:focus{
-  outline: 0;
-  background: #eee;
 }
 
 .form-box input[type="text"]{

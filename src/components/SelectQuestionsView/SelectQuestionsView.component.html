@@ -1,4 +1,17 @@
 <section class="select-questions-view">
+  <!-- Tabs -->
+  <b-tabs>
+    <b-tab title="first" active>
+      <br>I'm the first fading tab
+    </b-tab>
+    <b-tab title="second" >
+      <br>I'm the second tab content
+    </b-tab>
+    <b-tab title="disabled" disabled>
+      <br>Disabled tab!
+    </b-tab>
+  </b-tabs>
+  <!-- ## -->
   <!-- <router-view/> -->
   <b-container fluid>
     <div class="loading" v-if='loader'>Loading&#8230;</div>
@@ -17,7 +30,7 @@
                   <b-col sm="4">
                       <b-form-select v-model="createtest.categoryId" @change.native="categoryChange()" placeholder="Select Question" :options="questionTypeOptions" class="mb-3">
                         </b-form-select>
-                  </b-col>
+                  </b-col> 
                     <b-col sm="4">
                       <b-form-select v-model="createtest.subjectId" @change.native="subjectChange()" :options="subjectOptions" class="mb-3">
                       </b-form-select>
