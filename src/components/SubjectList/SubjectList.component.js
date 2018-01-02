@@ -60,12 +60,12 @@ export default {
   methods: {
     bindSubjects: function () {
       let postData = {};
-      this.loader = true;
       postData.status = null;
-      PostRequest(this.BaseUrl + 'api/admin/subject/list', postData).then(res => {
+      this.loader = true;
+      GetRequest(this.BaseUrl + 'api/admin/subject/list', postData).then(res => {
         if (res.status) {
           this.loader = false;
-          let response = res.body.message;
+          let response = res.result.message;
           let list = [];
           response.forEach(function (element) {
             list.push({

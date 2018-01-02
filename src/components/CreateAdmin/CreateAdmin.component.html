@@ -1,4 +1,5 @@
 <section v-if="loginRole === '1' || loginRole === '2'">
+  <div class="loading" v-if='loader'>Loading&#8230;</div>
   <router-link to="/Dashboard/AdminList">
     <b-button variant="primary"> Go To Admin List</b-button>
   </router-link>

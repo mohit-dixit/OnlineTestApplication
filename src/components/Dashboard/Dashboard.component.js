@@ -32,6 +32,9 @@ export default {
       get loginUserName() {
         return  localStorage.getItem('loginName');
       },
+      get loginUserProfile() {
+        return  localStorage.getItem('userProfileImage');
+      },
       loginRole: Vue.lsobj.get('rolename'),
       SecondryRolename: Vue.lsobj.get('SecondryRolename')
     }

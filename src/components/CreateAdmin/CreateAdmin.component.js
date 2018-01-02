@@ -20,6 +20,7 @@ export default {
     this.isEdit = false;
     this.submitButtonText ='Create';
     return {
+      loader: false,
       createadminform: {
         associatedwith: null,
         name: ''
@@ -27,9 +28,6 @@ export default {
       createadminformClone: {},
       associatedOptions: []
     }
-  },
-  computed: {
-
   },
   mounted() {
 
@@ -87,6 +85,7 @@ export default {
     },
     onSubmit(evt) {
           evt.preventDefault();
+          this.loader = true;
           this.$validator.validateAll().then((result) => {
               if (result) {
             //Making Post Data ==============================================================================
@@ -106,7 +105,9 @@ export default {
                 this.createadminform.status = config.Inactive;
               }
             }
-            PostRequest(this.BaseUrl + apiPath, this.createadminform).then(res => {
+            PostRequest(this.BaseUrl + apiPath, this.createadminform)
+            .then(res => {
+              this.loader = false;
               if (res && res.status == 200) {
                 let msg = isEditMode ? 'Admin updated successfully' : 'Admin created successfully';
                 this.$swal({
@@ -129,7 +130,11 @@ export default {
                 });
                 this.$forceUpdate();
               }
-          });
+          })
+          .catch(error => {
+            this.loader = false;
+            console.log(error);
+          })
         }
       });
     },

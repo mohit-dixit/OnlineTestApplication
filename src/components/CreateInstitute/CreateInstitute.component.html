@@ -1,4 +1,5 @@
 <section v-if="loginRole === '1'">
+  <div class="loading" v-if='loader'>Loading&#8230;</div>
   <router-link to="/Dashboard/InstituteList">
     <b-button variant="primary"> Go To Institute List</b-button>
   </router-link>
@@ -16,7 +17,7 @@
             </b-col>
           </b-row>
           <b-row class="my-1">
-            <b-col sm="5"><label for="input-none">Email</label></b-col>
+            <b-col sm="5"><label for="input-none">Email*</label></b-col>
             <b-col sm="7">
                 <b-input-group left="📩" class="mb-2 mr-sm-2 mb-sm-0">
                   <b-form-input id="input-none" :state="null" type="text" v-model="createinstituteform.emailID" v-validate="'required|email'" name='Email' placeholder="Enter Email"></b-form-input>

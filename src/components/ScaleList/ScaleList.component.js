@@ -63,10 +63,10 @@ export default {
     bindScales: function () {
       let postData = {};
       postData.status = null;
-      PostRequest(this.BaseUrl + 'api/admin/scale/list', postData).then(res => {
+      GetRequest(this.BaseUrl + 'api/admin/scale/list', postData).then(res => {
         if (res.status) {
-          if(res.body){
-            let response = res.body.message;
+            debugger;
+            let response = res.result.message;
             let list = [];
             response.forEach(function (element) {
               list.push({
@@ -78,10 +78,7 @@ export default {
             }, this);
             this.scaleList = list;
             this.$forceUpdate();
-          } else {
-            this.scaleList = [];
           }
-        }
       });
     },
     redirectToNewScale: function () {

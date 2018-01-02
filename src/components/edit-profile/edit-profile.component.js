@@ -63,6 +63,7 @@ export default  {
             .then(res => {
               this.loader = false;
               Vue.lsobj.set('loginName', this.profileData.firstname + ' ' + this.profileData.lastname);
+              Vue.lsobj.set('userProfileImage', this.localImage);
               this.$forceUpdate();
               console.log(res, "on Updation of profile");
               this.$router.push('/Dashboard/Profile');

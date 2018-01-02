@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/Login'
 import ForgotPassword from '@/components/forgot-password'
+import ResetPassword from '@/components/reset-password'
 import Dashboard from '@/components/Dashboard'
 import DashboardContentPanel from '@/components/DashboardContentPanel'
 import Register from '@/components/Register'
@@ -47,15 +48,14 @@ import EditProfile from '@/components/edit-profile'
 import EditQuestion from '@/components/CreateQuestion'
 import SelectQuestionsView from '@/components/SelectQuestionsView'
 import SelectQuestionsPanel from '@/components/SelectQuestionsPanel'
-
 import NotFoundView from './../components/404.vue'
-
-const Foo = { template: '<div>Foo</div>' }
 
 Vue.use(Router)
 Vue.use(VueBreadcrumbs)
 
+/* Here To remove hasbang from URL using {"mode: history"} */
 export default new Router({
+  mode: "history",
   routes: [
     {
       path: '/',
@@ -66,6 +66,12 @@ export default new Router({
       path: '/forgot-password',
       name: 'ForgotPassword',
       component: ForgotPassword
+    },
+    {
+      path: '/reset-password/:token',
+      name: 'ResetPassword',
+      props: true,
+      component: ResetPassword
     },
     {
       path: '/Dashboard',

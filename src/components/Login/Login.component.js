@@ -50,6 +50,7 @@ export default {
             let loginUserDetails = res.responsedata;
             Vue.lsobj.set('loginUserName', loginUserDetails[0].username);
             Vue.lsobj.set('loginName', loginUserDetails[0].firstname + ' ' + loginUserDetails[0].lastname);
+            Vue.lsobj.set('userProfileImage', loginUserDetails[0].image);
             Vue.lsobj.set('loginRole', loginUserDetails[0].user_roles[0].role.id);
             Vue.lsobj.set('loginToken', loginUserDetails[0].token);
 

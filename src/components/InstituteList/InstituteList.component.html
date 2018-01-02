@@ -3,7 +3,7 @@
     <b-button variant="primary" style='margin : 20px'><b>+ </b>Add Institute</b-button>
   </router-link>
   <br><br>
-  <div class="tab">
+  <!-- <div class="tab">
       <input id="tab-one" style="display: none" type="checkbox" name="tabs">
       <label for="tab-one" class="FilterPanel">+ Filters</label>
       <div class="tab-content">
@@ -48,7 +48,7 @@
             </b-row>
             <br>
       </div>
-    </div>
+    </div> -->
     <br>
   <div style="background-color: white; border: 3px solid #E9ECEF;">
     <vue-good-table title="Institutes" :columns="columnsInstitutes" :rows="instituteList" :paginate="true" :globalSearch="true"
@@ -58,15 +58,9 @@
           <td>{{ props.row.emailID }}</td>
           <td>{{ props.row.phone }}</td>
           <td>{{ props.row.address }}</td>
-          <td v-if="props.row.status =='Inactive'">
-              <label class="switch" style="width: 60px;">
-                  <input type="checkbox" @click="activeInactiveChange($event,props)">
-                  <span class="slider round"></span>
-              </label>
-          </td>
-          <td v-else-if="props.row.status =='Active'">
-              <label class="switch" style="width: 60px;">
-                  <input type="checkbox" @click="activeInactiveChange($event,props)" checked>
+          <td>
+              <label class="switch" >
+                  <input type="checkbox" style="display:none" @click="activeInactiveChange($event,props)" :checked="props.row.status =='Active'">
                   <span class="slider round"></span>
               </label>
           </td>

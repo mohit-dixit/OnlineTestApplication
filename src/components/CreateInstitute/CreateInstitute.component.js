@@ -19,6 +19,7 @@ export default {
     this.isEdit = false;
     this.submitButtonText ='Create';
     return {
+      loader: false,
       createinstituteform: {},
       createinstituteData: {}
     }
@@ -55,7 +56,9 @@ export default {
     },
     onSubmit(evt) {
       evt.preventDefault();
-      this.$validator.validateAll().then((result) => {
+      this.loader = true;
+      this.$validator.validateAll()
+      .then((result) => {
         if (result) {
           let apiPath = 'api/superAdmin/create/institute';
           let isEditMode = this.isEdit;
@@ -63,7 +66,9 @@ export default {
             apiPath = 'api/superAdmin/update/institute';
           }
 
-          PostRequest(this.BaseUrl + apiPath  , this.createinstituteform).then(res => {
+          PostRequest(this.BaseUrl + apiPath  , this.createinstituteform)
+          .then(res => {
+            this.loader = false;
             if (res && res.status == 200) {
                 let msg = isEditMode ? 'Institute updated successfully' : 'Institute created successfully';
                 this.$swal({
@@ -85,6 +90,10 @@ export default {
                     text: res.statustext || 'Please try again after some time !',
                 });
               }
+          })
+          .catch(error => {
+            this.loader = false;
+            console.log(error);
           });
         }
       })

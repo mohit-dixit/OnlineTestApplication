@@ -7,7 +7,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img :src="pictureUrl" />
+          <img :src="loginUserProfile || '/static/img/profile-icon.jpg'" />
         </div>
         <div class="pull-left info">
           <div>
@@ -25,7 +25,7 @@
           <input type="text"
             name="search"
             id="search"
-            placeholdetr = 'Search here...'
+            placeholder = 'Search...'
             class="search form-control"
             data-toggle="hideseek" p
             laceholder="Search Menus"
@@ -55,11 +55,19 @@ export default {
   components: { SidebarMenu },
   mounted: function () {
     $('[data-toggle="hideseek"]').off().hideseek()
+  },
+  data() {
+    return{
+      get loginUserProfile() {
+          return  localStorage.getItem('userProfileImage');
+      }
+    }
   }
 }
 </script>
 <style>
   .user-panel .image img {
     border-radius: 50%;
+    height: 45px;
   }
 </style>
