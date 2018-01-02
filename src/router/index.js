@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/Login'
+import ForgotPassword from '@/components/forgot-password'
 import Dashboard from '@/components/Dashboard'
 import DashboardContentPanel from '@/components/DashboardContentPanel'
 import Register from '@/components/Register'
@@ -46,6 +47,9 @@ import EditProfile from '@/components/edit-profile'
 import EditQuestion from '@/components/CreateQuestion'
 import SelectQuestionsView from '@/components/SelectQuestionsView'
 import SelectQuestionsPanel from '@/components/SelectQuestionsPanel'
+
+import NotFoundView from './../components/404.vue'
+
 const Foo = { template: '<div>Foo</div>' }
 
 Vue.use(Router)
@@ -57,6 +61,11 @@ export default new Router({
       path: '/',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/forgot-password',
+      name: 'ForgotPassword',
+      component: ForgotPassword
     },
     {
       path: '/Dashboard',
@@ -331,6 +340,10 @@ export default new Router({
       path: '/Test',
       name: 'Test',
       component: Test
+    },
+    {
+      path: '*',
+      component: NotFoundView
     }
   ]
 })

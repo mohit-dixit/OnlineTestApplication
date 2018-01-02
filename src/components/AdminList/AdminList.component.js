@@ -86,7 +86,7 @@ export default {
       this.loader = true;
       GetRequest(this.BaseUrl + 'api/superAdmin/admin/list')
       .then(res => {
-        if (res.status) {
+        if (res.status && res.result.message) {
           this.loader = false;
           let response = res.result.message[0].user_roles;
           let list = [];

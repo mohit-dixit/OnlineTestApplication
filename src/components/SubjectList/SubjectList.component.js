@@ -12,6 +12,7 @@ export default {
     this.BaseUrl = config.BASE_URL;
     this.subjectList = [];
     this.selectedId = 0;
+    this.loader = false;
     return {
       variants: [
         'primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'
@@ -59,9 +60,11 @@ export default {
   methods: {
     bindSubjects: function () {
       let postData = {};
+      this.loader = true;
       postData.status = null;
       PostRequest(this.BaseUrl + 'api/admin/subject/list', postData).then(res => {
         if (res.status) {
+          this.loader = false;
           let response = res.body.message;
           let list = [];
           response.forEach(function (element) {

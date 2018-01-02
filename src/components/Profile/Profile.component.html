@@ -1,9 +1,8 @@
 <div class="container">
-  <div v-if="!isEditMode" class="avatar-flip">
-    <img :src="profileData.image || 'static/img/profile.png'" height="150" width="150">
-    <img :src="profileData.image || 'static/img/profile.png'" height="150" width="150">
-  </div>
-
+    <div v-if="!isEditMode" class="avatar-flip">
+      <img :src="profileData.image || 'static/img/profile.png'" height="150" width="150">
+      <img :src="profileData.image || 'static/img/profile.png'" height="150" width="150">
+    </div>
   <div>
   <h2 v-if="!isEditMode">{{profileData.firstname}} {{profileData.lastname}}
       <img src="../../assets/images/pen-blue-round.png" v-on:click="editButtonClick()" style="cursor:pointer;" height="36" width="36">

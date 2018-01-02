@@ -1,94 +1,405 @@
-<div class="container_12">
-  <!-- Dashboard icons -->
-  <div class="grid_12">
-    <!-- <router-link to="/Dashboard/CreateAdmin" v-if="isUserSuperAdmin">
-      <a href="" class="dashboard-module">
-                      <img src="../../assets/dashboardfiles/newadmin.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_write.gif" width="64" height="64" alt="edit" />
-                      <span>Create Admin</span>
-                    </a>
-    </router-link> -->
-    <!-- <router-link to="/Dashboard/CreateTeacher" v-if="isUserAdmin">
-      <a href="" class="dashboard-module">
-                      <img src="../../assets/dashboardfiles/teacher.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_files.gif" width="64" height="64" alt="edit" />
-                      <span>Create Teacher</span>
-                    </a>
-    </router-link> -->
-    <!-- <router-link to="/Dashboard/CreateStudent" v-if="isUserAdmin">
-      <a href="" class="dashboard-module">
-                      <img src="../../assets/dashboardfiles/student.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_files.gif" width="64" height="64" alt="edit" />
-                      <span>Create Student</span>
-                    </a>
-    </router-link> -->
-    <!-- <router-link to="/Dashboard/CreateQuestion" v-if="isUserTeacher || isUserAdmin">
-      <a href="" class="dashboard-module">
-                      <img src="../../assets/dashboardfiles/question.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_files.gif" width="64" height="64" alt="edit" />
-                      <span>Create Question</span>
-                    </a>
-    </router-link>
-    <router-link to="/Dashboard/CreateTest" v-if="isUserTeacher || isUserAdmin">
-      <a href="" class="dashboard-module">
-                      <img src="../../assets/dashboardfiles/addtests.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_file.gif" width="64" height="64" alt="edit" />
-                      <span>Create Test</span>
-                    </a>
-    </router-link> -->
-    <router-link to="/Dashboard/AssignTest" v-if="isUserTeacher">
-      <a href="" class="dashboard-module">
-                      <img src="../../assets/dashboardfiles/assigntest.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_file.gif" width="64" height="64" alt="edit" />
-                      <span>Assign Test</span>
-                    </a>
-    </router-link>
-    <router-link to="/Dashboard/StartTest" v-if="isUserStudent">
-      <a href="" class="dashboard-module">
-                      <img src="../../assets/dashboardfiles/starttest.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_file.gif" width="64" height="64" alt="edit" />
-                      <span>Start Test</span>
-                    </a>
-    </router-link>
-    <!-- <router-link to="/Dashboard/CreateInstitute" v-if="isUserSuperAdmin">
-      <a href="" class="dashboard-module">
-                      <img src="../../assets/dashboardfiles/institutionicon.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_file.gif" width="64" height="64" alt="edit" />
-                      <span>Create Institute</span>
-                    </a>
-    </router-link> -->
-    <router-link to="/Dashboard/QuestionBank" v-if="isUserTeacher || isUserAdmin">
-      <a href="" class="dashboard-module">
-                      <img src="../../assets/images/questionbank.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_settings.gif" width="64" height="64" alt="edit" />
-                      <span>Question Bank</span>
-                    </a>
-    </router-link>
-    <router-link to="/Dashboard/TestList" v-if="isUserTeacher || isUserAdmin">
-      <a href="" class="dashboard-module">
-        <img src="../../assets/images/tests.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_settings.gif" width="64" height="64" alt="edit" />
-        <span>Tests</span>
-      </a>
-    </router-link>
-    <masters></masters>
-    <router-link to="/Dashboard/Masters" v-if="isUserAdmin">
-      <a href="" class="dashboard-module">
-        <img src="../../assets/images/masters.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_settings.gif" width="64" height="64" alt="edit" />
-        <span>Masters</span>
-      </a>
-    </router-link>
-    <router-link to="/Dashboard/AdminConfiguration" v-if="isUserAdmin">
-      <a href="" class="dashboard-module">
-        <img src="../../assets/images/configuration.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_settings.gif" width="64" height="64" alt="edit" />
-        <span>Configuration</span>
-      </a>
-    </router-link>
-    <router-link to="/Dashboard/Uploads" v-if="isUserAdmin">
-      <a href="" class="dashboard-module">
-        <img src="../../assets/images/uploads.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_settings.gif" width="64" height="64" alt="edit" />
-        <span>Uploads</span>
-      </a>
-    </router-link>
-    <router-link to="/Dashboard/Profile" v-if='isUserAdmin'>
-      <a href="" class="dashboard-module">
-        <img src="../../assets/images/profile.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_files.gif" width="64" height="64" alt="edit" />
-        <span>Profile</span>
-      </a>
-    </router-link>
-    <div style="clear: both"></div>
+<!-- <div class="container_12">
+    <div class="grid_12">
+        <masters></masters>
+        <router-link to="/Dashboard/AssignTest" v-if="isUserTeacher">
+            <a href="" class="dashboard-module">
+            <img src="../../assets/dashboardfiles/assigntest.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_file.gif" width="64" height="64" alt="edit" />
+            <span>Assign Test</span>
+            </a>
+        </router-link>
+        <router-link to="/Dashboard/StartTest" v-if="isUserStudent">
+            <a href="" class="dashboard-module">
+            <img src="../../assets/dashboardfiles/starttest.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_file.gif" width="64" height="64" alt="edit" />
+            <span>Start Test</span>
+            </a>
+        </router-link>
+        <router-link to="/Dashboard/QuestionBank" v-if="isUserTeacher || isUserAdmin">
+            <a href="" class="dashboard-module">
+            <img src="../../assets/images/questionbank.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_settings.gif" width="64" height="64" alt="edit" />
+            <span>Question Bank</span>
+            </a>
+        </router-link>
+        <router-link to="/Dashboard/TestList" v-if="isUserTeacher || isUserAdmin">
+            <a href="" class="dashboard-module">
+            <img src="../../assets/images/tests.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_settings.gif" width="64" height="64" alt="edit" />
+            <span>Tests</span>
+            </a>
+        </router-link>
+        <router-link to="/Dashboard/Masters" v-if="isUserAdmin">
+            <a href="" class="dashboard-module">
+            <img src="../../assets/images/masters.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_settings.gif" width="64" height="64" alt="edit" />
+            <span>Masters</span>
+            </a>
+        </router-link>
+        <router-link to="/Dashboard/AdminConfiguration" v-if="isUserAdmin">
+            <a href="" class="dashboard-module">
+            <img src="../../assets/images/configuration.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_settings.gif" width="64" height="64" alt="edit" />
+            <span>Configuration</span>
+            </a>
+        </router-link>
+        <router-link to="/Dashboard/Uploads" v-if="isUserAdmin">
+            <a href="" class="dashboard-module">
+            <img src="../../assets/images/uploads.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_settings.gif" width="64" height="64" alt="edit" />
+            <span>Uploads</span>
+            </a>
+        </router-link>
+        <router-link to="/Dashboard/Profile" v-if='isUserAdmin'>
+            <a href="" class="dashboard-module">
+            <img src="../../assets/images/profile.png" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_files.gif" width="64" height="64" alt="edit" />
+            <span>Profile</span>
+            </a>
+        </router-link>
+        <div style="clear: both"></div>
+    </div>
+    <div style="clear:both;"></div>
+</div> -->
+<div class='row'>
+  <!-- either Comment master component call here or write direct link here from master component -->
+  <!-- <masters></masters> -->
+  <!-- For admins  -->
+  <div class="col-md-3" v-if="isUserSuperAdmin || isUserAdmin">
+    <div class="box box-widget widget-user">
+      <div class="widget-user-header bg-aqua-active text-center">
+        <h3 class="widget-user-username center-text">Admins</h3>
+      </div>
+      <div class="widget-user-image">
+        <img class="img-circle" src="../../assets/images/adminlist.png" alt="Admins">
+      </div>
+      <div class="box-footer">
+        <div class="row">
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <!-- <h5 class="description-header">6</h5>
+              <span class="description-text">Star</span> -->
+            </div>
+          </div>
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <router-link to="/Dashboard/AdminList">
+                <button type="button" class="btn btn-default btn-lg">Visit</button>
+              </router-link>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="description-block">
+              <!-- <h5 class="description-header">5</h5>
+              <span class="description-text">Forks</span> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- End .grid_7 -->
-  <div style="clear:both;"></div>
+
+  <!-- for institutes -->
+  <div class="col-md-3" v-if='isUserSuperAdmin'>
+    <div class="box box-widget widget-user">
+      <div class="widget-user-header bg-aqua-active text-center">
+        <h3 class="widget-user-username center-text">Institutes</h3>
+      </div>
+      <div class="widget-user-image">
+        <img class="img-circle" src="../../assets/images/multiInstitutes.png" alt="Institutes">
+      </div>
+      <div class="box-footer">
+        <div class="row">
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <!-- <h5 class="description-header">6</h5>
+              <span class="description-text">Star</span> -->
+            </div>
+          </div>
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <router-link to="/Dashboard/InstituteList">
+                <button type="button" class="btn btn-default btn-lg">Visit</button>
+              </router-link>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="description-block">
+              <!-- <h5 class="description-header">5</h5>
+              <span class="description-text">Forks</span> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- for Teachers -->
+  <div class="col-md-3" v-if='isUserAdmin'>
+    <div class="box box-widget widget-user">
+      <div class="widget-user-header bg-aqua-active text-center">
+        <h3 class="widget-user-username center-text">Teachers</h3>
+      </div>
+      <div class="widget-user-image">
+        <img class="img-circle" src="../../assets/images/teachersList.png" alt="teachersList">
+      </div>
+      <div class="box-footer">
+        <div class="row">
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <!-- <h5 class="description-header">6</h5>
+              <span class="description-text">Star</span> -->
+            </div>
+          </div>
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <router-link to="/Dashboard/TeacherList">
+                <button type="button" class="btn btn-default btn-lg">Visit</button>
+              </router-link>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="description-block">
+              <!-- <h5 class="description-header">5</h5>
+              <span class="description-text">Forks</span> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- for studentsList -->
+  <div class="col-md-3" v-if='isUserAdmin'>
+    <div class="box box-widget widget-user">
+      <div class="widget-user-header bg-aqua-active text-center">
+        <h3 class="widget-user-username center-text">Students</h3>
+      </div>
+      <div class="widget-user-image">
+        <img class="img-circle" src="../../assets/images/studentsList.png" alt="Institutes">
+      </div>
+      <div class="box-footer">
+        <div class="row">
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <!-- <h5 class="description-header">6</h5>
+              <span class="description-text">Star</span> -->
+            </div>
+          </div>
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <router-link to="/Dashboard/StudentList">
+                <button type="button" class="btn btn-default btn-lg">Visit</button>
+              </router-link>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="description-block">
+              <!-- <h5 class="description-header">5</h5>
+              <span class="description-text">Forks</span> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- for Questions -->
+  <div class="col-md-3" v-if="isUserTeacher || isUserAdmin">
+    <div class="box box-widget widget-user">
+      <div class="widget-user-header bg-aqua-active text-center">
+        <h3 class="widget-user-username center-text">Questions</h3>
+      </div>
+      <div class="widget-user-image">
+        <img class="img-circle" src="../../assets/images/questionBank.png" alt="Questions">
+      </div>
+      <div class="box-footer">
+        <div class="row">
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <!-- <h5 class="description-header">6</h5>
+              <span class="description-text">Star</span> -->
+            </div>
+          </div>
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <router-link to="/Dashboard/QuestionBank">
+                <button type="button" class="btn btn-default btn-lg">Visit</button>
+              </router-link>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="description-block">
+              <!-- <h5 class="description-header">5</h5>
+              <span class="description-text">Forks</span> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- for Tests -->
+  <div class="col-md-3" v-if="isUserTeacher || isUserAdmin">
+    <div class="box box-widget widget-user">
+      <div class="widget-user-header bg-aqua-active text-center">
+        <h3 class="widget-user-username center-text">Tests</h3>
+      </div>
+      <div class="widget-user-image">
+        <img class="img-circle" src="../../assets/images/tests.png" alt="Tests">
+      </div>
+      <div class="box-footer">
+        <div class="row">
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <!-- <h5 class="description-header">6</h5>
+              <span class="description-text">Star</span> -->
+            </div>
+          </div>
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <router-link to="/Dashboard/TestList">
+                <button type="button" class="btn btn-default btn-lg">Visit</button>
+              </router-link>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="description-block">
+              <!-- <h5 class="description-header">5</h5>
+              <span class="description-text">Forks</span> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- for Masters -->
+  <div class="col-md-3" v-if='isUserAdmin'>
+    <div class="box box-widget widget-user">
+      <div class="widget-user-header bg-aqua-active text-center">
+        <h3 class="widget-user-username center-text">Masters</h3>
+      </div>
+      <div class="widget-user-image">
+        <img class="img-circle" src="../../assets/images/masters.png" alt="Masters">
+      </div>
+      <div class="box-footer">
+        <div class="row">
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <!-- <h5 class="description-header">6</h5>
+              <span class="description-text">Star</span> -->
+            </div>
+          </div>
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <router-link to="/Dashboard/Masters">
+                <button type="button" class="btn btn-default btn-lg">Visit</button>
+              </router-link>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="description-block">
+              <!-- <h5 class="description-header">5</h5>
+              <span class="description-text">Forks</span> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- for Configuration -->
+  <div class="col-md-3" v-if='isUserAdmin'>
+    <div class="box box-widget widget-user">
+      <div class="widget-user-header bg-aqua-active text-center">
+        <h3 class="widget-user-username center-text">Configuration</h3>
+      </div>
+      <div class="widget-user-image">
+        <img class="img-circle" src="../../assets/images/configuration.png" alt="Configuration">
+      </div>
+      <div class="box-footer">
+        <div class="row">
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <!-- <h5 class="description-header">6</h5>
+              <span class="description-text">Star</span> -->
+            </div>
+          </div>
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <router-link to="/Dashboard/AdminConfiguration">
+                <button type="button" class="btn btn-default btn-lg">Visit</button>
+              </router-link>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="description-block">
+              <!-- <h5 class="description-header">5</h5>
+              <span class="description-text">Forks</span> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- for Uploads -->
+  <div class="col-md-3" v-if='isUserAdmin'>
+    <div class="box box-widget widget-user">
+      <div class="widget-user-header bg-aqua-active text-center">
+        <h3 class="widget-user-username center-text">Uploads</h3>
+      </div>
+      <div class="widget-user-image">
+        <img class="img-circle" src="../../assets/images/uploads.png" alt="uploads">
+      </div>
+      <div class="box-footer">
+        <div class="row">
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <!-- <h5 class="description-header">6</h5>
+              <span class="description-text">Star</span> -->
+            </div>
+          </div>
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <router-link to="/Dashboard/Uploads">
+                <button type="button" class="btn btn-default btn-lg">Visit</button>
+              </router-link>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="description-block">
+              <!-- <h5 class="description-header">5</h5>
+              <span class="description-text">Forks</span> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- For Profile  -->
+  <!-- <div class="col-md-3" v-if='isUserAdmin'>
+    <div class="box box-widget widget-user">
+      <div class="widget-user-header bg-aqua-active text-center">
+        <h3 class="widget-user-username center-text">Profile</h3>
+      </div>
+      <div class="widget-user-image">
+        <img class="img-circle" src="../../assets/images/profile.png" alt="profile">
+      </div>
+      <div class="box-footer">
+        <div class="row">
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+            </div>
+          </div>
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <router-link to="/Dashboard/Profile">
+                <button type="button" class="btn btn-default btn-lg">Visit</button>
+              </router-link>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="description-block">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
 </div>
-<!-- End .container_12 -->

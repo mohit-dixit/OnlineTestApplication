@@ -39,6 +39,19 @@ export default {
 
     },
     methods: {
+        /* Reset call yet pending */
+        /* resetAll() {
+            this.allow_scale = 0;
+            this.allow_subject = 0;
+            this.allow_batch = 0;
+            this.allow_topic = 0;
+            this.allow_student = 0;
+            this.adminconfigurationform.institute_allow_scale = false;
+            this.adminconfigurationform.institute_allow_subject = false;
+            this.adminconfigurationform.institute_allow_batch = false;
+            this.adminconfigurationform.institute_allow_topic = false;
+            this.adminconfigurationform.institute_allow_student = false;
+        }, */
          resetAll() {
             this.adminconfigurationform.allow_scale = 0;
             this.adminconfigurationform.allow_subject = 0;

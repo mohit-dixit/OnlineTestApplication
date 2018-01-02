@@ -1,404 +1,47 @@
-.login-container{
+html, body, .container-table {
+  height: 100%;
+  background-color: #282B30 !important;
+}
+.container-table {
+    display: table;
+    color: white;
+}
+.vertical-center-row {
+    display: table-cell;
+    vertical-align: middle;
+}
+.vertical-20p {
+  padding-top: 20%;
+}
+.vertical-10p {
+  padding-top: 10%;
+}
+.logo {
+  width: 15em;
+  padding: 3em;
+}
+.loginForm .input-group {
+  padding-bottom: 1em;
+  height: 4em;
+}
+.input-group input {
+  height: 4em;
+}
+
+/* custom css classes */
+.correct-input {
+  border: 1px solid #ccc !important;
+}
+.error-input {
+  border: 1px solid red !important;
+}
+.forgot-password-container {
   position: relative;
-  width: 300px;
-  margin: 80px auto;
-  padding: 20px 40px 40px;
-  text-align: center;
-  background: #fff;
-  border: 1px solid #ccc;
-}
-
-#output{
-  position: absolute;
-  width: 300px;
-  top: -75px;
-  left: 0;
-  color: #fff;
-}
-
-.login-container::before,.login-container::after{
-  content: "";
-  position: absolute;
-  width: 100%;height: 100%;
-  top: 3.5px;left: 0;
-  background: #fff;
-  z-index: -1;
-  -webkit-transform: rotateZ(4deg);
-  -moz-transform: rotateZ(4deg);
-  -ms-transform: rotateZ(4deg);
-  border: 1px solid #ccc;
-}
-
-.login-container::after{
-  top: 5px;
-  z-index: -2;
-  -webkit-transform: rotateZ(-2deg);
-   -moz-transform: rotateZ(-2deg);
-    -ms-transform: rotateZ(-2deg);
-
-}
-
-.avatar{
-  width: 100px;height: 100px;
-  margin: 10px auto 30px;
-  border-radius: 100%;
-  border: 2px solid #aaa;
-  background-size: cover;
-  background-image: url("../../assets/images/key.jpg")
-}
-
-.form-box input{
+  display: table;
+  text-align: right;
   width: 100%;
-  padding: 10px;
-  text-align: center;
-  height:40px;
-  border: 1px solid #ccc;;
-  background: #fafafa;
-  transition:0.2s ease-in-out;
-
 }
-
-.form-box input:focus{
-  outline: 0;
-  background: #eee;
-}
-
-.form-box input[type="text"]{
-  border-radius: 5px 5px 0 0;
-}
-
-.form-box button.login{
-  margin-top:15px;
-  padding: 10px 20px;
-}
-.fb{background-color: #4965B8}
-.google{background-color: #DF6053}
-.twitter{background-color: #27AAE2}
-
-/*Styling custom*/
-button:hover{
-  opacity: 0.8;
-}
-.social-media-container{
-  max-width: 600px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 40px;
-}
-.label-login{
-  color: #ff8200;
-  width: 100%;
-  font-size: 30px;
-  line-height: 40px;
-  text-align: center;
-  margin: 45px 0;
-  background-color: #fff;
-}
-.label-signup{
-  color: #333;
-  width: 100%;
-  font-size: 15px;
-  line-height: 15px;
-  text-align: center;
-  margin: 15px 0;
-  background-color: #fff;
-}
-.signp{
-  color: #ff8200;
-  text-decoration: none;
-}
-.login-btn{
-  line-height: 50px;
-  font-size: 14px;
-  color: #fff;
-  background-color: #ff8200;
-  width: 500px;
-  text-transform: uppercase;
-  text-align: center;
-}
-.or-sep{
-  margin: 30px auto;
-  display: block;
-  max-width: 100%;
-}
-.login-btn-social{
-  width: 100%;
-  margin: 5px;
-  line-height: 50px;
-  font-size: 14px;
-  color: #fff;
-  text-transform: uppercase;
-  text-align: center;
-}
-.btn-container{
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-}
-
-.errortext{
-  font-size: small;
-  color: red;
-}
-
-
-/* Login Form New Styles */
-
-@import 'https://fonts.googleapis.com/css?family=Dosis|Roboto:300,400';
-* {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background: rgb(2, 190, 238);
-}
-
-.container {
-  position: absolute;
-  width: auto;
-  height: auto;
-  top: calc(50% - 240px);
-  left: calc(50% - 160px);
-}
-
-form {
-  position: absolute;
-  text-align: center;
-  background: #fff;
-  width: 310px;
-  height: 400px;
-  border-radius: 5px;
-  padding: 30px 20px 0 20px;
-  box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
-  box-sizing: border-box;
-}
-
-p {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 100;
-  text-transform: uppercase;
-  font-size: 12px;
-  margin-bottom: 40px;
-}
-
-p>span {
-  padding-top: 3px;
-  display: block;
-  font-weight: 400;
-  font-size: 9px;
-}
-
-h3 {
-  font-family: 'Dosis';
-  font-size: 35px;
-  text-transform: uppercase;
-  color: #87613d;
-  margin-bottom: 30px;
-}
-
-input,
-button {
-  outline: none !important;
-}
-
-button.fb {
-  border: none;
-  background: #3b5998;
-  width: 160px;
-  height: 25px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 12px;
-  color: #fff;
-  text-transform: uppercase;
-  border-radius: 4px;
-  border: 1px solid #29487d;
+.cursor-pointer, .cursor-pointer:hover {
   cursor: pointer;
-  margin-bottom: 20px;
-  transition: all 0.3s linear;
-}
-
-button.fb:hover {
-  background: #fff;
-  color: #3b5998;
-}
-
-button.form-btn {
-  position: absolute;
-  width: 100%;
-  height: 60px;
-  bottom: 0;
-  border: 0;
-  font-family: 'Dosis';
-  font-size: 24px;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-button.form-btn.sx {
-  left: 0;
-  border-radius: 0 0 0 5px;
-  background-color: rgb(2, 190, 238);
-  color: #fff;
-  transition: all 0.3s linear;
-}
-
-button.form-btn.sx:hover {
-  background-color: rgb(2, 190, 238);
-  color: #fff;
-}
-
-button.form-btn.sx.back {
-  background-color: rgba(0, 0, 0, 0.15);
-  transition: all 0.3s linear;
-}
-
-button.form-btn.sx.back:hover {
-  background-color: rgba(0, 0, 0, 0.35);
-}
-
-button.form-btn.dx {
-  right: 0;
-  border-radius: 0 0 5px 0;
-  background-color: rgb(2, 190, 238);
-  color: #fff;
-}
-
-input {
-  border: none;
-  border-bottom: 1px solid rgb(2, 190, 238);
-  width: 85%;
-  font-family: 'Roboto';
-  color: rgb(2, 190, 238);
-  text-align: center;
-  font-size: 21px;
-  font-weight: 100;
-  margin-bottom: 25px;
-}
-
-::-webkit-input-placeholder {
-  color: rgb(2, 190, 238);
-  font-family: 'Roboto';
-  font-weight: 100;
-}
-
-:-moz-placeholder {
-  color: rgb(2, 190, 238);
-  font-family: 'Roboto';
-  font-weight: 100;
-}
-
-::-moz-placeholder {
-  color: rgb(2, 190, 238);
-  font-family: 'Roboto';
-  font-weight: 100;
-}
-
-:-ms-input-placeholder {
-  color: rgb(2, 190, 238);
-  font-family: 'Roboto';
-  font-weight: 100;
-}
-
-.signIn input,
-.signUp .w100 {
-  width: 100%;
-}
-
-.signIn {
-  z-index: 1;
-  transform: perspective(100px) translate3d(100px, 0px, -30px);
-  opacity: 0.5;
-}
-
-.signUp {
-  z-index: 2;
-}
-
-.active-dx {
-  animation-name: foregrounding-dx;
-  animation-duration: 0.9s;
-  animation-fill-mode: forwards;
-}
-
-.active-sx {
-  animation-name: foregrounding-sx;
-  animation-duration: 0.9s;
-  animation-fill-mode: forwards;
-}
-
-.inactive-dx {
-  animation-name: overshadowing-dx;
-  animation-duration: 0.9s;
-  animation-fill-mode: forwards;
-}
-
-.inactive-sx {
-  animation-name: overshadowing-sx;
-  animation-duration: 0.9s;
-  animation-fill-mode: forwards;
-}
-
-@keyframes overshadowing-dx {
-  0% {
-    z-index: 2;
-    transform: perspective(100px) translate3d(0px, 0px, 0px);
-    opacity: 1;
-    box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
-  }
-  100% {
-    z-index: 1;
-    transform: perspective(100px) translate3d(100px, 0px, -30px);
-    opacity: 0.5;
-    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.25);
-  }
-}
-
-@keyframes overshadowing-sx {
-  0% {
-    z-index: 2;
-    transform: perspective(100px) translate3d(0px, 0px, 0px);
-    opacity: 1;
-    box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
-  }
-  100% {
-    z-index: 1;
-    transform: perspective(100px) translate3d(-100px, 0px, -30px);
-    opacity: 0.5;
-    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.25);
-  }
-}
-
-@keyframes foregrounding-dx {
-  0% {
-    z-index: 1;
-    transform: perspective(100px) translate3d(100px, 0px, -30px);
-    opacity: 0.5;
-  }
-  50% {
-    z-index: 2;
-    transform: perspective(100px) translate3d(400px, 0px, -30px);
-  }
-  100% {
-    z-index: 2;
-    transform: perspective(100px) translate3d(0px, 0px, 0px);
-    opacity: 1;
-  }
-}
-
-@keyframes foregrounding-sx {
-  0% {
-    z-index: 1;
-    transform: perspective(100px) translate3d(-100px, 0px, -30px);
-    opacity: 0.5;
-  }
-  50% {
-    z-index: 2;
-    transform: perspective(100px) translate3d(-400px, 0px, -30px);
-  }
-  100% {
-    z-index: 2;
-    transform: perspective(100px) translate3d(0px, 0px, 0px);
-    opacity: 1;
-  }
+  color: white;
 }

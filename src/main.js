@@ -10,6 +10,7 @@ import VueEditor from 'vue2-quill-editor'
 import DatePicker from 'vue-bootstrap-datetimepicker'
 import BreabCrumbs from 'vue-2-breadcrumbs'
 import VueGoodTable from 'vue-good-table'
+import { Tabs } from 'bootstrap-vue/es/components';
 import vueXlsxTable from 'vue-xlsx-table'
 import CubeSpin from 'vue-loading-spinner/src/components/Circle8'
 import Multiselect from 'vue-multiselect'
@@ -18,12 +19,13 @@ import VeeValidate from 'vee-validate';
 /* For Spinner while HTTP calls  */
 // import {RotateSquare2} from 'vue-loading-spinner'
 
+import 'hideseek';
+
 /* For sweet Alert as notification */
 import VueSweetAlert from 'vue-sweetalert'
-
 import './assets/style/loader.css';
 import './assets/style/bootstrap-datetimepicker.css'
-import '../node_modules/bootstrap/dist/css/bootstrap.css'
+// import '../node_modules/bootstrap/dist/css/bootstrap.css'
 import '../node_modules/bootstrap-vue/dist/bootstrap-vue.css'
 import './assets/style/commonstyle.css'
 import '../node_modules/vue-multiselect/dist/vue-multiselect.min.css'
@@ -35,6 +37,7 @@ Vue.use(VueSweetAlert)
 Vue.use(VeeValidate);
 // Vue.use(jquery);
 Vue.use(BootstrapVue);
+Vue.use(Tabs);
 Vue.use(VueResource);
 Vue.use(VueEditor, {});
 Vue.use(BreabCrumbs);

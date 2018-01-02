@@ -6,6 +6,7 @@ import {
     NumberKeyValidation
 } from '../../utils/globalservice';
 import * as config from '../../config/constants.js'
+import Sidebar from '../Sidebar';
 
 Vue.use(VueLocalStorage, {
   name: 'lsobj',
@@ -14,7 +15,7 @@ Vue.use(VueLocalStorage, {
 
 export default {
   name: 'dashboard',
-  components: {},
+  components: {Sidebar},
   props: [],
   data() {
     this.BaseUrl = config.BASE_URL;
@@ -24,6 +25,10 @@ export default {
     this.isUserStudent = false;
     this.asAdminToggle = false;
     return {
+      classes: {
+        fixed_layout: false,
+        hide_logo: false
+      },
       get loginUserName() {
         return  localStorage.getItem('loginName');
       },
