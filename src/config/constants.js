@@ -3,6 +3,7 @@
 //export const BASE_URL = 'http://192.168.4.19:3013/';
 // const BASE_URL = 'http://18.217.126.78:3013/';
 const BASE_URL = 'http://192.168.4.253:3013/';
+
 const DEFAULT_PASSWORD = '123456';
 const Active = 1;
 const Inactive = 0;
@@ -22,7 +23,9 @@ const CRUD_CODES = {
   SUBJECT     : 5,
   TEST        : 6,
   USER        : 7,
-  TOPIC       : 8
+  TOPIC       : 8,
+  STUDENT     : 9,
+  TEACHER     : 10
 };
 
 //========================== Export Module Start ===========================

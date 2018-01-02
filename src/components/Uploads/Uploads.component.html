@@ -1,16 +1,22 @@
 <section class="assign-test" v-if="loginRole === '2'">
   <div class="uploads-container">
     <div class="form-box">
-      <label class="headingForm">Uploads</label>
+        <label class="headingForm">Uploads
+        </label>
       <br>
       <b-form @submit="onSubmit">
         <b-container fluid>
             <b-row class="my-1">
                 <b-col sm="4"><label for="input-none">Select Type:</label></b-col>
-                <b-col sm="8">
-                    <b-form-select name="Type" v-model="uploads.type" v-validate="'required'" :options="options" class="mb-3">
+                <b-col sm="6">
+                    <b-form-select name="Type" v-model="uploads.typeId" v-validate="'required'" :options="options" class="mb-3">
                     </b-form-select>
                     <span v-show="errors.has('Type')" class="help is-danger">{{ errors.first('Type') }}</span>
+                </b-col>
+                <b-col v-if="uploads.typeId" sm="2">
+                    <a download id="downloadSample" href="../../assets/sampleexcels/Topic.xlsx" title="Sample File">
+                      <img alt="ImageName" height="32px" width="32px" src="../../assets/images/excel.jpg">
+                  </a>
                 </b-col>
               </b-row>
           <b-row class="my-1">
