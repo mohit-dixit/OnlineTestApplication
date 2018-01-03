@@ -29,7 +29,30 @@ export default {
         this.loader = false;
         console.log(res, "response");
         if (res && res.body.message.res.length) {
-          this.$router.push('/reset-password/'+ res.body.message.token);
+          this.$swal({
+            type: 'success',
+            title: 'Reset link sent',
+            text: "Reset link has been sent to your email. Please reset your password.",
+            allowOutsideClick: false,
+            showConfirmButton: true
+          }).then((result) => {
+            if (result) {
+              this.$router.push('/reset-password/'+ res.body.message.token);
+            }
+          });
+        }
+        else{
+          this.$swal({
+            type: 'error',
+            title: 'Invalid Email',
+            text: "Please enter valid Email",
+            allowOutsideClick: false,
+            showConfirmButton: true
+          }).then((result) => {
+            if (result) {
+              this.$router.push('/');
+            }
+          });
         }
       })
       .catch(error => {

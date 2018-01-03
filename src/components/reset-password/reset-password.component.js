@@ -7,7 +7,7 @@ import {
   PostRequest,
   LoginAuthentication
 } from '../../utils/globalservice'
-var $ = window.jQuery = require('jquery') 
+var $ = window.jQuery = require('jquery')
 
 // var $ = '';
 Vue.use(VueLocalStorage, {
@@ -31,22 +31,56 @@ export default {
     }
   },
   methods: {
+    validateResetToken: function () {
+      let postData = {};
+      postData.resetToken = this.token;
+      PostRequest(this.BaseUrl + 'api/superAdmin/validateResetToken', postData).then(res => {
+        if (!res.body.message) {
+          this.$swal({
+            type: 'error',
+            title: 'Invalid Token',
+            text: "Token is not valid",
+            allowOutsideClick: false,
+            showConfirmButton: true
+          }).then((result) => {
+            if (result) {
+              this.$router.push('/');
+            }
+          });
+        }
+      });
+    },
     resetPasswordCall(evt) {
-      evt.preventDefault();
-      this.loader = true;
-      this.resetform.password = btoa(this.resetform.password);
-      console.log(this.resetform,'form value');
-      PostRequest(this.BaseUrl + 'api/superAdmin/login', this.loginform)
-      .then(res => {
-        this.loader = false;
-      })
-      .catch(err => {
-        console.log(err);
-        this.loader = false;
-      })
-    }, 
+          evt.preventDefault();
+          this.loader = true;
+          this.resetform.password = btoa(this.resetform.password);
+          this.resetform.resetToken = this.token;
+          PostRequest(this.BaseUrl + 'api/superAdmin/reset/password', this.resetform)
+          .then(res => {
+            if(res){
+              this.loader = true;
+              this.$swal({
+                type: 'success',
+                title: 'Password changed',
+                text: "You have changed your password successfully.",
+                allowOutsideClick: false,
+                showConfirmButton: true
+              }).then((result) => {
+                if (result) {
+                  this.$router.push('/');
+                }
+              });
+            }
+          })
+          .catch(err => {
+            console.log(err);
+            this.loader = false;
+          })
+    },
   },
   created: function () {
-    console.log(this.token, "Token from password changes");
+    if(this.token){
+      this.validateResetToken();
+    }
   }
 }
