@@ -55,11 +55,11 @@ export default {
       console.log(event);
     },
     onSubmit(evt) {
-      evt.preventDefault();
-      this.loader = true;
+      evt.preventDefault();      
       this.$validator.validateAll()
       .then((result) => {
         if (result) {
+          this.loader = true;
           let apiPath = 'api/superAdmin/create/institute';
           let isEditMode = this.isEdit;
           if(isEditMode){

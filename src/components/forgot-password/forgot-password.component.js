@@ -21,43 +21,48 @@ export default {
   },
   methods: {
     forgotPasswordAPI(evt) {
-      evt.preventDefault();
-      this.loader = true;
-      console.log(this.forgotform, "forgot form data before post");
-      PostRequest(this.BaseUrl + 'api/superAdmin/forgot-password', this.forgotform)
-      .then(res => {
-        this.loader = false;
-        console.log(res, "response");
-        if (res && res.body.message.res.length) {
-          this.$swal({
-            type: 'success',
-            title: 'Reset link sent',
-            text: "Reset link has been sent to your email. Please reset your password.",
-            allowOutsideClick: false,
-            showConfirmButton: true
-          }).then((result) => {
-            if (result) {
-              this.$router.push('/reset-password/'+ res.body.message.token);
+        evt.preventDefault();
+        this.$validator.validateAll().then((result) => {
+          if (result) {
+          this.loader = true;
+          console.log(this.forgotform, "forgot form data before post");
+          PostRequest(this.BaseUrl + 'api/superAdmin/forgot-password', this.forgotform)
+          .then(res => {
+            this.loader = false;
+            console.log(res, "response");
+            if (res && res.body.message.res.length) {
+              this.$swal({
+                type: 'success',
+                title: 'Reset link sent',
+                text: "Reset link has been sent to your email. Please reset your password.",
+                allowOutsideClick: false,
+                showConfirmButton: true
+              }).then((result) => {
+                if (result) {
+                  //this.$router.push('/reset-password/'+ res.body.message.token);
+                  this.$router.push('/');
+                }
+              });
             }
-          });
-        }
-        else{
-          this.$swal({
-            type: 'error',
-            title: 'Invalid Email',
-            text: "Please enter valid Email",
-            allowOutsideClick: false,
-            showConfirmButton: true
-          }).then((result) => {
-            if (result) {
-              this.$router.push('/');
+            else{
+              this.$swal({
+                type: 'error',
+                title: 'Invalid Username',
+                text: "Username not found",
+                allowOutsideClick: false,
+                showConfirmButton: true
+              }).then((result) => {
+                if (result) {
+                  this.$router.push('/');
+                }
+              });
             }
-          });
+          })
+          .catch(error => {
+            console.log(error);
+          })
         }
-      })
-      .catch(error => {
-        console.log(error);
-      })
+      });
     }
   }
 }

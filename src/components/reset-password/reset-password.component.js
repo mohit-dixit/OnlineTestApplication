@@ -52,30 +52,49 @@ export default {
     },
     resetPasswordCall(evt) {
           evt.preventDefault();
-          this.loader = true;
-          this.resetform.password = btoa(this.resetform.password);
-          this.resetform.resetToken = this.token;
-          PostRequest(this.BaseUrl + 'api/superAdmin/reset/password', this.resetform)
-          .then(res => {
-            if(res){
-              this.loader = true;
-              this.$swal({
-                type: 'success',
-                title: 'Password changed',
-                text: "You have changed your password successfully.",
-                allowOutsideClick: false,
-                showConfirmButton: true
-              }).then((result) => {
-                if (result) {
-                  this.$router.push('/');
+          this.$validator.validateAll().then((result) => {
+            if (result) {
+                if(this.resetform.password != this.resetform.cnfpassword){
+                    this.$swal({
+                      type: 'error',
+                      title: 'Invalid Password',
+                      text: "Password and Confirm Password must be same.",
+                      allowOutsideClick: false,
+                      showConfirmButton: true
+                    }).then((result) => {
+                      if (result) {
+                        return;
+                      }
+                    });
                 }
-              });
+                else{
+                    this.loader = true;
+                    this.resetform.password = btoa(this.resetform.password);
+                    this.resetform.resetToken = this.token;
+                    PostRequest(this.BaseUrl + 'api/superAdmin/reset/password', this.resetform)
+                    .then(res => {
+                      if(res){
+                        this.loader = true;
+                        this.$swal({
+                          type: 'success',
+                          title: 'Password changed',
+                          text: "You have changed your password successfully.",
+                          allowOutsideClick: false,
+                          showConfirmButton: true
+                        }).then((result) => {
+                          if (result) {
+                            this.$router.push('/');
+                          }
+                        });
+                      }
+                    })
+                    .catch(err => {
+                      console.log(err);
+                      this.loader = false;
+                    })
+              }
             }
-          })
-          .catch(err => {
-            console.log(err);
-            this.loader = false;
-          })
+        });
     },
   },
   created: function () {

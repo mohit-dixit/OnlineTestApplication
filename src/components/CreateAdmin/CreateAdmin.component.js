@@ -84,58 +84,58 @@ export default {
       });
     },
     onSubmit(evt) {
-          evt.preventDefault();
-          this.loader = true;
+          evt.preventDefault();         
           this.$validator.validateAll().then((result) => {
-              if (result) {
-            //Making Post Data ==============================================================================
-            this.createadminform.instituteId = this.createadminform.associatedwith;
-            this.createadminform.password = config.DEFAULT_PASSWORD;
-            this.createadminform.token = Vue.lsobj.get('loginToken');
-            //Making Post Data ==============================================================================
+            if (result) {
+                  this.loader = true;
+                  //Making Post Data ==============================================================================
+                  this.createadminform.instituteId = this.createadminform.associatedwith;
+                  this.createadminform.password = config.DEFAULT_PASSWORD;
+                  this.createadminform.token = Vue.lsobj.get('loginToken');
+                  //Making Post Data ==============================================================================
 
-            let apiPath = 'api/superAdmin/create/admin';
-            let isEditMode = this.isEdit;
-            if(isEditMode){
-              apiPath = 'api/superAdmin/update/admin';
-              if(this.createadminform.status){
-                this.createadminform.status = config.Active;
-              }
-              else{
-                this.createadminform.status = config.Inactive;
-              }
-            }
-            PostRequest(this.BaseUrl + apiPath, this.createadminform)
-            .then(res => {
-              this.loader = false;
-              if (res && res.status == 200) {
-                let msg = isEditMode ? 'Admin updated successfully' : 'Admin created successfully';
-                this.$swal({
-                  type: 'success',
-                  title: 'Done !',
-                  allowOutsideClick: false,
-                  text: msg,
-                  showConfirmButton: true
-                }).then((result) => {
-                  if (result) {
-                    this.$router.push('/Dashboard/AdminList');
+                  let apiPath = 'api/superAdmin/create/admin';
+                  let isEditMode = this.isEdit;
+                  if(isEditMode){
+                    apiPath = 'api/superAdmin/update/admin';
+                    if(this.createadminform.status){
+                      this.createadminform.status = config.Active;
+                    }
+                    else{
+                      this.createadminform.status = config.Inactive;
+                    }
                   }
-                });
-              }
-              else {
-                this.$swal({
-                    type: 'error',
-                    title: 'Sorry !',
-                    text: res.statustext || 'Please try again after some time !',
-                });
-                this.$forceUpdate();
-              }
-          })
-          .catch(error => {
-            this.loader = false;
-            console.log(error);
-          })
-        }
+                  PostRequest(this.BaseUrl + apiPath, this.createadminform)
+                  .then(res => {
+                    this.loader = false;
+                    if (res && res.status == 200) {
+                      let msg = isEditMode ? 'Admin updated successfully' : 'Admin created successfully';
+                      this.$swal({
+                        type: 'success',
+                        title: 'Done !',
+                        allowOutsideClick: false,
+                        text: msg,
+                        showConfirmButton: true
+                      }).then((result) => {
+                        if (result) {
+                          this.$router.push('/Dashboard/AdminList');
+                        }
+                      });
+                    }
+                    else {
+                      this.$swal({
+                          type: 'error',
+                          title: 'Sorry !',
+                          text: res.statustext || 'Please try again after some time !',
+                      });
+                      this.$forceUpdate();
+                    }
+                })
+                .catch(error => {
+                  this.loader = false;
+                  console.log(error);
+                })
+            }
       });
     },
     onlyNumberKey: function (event) {
