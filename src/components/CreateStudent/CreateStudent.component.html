@@ -35,7 +35,7 @@
           <b-row class="my-1">
             <b-col sm="4"><label for="input-none">Roll Number*</label></b-col>
             <b-col sm="8">
-              <b-form-input id="rollno" type="text" name="Roll Number" v-model="createstudentform.rollno" v-validate="'required'" placeholder="Enter Roll Number"></b-form-input>
+              <b-form-input id="rollno" type="text" name="Roll Number" v-model="createstudentform.rollNumber" v-validate="'required'" placeholder="Enter Roll Number"></b-form-input>
               <span v-show="errors.has('Roll Number')" class="help is-danger">{{ errors.first('Roll Number') }}</span>
             </b-col>
           </b-row>
@@ -62,8 +62,8 @@
             <b-col sm="4"><label for="input-none">Guardian Phone*</label></b-col>
             <b-col sm="8">
                 <b-input-group left="📞" class="mb-2 mr-sm-2 mb-sm-0">
-                  <b-form-input id="input-none" style="z-index: 0;" name="Guardian Phone" :state="null" maxlength="15" @keydown.native="onlyNumberKey" v-model="createstudentform.guardiannumber"
-                  v-validate="'required|numeric|min:10'" placeholder="Enter Guardian Mobile Number "></b-form-input>
+                  <b-form-input id="input-none" style="z-index: 0;" name="Guardian Phone" :state="null" maxlength="15" @keydown.native="onlyNumberKey" v-model="createstudentform.guardianPhone"
+                  v-validate="'required|numeric|min:10'" placeholder="Enter Guardian Phone"></b-form-input>
                 </b-input-group>
               <span v-show="errors.has('Guardian Phone')" class="help is-danger">{{ errors.first('Guardian Phone') }}</span>
             </b-col>

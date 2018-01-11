@@ -3,7 +3,7 @@
   <router-link to="/Dashboard/CreateAdmin">
     <b-button variant="primary"><b>+ </b>Add Admin</b-button>
   </router-link>
-  <br><br>
+  <br>
     <!-- <div class="tab">
       <input id="tab-one" style="display: none" type="checkbox" name="tabs">
       <label for="tab-one" class="FilterPanel">+ Filters</label>
@@ -53,7 +53,7 @@
     <br>
   <div style="background-color: white; border: 3px solid #E9ECEF;">
     <vue-good-table title="Admins" :columns="columnsAdmins" :rows="adminList" :paginate="true" :globalSearch="true" :lineNumbers="true"
-      styleClass="testing table table-bordered table-striped condensed">
+      styleClass="testing table table-bordered table-striped condensed" v-if="adminList.length">
       <template slot="table-row" slot-scope="props">
           <td>{{ props.row.firstname }}</td>
           <td>{{ props.row.lastname }}</td>
@@ -74,5 +74,6 @@
         </td>
       </template>
     </vue-good-table>
+    <img src='../../assets/images/nodatafound.jpeg' v-if="!adminList.length" />
   </div>
 </div>

@@ -62,7 +62,7 @@ export default {
       let postData = {};
       postData.status = null;
       this.loader = true;
-      GetRequest(this.BaseUrl + 'api/admin/subject/list', postData).then(res => {
+      GetRequest(this.BaseUrl + 'api/admin/subject/list/'+ postData.status).then(res => {
         if (res.status) {
           this.loader = false;
           let response = res.result.message;

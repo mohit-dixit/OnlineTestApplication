@@ -266,6 +266,41 @@
     </div>
   </div>
 
+  <!-- for Assign Test -->
+  <div class="col-md-3" v-if="isUserTeacher">
+    <div class="box box-widget widget-user">
+      <div class="widget-user-header bg-aqua-active text-center">
+        <h3 class="widget-user-username center-text">Assign Test</h3>
+      </div>
+      <div class="widget-user-image">
+        <img class="img-circle" src="../../assets/dashboardfiles/assigntest.png" alt="Questions">
+      </div>
+      <div class="box-footer">
+        <div class="row">
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <!-- <h5 class="description-header">6</h5>
+              <span class="description-text">Star</span> -->
+            </div>
+          </div>
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <router-link to="/Dashboard/AssignTest">
+                <button type="button" class="btn btn-default btn-lg">Visit</button>
+              </router-link>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="description-block">
+              <!-- <h5 class="description-header">5</h5>
+              <span class="description-text">Forks</span> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- for Masters -->
   <div class="col-md-3" v-if='isUserAdmin'>
     <div class="box box-widget widget-user">

@@ -63,9 +63,8 @@ export default {
     bindScales: function () {
       let postData = {};
       postData.status = null;
-      GetRequest(this.BaseUrl + 'api/admin/scale/list', postData).then(res => {
+      GetRequest(this.BaseUrl + 'api/admin/scale/list/'+ postData.status).then(res => {
         if (res.status) {
-            debugger;
             let response = res.result.message;
             let list = [];
             response.forEach(function (element) {

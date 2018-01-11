@@ -49,6 +49,7 @@ import EditQuestion from '@/components/CreateQuestion'
 import SelectQuestionsView from '@/components/SelectQuestionsView'
 import SelectQuestionsPanel from '@/components/SelectQuestionsPanel'
 import NotFoundView from './../components/404.vue'
+import Reporting from './../components/reporting'
 
 Vue.use(Router)
 Vue.use(VueBreadcrumbs)
@@ -333,6 +334,12 @@ export default new Router({
           name: 'Uploads',
           component: Uploads,
           meta: { AuthRequired: true , breadcrumb: 'Uploads' }
+        },
+        {
+          path: 'Reporting',
+          name: 'Reporting',
+          component: Reporting,
+          meta: { AuthRequired: true , breadcrumb: 'Reporting' }
         }
       ]
     },

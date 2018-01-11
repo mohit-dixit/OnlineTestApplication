@@ -2,10 +2,10 @@
   <router-link to="/Dashboard/Masters/CreateScale">
     <b-button variant="primary"><b>+ </b>Add Scale</b-button>
   </router-link>
-  <br>
+  <br><br>
   <div style="background-color: white; border: 3px solid #E9ECEF;">
     <vue-good-table title="Scales" :columns="columnsScales" :rows="scaleList" :paginate="true" :globalSearch="true" :lineNumbers="true"
-      styleClass="table table-bordered table-striped condensed">
+      styleClass="table table-bordered table-striped condensed" v-if="scaleList.length">
       <template slot="table-row" slot-scope="props">
           <td>{{ props.row.scalename }}</td>
           <td>{{ props.row.points }}</td>
@@ -23,5 +23,6 @@
         </td>
       </template>
     </vue-good-table>
+    <img src='../../assets/images/nodatafound.jpeg' v-if="!scaleList.length" />
   </div>
 </div>

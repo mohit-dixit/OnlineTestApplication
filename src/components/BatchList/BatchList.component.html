@@ -2,23 +2,17 @@
   <router-link to="/Dashboard/Masters/CreateBatch">
     <b-button variant="primary"><b>+ </b>Add Batch</b-button>
   </router-link>
-  <br>
+  <br><br>
   <div style="background-color: white; border: 3px solid #E9ECEF;">
     <vue-good-table title="Batches" :columns="columnsBatchs" :rows="batchList" :paginate="true" :globalSearch="true" :lineNumbers="true"
-      styleClass="table table-bordered table-striped condensed">
+      styleClass="table table-bordered table-striped condensed" v-if="batchList.length">
       <template slot="table-row" slot-scope="props">
           <td>{{ props.row.batchname }}</td>
-          <td v-if="props.row.status =='Inactive'">
-              <label class="switch" style="width: 60px;">
-                  <input type="checkbox" @click="activeInactiveChange($event,props)">
-                  <span class="slider round"></span>
-              </label>
-          </td>
-          <td v-else-if="props.row.status =='Active'">
-              <label class="switch" style="width: 60px;">
-                  <input type="checkbox" @click="activeInactiveChange($event,props)" checked>
-                  <span class="slider round"></span>
-              </label>
+          <td>
+            <label class="switch">
+              <input type="checkbox" @click="activeInactiveChange($event,props)" :checked="props.row.status =='Active'" style='display:none'>
+              <span class="slider round"></span>
+            </label>
           </td>
       </template>
       <template slot="table-row-after" slot-scope="props">
@@ -28,6 +22,7 @@
         </td>
       </template>
     </vue-good-table>
+    <img src='../../assets/images/nodatafound.jpeg' v-if="!batchList.length" />
   </div>
    <!-- Modal Component -->
    <!-- <b-modal centered ref="deleteModal" v-model="show" title="Delete Confirmation" :header-bg-variant="headerBgVariant" :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">

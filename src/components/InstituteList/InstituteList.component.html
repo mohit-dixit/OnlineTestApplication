@@ -52,7 +52,7 @@
     <br>
   <div style="background-color: white; border: 3px solid #E9ECEF;">
     <vue-good-table title="Institutes" :columns="columnsInstitutes" :rows="instituteList" :paginate="true" :globalSearch="true"
-      :lineNumbers="true" styleClass="table table-bordered table-striped condensed">
+      :lineNumbers="true" styleClass="table table-bordered table-striped condensed" v-if="instituteList.length">
       <template slot="table-row" slot-scope="props">
           <td>{{ props.row.name }}</td>
           <td>{{ props.row.emailID }}</td>
@@ -72,6 +72,7 @@
         </td>
       </template>
     </vue-good-table>
+    <img src='../../assets/images/nodatafound.jpeg' v-if="!instituteList.length" />
   </div>
    <!-- Modal Component -->
    <b-modal centered ref="deleteModal" title="Delete Confirmation" :header-bg-variant="headerBgVariant" :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant" :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">

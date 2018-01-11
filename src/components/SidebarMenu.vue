@@ -31,14 +31,6 @@
         </span>
       </a>
     </router-link>
-    <router-link tag="li" class="pageLink" to="/Dashboard/TestList" v-if="isUserTeacher || isUserAdmin">
-      <a>
-        <i class="fa fa-book"></i>
-        <span class="page">
-          Test Section
-        </span>
-      </a>
-    </router-link>
     <router-link tag="li" class="pageLink" to="/Dashboard/TeacherList" v-if='isUserAdmin'>
       <a>
         <i class="fa fa-cog"></i>
@@ -49,6 +41,14 @@
       <a>
         <i class="fa fa-question"></i>
         <span class="page">Question Section</span>
+      </a>
+    </router-link>
+    <router-link tag="li" class="pageLink" to="/Dashboard/TestList" v-if="isUserTeacher || isUserAdmin">
+      <a>
+        <i class="fa fa-book"></i>
+        <span class="page">
+          Test Section
+        </span>
       </a>
     </router-link>
     <router-link tag="li" class="pageLink" to="/Dashboard/Masters" v-if='isUserAdmin'>
@@ -67,6 +67,18 @@
       <a>
         <i class="fa fa-upload"></i>
         <span class="page">Uploads</span>
+      </a>
+    </router-link>
+     <router-link tag="li" class="pageLink" to="/Dashboard/AssignTest" v-if='isUserTeacher'>
+      <a>
+        <i class="fa fa-tasks"></i>
+        <span class="page">Assign Test</span>
+      </a>
+    </router-link>
+     <router-link tag="li" class="pageLink" to="/Dashboard/Reporting">
+      <a>
+        <i class="fa fa-bar-chart"></i>
+        <span class="page">Reporting</span>
       </a>
     </router-link>
   </ul>

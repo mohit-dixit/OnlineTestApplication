@@ -222,9 +222,10 @@ export default {
         },
         getListOfScale() {
             this.loader = true;
-            let data = {};
-            PostRequest(this.BaseUrl + 'api/admin/scale/list', data)
-                .then(res => {
+            let postData = {};
+            postData.status = config.active;
+            this.loader = true;
+            GetRequest(this.BaseUrl + 'api/admin/scale/list/'+ postData.status).then(res => {
                     this.loader = false;
                     this.scaleOptions = [];
                     this.scaleOptions.push({
@@ -246,10 +247,10 @@ export default {
                 })
         },
         getListOfSubjects() {
-            this.loader = true;
-            let data = {};
-            PostRequest(this.BaseUrl + 'api/admin/subject/list', data)
-                .then(res => {
+          let postData = {};
+          postData.status = config.active;
+          this.loader = true;
+          GetRequest(this.BaseUrl + 'api/admin/subject/list/'+ postData.status).then(res => {
                     this.loader = false;
                     this.subjectOptions = [];
                     this.subjectOptions.push({

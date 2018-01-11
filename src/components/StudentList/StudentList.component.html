@@ -2,7 +2,7 @@
   <router-link to="/Dashboard/CreateStudent">
     <b-button variant="primary"><b>+ </b>Add Student</b-button>
   </router-link>
-  <br><br>
+  <br>
     <!-- <div class="tab">
       <input id="tab-one" style="display: none" type="checkbox" name="tabs">
       <label for="tab-one" class="FilterPanel">+ Filters</label>
@@ -52,7 +52,7 @@
     <br>
   <div style="background-color: white; border: 3px solid #E9ECEF;">
     <vue-good-table title="Students" :columns="columnsStudents" :rows="studentList" :paginate="true" :globalSearch="true" :lineNumbers="true"
-      styleClass="table table-bordered table-striped condensed">
+      styleClass="table table-bordered table-striped condensed" v-if="studentList.length">
       <template slot="table-row" slot-scope="props">
           <td>{{ props.row.firstname }} {{ props.row.lastname }}</td>
           <td>{{ props.row.batch }}</td>
@@ -72,5 +72,6 @@
         </td>
       </template>
     </vue-good-table>
+    <img src='../../assets/images/nodatafound.jpeg' v-if="!studentList.length" />
   </div>
 </div>

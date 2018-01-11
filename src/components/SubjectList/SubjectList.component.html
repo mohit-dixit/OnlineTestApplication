@@ -2,7 +2,7 @@
   <router-link to="/Dashboard/Masters/CreateSubject">
     <b-button variant="primary"><b>+ </b>Add Subject</b-button>
   </router-link>
-  <br>
+  <br><br>
   <div style="background-color: white; border: 3px solid #E9ECEF;">
     <vue-good-table title="List of Subjects" :columns="columnsSubjects" :rows="subjectList" :paginate="true" :globalSearch="true" :lineNumbers="true"
       styleClass="table table-bordered table-striped condensed" v-if='subjectList.length'>

@@ -41,7 +41,9 @@ export default {
             return `${option.subject}`
         },
         bindSubjects: function() {
-            GetRequest(this.BaseUrl + 'api/admin/subject/list').then(res => {
+          let postData = {};
+          postData.status = config.Active;
+            GetRequest(this.BaseUrl + 'api/admin/subject/list/'+ postData.status).then(res => {
                 if (res) {
                     res.result.message.forEach(function(element) {
                         this.subjectoptions.push({

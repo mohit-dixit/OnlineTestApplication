@@ -116,6 +116,9 @@ export default {
     customLabel1(option) {
       return `${option.teacher}`
     },
+    customLabel2(option) {
+      return `${option.subject}`
+    },
     getTestData: function(){
       let postData = {};
       postData.id = this.id;
@@ -127,7 +130,8 @@ export default {
             this.createtest.validFrom = new Date(response.validFrom);
             this.createtest.ValidTo = new Date(response.ValidTo);
             this.checkedQuestions = response.questionDetails;
-            this.createtest.keepquestionSamemarks = this.createtest.sameMarksQuestions;
+            this.selectedQuestion = response.questionDetails;
+            this.createtest.keepquestionSamemarks = this.createtest.sameMarksQuestions ? true : false;
 
             let list = [];
             response.batchDetails.forEach(function(element) {
@@ -146,6 +150,14 @@ export default {
               })
             }, this);
             this.createtest.teacherId = list;
+            list = [];
+            response.subjectDetails.forEach(function(element) {
+              list.push({
+                  id: element.id,
+                  subject: element.subjectName
+              })
+            }, this);
+            this.createtest.subjectId = list;
           }
       });
     },
@@ -157,16 +169,19 @@ export default {
       //Find Promise.all type request here
       let postData = {};
       postData.status = config.Active;
-      PostRequest(this.BaseUrl + 'api/admin/batch/list', postData).then(res => {
-        if (res) {
-          res.body.message.forEach(function(element) {
-            this.batchOptions.push({
-              id: element.id,
-              batchname: element.batchName
-            })
-          }, this);
-        }
-      });
+      GetRequest(this.BaseUrl + 'api/admin/batch/list/'+ postData.status).then(res => {
+          if (res) {
+              res.result.message.forEach(function(element) {
+                  this.batchOptions.push({
+                    id: element.id,
+                    batchname: element.batchName
+                  })
+              }, this);
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        });
       let questionPostData = {};
       questionPostData.status = config.Active;
       PostRequest(this.BaseUrl + 'api/admin/question/list', questionPostData).then(res => {
@@ -212,26 +227,20 @@ export default {
     },
 
     /* Binding Subject List in this method */
-    bindSubjects() {
+    bindSubjects: function() {
       let postData = {};
       postData.status = config.Active;
-      PostRequest(this.BaseUrl + 'api/admin/subject/list', postData)
-        .then(res => {
-            this.subjectOptions = [];
-            if (res.status && res.body.message) {         
-                res.body.message.forEach((element) => {
+        GetRequest(this.BaseUrl + 'api/admin/subject/list/'+ postData.status).then(res => {
+            if (res) {
+                res.result.message.forEach(function(element) {
                     this.subjectOptions.push({
                         id: element.id,
-                        teacher: element.subjectName
+                        subject: element.subjectName
                     })
                 }, this);
             }
-        })
-        .catch(err => {
-          console.log(err);
-        })
+        });
     },
-
     showSelectedQuestions() {
       console.log(this.selectedQuestion, "Selected Question in Params");
       if(this.selectedQuestion && this.selectedQuestion.length){
@@ -279,8 +288,15 @@ export default {
 
       return data;
     },
+
+    getDateInCorrectFormat(date){
+        let arrDate = date.split('/');
+        return arrDate[2] + '-' + arrDate[1] + '-' + arrDate[0];
+    },
+
     createTestCall() {
       this.$validator.validateAll().then((result) => {
+        if(result){
           /* Check validation before creating test */
           let msg = null;
           if(!this.checkedQuestions.length){
@@ -320,6 +336,12 @@ export default {
             this.checkedQuestions.map(function(data) {
               return data.id;
             }) : []
+
+          this.createtest.subjectId = this.createtest.subjectId ?
+            this.createtest.subjectId.map(function(data) {
+              return data.id;
+            }) : []
+
             let msgText = 'created';
             let apiPath = 'api/admin/create/test';
             let isEditMode = this.isEdit;
@@ -327,6 +349,10 @@ export default {
               apiPath = 'api/admin/update/test';
               msgText = 'updated';
             }
+
+            this.createtest.validFrom = this.getDateInCorrectFormat(this.createtest.validFrom);
+            this.createtest.ValidTo = this.getDateInCorrectFormat(this.createtest.ValidTo);
+            this.createtest.subject = this.createtest.subjectId;
 
           PostRequest(this.BaseUrl + apiPath, this.createtest)
             .then(res => {
@@ -349,7 +375,8 @@ export default {
                 console.log(error);
             });
           }
-        });
+        }
+      });
     },
     confirm() {
       let array = [];

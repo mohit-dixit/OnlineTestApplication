@@ -124,14 +124,14 @@ export default {
         bindSubjects: function() {
           let postData = {};
           postData.status = config.Active;
-          PostRequest(this.BaseUrl + 'api/admin/subject/list', postData).then(res => {
+            GetRequest(this.BaseUrl + 'api/admin/subject/list/'+ postData.status).then(res => {
                 this.subjectOptions = [];
                 this.subjectOptions.push({
                     value: null,
                     text: 'Select Subject'
                 })
                 if (res.status) {
-                    let response = res.body.message;
+                    let response = res.result.message;
                     if (response) {
                         response.forEach(function(element) {
                             this.subjectOptions.push({
@@ -146,14 +146,15 @@ export default {
         bindScale: function() {
           let postData = {};
           postData.status = config.Active;
-          PostRequest(this.BaseUrl + 'api/admin/scale/list', postData).then(res => {
+          this.loader = true;
+          GetRequest(this.BaseUrl + 'api/admin/scale/list/'+ postData.status).then(res => {
                 this.scaleOptions = [];
                 this.scaleOptions.push({
                     value: null,
                     text: 'Select Scale'
                 })
                 if (res.status) {
-                    let response = res.body.message;
+                    let response = res.result.message;
                     if (response) {
                         response.forEach(function(element) {
                             this.scaleOptions.push({
@@ -219,7 +220,7 @@ export default {
                             resTeacherData.forEach(function(element) {
                                 let teacherName = element.user.firstname + ' ' + element.user.lastname;
                                 this.teacherOptions.push({
-                                    value: element.id,
+                                    value: element.teacherId,
                                     text: teacherName
                                 })
                             }, this);

@@ -5,7 +5,7 @@
     <!--  <router-view></router-view> -->
     <div class="login-container">
         <div class="form-box">
-            <label class="headingForm text-center">{{submitButtonText}} Test</label>
+            <label class="headingForm text-center" style="text-align: center;">{{submitButtonText}} Test</label>
             <br>
             <b-form>
                 <b-container style="margin-bottom: 10px;" fluid>
@@ -85,7 +85,7 @@
                             <label for="input-none">Subject*</label>
                         </b-col>
                         <b-col sm="8">
-                            <multiselect v-model="createtest.subjectId" name="Subject" :options="subjectOptions" :multiple="true" v-validate="'required'" track-by="id" :custom-label="customLabel1">   
+                            <multiselect v-model="createtest.subjectId" name="Subject" :options="subjectOptions" :multiple="true" v-validate="'required'" track-by="id" :custom-label="customLabel2">
                             </multiselect>
                             <span v-show="errors.has('Subject')" class="help is-danger">{{ errors.first('Subject') }}</span>
                         </b-col>
@@ -114,14 +114,13 @@
                         <b-col sm="4">
                             <label for="input-none">Keep all questions with same marks</label>
                         </b-col>
-                        <b-col sm="2" style="text-align: left;">
+                        <b-col sm="8" style="text-align: left;">
                             <label class="switch" style="width: 60px;">
                             <input v-model="createtest.keepquestionSamemarks" value="true" type="checkbox">
                             <span class="slider round"></span>
                             </label>
-                        </b-col>
-                        <b-col sm="6" v-show="createtest.keepquestionSamemarks">
-                            <b-form-input class="sortQuestionsClass" type="number" placeholder="Enter Marks" v-model="createtest.sameMarksQuestions"></b-form-input>
+                            <b-form-input style="margin-top: 9px; width: 89%; float: right;" name="Marks" v-if="createtest.keepquestionSamemarks" v-validate="'required|numeric'" class="sortQuestionsClass" type="number" placeholder="Enter Marks" v-model="createtest.sameMarksQuestions"></b-form-input>
+                            <span v-show="errors.has('Marks')" v-if="createtest.keepquestionSamemarks" class="help is-danger">{{ errors.first('Marks') }}</span>
                         </b-col>
                     </b-row>
                     <b-row>

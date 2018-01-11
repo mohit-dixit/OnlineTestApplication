@@ -1,36 +1,24 @@
 <section class="select-questions-view">
-  <!-- Tabs -->
-  <b-tabs>
-    <b-tab title="first" active>
-      <br>I'm the first fading tab
-    </b-tab>
-    <b-tab title="second" >
-      <br>I'm the second tab content
-    </b-tab>
-    <b-tab title="disabled" disabled>
-      <br>Disabled tab!
-    </b-tab>
-  </b-tabs>
   <!-- ## -->
   <!-- <router-view/> -->
-  <b-container fluid>
+  <b-container style="margin-top: 40px;" fluid>
     <div class="loading" v-if='loader'>Loading&#8230;</div>
     <b-row class="mb-1 text-center">
       <!--  <b-row class="my-1"> -->
-          <b-col style="background-color: #E9ECEF" sm="12">
+          <b-col style="background-color: #E2E2E2" sm="12">
           <b-button variant="primary" style="margin: 10px; float:right" @click="confirm()">Done</b-button>
           <input class="sliderCheckbox" id="toggle" type="checkbox">
-          <label style="cursor: pointer; font-size: large; text-align: left;" @click="filterDivClick()" for="toggle">Filters
+          <label style="cursor: pointer; font-size: small; text-align: left; margin-top: 7px;" @click="filterDivClick()" for="toggle">Filters
             <span v-for="items in filterItems" class="filterBox">{{items}}</span>
           </label>
           <div id="expand">
-            <b-row class="my-1">
+            <b-row style="margin-bottom: 15px;" class="my-1">
                 <b-col sm="2">
                   </b-col>
                   <b-col sm="4">
                       <b-form-select v-model="createtest.categoryId" @change.native="categoryChange()" placeholder="Select Question" :options="questionTypeOptions" class="mb-3">
                         </b-form-select>
-                  </b-col> 
+                  </b-col>
                     <b-col sm="4">
                       <b-form-select v-model="createtest.subjectId" @change.native="subjectChange()" :options="subjectOptions" class="mb-3">
                       </b-form-select>
@@ -38,7 +26,7 @@
                 <b-col sm="2">
                 </b-col>
               </b-row>
-              <b-row class="my-1">
+              <b-row style="margin-bottom: 15px;" class="my-1">
                   <b-col sm="2">
                     </b-col>
                     <b-col sm="4">
@@ -68,12 +56,11 @@
     </b-row>
     <b-row>
       <b-col sm="10"></b-col>
-      <b-col sm="2">
+      <b-col style="margin-top: 10px; margin-bottom: 10px;" sm="2">
         <a style="cursor: pointer;" @click="openQuesModal()"><u>{{selectedNumber.intialNum}}/{{selectedNumber.maxNum}} Question Selected</u></a>
       </b-col>
     </b-row>
     <!-- </b-row> -->
-    <br>
     <b-row class="mb-1 text-center">
       <b-col sm="12">
        <div style="background-color: white; border: 3px solid #E9ECEF;">

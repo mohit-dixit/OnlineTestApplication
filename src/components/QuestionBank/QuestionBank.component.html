@@ -2,7 +2,7 @@
   <router-link to="/Dashboard/CreateQuestion">
     <b-button v-b-modal.modalAddInstitute variant="primary"><b>+ </b>Add Question</b-button>
   </router-link>
-  <br><br>
+  <br>
     <!-- <div class="tab">
       <input id="tab-one" style="display: none" type="checkbox" name="tabs">
       <label for="tab-one" class="FilterPanel">+ Filters</label>
@@ -52,7 +52,7 @@
     <br>
   <div style="background-color: white; border: 3px solid #E9ECEF;">
     <vue-good-table title="Questions List" :columns="columnsQuestions" :rows="questionList" :paginate="true" :globalSearch="true"
-     :lineNumbers="true" styleClass="table table-bordered table-striped condensed">
+     :lineNumbers="true" styleClass="table table-bordered table-striped condensed" v-if="questionList.length">
      <template slot="table-row" slot-scope="props">
         <td style="text-align: left;" v-html="props.row.question"></td>
         <td>{{ props.row.scale }}</td>
@@ -61,7 +61,7 @@
         <td>{{ props.row.teacherName }}</td>
         <td>{{ props.row.createdAt | formatDate }}</td>
         <td>
-            <label class="switch"> 
+            <label class="switch">
                 <input type="checkbox" @click="activeInactiveChange($event,props)" :checked="props.row.status =='Active'" style='display:none'>
                 <span class="slider round"></span>
             </label>
@@ -75,5 +75,6 @@
         </td>
       </template>
     </vue-good-table>
+    <img src='../../assets/images/nodatafound.jpeg' v-if="!questionList.length" />
   </div>
 </div>

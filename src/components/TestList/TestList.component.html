@@ -2,10 +2,10 @@
   <router-link to="/Dashboard/CreateTest">
     <b-button v-b-modal.modalAddInstitute variant="primary"><b>+ </b>Add Test</b-button>
   </router-link>
-  <br>
+  <br><br>
   <div style="background-color: white; border: 3px solid #E9ECEF;">
     <vue-good-table title="Tests" :columns="columnsTests" :rows="testList" :paginate="true" :globalSearch="true" :lineNumbers="true"
-                    styleClass="table table-bordered table-striped condensed" placeholder='no content'>
+                    styleClass="table table-bordered table-striped condensed" placeholder='no content' v-if="testList.length">
                     <template slot="table-row" slot-scope="props">
                       <td>{{ props.row.testname }}</td>
                       <td>{{ props.row.testtime }}</td>
@@ -30,5 +30,6 @@
                       </td>
                     </template>
     </vue-good-table>
+    <img src='../../assets/images/nodatafound.jpeg' v-if="!testList.length" />
   </div>
 </div>
